@@ -163,6 +163,51 @@ equity-aware policy. A disaggregated equity test (four-fifths band) checks that
 recommendations do not systematically disadvantage high-need communities. The
 full signal→output→action walk-through is in Section "8. One realistic scenario".
 
+## Science-first expansion modules
+
+Beyond the five mandatory panels, the app adds five validated science modules,
+each a tab wired to its own schema-validated artifact. All are OBSERVED
+surveillance or explicitly-labeled context — never a forecast unless validated,
+never a contamination claim.
+
+- **S01 — Pathogen Explorer** (`multipathogen_program_product.json`). OBSERVED
+  positivity for all three pathogens stratified by sampling program, sample
+  source, and product/control category, each with a Wilson 95% interval and an
+  n<30 small-group guard. Establishes where positivity concentrates historically
+  (e.g. Salmonella mechanically-separated chicken far above carcass programs),
+  with sampling-intensity bias explicitly deferred to the establishment/map
+  modules.
+- **S04 — Emerging Signals** (`emerging_risk.json`). Separates *persistent*
+  elevation from *emerging* (statistically unusual new) increases per state ×
+  quarter, using a leakage-safe trailing baseline and a 3-sigma control limit.
+  A one-step-ahead forecast was attempted and **honestly withheld for all three
+  pathogens** because it did not beat a naive persistence baseline (precision
+  0.03–0.08) — the module is retrospective-only, which the spec explicitly allows.
+- **S03 — Supplier Monitor** (`establishment_surveillance.json`). Ranks
+  establishments by a beta-binomial Empirical-Bayes posterior positivity with a
+  95% credible interval, shrinking thinly-tested plants toward the pathogen peer
+  rate so low testing is never read as safety. Identity is FSIS-published only
+  (no contact detail); no supplier→retailer relationship is implied; the facility
+  map honestly reports "coordinates unavailable" because the source carries none.
+- **S05 — One Health Insights** (`one_health_human_comparison.json`). Integrates
+  the required human-health stream — **real CDC NORS foodborne-outbreak data**
+  (66,713 rows, 24,729 foodborne) — and compares it against FSIS surveillance per
+  pathogen × state × year (564 corroboration cells across 2013–2023), strictly as
+  corroboration with a modeled 365-day availability lag. No same-strain link, no
+  causal claim; Listeria is coverage-limited and shown as such.
+- **S06 — Vulnerable Communities** (`community_impact.json`). Overlays read-only
+  state hazard with ACS/USDA Food Access Atlas vulnerability into a documented
+  multi-criteria priority ranking (default weights hazard 0.6 / vulnerability 0.4)
+  with a weight-sensitivity readout. The population lens never changes the hazard;
+  under-5 and pregnancy lenses are shown as unavailable (not in the ACS
+  extraction), never fabricated; affected-population counts are contextual only.
+
+Each module ships with Python property tests locking its honesty rules (no
+future-period leakage, low-n never treated as negative/safe, no causal or
+fabricated fields) and web render tests. Full suite at submission: 291 Python
+tests and 81 web tests, all passing; production build clean.
+
+
 ## Team science
 
 > **Placeholder flag.** The *substance* below is real and measured; the
@@ -383,7 +428,10 @@ formal fairness/equity review with stakeholders.
 ## Limitations (consolidated)
 
 - No serotype/WGS in FSIS establishment sampling — no strain-level attribution.
-- Human-health (NORS) is lagged corroboration, not a real-time predictor.
+- Human-health (CDC NORS) is now really integrated (S05 One Health Insights:
+  real NORS foodborne data compared against FSIS as corroboration), but remains
+  LAGGED corroboration (~365 days), not a real-time predictor, and is never used
+  as a causal or forecasting signal.
 - NOAA weather did not improve prediction; retained for One Health completeness.
 - Operational network and all operational outcomes are SIMULATED.
 - STEC forecasting is weak; treated as surveillance-only.
@@ -399,8 +447,14 @@ disclosure". All reported numbers come from real data and exported predictions.
 ## Mapping to the six deliverables
 
 1. Reproducible scripts — `src/`, `tests/`, pipeline modules.
-2. Kiro artifacts — `.kiro/specs/vulnerasafe-ai/` (requirements, design, tasks).
-3. Decision-support app — `web/` (React + Vite), GitHub Pages workflow.
+2. Kiro artifacts — `.kiro/specs/` with the base `vulnerasafe-ai` spec plus five
+   per-module expansion specs (s01 is folded into the base; s03/s04/s05/s06 each
+   have requirements, design, tasks).
+3. Decision-support app — `web/` (React + Vite), deployed at
+   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Seven
+   tabs: Overview, Dashboard (five mandatory panels), Pathogen Explorer (S01),
+   Emerging Signals (S04), Supplier Monitor (S03), One Health Insights (S05),
+   Vulnerable Communities (S06).
 4. Data dictionary + provenance — `docs/data_dictionary.md`, `docs/provenance.md`.
 5. PDF report — this document (export `docs/reports/final_report.md` to PDF).
 6. README + requirements — `README.md`, `requirements.txt`, `web/package.json`.
