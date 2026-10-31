@@ -1,56 +1,74 @@
 [
   {
+    "config": "fsis_cdc",
+    "metric": "Listeria:pr_auc",
+    "value": 0.745514,
+    "marginal_vs_fsis_only": 0.001822
+  },
+  {
     "config": "fsis_noaa",
     "metric": "Listeria:pr_auc",
-    "value": 0.309794,
-    "marginal_vs_fsis_only": -0.012007
+    "value": 0.736111,
+    "marginal_vs_fsis_only": -0.007581
   },
   {
     "config": "fsis_only",
     "metric": "Listeria:pr_auc",
-    "value": 0.321801,
+    "value": 0.743692,
     "marginal_vs_fsis_only": 0.0
   },
   {
     "config": "full",
     "metric": "Listeria:pr_auc",
-    "value": 0.33956,
-    "marginal_vs_fsis_only": 0.01776
+    "value": 0.738361,
+    "marginal_vs_fsis_only": -0.005331
+  },
+  {
+    "config": "fsis_cdc",
+    "metric": "STEC:pr_auc",
+    "value": 0.418083,
+    "marginal_vs_fsis_only": 0.007923
   },
   {
     "config": "fsis_noaa",
     "metric": "STEC:pr_auc",
-    "value": 0.298381,
-    "marginal_vs_fsis_only": -0.002757
+    "value": 0.415148,
+    "marginal_vs_fsis_only": 0.004988
   },
   {
     "config": "fsis_only",
     "metric": "STEC:pr_auc",
-    "value": 0.301138,
+    "value": 0.41016,
     "marginal_vs_fsis_only": 0.0
   },
   {
     "config": "full",
     "metric": "STEC:pr_auc",
-    "value": 0.311443,
-    "marginal_vs_fsis_only": 0.010305
+    "value": 0.432888,
+    "marginal_vs_fsis_only": 0.022728
+  },
+  {
+    "config": "fsis_cdc",
+    "metric": "Salmonella:pr_auc",
+    "value": 0.516109,
+    "marginal_vs_fsis_only": 0.005953
   },
   {
     "config": "fsis_noaa",
     "metric": "Salmonella:pr_auc",
-    "value": 0.520829,
-    "marginal_vs_fsis_only": 0.0
+    "value": 0.531258,
+    "marginal_vs_fsis_only": 0.021102
   },
   {
     "config": "fsis_only",
     "metric": "Salmonella:pr_auc",
-    "value": 0.520829,
+    "value": 0.510156,
     "marginal_vs_fsis_only": 0.0
   },
   {
     "config": "full",
     "metric": "Salmonella:pr_auc",
-    "value": 0.548398,
-    "marginal_vs_fsis_only": 0.027568
+    "value": 0.51715,
+    "marginal_vs_fsis_only": 0.006994
   }
 ]

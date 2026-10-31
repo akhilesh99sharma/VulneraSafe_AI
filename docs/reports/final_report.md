@@ -230,7 +230,7 @@ science changed the analysis" for the narrative answer.
 ## Limitations
 
 See the consolidated **Limitations** list near the end of this report (Part B),
-which gathers the no-serotype/WGS gap, NORS lag, the non-improving NOAA signal,
+which gathers the no-serotype/WGS gap, NORS lag, the small/pathogen-dependent NOAA signal,
 the SIMULATED operational network, weak STEC forecasting, and the modest ML lift
 over strong baselines. Responsible-use and interpretation limits are audited in
 `docs/reports/scientific_audit.md`.
@@ -296,8 +296,10 @@ Vulnerable-Population Lens, so safety actions can be evaluated for equity.
 must not alter the hazard estimate). They added a distinct decision layer:
 equity-weighted replacement allocation and a disaggregated equity test. A
 controlled ablation (FSIS-only vs FSIS+CDC vs FSIS+NOAA vs full) is reported in
-`docs/reports/ablation.md`; NOAA weather did not materially improve prediction
-and this is stated honestly rather than hidden.
+`docs/reports/ablation.md`. After upgrading NOAA to nClimDiv statewide monthly
+climate (national coverage), weather gives a small real lift for Salmonella
+(+0.0211 PR-AUC) and STEC (+0.0050) and a slight negative for Listeria (-0.0076)
+— reported with real signs rather than hidden.
 
 ## 4. Modeled signal and why it suits proactive support
 
@@ -432,7 +434,9 @@ formal fairness/equity review with stakeholders.
   real NORS foodborne data compared against FSIS as corroboration), but remains
   LAGGED corroboration (~365 days), not a real-time predictor, and is never used
   as a causal or forecasting signal.
-- NOAA weather did not improve prediction; retained for One Health completeness.
+- NOAA weather (nClimDiv statewide monthly, national coverage) gives a small,
+  pathogen-dependent lift: +0.0211 PR-AUC for Salmonella, +0.0050 for STEC,
+  -0.0076 for Listeria. Modest and honest, not a headline driver.
 - Operational network and all operational outcomes are SIMULATED.
 - STEC forecasting is weak; treated as surveillance-only.
 - ML lift over strong baselines is modest; persistent-risk ranking is not the

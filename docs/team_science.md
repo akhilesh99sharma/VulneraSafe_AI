@@ -72,21 +72,31 @@ split and scored on the **same** untouched held-out test set. Primary metric:
 preserved, never clamped). Source:
 `docs/reports/ablation.md` / `web/public/data/ablation_results.json`.
 
+Re-measured after the NOAA weather source was upgraded from a single demo
+station to **NOAA nClimDiv statewide monthly climate** (national coverage, ~87%
+of state-periods non-missing):
+
 | Pathogen | FSIS-only PR-AUC | FSIS+NOAA Δ | Full PR-AUC | Full Δ vs FSIS-only |
 |---|---|---|---|---|
-| Salmonella | 0.5208 | +0.0000 | 0.5484 | **+0.0276** |
-| Listeria | 0.3218 | −0.0120 | 0.3396 | **+0.0178** |
-| STEC | 0.3011 | −0.0028 | 0.3114 | **+0.0103** |
+| Salmonella | 0.5102 | **+0.0211** | 0.5172 | +0.0070 |
+| Listeria | 0.7437 | −0.0076 | 0.7384 | −0.0053 |
+| STEC | 0.4102 | **+0.0050** | 0.4329 | **+0.0227** |
 
-Honest findings from the real measurement:
-- Adding **all** context (full) improved PR-AUC for every pathogen, most for
-  Salmonella (+0.0276).
-- **NOAA weather alone did not help** — its marginal PR-AUC was 0.0000
-  (Salmonella) or slightly **negative** (Listeria −0.0120, STEC −0.0028), caused
-  by thin ingested station coverage leaving `weather_*` mostly NaN.
-- **FSIS+CDC is a declared gap**: no CDC human-health features were joined into
-  the feature matrix, so its contribution is **not evaluable** and is recorded as
-  a gap (n/a) rather than a fabricated delta.
+Honest findings from the real measurement (on the upgraded nClimDiv data):
+- **NOAA weather now helps Salmonella** — a real +0.0211 PR-AUC from weather
+  alone, where the earlier thin-single-station ablation measured exactly 0.000.
+  The national state-monthly coverage is what makes the signal detectable. STEC
+  also gains a small positive from NOAA (+0.0050).
+- **Listeria weather is slightly negative** (−0.0076) — consistent with RTE
+  Listeria being process-driven rather than weather-driven. Reported with its
+  real sign, not hidden.
+- **Adding every group (`full`) is not monotonic**: it clearly helps STEC
+  (+0.0227) but slightly *dilutes* Salmonella and Listeria vs their best single
+  addition — an honest reminder that more features is not always better with
+  limited positives.
+- **FSIS+CDC is now a real (small positive) contribution**, not a gap: with the
+  S05 CDC NORS integration, CDC-derived context is in the matrix (e.g. Salmonella
+  0.5102 → 0.5161). This supersedes the earlier "no CDC features joined" note.
 
 ## A real decision changed by a team member/stakeholder (Req 17.4) — PLACEHOLDER
 

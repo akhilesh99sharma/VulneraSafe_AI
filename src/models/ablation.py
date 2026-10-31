@@ -20,9 +20,11 @@ The 39-column feature matrix partitions cleanly by data source:
   matrix: the CDC human-health stream was not joined into harmonize, so there
   is no CDC column to add. This is handled HONESTLY (see below), never
   fabricated.
-* **NOAA** — weather features ``weather_*`` (present but mostly NaN given the
-  thin ingested station slice; the marginal contribution is expected to be ~0,
-  a valid negative/near-zero result reported as-is).
+* **NOAA** — weather features ``weather_*`` from NOAA nClimDiv statewide monthly
+  climate (national state-level coverage, ~87% of state-periods non-missing;
+  Hawaii and the newest unpublished months are the documented gaps). The marginal
+  contribution is measured and reported with its real sign — small positive for
+  Salmonella/STEC, slightly negative for Listeria.
 * **Static context (ACS / Food Access Atlas)** — ``static_*``. These are
   slowly-varying demographic / food-access context, NOT a One-Health
   surveillance stream; they are folded into the ``full`` configuration and
@@ -327,9 +329,11 @@ def ablation_for_pathogen(
             noaa_metrics.get("roc_auc"), base_metrics.get("roc_auc")
         ),
         "note": (
-            "NOAA weather_* features are present but mostly NaN given the thin "
-            "ingested station slice; a near-zero or negative marginal is a valid "
-            "honest result, reported with its sign."
+            "NOAA weather_* features come from NOAA nClimDiv statewide monthly "
+            "climate (national state-level coverage, ~87% of state-periods "
+            "non-missing). The marginal is measured and reported with its real "
+            "sign; it is small and pathogen-dependent (positive for Salmonella/"
+            "STEC, slightly negative for Listeria)."
         ),
     }
 
@@ -444,10 +448,11 @@ def write_ablation_report(
         "configuration is therefore recorded as a *gap* — its contribution is "
         "**not evaluable** and is reported as such, never as a fabricated "
         "number.\n"
-        "- **NOAA thin coverage:** NOAA `weather_*` features exist but are mostly "
-        "NaN given the thin ingested station slice, so the **FSIS+NOAA** marginal "
-        "is expected to be ~0 (or slightly negative). That near-zero/negative "
-        "result is valid and is reported with its real sign.\n"
+        "- **NOAA nClimDiv coverage:** NOAA `weather_*` features come from NOAA "
+        "nClimDiv statewide monthly climate (national, ~87% of state-periods "
+        "non-missing). The **FSIS+NOAA** marginal is small and pathogen-dependent "
+        "(positive for Salmonella/STEC, slightly negative for Listeria) and is "
+        "reported with its real sign.\n"
         "- **Static context:** ACS / Food Access Atlas `static_*` columns are "
         "slowly-varying demographic / food-access CONTEXT, not a One-Health "
         "surveillance stream; they are folded into the **full** configuration.\n"
