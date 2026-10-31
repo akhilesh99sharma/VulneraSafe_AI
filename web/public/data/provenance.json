@@ -40,12 +40,14 @@
     "license": "US Government public domain (USDA ERS)",
     "geographic_coverage": "United States (census tracts)",
     "temporal_coverage": "2015/2019 Atlas vintage",
-    "checksum": "",
-    "total_samples": null,
+    "checksum": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8",
+    "total_samples": 72531,
     "positive_count": null,
     "missingness": {},
-    "known_biases": [],
-    "notes": "GAP: Atlas download failed. USDA Food Access Research Atlas has no API. Download the file from https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx in a browser and place it under data/raw/food_access/."
+    "known_biases": [
+      "tract-level access thresholds are policy choices, not ground truth"
+    ],
+    "notes": "USDA Food Access Research Atlas file 'lram_2019_xlsx' downloaded (85803176 bytes)."
   },
   {
     "source": "fsis:raw_beef_stec",

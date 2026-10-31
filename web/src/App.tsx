@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useManifest } from "./data/hooks";
 import EmptyState from "./components/EmptyState";
 import ResponsibleUseBanner from "./components/ResponsibleUseBanner";
@@ -19,6 +19,7 @@ import SupplierMonitor from "./components/panels/SupplierMonitor";
 import OneHealthInsights from "./components/panels/OneHealthInsights";
 import VulnerableCommunities from "./components/panels/VulnerableCommunities";
 import SurveillanceActions from "./components/panels/SurveillanceActions";
+import FacilityMap from "./components/panels/FacilityMap";
 import type { Manifest } from "./types/artifacts";
 
 /**
@@ -31,7 +32,7 @@ import type { Manifest } from "./types/artifacts";
  * stay mounted across tabs so a verified recall is never hidden by navigation.
  */
 
-type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions";
+type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions" | "facilitymap";
 
 
 
@@ -45,6 +46,7 @@ function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
     { id: "onehealth", label: "One Health Insights" },
     { id: "communities", label: "Vulnerable Communities" },
     { id: "actions", label: "Surveillance Actions" },
+    { id: "facilitymap", label: "Facility Map" },
 
 
   ];
@@ -185,6 +187,8 @@ function AppBody() {
         <VulnerableCommunities />
       ) : tab === "actions" ? (
         <SurveillanceActions />
+      ) : tab === "facilitymap" ? (
+        <FacilityMap />
       ) : (
         <Dashboard />
       )}

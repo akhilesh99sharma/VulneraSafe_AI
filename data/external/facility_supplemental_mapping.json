@@ -1,0 +1,84 @@
+{
+  "schema_note": "Supplemental, SEPARATE overlay of historical-candidate facility locations for S03 establishments that are ABSENT from the FSIS MPI Directory (active + inactive). This file is NOT the official MPI geocode cache (data/external/facility_geocode.json) and never overwrites it. Each entry is keyed on the S03 numeric establishment_id. The numeric establishment_id is NOT asserted to equal the historical USDA inspection number; the link is an external-research heuristic (name + state + address), confidence 'probable', and is NOT verified against any FSIS establishment id (verified_against_fsis_id=false). Coordinates are present ONLY when obtained from a reputable source and recorded with coordinate_source; a null lat/lon means no pin is drawn (candidate listed as metadata only). Never fabricate or estimate coordinates.",
+  "source": "external historical research (user-provided)",
+  "match_method": "historical_name_state_address",
+  "generated_note": "lat/lon intentionally null until real coordinates are supplied; the map shows these as 'Historical Candidate - Identity Unconfirmed' and never as MPI-verified pins.",
+  "entries": {
+    "123452": {
+      "pathogen": "Listeria",
+      "facility_name": "Cadence Gourmet",
+      "state": "CA",
+      "historical_inspection_number": "M44857 / P44857",
+      "historical_address": "155 Klug Circle, Corona, CA 92880",
+      "lat": null,
+      "lon": null,
+      "coordinate_source": null,
+      "evidence_urls": [
+        "https://www.citizen.org/wp-content/uploads/PC-v.-DOL-OSHA-Jan-29-2021.pdf",
+        "https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1493169.015"
+      ],
+      "match_method": "historical_name_state_address",
+      "match_confidence": "probable",
+      "verified_against_fsis_id": false,
+      "location_status": "historical_candidate",
+      "notes": "Numeric S03 id 123452 is ABSENT from the active/inactive MPI Directory and from the demographic CSV; inspection numbers M44857/P44857 are also absent from those files. The id-to-inspection-number link is unconfirmed against FSIS records."
+    },
+    "6163497": {
+      "pathogen": "Listeria",
+      "facility_name": "Lean Culinary Services, LLC",
+      "state": "FL",
+      "historical_inspection_number": "M46167 / P46167",
+      "historical_address": "2050 McKinley Street, Bay 1, Hollywood, FL 33020",
+      "lat": null,
+      "lon": null,
+      "coordinate_source": null,
+      "evidence_urls": [
+        "https://www.citizen.org/wp-content/uploads/PC-v.-DOL-OSHA-Jan-29-2021.pdf",
+        "https://www.meatpoultry.com/articles/20910-rte-chicken-salad-products-recalled"
+      ],
+      "match_method": "historical_name_state_address",
+      "match_confidence": "probable",
+      "verified_against_fsis_id": false,
+      "location_status": "historical_candidate",
+      "notes": "Inspected-facility address preferred over the corporate (Bay 2) address. Numeric S03 id 6163497 and inspection numbers M46167/P46167 are absent from the MPI Directory files; link unconfirmed against FSIS records."
+    },
+    "6165673": {
+      "pathogen": "STEC",
+      "facility_name": "South 40 Farms, LLC",
+      "state": "ND",
+      "historical_inspection_number": "M47494 / P47494 / V47494",
+      "historical_address": "9214 Highway 21, Mott, ND 58646",
+      "lat": null,
+      "lon": null,
+      "coordinate_source": null,
+      "evidence_urls": [
+        "https://www.peta.org/wp-content/uploads/2022/09/south-40-farms-noncompliance-records.pdf",
+        "https://www.peta.org/media/news-releases/pigs-repeatedly-shot-in-the-head-peta-seeks-federal-probe-2/"
+      ],
+      "match_method": "historical_name_state_address",
+      "match_confidence": "probable",
+      "verified_against_fsis_id": false,
+      "location_status": "historical_candidate",
+      "notes": "Numeric S03 id 6165673 and inspection numbers M47494/P47494/V47494 are absent from the MPI Directory files; link unconfirmed against FSIS records."
+    },
+    "632": {
+      "pathogen": "Listeria",
+      "facility_name": "B & H Foods, Inc.",
+      "state": "GA",
+      "historical_inspection_number": null,
+      "historical_address": "635 Kingsbridge Road, Carrollton, GA 30117",
+      "lat": null,
+      "lon": null,
+      "coordinate_source": null,
+      "evidence_urls": [
+        "https://www.dnb.com/business-directory/company-profiles.b__h_foods_inc.7c8bd50875e4f62ec443d8d7bb5cfd8f.html"
+      ],
+      "match_method": "historical_name_state_address",
+      "match_confidence": "ambiguous",
+      "verified_against_fsis_id": false,
+      "location_status": "unresolved",
+      "do_not_map": true,
+      "notes": "DO NOT MAP. Multiple similarly named B & H Foods establishments exist across GA/SC/NC; the Carrollton address is not confidently tied to numeric S03 id 632. Remains unresolved/unplaced."
+    }
+  }
+}

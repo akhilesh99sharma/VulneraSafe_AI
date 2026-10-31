@@ -740,6 +740,107 @@ class ActionQueueItem(TypedDict):
     generated_at: str
 
 
+# --------------------------------------------------------------------------- #
+# facility_map -> Facility Map view (deterministic join + offline geocode over
+# S03 establishment surveillance + the action_queue)
+# --------------------------------------------------------------------------- #
+
+class FacilityMapCoverage(TypedDict):
+    """Per-pathogen geocode-coverage summary carried in each row so the web
+    component does not recompute it (Req 4.1-4.3). ``coverage_pct`` is None with
+    ``coverage_state="not_applicable"`` when ``total_selected`` is 0 (Req 4.2);
+    otherwise ``coverage_state="computed"`` and ``coverage_pct`` is in [0.0, 100.0].
+
+    ``coverage_pct`` is the VERIFIED headline: it counts ONLY MPI-verified placements
+    (``placement_status == "placed"``) over ``total_selected`` and is NEVER inflated by
+    the supplemental historical-candidate overlay (Req 4). The invariant
+    ``placed + unplaced == total_selected`` still holds because ``unplaced`` is defined
+    as ``total_selected - placed`` and therefore INCLUDES every row that is not a
+    verified placement. ``historical_candidate`` and ``unresolved`` are informational
+    sub-counts OF that ``unplaced`` total: ``historical_candidate`` counts rows whose
+    ``placement_status == "historical_candidate"`` (a supplemental overlay candidate),
+    and ``unresolved`` counts the remaining unplaced rows (neither verified-placed nor a
+    historical candidate). Thus ``historical_candidate + unresolved == unplaced`` and
+    they surface how many of the unplaced establishments are historical candidates vs
+    truly unresolved without touching the verified headline percentage.
+    """
+
+    pathogen: str
+    total_selected: int
+    placed: int
+    unplaced: int
+    historical_candidate: int
+    unresolved: int
+    coverage_pct: Optional[float]
+    coverage_state: str            # "computed" | "not_applicable"
+
+
+class FacilityMapItem(TypedDict):
+    """One OBSERVED signal-bearing FSIS-sampled establishment plotted (or listed as
+    unplaced) on the Facility Map. Decision-support reference layer only: identity is
+    FSIS-published (number, optional published name, state) with NO contact detail;
+    the location is the establishment's SAMPLING location, never a product destination
+    or illness location, and no supplier/retailer relationship is implied. The value is
+    a Surveillance_Signal (eb_posterior), never a contamination or illness claim.
+    ``human_review`` is always True and ``status`` is always OBSERVED (never
+    PREDICTED/SIMULATED). A placed row carries a real lat/lon/address from the committed
+    Geocode_Cache; an unplaced row carries lat/lon/address=None and a non-empty
+    ``unplaced_reason``. ``coverage`` repeats the per-pathogen coverage block so the UI
+    reads it without recomputing. The optional ``establishment_number``/``county``/
+    ``fips_code`` display fields are surfaced from the enriched Geocode_Cache for placed
+    rows and are None on unplaced/action-queue-only rows.
+
+    ``location_status`` is the richer placement dimension distinguishing the MPI-verified
+    overlay from the supplemental historical-candidate overlay: "mpi_verified" rows are
+    matched against the FSIS MPI Directory, "historical_candidate" rows are a supplemental
+    overlay matched only by historical name/state/address heuristics, and "unresolved"
+    rows could not be placed. ``verified_against_fsis_id`` is True ONLY for MPI-directory
+    matches; for historical candidates it is False because the establishment identity is
+    NOT confirmed against an FSIS establishment id. The ``historical_*`` fields and
+    ``historical_inspection_number`` carry the supplemental historical overlay's own
+    attributes and are NEVER asserted as linked to the numeric establishment id. These
+    overlay fields are all Optional so MPI-verified rows and unresolved rows still
+    validate.
+    """
+
+    artifact_version: str
+    module_id: str                 # "FACILITYMAP"
+    method_version: str            # "fm.v1"
+    pathogen: str
+    normalized_establishment_number: str
+    establishment_id: str
+    establishment_number: Optional[str]
+    establishment_name: Optional[str]
+    state: str
+    county: Optional[str]
+    fips_code: Optional[str]
+    eb_posterior: Optional[float]
+    ci_low: Optional[float]
+    ci_high: Optional[float]
+    sample_n: int
+    positive_n: int
+    support_status: str            # "ok" | "low_support"
+    source_selection: str          # "s03" | "action_queue" | "both"
+    placement_status: str          # "placed" | "unplaced"
+    location_status: str           # "mpi_verified" | "historical_candidate" | "unresolved"
+    match_method: Optional[str]    # e.g. "fsis_mpi_establishment_id" | "historical_name_state_address"
+    match_confidence: Optional[str]  # e.g. "verified" | "probable" | None
+    verified_against_fsis_id: bool  # True only for MPI-directory matches; False for historical candidates
+    historical_inspection_number: Optional[str]  # e.g. "M44857 / P44857"; NEVER asserted as linked to the numeric id
+    historical_address: Optional[str]
+    coordinate_source: Optional[str]  # e.g. "FSIS MPI Directory (published)" | "external geocode" | None
+    evidence_urls: list[str]       # may be empty
+    lat: Optional[float]
+    lon: Optional[float]
+    address: Optional[str]
+    unplaced_reason: Optional[str]
+    evidence_summary: str
+    coverage: FacilityMapCoverage
+    human_review: bool             # always True
+    status: StatusTag              # OBSERVED
+    generated_at: str
+
+
 #: All status-bearing literal values, re-exported for lightweight validation.
 STATUS_TAGS: frozenset[str] = frozenset(("OBSERVED", "PREDICTED", "SIMULATED"))
 

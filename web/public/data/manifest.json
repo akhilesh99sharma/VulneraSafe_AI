@@ -198,6 +198,13 @@
       "checksum_sha256": "9ac0f79190719662b45b105f271775cd4c9b8bc9e121eef0fe010f95be95be25"
     },
     {
+      "source": "food_access_atlas",
+      "url": "https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx",
+      "access_date": "2026-10-31",
+      "license": "US Government public domain (USDA ERS)",
+      "checksum_sha256": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8"
+    },
+    {
       "source": "fsis:raw_beef_stec",
       "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
       "access_date": "2026-10-31",
@@ -303,6 +310,12 @@
       "record_count": 7622,
       "status_tagged": true
     },
+    "facility_map": {
+      "file": "facility_map.json",
+      "checksum_sha256": "e9287ba6821e5e14132509cc9909987c48154c5cd4cdcdf6d57d02990dcf00ca",
+      "record_count": 36,
+      "status_tagged": true
+    },
     "feasibility_report": {
       "file": "feasibility_report.json",
       "checksum_sha256": "42ef52d5a16f4c5289898c36670b8e35530d3d76d18b04e3a801d4bdcd2c0a55",
@@ -329,7 +342,7 @@
     },
     "provenance": {
       "file": "provenance.json",
-      "checksum_sha256": "f32afddd68a4d85233ce360d54100b7324935eb1d65d87105f49ee19a75ba735",
+      "checksum_sha256": "7978b0cd40192bd6842e5456d6d9e9dd6c9678f38318b4a2a7452a5ac9af3279",
       "record_count": 12,
       "status_tagged": true
     },

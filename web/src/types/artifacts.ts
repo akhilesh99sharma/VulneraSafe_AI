@@ -563,3 +563,53 @@ export interface ActionQueueItem {
   availability_status: string;
   generated_at: string;
 }
+// facility_map -> Facility Map view (decision layer over S03 + the action_queue)
+export interface FacilityMapCoverage {
+  pathogen: string;
+  total_selected: number;
+  placed: number;
+  unplaced: number;
+  historical_candidate: number; // informational sub-count of unplaced (overlay candidates)
+  unresolved: number; // informational sub-count of unplaced (neither placed nor candidate)
+  coverage_pct: number | null; // VERIFIED (placed-only); never inflated by candidates
+  coverage_state: string; // "computed" | "not_applicable"
+}
+
+export interface FacilityMapItem {
+  artifact_version: string;
+  module_id: string; // "FACILITYMAP"
+  method_version: string; // "fm.v1"
+  pathogen: string;
+  normalized_establishment_number: string;
+  establishment_id: string;
+  establishment_number: string | null;
+  establishment_name: string | null;
+  state: string;
+  county: string | null;
+  fips_code: string | null;
+  eb_posterior: number | null;
+  ci_low: number | null;
+  ci_high: number | null;
+  sample_n: number;
+  positive_n: number;
+  support_status: string; // "ok" | "low_support"
+  source_selection: string; // "s03" | "action_queue" | "both"
+  placement_status: string; // "placed" | "unplaced"
+  location_status: string; // "mpi_verified" | "historical_candidate" | "unresolved"
+  match_method: string | null; // e.g. "fsis_mpi_establishment_id" | "historical_name_state_address"
+  match_confidence: string | null; // e.g. "verified" | "probable" | null
+  verified_against_fsis_id: boolean; // True only for MPI-directory matches; false for historical candidates
+  historical_inspection_number: string | null; // e.g. "M44857 / P44857"; NEVER asserted as linked to the numeric id
+  historical_address: string | null;
+  coordinate_source: string | null; // e.g. "FSIS MPI Directory (published)" | "external geocode" | null
+  evidence_urls: string[]; // may be empty
+  lat: number | null;
+  lon: number | null;
+  address: string | null;
+  unplaced_reason: string | null;
+  evidence_summary: string;
+  coverage: FacilityMapCoverage;
+  human_review: boolean;
+  status: StatusTag;
+  generated_at: string;
+}

@@ -1,0 +1,322 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Implement `normalize_establishment_number` and module constants in `src/decision/facility_map.py`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461654264
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461666346
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462002851
+      }
+    ],
+    "1.3 Implement the swappable Geocoder interface and `GazetteerGeocoder`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461654874
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462007118
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462100377
+      }
+    ],
+    "1.4 Implement selection helpers in `src/decision/facility_map.py`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461657595
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462103589
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462312629
+      }
+    ],
+    "1.6 Implement join, coverage, and the orchestrator in `src/decision/facility_map.py`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461657828
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462329481
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462620792
+      }
+    ],
+    "1.7 Implement `scripts/build_facility_geocode.py` (offline, once, committed output)": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658034
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462629738
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462977899
+      }
+    ],
+    "2.1 Obtain/prepare the MPI Directory and build the committed geocode cache": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658152
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793463043000
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793463047387
+      },
+      {
+        "executionId": "9bd1d534-97fb-4088-b800-18409d79eec6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793464010124
+      },
+      {
+        "executionId": "9bd1d534-97fb-4088-b800-18409d79eec6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793465269720
+      }
+    ],
+    "2.2 Measure and record actual match/geocode coverage": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658274
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793463051967
+      },
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793463143712
+      }
+    ],
+    "3.1 Add `FacilityMapCoverage` and `FacilityMapItem` TypedDicts to `src/artifacts/schemas.py`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658397
+      },
+      {
+        "executionId": "20cc1b69-3995-4eca-a9bf-10dbdc655d14",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793465397621
+      },
+      {
+        "executionId": "20cc1b69-3995-4eca-a9bf-10dbdc655d14",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793465506551
+      }
+    ],
+    "3.2 Append the mirrored TypeScript interfaces to `web/src/types/artifacts.ts`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658529
+      },
+      {
+        "executionId": "20cc1b69-3995-4eca-a9bf-10dbdc655d14",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793465510106
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793467929097
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793468066039
+      }
+    ],
+    "4.1 Implement `build_facility_map()` and wire it into `build_all_artifacts`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658727
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793468310987
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793469127120
+      }
+    ],
+    "5. Checkpoint — Python layer green": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461658843
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793469133419
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793470503382
+      }
+    ],
+    "6.1 Implement `web/src/components/panels/FacilityMap.tsx`": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461659012
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793470513296
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793470770616
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793470774601
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793471794644
+      }
+    ],
+    "6.2 Wire the `facilitymap` tab into `web/src/App.tsx` and update the theme allowlist": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461659147
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793471798578
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793472961679
+      }
+    ],
+    "7. Verification — run the suites in external CMD and record exact counts": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461659249
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793473711068
+      }
+    ],
+    "8. Review gate — completion report, then STOP for user approval": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793461659347
+      },
+      {
+        "executionId": "ae371cb2-de36-4062-b4bd-cc09fc155a6d",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793476377905
+      }
+    ],
+    "1. Build the offline geocode build script and the decision-layer core (no exporter yet)": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793462977996
+      }
+    ],
+    "2. Obtain the MPI Directory and MEASURE actual geocode coverage (honest-risk task)": [
+      {
+        "executionId": "f7e158f1-cf69-465a-b4f0-bfd9b7a1509e",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793463143819
+      }
+    ],
+    "3. Add the Facility_Map schema and its TypeScript mirror (before the exporter)": [
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793468066188
+      }
+    ],
+    "4. Wire `build_facility_map` into the exporter": [
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793469127232
+      }
+    ],
+    "6. Build the Facility Map web tab and wire it into the app": [
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793472961885
+      }
+    ],
+    "6.3 Write `web/src/components/panels/__tests__/FacilityMap.test.tsx`": [
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793472996045
+      },
+      {
+        "executionId": "26b5db45-671c-4c3e-b962-892818c6f492",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793473705662
+      }
+    ]
+  }
+}

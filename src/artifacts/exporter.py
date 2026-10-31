@@ -63,6 +63,8 @@ from src.artifacts.schemas import (
     LensPriority,
     WeightSensitivity,
     ActionQueueItem,
+    FacilityMapCoverage,
+    FacilityMapItem,
     STATUS_TAGS,
     AblationResult,
     AttentionQueueItem,
@@ -1824,6 +1826,135 @@ def build_action_queue() -> list[dict]:
     return rows
 
 
+#: Human-facing string fields scanned by the facility_map FORBIDDEN_TERMS guard.
+#: URLs are intentionally EXCLUDED (evidence_urls may contain unrelated substrings;
+#: our own schema_note/evidence text must not trip the guard).
+_FACILITY_MAP_SCANNED_FIELDS: tuple[str, ...] = (
+    "evidence_summary",
+    "address",
+    "historical_address",
+    "unplaced_reason",
+    "establishment_name",
+    "historical_inspection_number",
+)
+
+
+def build_facility_map() -> list[dict]:
+    """Decision layer -> OBSERVED facility-map rows (deterministic join + overlay).
+
+    Reads the offline interim cache ``data/interim/facility_map.json`` (produced by
+    ``python -m src.decision.facility_map``) via ``facility_map.load_cache`` — compute is
+    NOT run at export time, mirroring every other builder. If the cache is missing,
+    returns an empty list (an empty map is an honest result, not a failure).
+
+    Flattens the per-pathogen cache into one list of :class:`FacilityMapItem` rows,
+    stamping ``artifact_version``, ``module_id="FACILITYMAP"``,
+    ``method_version`` (from the cache, else ``"fm.v1"``), the per-pathogen ``coverage``
+    block, and ``generated_at=resolve_generated_at()``. Every FacilityMapItem field is
+    present; any missing optional is filled with ``None`` / ``[]`` as appropriate.
+
+    FORBIDDEN_TERMS guard (Req 10.1, 10.2): before returning, scans the HUMAN-FACING
+    string fields (:data:`_FACILITY_MAP_SCANNED_FIELDS`) case-insensitively for the
+    facility_map forbidden term set (mirroring action_queue). ``evidence_urls`` are NOT
+    scanned — URLs may contain unrelated substrings. A violation raises
+    :class:`SchemaValidationError` naming the offending field and writes nothing.
+
+    Fail-loud contract (Req 3.4): the compute layer already turns a missing committed
+    geocode key into an honest unplaced "not found" row, so this builder does NOT
+    hard-fail for honestly-unplaced establishments (hard-failing would break the whole
+    export for the known-missing ids). The design's strict fail-loud is specifically
+    about a geocode cache that claims ``obtained=true`` yet structurally lacks entries it
+    references; that pathological case is not produced by the committed caches here, so
+    we conservatively preserve the honest-unplaced behavior rather than breaking the
+    export. (Decision documented here per Req 3.4.)
+    """
+    from src.decision.facility_map import FORBIDDEN_TERMS, load_cache as load_facility_map_cache
+
+    stamp = resolve_generated_at()
+    cache = load_facility_map_cache()
+    rows: list[dict] = []
+    if not cache or not cache.get("pathogens"):
+        return rows
+    method_version = cache.get("method_version", "fm.v1")
+
+    for pathogen in sorted(cache["pathogens"]):
+        pdata = cache["pathogens"][pathogen]
+        raw_coverage = pdata.get("coverage", {}) or {}
+        coverage = FacilityMapCoverage(
+            pathogen=str(raw_coverage.get("pathogen", pathogen)),
+            total_selected=int(raw_coverage.get("total_selected", 0) or 0),
+            placed=int(raw_coverage.get("placed", 0) or 0),
+            unplaced=int(raw_coverage.get("unplaced", 0) or 0),
+            historical_candidate=int(raw_coverage.get("historical_candidate", 0) or 0),
+            unresolved=int(raw_coverage.get("unresolved", 0) or 0),
+            coverage_pct=raw_coverage.get("coverage_pct"),
+            coverage_state=str(raw_coverage.get("coverage_state", "not_applicable")),
+        )
+        for r in pdata.get("rows", []):
+            evidence_urls = r.get("evidence_urls", [])
+            rows.append(FacilityMapItem(
+                artifact_version=ARTIFACT_VERSION,
+                module_id="FACILITYMAP",
+                method_version=method_version,
+                pathogen=str(r.get("pathogen", pathogen)),
+                normalized_establishment_number=str(r.get("normalized_establishment_number", "")),
+                establishment_id=str(r.get("establishment_id", "")),
+                establishment_number=r.get("establishment_number"),
+                establishment_name=r.get("establishment_name"),
+                state=str(r.get("state", "UNK")),
+                county=r.get("county"),
+                fips_code=r.get("fips_code"),
+                eb_posterior=r.get("eb_posterior"),
+                ci_low=r.get("ci_low"),
+                ci_high=r.get("ci_high"),
+                sample_n=int(r.get("sample_n", 0) or 0),
+                positive_n=int(r.get("positive_n", 0) or 0),
+                support_status=str(r.get("support_status", "unknown")),
+                source_selection=str(r.get("source_selection", "s03")),
+                placement_status=str(r.get("placement_status", "unplaced")),
+                location_status=str(r.get("location_status", "unresolved")),
+                match_method=r.get("match_method"),
+                match_confidence=r.get("match_confidence"),
+                verified_against_fsis_id=bool(r.get("verified_against_fsis_id", False)),
+                historical_inspection_number=r.get("historical_inspection_number"),
+                historical_address=r.get("historical_address"),
+                coordinate_source=r.get("coordinate_source"),
+                evidence_urls=list(evidence_urls) if isinstance(evidence_urls, list) else [],
+                lat=r.get("lat"),
+                lon=r.get("lon"),
+                address=r.get("address"),
+                unplaced_reason=r.get("unplaced_reason"),
+                evidence_summary=str(r.get("evidence_summary", "")),
+                coverage=coverage,
+                human_review=bool(r.get("human_review", True)),
+                status="OBSERVED",
+                generated_at=stamp,
+            ))
+
+    # FORBIDDEN_TERMS guard (Req 10.1, 10.2): scan human-facing text fields only.
+    lowered_terms = tuple(t.lower() for t in FORBIDDEN_TERMS)
+    for ri, row in enumerate(rows):
+        for field in _FACILITY_MAP_SCANNED_FIELDS:
+            value = row.get(field)
+            if not isinstance(value, str):
+                continue
+            haystack = value.lower()
+            for term in lowered_terms:
+                if term in haystack:
+                    raise SchemaValidationError(
+                        f"facility_map[item][{ri}].{field}: forbidden term "
+                        f"{term!r} found; writing nothing"
+                    )
+
+    # Deterministic order: (pathogen, normalized_establishment_number), establishment_id.
+    rows.sort(key=lambda r: (
+        r["pathogen"],
+        r["normalized_establishment_number"],
+        r["establishment_id"],
+    ))
+    return rows
+
+
 def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, Any]:
     """Build and validate every value-bearing artifact payload (no I/O).
 
@@ -1882,6 +2013,8 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
     action_queue = build_action_queue()
     validate_payload(action_queue, ActionQueueItem, label="action_queue")
 
+    facility_map = build_facility_map()
+    validate_payload(facility_map, FacilityMapItem, label="facility_map[item]")
 
     equity = build_equity_test(scenario_payload)
     validate_payload(equity, EquityTest, label="equity_test")
@@ -1904,6 +2037,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "one_health_human_comparison": human_comparison,
         "community_impact": community_impact,
         "action_queue": action_queue,
+        "facility_map": facility_map,
         "_modules": modules,  # internal: folded into the manifest, not written standalone
     }
 
