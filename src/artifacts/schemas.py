@@ -705,6 +705,41 @@ class CommunityImpactRecord(TypedDict):
     generated_at: str
 
 
+# --------------------------------------------------------------------------- #
+# action_queue -> Surveillance Actions view (decision layer over S01/S03/S04/S06)
+# --------------------------------------------------------------------------- #
+
+class ActionQueueItem(TypedDict):
+    """One suggested, human-review-gated operational action derived from an
+    OBSERVED surveillance signal (S01/S03/S04/S06). Decision support only:
+    retailer-appropriate (prioritize testing, request supplier verification,
+    protect access, scrutinize sourcing, gather information), never a recall,
+    contamination, or regulatory directive. ``human_review`` is always True and
+    ``status`` is always OBSERVED. ``corroboration_note`` carries optional,
+    explicitly NON-CAUSAL CDC NORS context (S05) and is None when absent; S05
+    never generates an action. No field encodes contamination or human illness.
+    """
+
+    artifact_version: str
+    module_id: str                 # "ACTIONQ"
+    method_version: str
+    rank: int
+    pathogen: str
+    commodity: str
+    action: str
+    action_category: str           # prioritize_testing | request_supplier_verification | protect_access | scrutinize_sourcing | gather_information
+    target_type: str               # state | establishment | product_category
+    target: str
+    source_module: str             # S01 | S03 | S04 | S06
+    triggering_signal: str
+    evidence_summary: str
+    corroboration_note: Optional[str]
+    human_review: bool             # always True
+    status: StatusTag              # OBSERVED
+    availability_status: str
+    generated_at: str
+
+
 #: All status-bearing literal values, re-exported for lightweight validation.
 STATUS_TAGS: frozenset[str] = frozenset(("OBSERVED", "PREDICTED", "SIMULATED"))
 

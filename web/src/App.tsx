@@ -18,6 +18,7 @@ import EmergingSignals from "./components/panels/EmergingSignals";
 import SupplierMonitor from "./components/panels/SupplierMonitor";
 import OneHealthInsights from "./components/panels/OneHealthInsights";
 import VulnerableCommunities from "./components/panels/VulnerableCommunities";
+import SurveillanceActions from "./components/panels/SurveillanceActions";
 import type { Manifest } from "./types/artifacts";
 
 /**
@@ -30,7 +31,7 @@ import type { Manifest } from "./types/artifacts";
  * stay mounted across tabs so a verified recall is never hidden by navigation.
  */
 
-type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities";
+type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions";
 
 
 
@@ -43,6 +44,7 @@ function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
     { id: "supplier", label: "Supplier Monitor" },
     { id: "onehealth", label: "One Health Insights" },
     { id: "communities", label: "Vulnerable Communities" },
+    { id: "actions", label: "Surveillance Actions" },
 
 
   ];
@@ -181,6 +183,8 @@ function AppBody() {
         <OneHealthInsights />
       ) : tab === "communities" ? (
         <VulnerableCommunities />
+      ) : tab === "actions" ? (
+        <SurveillanceActions />
       ) : (
         <Dashboard />
       )}

@@ -5,7 +5,7 @@ Exactly four configurations per pathogen, defined by data source, trained with e
 ## Key limitations (honest, feeding Task 8)
 
 - **CDC gap:** there are NO CDC human-health features in the feature matrix (the CDC stream was not joined into harmonize). The **FSIS+CDC** configuration is therefore recorded as a *gap* — its contribution is **not evaluable** and is reported as such, never as a fabricated number.
-- **NOAA thin coverage:** NOAA `weather_*` features exist but are mostly NaN given the thin ingested station slice, so the **FSIS+NOAA** marginal is expected to be ~0 (or slightly negative). That near-zero/negative result is valid and is reported with its real sign.
+- **NOAA nClimDiv coverage:** NOAA `weather_*` features come from NOAA nClimDiv statewide monthly climate (national, ~87% of state-periods non-missing). The **FSIS+NOAA** marginal is small and pathogen-dependent (positive for Salmonella/STEC, slightly negative for Listeria) and is reported with its real sign.
 - **Static context:** ACS / Food Access Atlas `static_*` columns are slowly-varying demographic / food-access CONTEXT, not a One-Health surveillance stream; they are folded into the **full** configuration.
 
 

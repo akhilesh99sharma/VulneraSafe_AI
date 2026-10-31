@@ -52,14 +52,23 @@ afterEach(() => {
   // leave global stubs for the next installArtifactFetch to overwrite
 });
 
+/**
+ * Find the grid region button for a given state. maplibre-gl is mocked to
+ * throw under jsdom (see setupTests), so MapView deterministically renders its
+ * accessible grid fallback whose buttons carry data-region.
+ */
+async function findRegionButton(region: string): Promise<HTMLElement> {
+  const buttons = await screen.findAllByTestId("map-region");
+  const match = buttons.find((b) => b.getAttribute("data-region") === region);
+  if (!match) throw new Error(`no map-region button for ${region}`);
+  return match;
+}
+
 describe("CurrentRiskOverview", () => {
   it("renders the map and prompts to select a region", async () => {
     installArtifactFetch({ risk_map: MAP, risk_timeseries: TS });
     renderWithSelection(<CurrentRiskOverview />);
 
-    // Under jsdom, MapLibre may partially mount its own map-view container AND
-    // the accessible grid fallback (also data-testid="map-view"), so tolerate
-    // one or more rather than asserting a single element.
     await waitFor(() =>
       expect(screen.getAllByTestId("map-view").length).toBeGreaterThanOrEqual(1),
     );
@@ -72,12 +81,16 @@ describe("CurrentRiskOverview", () => {
     installArtifactFetch({ risk_map: MAP, risk_timeseries: TS });
     renderWithSelection(<CurrentRiskOverview />);
 
-    // Select the grid region button specifically (by data-region) so the
-    // match is unambiguous even when MapLibre also mounts under jsdom.
-    const txButton = (await screen.findAllByTestId("map-region")).find(
-      (b) => b.getAttribute("data-region") === "TX",
-    )!;
-    fireEvent.click(txButton);
+    // Let BOTH artifacts settle before interacting. risk_map and
+    // risk_timeseries resolve on independent microtasks; the "select a region"
+    // prompt only appears once risk_timeseries has loaded (its !region branch).
+    // Waiting for it guarantees no late artifact resolve re-renders the map
+    // grid between capturing the button and clicking it (which would otherwise
+    // dispatch the click to a now-detached DOM node and drop the selection).
+    await screen.findByText(/select a region/i);
+
+    // Re-query the button immediately before clicking so the reference is live.
+    fireEvent.click(await findRegionButton("TX"));
 
     await waitFor(() =>
       expect(screen.getByTestId("time-series")).toBeInTheDocument(),

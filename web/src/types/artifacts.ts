@@ -540,3 +540,26 @@ export interface CommunityImpactRecord {
   unavailable_reason: string | null;
   generated_at: string;
 }
+
+
+// action_queue -> Surveillance Actions view (decision layer over S01/S03/S04/S06)
+export interface ActionQueueItem {
+  artifact_version: string;
+  module_id: string;
+  method_version: string;
+  rank: number;
+  pathogen: string;
+  commodity: string;
+  action: string;
+  action_category: string;
+  target_type: string;
+  target: string;
+  source_module: string;
+  triggering_signal: string;
+  evidence_summary: string;
+  corroboration_note: string | null;
+  human_review: boolean;
+  status: StatusTag;
+  availability_status: string;
+  generated_at: string;
+}

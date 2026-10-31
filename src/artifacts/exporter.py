@@ -62,6 +62,7 @@ from src.artifacts.schemas import (
     CommunityImpactRecord,
     LensPriority,
     WeightSensitivity,
+    ActionQueueItem,
     STATUS_TAGS,
     AblationResult,
     AttentionQueueItem,
@@ -1780,6 +1781,49 @@ def build_community_impact() -> list[dict]:
     return rows
 
 
+def build_action_queue() -> list[dict]:
+    """Decision layer: ranked, human-review-gated actions derived from the
+    OBSERVED S01/S03/S04/S06 surveillance signals (S05 corroboration only).
+
+    Reads the offline cache ``data/interim/action_queue.json`` (produced by
+    ``python -m src.decision.action_queue``) and flattens it to
+    ``ActionQueueItem`` records. Every action is OBSERVED decision support with a
+    human-review gate; no recall/contamination/directive. If the cache is
+    missing, returns an empty list (an empty queue is a valid honest result).
+    """
+    from src.decision.action_queue import load_cache
+
+    stamp = resolve_generated_at()
+    cache = load_cache()
+    rows: list[dict] = []
+    if not cache or not cache.get("actions"):
+        return rows
+    method_version = cache.get("method_version", "aq.v1")
+    for a in cache["actions"]:
+        rows.append(ActionQueueItem(
+            artifact_version=ARTIFACT_VERSION,
+            module_id="ACTIONQ",
+            method_version=method_version,
+            rank=int(a["rank"]),
+            pathogen=str(a["pathogen"]),
+            commodity=str(a.get("commodity", "")),
+            action=str(a["action"]),
+            action_category=str(a["action_category"]),
+            target_type=str(a["target_type"]),
+            target=str(a["target"]),
+            source_module=str(a["source_module"]),
+            triggering_signal=str(a["triggering_signal"]),
+            evidence_summary=str(a["evidence_summary"]),
+            corroboration_note=a.get("corroboration_note"),
+            human_review=bool(a.get("human_review", True)),
+            status="OBSERVED",
+            availability_status=str(a.get("availability_status", "available")),
+            generated_at=stamp,
+        ))
+    rows.sort(key=lambda r: r["rank"])
+    return rows
+
+
 def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, Any]:
     """Build and validate every value-bearing artifact payload (no I/O).
 
@@ -1835,6 +1879,9 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
     community_impact = build_community_impact()
     validate_payload(community_impact, CommunityImpactRecord, label="community_impact")
 
+    action_queue = build_action_queue()
+    validate_payload(action_queue, ActionQueueItem, label="action_queue")
+
 
     equity = build_equity_test(scenario_payload)
     validate_payload(equity, EquityTest, label="equity_test")
@@ -1856,6 +1903,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "establishment_surveillance": establishment_surveillance,
         "one_health_human_comparison": human_comparison,
         "community_impact": community_impact,
+        "action_queue": action_queue,
         "_modules": modules,  # internal: folded into the manifest, not written standalone
     }
 

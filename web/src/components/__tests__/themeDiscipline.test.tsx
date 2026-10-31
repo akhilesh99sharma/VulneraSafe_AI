@@ -43,6 +43,7 @@ const ALERT_CONTEXT_FILES = new Set<string>([
   join("panels", "PolicyComparison.tsx"), // SIMULATED verified-recall warning banner
   join("legend", "StatusLegend.tsx"), // explains the alert color (not decorative)
   join("panels", "EmergingSignals.tsx"), // orange marks active emerging-anomaly states (Req 7.6)
+  join("panels", "SurveillanceActions.tsx"), // orange marks human-review / prioritize-testing emphasis
 ]);
 
 

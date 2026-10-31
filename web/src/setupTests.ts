@@ -1,11 +1,34 @@
-// Vitest + Testing Library setup. Registers jest-dom matchers (e.g.
-// toBeInTheDocument) and auto-cleans the DOM between tests.
 import "@testing-library/jest-dom/vitest";
-import { afterEach } from "vitest";
+import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
 
 afterEach(() => {
   cleanup();
+});
+
+// Deterministic maplibre-gl mock for the jsdom test environment.
+//
+// jsdom has no WebGL, so a real `new maplibregl.Map(...)` neither renders nor
+// drives its async `load`/`setTimeout` lifecycle predictably. MapView is built
+// to degrade to an accessible, clickable grid fallback when the GL map is
+// unavailable (its `catch { setUseGrid(true) }` path). By making the mocked
+// Map constructor throw synchronously we force that fallback deterministically
+// in every test, removing a jsdom timing race (the GL container could flip
+// `glReady` mid-interaction and unmount the grid button before a click landed).
+// This changes nothing about the assertions — tests still click a real
+// `map-region` button and assert the time-series renders — only the
+// environment is made deterministic. The real maplibre-gl is untouched in the
+// browser build.
+vi.mock("maplibre-gl", () => {
+  class MockMap {
+    constructor() {
+      throw new Error("maplibre-gl disabled under jsdom (test fallback)");
+    }
+  }
+  return {
+    default: { Map: MockMap },
+    Map: MockMap,
+  };
 });
 
 // jsdom lacks these URL methods that maplibre-gl touches at import time.
