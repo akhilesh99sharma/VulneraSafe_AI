@@ -1,0 +1,5502 @@
+[
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.123845,
+    "ci_low": 0.106747,
+    "ci_high": 0.143468,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.735907,
+    "ci_low": 0.662799,
+    "ci_high": 0.800151,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.794118,
+    "ci_low": 0.698413,
+    "ci_high": 0.879545,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.473684,
+    "ci_low": 0.390186,
+    "ci_high": 0.561948,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.838116,
+    "ci_low": 0.790723,
+    "ci_high": 0.878609,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.27392,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.454861,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.35,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.068741,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.107455,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.166667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.280617,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.682937,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.166667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.113097,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.111111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.258838,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.586111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.45,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.196778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.277778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.357143,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.085061,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.261594,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.553571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.444444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.331188,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ME",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.643849,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ME",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ME",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ME",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.222222,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ME",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.156268,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.111111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.176966,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.361111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.111309,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.2,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.219324,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.425,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.287523,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.732143,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.6,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.170789,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NM",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NM",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NM",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NM",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NM",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.257681,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.319444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.206452,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.236111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.285714,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.2081,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.208333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.214286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.219851,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.796825,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.714286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.714286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.263718,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.194444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.169925,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.571429,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.081146,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.263521,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.373016,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.109998,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.188154,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.309524,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.363928,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.544444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.666667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.4,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.35,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.257167,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.539683,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.388889,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "establishment_holdout",
+    "metric": "brier",
+    "value": 0.147501,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "establishment_holdout",
+    "metric": "pr_auc",
+    "value": 0.679109,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "establishment_holdout",
+    "metric": "precision",
+    "value": 0.854839,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "establishment_holdout",
+    "metric": "recall",
+    "value": 0.32716,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Listeria",
+    "validation": "establishment_holdout",
+    "metric": "roc_auc",
+    "value": 0.787663,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.184458,
+    "ci_low": 0.164627,
+    "ci_high": 0.204808,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.433875,
+    "ci_low": 0.352677,
+    "ci_high": 0.527878,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.45,
+    "ci_low": 0.341757,
+    "ci_high": 0.558469,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.318584,
+    "ci_low": 0.242167,
+    "ci_high": 0.403252,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.64996,
+    "ci_low": 0.590013,
+    "ci_high": 0.708937,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.191045,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.780159,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.75,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.416667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.18895,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.392857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.571429,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.270752,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.586111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.45,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.104938,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.166667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.35455,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.576825,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.2,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.141921,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.227114,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.236435,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.477778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.666667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.316823,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "GA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.697778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "GA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "GA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "GA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.55,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "GA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.094101,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "HI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "HI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "HI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "HI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.75,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "HI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.238984,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.539683,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.388889,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.153672,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.7,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.785714,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "ID",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.261466,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.593254,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.45,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.090059,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.875,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.199492,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.19675,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.196429,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.219297,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.2,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.195312,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.266667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.11026,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.234255,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.798611,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.7,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.319878,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.551587,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.35,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.350022,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.759286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.6,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.415149,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MS",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.259691,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.388889,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.388889,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.366505,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NH",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.267857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NH",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.166667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NH",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NH",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NH",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.128338,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.2702,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.698413,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.722222,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.278731,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.402778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.19086,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.916667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.944444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.198511,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.926667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.714286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.9,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.08797,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.117536,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.166667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.100464,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.625,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.250368,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.383333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TN",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.182297,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.754592,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.777778,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.177132,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.611111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.186224,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.361111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.235757,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.194444,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.091088,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.875,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.256221,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.559286,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.6,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.45,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.204892,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.13714,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.833333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.928571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WY",
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "establishment_holdout",
+    "metric": "brier",
+    "value": 0.163063,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "establishment_holdout",
+    "metric": "pr_auc",
+    "value": 0.399405,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "establishment_holdout",
+    "metric": "precision",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "establishment_holdout",
+    "metric": "recall",
+    "value": 0.181818,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "STEC",
+    "validation": "establishment_holdout",
+    "metric": "roc_auc",
+    "value": 0.709393,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.17528,
+    "ci_low": 0.159992,
+    "ci_high": 0.192179,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.515684,
+    "ci_low": 0.460863,
+    "ci_high": 0.580147,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.561644,
+    "ci_low": 0.475904,
+    "ci_high": 0.639533,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.30597,
+    "ci_low": 0.251824,
+    "ci_high": 0.365755,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.76371,
+    "ci_low": 0.733087,
+    "ci_high": 0.796413,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.148393,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.23961,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.607143,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "AZ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.327766,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.566814,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.6,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.454545,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.226963,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.52252,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.375,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.625,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.205167,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.242857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "CT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.043531,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "DE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "DE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "DE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "DE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.875,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "DE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.232094,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.559232,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.111111,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.680556,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "FL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.066974,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.045455,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.125,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.246809,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.775546,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.8,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.266667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.62,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IL",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.313348,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.545503,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.428571,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.512821,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "IN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.369615,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.462127,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.285714,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.153846,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.314685,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KS",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.074155,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.154762,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.652174,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "KY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.113057,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.186335,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.378788,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "LA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.335226,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.456405,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.466667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.305195,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.220128,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.786059,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.809524,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.809524,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.22619,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.227643,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.841441,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.6875,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.6875,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.673611,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.077267,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.172619,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.521739,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MN",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.163969,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.556538,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.69,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "MO",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.22431,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.308854,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NE",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.239589,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.427862,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.222222,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5625,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NJ",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.262551,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.562631,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 1.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.090909,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.584416,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "NY",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.177303,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.212603,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.42,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OH",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.122432,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.188312,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.393939,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "OK",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.238834,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.292186,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.5,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.254447,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.267336,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.142857,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.373016,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "PR",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.293797,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.578173,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.52381,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.785714,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.421429,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "RI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.330849,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.413234,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.493333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SC",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.234607,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.314423,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.45,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "SD",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.114521,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.206349,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.515152,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "TX",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.345409,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.471729,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.25,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.1,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.516667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "UT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.256197,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.583309,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.333333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.1,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.633333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.264749,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.445665,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.533333,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "VT",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.232864,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.905473,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.916667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.647059,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.786765,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WA",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.058541,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.055556,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.291667,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WI",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "brier",
+    "value": 0.081148,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "pr_auc",
+    "value": 0.094298,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "precision",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "recall",
+    "value": 0.0,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "chronological",
+    "metric": "roc_auc",
+    "value": 0.391304,
+    "ci_low": null,
+    "ci_high": null,
+    "region": "WV",
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "establishment_holdout",
+    "metric": "brier",
+    "value": 0.198546,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "establishment_holdout",
+    "metric": "pr_auc",
+    "value": 0.379919,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "establishment_holdout",
+    "metric": "precision",
+    "value": 0.405556,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "establishment_holdout",
+    "metric": "recall",
+    "value": 0.219219,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  },
+  {
+    "pathogen": "Salmonella",
+    "validation": "establishment_holdout",
+    "metric": "roc_auc",
+    "value": 0.652088,
+    "ci_low": null,
+    "ci_high": null,
+    "region": null,
+    "period": null
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:WY:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.998 for Listeria in WY (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.008651,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:DE:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.996 for Listeria in DE (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.011159,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:ND:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.984 for Listeria in ND (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.02285,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:NH:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.939 for Listeria in NH (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.043813,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:WV:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.755 for Listeria in WV (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.078565,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "STEC:TX:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.695 for STEC in TX (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:raw_beef_stec"
+    ],
+    "uncertainty": 0.084059,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "STEC:AK:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.656 for STEC in AK (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:raw_beef_stec"
+    ],
+    "uncertainty": 0.086713,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "STEC:NY:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.644 for STEC in NY (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:raw_beef_stec"
+    ],
+    "uncertainty": 0.087431,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "STEC:MS:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.594 for STEC in MS (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:raw_beef_stec"
+    ],
+    "uncertainty": 0.089669,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Prioritize supplier verification and targeted testing",
+    "target_id": "Listeria:TX:2026-Q1",
+    "rationale": "Model-estimated elevated surveillance-risk probability 0.591 for Listeria in TX (2026-Q1). This is a surveillance-risk prioritization, not a contamination finding.",
+    "constraints": [
+      "Decision support only; not a regulatory determination.",
+      "Surveillance risk at the (state, period) unit, not a specific lot."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "fsis:rte_listeria"
+    ],
+    "uncertainty": 0.089771,
+    "alert_source": "MODEL",
+    "status": "PREDICTED"
+  },
+  {
+    "action": "Isolate recalled inventory",
+    "target_id": "listeria_rte_recall:LOT-0000:isolate_recalled_inventory",
+    "rationale": "confirmed recall: inventory must be isolated and never distributed",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data).",
+      "Verified official recall: isolation is mandatory."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Match lot against confirmed recalls",
+    "target_id": "listeria_rte_recall:LOT-0000:match_against_confirmed_recall",
+    "rationale": "lot id matched a confirmed recall record",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data).",
+      "Verified official recall: isolation is mandatory."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "listeria_rte_recall:LOT-0001:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "listeria_rte_recall:LOT-0002:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "listeria_rte_recall:LOT-0003:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "listeria_rte_recall:LOT-0004:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:listeria_rte_recall",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0000:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0001:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0002:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0003:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0004:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "salmonella_poultry_limited_inspection:LOT-0005:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": false,
+    "evidence_refs": [
+      "synthetic:salmonella_poultry_limited_inspection",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0000:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0001:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0002:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0003:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0004:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  },
+  {
+    "action": "Allocate compliant replacement inventory",
+    "target_id": "stec_beef_high_need:LOT-0005:allocate_compliant_replacement",
+    "rationale": "compliant replacement supply available for High_Need_Community store",
+    "constraints": [
+      "Hard safety constraints are never relaxed for cost or access.",
+      "SIMULATED operational network (no real retailer data)."
+    ],
+    "human_review_required": true,
+    "evidence_refs": [
+      "synthetic:stec_beef_high_need",
+      "optimizer:cp-sat"
+    ],
+    "uncertainty": 0.0,
+    "alert_source": "MODEL",
+    "status": "SIMULATED"
+  }
+]

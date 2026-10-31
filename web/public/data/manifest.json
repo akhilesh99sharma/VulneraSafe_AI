@@ -1,0 +1,377 @@
+{
+  "artifact_version": "0.1.0",
+  "generated_at": "2027-01-01T00:00:00Z",
+  "generated_at_policy": "Deterministic: resolved from VULNERASAFE_GENERATED_AT when set, else the fixed documented constant '2027-01-01T00:00:00Z'. This field is excluded from every per-artifact checksum so repeated exports from identical inputs are byte-identical in substance.",
+  "data_freshness": {
+    "noaa_nclimdiv:tavg": "2026-10-30",
+    "noaa_nclimdiv:pcpn": "2026-10-30",
+    "noaa_nclimdiv:tmax": "2026-10-30",
+    "noaa_nclimdiv:tmin": "2026-10-30",
+    "cdc_nors": "2026-10-30",
+    "noaa": "2026-10-30",
+    "acs": "2026-10-30",
+    "food_access_atlas": "2026-10-30",
+    "fsis_lab": "2026-10-30",
+    "fsis_recalls": "unavailable (feed firewalled)",
+    "cdc_substitute": "lagged (corroboration only)"
+  },
+  "pathogens": {
+    "Salmonella": {
+      "pathogen": "Salmonella",
+      "status": "predictive",
+      "feasibility_factors": [
+        {
+          "name": "train_positives",
+          "value": 30370.0,
+          "threshold": 30.0,
+          "passed": true
+        },
+        {
+          "name": "test_positives",
+          "value": 7315.0,
+          "threshold": 10.0,
+          "passed": true
+        },
+        {
+          "name": "temporal_coverage",
+          "value": 1.0,
+          "threshold": 0.6,
+          "passed": true
+        },
+        {
+          "name": "geographic_coverage",
+          "value": 0.959184,
+          "threshold": 0.25,
+          "passed": true
+        },
+        {
+          "name": "stability",
+          "value": 0.604493,
+          "threshold": 0.35,
+          "passed": true
+        },
+        {
+          "name": "calibration",
+          "value": 0.0,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "prevalence",
+          "value": 0.115981,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "positive_rate",
+          "value": 0.115981,
+          "threshold": 0.0,
+          "passed": true
+        }
+      ],
+      "temporal_resolution": "monthly"
+    },
+    "Listeria": {
+      "pathogen": "Listeria",
+      "status": "predictive",
+      "feasibility_factors": [
+        {
+          "name": "train_positives",
+          "value": 1185.0,
+          "threshold": 30.0,
+          "passed": true
+        },
+        {
+          "name": "test_positives",
+          "value": 414.0,
+          "threshold": 10.0,
+          "passed": true
+        },
+        {
+          "name": "temporal_coverage",
+          "value": 1.0,
+          "threshold": 0.6,
+          "passed": true
+        },
+        {
+          "name": "geographic_coverage",
+          "value": 0.851852,
+          "threshold": 0.25,
+          "passed": true
+        },
+        {
+          "name": "stability",
+          "value": 0.72117,
+          "threshold": 0.35,
+          "passed": true
+        },
+        {
+          "name": "calibration",
+          "value": 0.0,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "prevalence",
+          "value": 0.006055,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "positive_rate",
+          "value": 0.006055,
+          "threshold": 0.0,
+          "passed": true
+        }
+      ],
+      "temporal_resolution": "quarterly"
+    },
+    "STEC": {
+      "pathogen": "STEC",
+      "status": "predictive",
+      "feasibility_factors": [
+        {
+          "name": "train_positives",
+          "value": 486.0,
+          "threshold": 30.0,
+          "passed": true
+        },
+        {
+          "name": "test_positives",
+          "value": 178.0,
+          "threshold": 10.0,
+          "passed": true
+        },
+        {
+          "name": "temporal_coverage",
+          "value": 1.0,
+          "threshold": 0.6,
+          "passed": true
+        },
+        {
+          "name": "geographic_coverage",
+          "value": 0.925926,
+          "threshold": 0.25,
+          "passed": true
+        },
+        {
+          "name": "stability",
+          "value": 0.727669,
+          "threshold": 0.35,
+          "passed": true
+        },
+        {
+          "name": "calibration",
+          "value": 0.0,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "prevalence",
+          "value": 0.002858,
+          "threshold": 0.0,
+          "passed": true
+        },
+        {
+          "name": "positive_rate",
+          "value": 0.002858,
+          "threshold": 0.0,
+          "passed": true
+        }
+      ],
+      "temporal_resolution": "quarterly"
+    }
+  },
+  "sources": [
+    {
+      "source": "cdc_nors",
+      "url": "https://data.cdc.gov/resource/5xkq-dg7x.json",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (CDC NORS)",
+      "checksum_sha256": "7db2bec2b2f9537fbac95d57882ae3c30c471225b57482723372f82e8fa5fed9"
+    },
+    {
+      "source": "census_acs",
+      "url": "https://api.census.gov/data/2022/acs/acs5",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (US Census Bureau)",
+      "checksum_sha256": "9ac0f79190719662b45b105f271775cd4c9b8bc9e121eef0fe010f95be95be25"
+    },
+    {
+      "source": "food_access_atlas",
+      "url": "https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (USDA ERS)",
+      "checksum_sha256": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8"
+    },
+    {
+      "source": "fsis:raw_beef_stec",
+      "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (USDA FSIS)",
+      "checksum_sha256": "f1ecb08de71ad63eb5d4fc433d37f78be4940bf3362c69e474ded8f278300419"
+    },
+    {
+      "source": "fsis:raw_poultry_salmonella",
+      "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (USDA FSIS)",
+      "checksum_sha256": "1fd3e0cd3d09640168d0f984bb227b6d77f33bbf773f29c1841bc321778b9a02"
+    },
+    {
+      "source": "fsis:rte_listeria",
+      "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (USDA FSIS)",
+      "checksum_sha256": "e1c47789f8a4e9da285b43d14618dd411d1758ec6c627046fb388bf3ef27ecf3"
+    },
+    {
+      "source": "noaa",
+      "url": "https://www.ncei.noaa.gov/access/services/data/v1",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (NOAA NCEI)",
+      "checksum_sha256": "26e025feb26629cf3dd754f4e07d7f70d9a2619bd7846aff2d86d2afa37b66cb"
+    },
+    {
+      "source": "noaa_nclimdiv:pcpn",
+      "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-pcpnst-v1.0.0-20261006",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (NOAA NCEI)",
+      "checksum_sha256": "4cb027fcacaa077dab05efe53c4a8a0a10a153c62e19cbdf3564410064e1015a"
+    },
+    {
+      "source": "noaa_nclimdiv:tavg",
+      "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmpcst-v1.0.0-20261006",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (NOAA NCEI)",
+      "checksum_sha256": "8e83b1a8e830d9f4cd87bbc17c3f80c534cde7b7015be8132964ecbff7a8441b"
+    },
+    {
+      "source": "noaa_nclimdiv:tmax",
+      "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmaxst-v1.0.0-20261006",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (NOAA NCEI)",
+      "checksum_sha256": "c6c1edd94576bb2cf450fdc173ac1b23e8090e6b3096a91b933b06eaf4a98dbd"
+    },
+    {
+      "source": "noaa_nclimdiv:tmin",
+      "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tminst-v1.0.0-20261006",
+      "access_date": "2026-10-30",
+      "license": "US Government public domain (NOAA NCEI)",
+      "checksum_sha256": "ca6d786a6c2657a09d6959cf32553334000bbedae21078679528de917da45c1b"
+    }
+  ],
+  "artifacts": {
+    "ablation_results": {
+      "file": "ablation_results.json",
+      "checksum_sha256": "ffcee04109fd410bf7f4750309187e867231ee7b18590569c63a920657a194f6",
+      "record_count": 9,
+      "status_tagged": true
+    },
+    "attention_queue": {
+      "file": "attention_queue.json",
+      "checksum_sha256": "586bbea6e5a4f54f87540478c909c8abc743b54b4c465c7c1edab7620d8bf916",
+      "record_count": 138,
+      "status_tagged": true
+    },
+    "calibration": {
+      "file": "calibration.json",
+      "checksum_sha256": "a4b00c4c1c8b75278765b7bf02ae564aa1313fdfae78608f18c8634ad15c2de1",
+      "record_count": 30,
+      "status_tagged": true
+    },
+    "community_impact": {
+      "file": "community_impact.json",
+      "checksum_sha256": "5eec6cb5724831f4e7928009a3902fb27ccb90b9c6cc11f63e2ef9fb8f7b8753",
+      "record_count": 157,
+      "status_tagged": true
+    },
+    "emerging_risk": {
+      "file": "emerging_risk.json",
+      "checksum_sha256": "bf41297d58e27538d6b00de20114cd342f7d186bd2b0cb9965eb710e5fccdf1f",
+      "record_count": 7493,
+      "status_tagged": true
+    },
+    "equity_test": {
+      "file": "equity_test.json",
+      "checksum_sha256": "a77d538002c92edcb243067f1429b5ebfa52977ebfa1a8076660a260cadcddea",
+      "record_count": 4,
+      "status_tagged": true
+    },
+    "establishment_surveillance": {
+      "file": "establishment_surveillance.json",
+      "checksum_sha256": "ee1ed22b9baac006b60c5ee037c55e48664c004a8191eb6e0959e8ff3ee5c1ba",
+      "record_count": 7622,
+      "status_tagged": true
+    },
+    "feasibility_report": {
+      "file": "feasibility_report.json",
+      "checksum_sha256": "42ef52d5a16f4c5289898c36670b8e35530d3d76d18b04e3a801d4bdcd2c0a55",
+      "record_count": 3,
+      "status_tagged": true
+    },
+    "model_metrics": {
+      "file": "model_metrics.json",
+      "checksum_sha256": "673f7ea4fbdb71ef0fea51a7204f7af28f01d35665d2a951fbe341345b9227a3",
+      "record_count": 550,
+      "status_tagged": true
+    },
+    "multipathogen_program_product": {
+      "file": "multipathogen_program_product.json",
+      "checksum_sha256": "b1d9e36a6003098bdd121ada9eeb335f9339e7dc70c0ca3883e949ae1f95754a",
+      "record_count": 297,
+      "status_tagged": true
+    },
+    "one_health_human_comparison": {
+      "file": "one_health_human_comparison.json",
+      "checksum_sha256": "02825f40028686ae4551ccdb5a6d5671bb86f0f32dff4d489e9e7e11db5930a2",
+      "record_count": 1690,
+      "status_tagged": true
+    },
+    "provenance": {
+      "file": "provenance.json",
+      "checksum_sha256": "76ff42d757d7555b3c0ddc6ff6904e0b7b2222d14ba4ea72c11650e3d3c07481",
+      "record_count": 12,
+      "status_tagged": true
+    },
+    "recommendations": {
+      "file": "recommendations.json",
+      "checksum_sha256": "560e76def4eb6472b81ee786fe5f1c909cc7347f7ca545f2051f12a44af426cd",
+      "record_count": 28,
+      "status_tagged": true
+    },
+    "risk_map": {
+      "file": "risk_map.json",
+      "checksum_sha256": "770b739f817a456be56e62edb823e267b5feaa1a0a22e2376826182b7997c7eb",
+      "record_count": 138,
+      "status_tagged": true
+    },
+    "risk_timeseries": {
+      "file": "risk_timeseries.json",
+      "checksum_sha256": "6c0f6bdfe121b3571b263243e819c9b4b18b6ada950fb6e318934879605fcc0a",
+      "record_count": 1849,
+      "status_tagged": true
+    },
+    "vulnerability": {
+      "file": "vulnerability.json",
+      "checksum_sha256": "ed8efee70c8206a6e840f6d6f2ddbe25c679b24abec2eb3cc21ee47bf3c94b16",
+      "record_count": 49,
+      "status_tagged": true
+    },
+    "regulatory_alerts": {
+      "file": "regulatory_alerts.json",
+      "checksum_sha256": "babf11e76a1bf8a5239b3c2d4d1fc9185a22f5cbe011caa46e4bf68ede74c65d",
+      "record_count": 2,
+      "status_tagged": true,
+      "feed_available": true
+    },
+    "scenario_results": {
+      "file": "scenario_results.json",
+      "checksum_sha256": "8f05103053897a1274fb2ea1bd1bf22150bc8f7db58684e744d2e5336644e280",
+      "record_count": 3,
+      "status_tagged": true,
+      "generated": true,
+      "preserved": true
+    }
+  }
+}

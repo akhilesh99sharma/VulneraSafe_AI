@@ -1,0 +1,192 @@
+[
+  {
+    "source": "cdc_nors",
+    "url": "https://data.cdc.gov/resource/5xkq-dg7x.json",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (CDC NORS)",
+    "geographic_coverage": "United States (state-level)",
+    "temporal_coverage": "2014..2023 (outbreak dates)",
+    "checksum": "7db2bec2b2f9537fbac95d57882ae3c30c471225b57482723372f82e8fa5fed9",
+    "total_samples": 7372,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "NORS outbreak dates are NOT report dates; long reporting delays",
+      "outbreak counts depend on state surveillance/reporting capacity",
+      "dataset is HISTORICAL evidence; predictive use needs a large lag"
+    ],
+    "notes": "CDC NORS foodborne outbreaks (dataset 5xkq-dg7x), primary_mode=Food. Columns include year, month, state, etiology, illnesses, hospitalizations, deaths. Used mainly as historical One Health human-health evidence; predictive join applies a large availability lag (see harmonize)."
+  },
+  {
+    "source": "census_acs",
+    "url": "https://api.census.gov/data/2022/acs/acs5",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (US Census Bureau)",
+    "geographic_coverage": "state:*",
+    "temporal_coverage": "ACS5 2022",
+    "checksum": "9ac0f79190719662b45b105f271775cd4c9b8bc9e121eef0fe010f95be95be25",
+    "total_samples": 52,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "survey estimates carry margins of error; small areas noisier"
+    ],
+    "notes": "ACS 5-year 2022; variables B01001_001E."
+  },
+  {
+    "source": "food_access_atlas",
+    "url": "https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (USDA ERS)",
+    "geographic_coverage": "United States (census tracts)",
+    "temporal_coverage": "2015/2019 Atlas vintage",
+    "checksum": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8",
+    "total_samples": 72531,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "tract-level access thresholds are policy choices, not ground truth"
+    ],
+    "notes": "USDA Food Access Research Atlas file 'lram_2019_xlsx' downloaded (85803176 bytes)."
+  },
+  {
+    "source": "fsis:raw_beef_stec",
+    "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (USDA FSIS)",
+    "geographic_coverage": "United States (FSIS-regulated establishments)",
+    "temporal_coverage": "multiple fiscal years (aggregated)",
+    "checksum": "f1ecb08de71ad63eb5d4fc433d37f78be4940bf3362c69e474ded8f278300419",
+    "total_samples": 232363,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [],
+    "notes": "FSIS program 'raw_beef_stec' archive (authoritative class from directory), FY=2014. Members: usda_fsis_data_product_establishment_specific_laboratory_sampling_raw_beef_product_fy2014.json rows=17765 sniffed=raw_beef_stec. Loaded locally because FSIS host is firewalled (HTTP 403) in this environment. Download the sampling/recall files from https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data. Program archives go into data/raw/{raw_poultry_sampling_data,rte_sampling_data,raw_beef_sampling_data}/ (one ZIP per fiscal year); ad-hoc files may be dropped into E:\\VulneraSafe_AI\\data\\raw\\fsis (*.csv, *.json, *.zip). See data/raw/fsis/README_FSIS.md."
+  },
+  {
+    "source": "fsis:raw_poultry_salmonella",
+    "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (USDA FSIS)",
+    "geographic_coverage": "United States (FSIS-regulated establishments)",
+    "temporal_coverage": "multiple fiscal years (aggregated)",
+    "checksum": "1fd3e0cd3d09640168d0f984bb227b6d77f33bbf773f29c1841bc321778b9a02",
+    "total_samples": 325123,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [],
+    "notes": "FSIS program 'raw_poultry_salmonella' archive (authoritative class from directory), FY=2014. Members: usda_fsis_data_product_establishment_specific_laboratory_sampling_raw_poultry_product_fy2014.json rows=7354 sniffed=raw_poultry_salmonella. Loaded locally because FSIS host is firewalled (HTTP 403) in this environment. Download the sampling/recall files from https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data. Program archives go into data/raw/{raw_poultry_sampling_data,rte_sampling_data,raw_beef_sampling_data}/ (one ZIP per fiscal year); ad-hoc files may be dropped into E:\\VulneraSafe_AI\\data\\raw\\fsis (*.csv, *.json, *.zip). See data/raw/fsis/README_FSIS.md."
+  },
+  {
+    "source": "fsis:rte_listeria",
+    "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (USDA FSIS)",
+    "geographic_coverage": "United States (FSIS-regulated establishments)",
+    "temporal_coverage": "multiple fiscal years (aggregated)",
+    "checksum": "e1c47789f8a4e9da285b43d14618dd411d1758ec6c627046fb388bf3ef27ecf3",
+    "total_samples": 266031,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [],
+    "notes": "FSIS program 'rte_listeria' archive (authoritative class from directory), FY=2014. Members: usda_fsis_data_product_establishment_specific_laboratory_sampling_rte_product_fy2014.json rows=21974 sniffed=rte_listeria. Loaded locally because FSIS host is firewalled (HTTP 403) in this environment. Download the sampling/recall files from https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data. Program archives go into data/raw/{raw_poultry_sampling_data,rte_sampling_data,raw_beef_sampling_data}/ (one ZIP per fiscal year); ad-hoc files may be dropped into E:\\VulneraSafe_AI\\data\\raw\\fsis (*.csv, *.json, *.zip). See data/raw/fsis/README_FSIS.md."
+  },
+  {
+    "source": "fsis_recalls",
+    "url": "https://www.fsis.usda.gov/fsis/api/recall/v/1",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (USDA FSIS)",
+    "geographic_coverage": "United States",
+    "temporal_coverage": "unknown (unavailable)",
+    "checksum": "",
+    "total_samples": null,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [],
+    "notes": "GAP: FSIS recalls unavailable (API firewalled, no local file). FSIS Recall API is firewalled (HTTP 403) here. Export recalls from https://www.fsis.usda.gov/fsis/api/recall/v/1 (or the recalls page under https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data) and save as recalls*.json or recalls*.csv in E:\\VulneraSafe_AI\\data\\raw\\fsis."
+  },
+  {
+    "source": "noaa",
+    "url": "https://www.ncei.noaa.gov/access/services/data/v1",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (NOAA NCEI)",
+    "geographic_coverage": "GHCND stations: USW00094728",
+    "temporal_coverage": "2023-01-01..2023-01-07",
+    "checksum": "26e025feb26629cf3dd754f4e07d7f70d9a2619bd7846aff2d86d2afa37b66cb",
+    "total_samples": 7,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "station network is spatially uneven; rural coverage is sparser"
+    ],
+    "notes": "NOAA NCEI Access Data Service (token-free), dataset daily-summaries, dataTypes TMAX,TMIN,PRCP."
+  },
+  {
+    "source": "noaa_nclimdiv:pcpn",
+    "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-pcpnst-v1.0.0-20261006",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (NOAA NCEI)",
+    "geographic_coverage": "United States statewide (49 states)",
+    "temporal_coverage": "2014..2026",
+    "checksum": "4cb027fcacaa077dab05efe53c4a8a0a10a153c62e19cbdf3564410064e1015a",
+    "total_samples": 7644,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "statewide averages smooth over within-state spatial variation",
+      "Hawaii has no nClimDiv statewide series (coverage gap)"
+    ],
+    "notes": "NOAA nClimDiv statewide pcpn (climdiv-pcpnst-v1.0.0-20261006); fixed-width SSSEEYYYY + 12 monthly columns; -99.90/-9999 sentinels -> NaN."
+  },
+  {
+    "source": "noaa_nclimdiv:tavg",
+    "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmpcst-v1.0.0-20261006",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (NOAA NCEI)",
+    "geographic_coverage": "United States statewide (49 states)",
+    "temporal_coverage": "2014..2026",
+    "checksum": "8e83b1a8e830d9f4cd87bbc17c3f80c534cde7b7015be8132964ecbff7a8441b",
+    "total_samples": 7644,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "statewide averages smooth over within-state spatial variation",
+      "Hawaii has no nClimDiv statewide series (coverage gap)"
+    ],
+    "notes": "NOAA nClimDiv statewide tavg (climdiv-tmpcst-v1.0.0-20261006); fixed-width SSSEEYYYY + 12 monthly columns; -99.90/-9999 sentinels -> NaN."
+  },
+  {
+    "source": "noaa_nclimdiv:tmax",
+    "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmaxst-v1.0.0-20261006",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (NOAA NCEI)",
+    "geographic_coverage": "United States statewide (49 states)",
+    "temporal_coverage": "2014..2026",
+    "checksum": "c6c1edd94576bb2cf450fdc173ac1b23e8090e6b3096a91b933b06eaf4a98dbd",
+    "total_samples": 7644,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "statewide averages smooth over within-state spatial variation",
+      "Hawaii has no nClimDiv statewide series (coverage gap)"
+    ],
+    "notes": "NOAA nClimDiv statewide tmax (climdiv-tmaxst-v1.0.0-20261006); fixed-width SSSEEYYYY + 12 monthly columns; -99.90/-9999 sentinels -> NaN."
+  },
+  {
+    "source": "noaa_nclimdiv:tmin",
+    "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tminst-v1.0.0-20261006",
+    "access_date": "2026-10-30",
+    "license": "US Government public domain (NOAA NCEI)",
+    "geographic_coverage": "United States statewide (49 states)",
+    "temporal_coverage": "2014..2026",
+    "checksum": "ca6d786a6c2657a09d6959cf32553334000bbedae21078679528de917da45c1b",
+    "total_samples": 7644,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [
+      "statewide averages smooth over within-state spatial variation",
+      "Hawaii has no nClimDiv statewide series (coverage gap)"
+    ],
+    "notes": "NOAA nClimDiv statewide tmin (climdiv-tminst-v1.0.0-20261006); fixed-width SSSEEYYYY + 12 monthly columns; -99.90/-9999 sentinels -> NaN."
+  }
+]

@@ -1,0 +1,64 @@
+scenario_id,pathogen,policy,metric,value,diff_vs_a,ci_low,ci_high,valid,not_valid_reason,status,human_review_required
+listeria_rte_recall,Listeria,A,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,retrospective_positive_test_capture,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,inventory_availability,0.995489,0.0,0.979827,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,compliant_food_delivered,29245.0,0.0,28508.90399,29921.420937,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,supply_disruptions,1.0,0.0,0.974828,1.023131,True,,SIMULATED,True
+listeria_rte_recall,Listeria,A,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,retrospective_positive_test_capture,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,inventory_availability,0.995489,0.0,0.979827,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,compliant_food_delivered,29245.0,0.0,28508.90399,29921.420937,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,supply_disruptions,1.0,0.0,0.974828,1.023131,True,,SIMULATED,True
+listeria_rte_recall,Listeria,B,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,retrospective_positive_test_capture,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,inventory_availability,0.995489,0.0,0.979827,1.0,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,compliant_food_delivered,29245.0,0.0,28508.90399,29921.420937,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,supply_disruptions,1.0,0.0,0.974828,1.023131,True,,SIMULATED,True
+listeria_rte_recall,Listeria,C,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,compliant_food_delivered,28434.0,0.0,27718.316842,29091.662949,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,A,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,compliant_food_delivered,28434.0,0.0,27718.316842,29091.662949,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,B,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,compliant_food_delivered,28434.0,0.0,27718.316842,29091.662949,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+salmonella_poultry_limited_inspection,Salmonella,C,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,inspection_workload,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,priority_review_coverage,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+stec_beef_high_need,STEC,A,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,compliant_food_delivered,34145.0,0.0,33285.571097,34934.755271,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+stec_beef_high_need,STEC,A,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,inspection_workload,16.0,16.0,15.597278,16.370073,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,priority_review_coverage,1.0,1.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+stec_beef_high_need,STEC,B,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,compliant_food_delivered,34145.0,0.0,33285.571097,34934.755271,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+stec_beef_high_need,STEC,B,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,inspection_workload,16.0,16.0,15.597278,16.370073,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,priority_review_coverage,1.0,1.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,retrospective_positive_test_capture,,,,,False,retrospective positive-test capture is undefined: the scenario has no confirmed-recall or blocked lots to retrospectively capture,SIMULATED,True
+stec_beef_high_need,STEC,C,inventory_availability,1.0,0.0,0.974828,1.0,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,compliant_food_delivered,34145.0,0.0,33285.571097,34934.755271,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,supply_disruptions,0.0,0.0,0.0,2e-06,True,,SIMULATED,True
+stec_beef_high_need,STEC,C,high_need_community_service,1.0,0.0,0.974828,1.0,True,,SIMULATED,True

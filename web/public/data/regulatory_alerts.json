@@ -1,0 +1,27 @@
+[
+  {
+    "recall_id": "EXAMPLE-0001",
+    "product": "[EXAMPLE] Ready-to-eat chicken breast strips, 10 oz pouches",
+    "lot_ids": [
+      "EX-LOT-1180A",
+      "EX-LOT-1180B"
+    ],
+    "classification": "Class I",
+    "date": "2026-01-10",
+    "source_url": "https://www.fsis.usda.gov/recalls",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "EXAMPLE-0002",
+    "product": "[EXAMPLE] Raw ground beef chubs, 3 lb packages",
+    "lot_ids": [
+      "EX-LOT-2207"
+    ],
+    "classification": "Class II",
+    "date": "2026-01-08",
+    "source_url": "https://www.fsis.usda.gov/recalls",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  }
+]

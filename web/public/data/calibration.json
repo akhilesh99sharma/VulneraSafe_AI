@@ -1,0 +1,182 @@
+[
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.05,
+    "predicted": 0.051796,
+    "observed": 0.067114
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.15,
+    "predicted": 0.142952,
+    "observed": 0.126437
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.25,
+    "predicted": 0.250328,
+    "observed": 0.216667
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.35,
+    "predicted": 0.350088,
+    "observed": 0.388889
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.45,
+    "predicted": 0.448885,
+    "observed": 0.342857
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.55,
+    "predicted": 0.540616,
+    "observed": 0.55
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.65,
+    "predicted": 0.64153,
+    "observed": 0.555556
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.75,
+    "predicted": 0.721119,
+    "observed": 0.833333
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.85,
+    "predicted": 0.864168,
+    "observed": 1.0
+  },
+  {
+    "pathogen": "Listeria",
+    "bin_mid": 0.95,
+    "predicted": 0.9772,
+    "observed": 1.0
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.05,
+    "predicted": 0.071957,
+    "observed": 0.14
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.15,
+    "predicted": 0.155105,
+    "observed": 0.21875
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.25,
+    "predicted": 0.24621,
+    "observed": 0.147368
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.35,
+    "predicted": 0.344847,
+    "observed": 0.261538
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.45,
+    "predicted": 0.448657,
+    "observed": 0.323529
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.55,
+    "predicted": 0.54462,
+    "observed": 0.264706
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.65,
+    "predicted": 0.654055,
+    "observed": 0.583333
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.75,
+    "predicted": 0.752156,
+    "observed": 0.5
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.85,
+    "predicted": 0.840711,
+    "observed": 0.666667
+  },
+  {
+    "pathogen": "STEC",
+    "bin_mid": 0.95,
+    "predicted": 0.930233,
+    "observed": 0.714286
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.05,
+    "predicted": 0.033776,
+    "observed": 0.102302
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.15,
+    "predicted": 0.145544,
+    "observed": 0.25
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.25,
+    "predicted": 0.247891,
+    "observed": 0.31068
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.35,
+    "predicted": 0.343113,
+    "observed": 0.453488
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.45,
+    "predicted": 0.446372,
+    "observed": 0.485294
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.55,
+    "predicted": 0.552774,
+    "observed": 0.490566
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.65,
+    "predicted": 0.642522,
+    "observed": 0.552632
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.75,
+    "predicted": 0.742948,
+    "observed": 0.631579
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.85,
+    "predicted": 0.835935,
+    "observed": 0.7
+  },
+  {
+    "pathogen": "Salmonella",
+    "bin_mid": 0.95,
+    "predicted": 0.915623,
+    "observed": 0.571429
+  }
+]

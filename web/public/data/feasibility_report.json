@@ -1,0 +1,170 @@
+[
+  {
+    "pathogen": "Listeria",
+    "temporal_resolution": "quarterly",
+    "factors": [
+      {
+        "name": "train_positives",
+        "value": 1185.0,
+        "threshold": 30.0,
+        "passed": true
+      },
+      {
+        "name": "test_positives",
+        "value": 414.0,
+        "threshold": 10.0,
+        "passed": true
+      },
+      {
+        "name": "temporal_coverage",
+        "value": 1.0,
+        "threshold": 0.6,
+        "passed": true
+      },
+      {
+        "name": "geographic_coverage",
+        "value": 0.851852,
+        "threshold": 0.25,
+        "passed": true
+      },
+      {
+        "name": "stability",
+        "value": 0.72117,
+        "threshold": 0.35,
+        "passed": true
+      },
+      {
+        "name": "calibration",
+        "value": 0.0,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "prevalence",
+        "value": 0.006055,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "positive_rate",
+        "value": 0.006055,
+        "threshold": 0.0,
+        "passed": true
+      }
+    ],
+    "classification": "predictive",
+    "rationale": "Listeria is classified PREDICTIVE: all required factors pass the conjunction. Chosen resolution: quarterly (prevalence 0.61%). Required factors [train_positives=1.18e+03✓(thr 30), test_positives=414✓(thr 10), temporal_coverage=1✓(thr 0.6), geographic_coverage=0.852✓(thr 0.25), stability=0.721✓(thr 0.35)]. Calibration is deferred to post-modeling validation and is not treated as decisive now. Classification is the conjunction of the required factors, not any single positive-count threshold (Req 3.5)."
+  },
+  {
+    "pathogen": "STEC",
+    "temporal_resolution": "quarterly",
+    "factors": [
+      {
+        "name": "train_positives",
+        "value": 486.0,
+        "threshold": 30.0,
+        "passed": true
+      },
+      {
+        "name": "test_positives",
+        "value": 178.0,
+        "threshold": 10.0,
+        "passed": true
+      },
+      {
+        "name": "temporal_coverage",
+        "value": 1.0,
+        "threshold": 0.6,
+        "passed": true
+      },
+      {
+        "name": "geographic_coverage",
+        "value": 0.925926,
+        "threshold": 0.25,
+        "passed": true
+      },
+      {
+        "name": "stability",
+        "value": 0.727669,
+        "threshold": 0.35,
+        "passed": true
+      },
+      {
+        "name": "calibration",
+        "value": 0.0,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "prevalence",
+        "value": 0.002858,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "positive_rate",
+        "value": 0.002858,
+        "threshold": 0.0,
+        "passed": true
+      }
+    ],
+    "classification": "predictive",
+    "rationale": "STEC is classified PREDICTIVE: all required factors pass the conjunction. Chosen resolution: quarterly (prevalence 0.29%). Required factors [train_positives=486✓(thr 30), test_positives=178✓(thr 10), temporal_coverage=1✓(thr 0.6), geographic_coverage=0.926✓(thr 0.25), stability=0.728✓(thr 0.35)]. Calibration is deferred to post-modeling validation and is not treated as decisive now. Classification is the conjunction of the required factors, not any single positive-count threshold (Req 3.5)."
+  },
+  {
+    "pathogen": "Salmonella",
+    "temporal_resolution": "monthly",
+    "factors": [
+      {
+        "name": "train_positives",
+        "value": 30370.0,
+        "threshold": 30.0,
+        "passed": true
+      },
+      {
+        "name": "test_positives",
+        "value": 7315.0,
+        "threshold": 10.0,
+        "passed": true
+      },
+      {
+        "name": "temporal_coverage",
+        "value": 1.0,
+        "threshold": 0.6,
+        "passed": true
+      },
+      {
+        "name": "geographic_coverage",
+        "value": 0.959184,
+        "threshold": 0.25,
+        "passed": true
+      },
+      {
+        "name": "stability",
+        "value": 0.604493,
+        "threshold": 0.35,
+        "passed": true
+      },
+      {
+        "name": "calibration",
+        "value": 0.0,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "prevalence",
+        "value": 0.115981,
+        "threshold": 0.0,
+        "passed": true
+      },
+      {
+        "name": "positive_rate",
+        "value": 0.115981,
+        "threshold": 0.0,
+        "passed": true
+      }
+    ],
+    "classification": "predictive",
+    "rationale": "Salmonella is classified PREDICTIVE: all required factors pass the conjunction. Chosen resolution: monthly (prevalence 11.60%). Required factors [train_positives=3.04e+04✓(thr 30), test_positives=7.32e+03✓(thr 10), temporal_coverage=1✓(thr 0.6), geographic_coverage=0.959✓(thr 0.25), stability=0.604✓(thr 0.35)]. Calibration is deferred to post-modeling validation and is not treated as decisive now. Classification is the conjunction of the required factors, not any single positive-count threshold (Req 3.5)."
+  }
+]

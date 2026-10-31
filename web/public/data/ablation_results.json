@@ -1,0 +1,56 @@
+[
+  {
+    "config": "fsis_noaa",
+    "metric": "Listeria:pr_auc",
+    "value": 0.309794,
+    "marginal_vs_fsis_only": -0.012007
+  },
+  {
+    "config": "fsis_only",
+    "metric": "Listeria:pr_auc",
+    "value": 0.321801,
+    "marginal_vs_fsis_only": 0.0
+  },
+  {
+    "config": "full",
+    "metric": "Listeria:pr_auc",
+    "value": 0.33956,
+    "marginal_vs_fsis_only": 0.01776
+  },
+  {
+    "config": "fsis_noaa",
+    "metric": "STEC:pr_auc",
+    "value": 0.298381,
+    "marginal_vs_fsis_only": -0.002757
+  },
+  {
+    "config": "fsis_only",
+    "metric": "STEC:pr_auc",
+    "value": 0.301138,
+    "marginal_vs_fsis_only": 0.0
+  },
+  {
+    "config": "full",
+    "metric": "STEC:pr_auc",
+    "value": 0.311443,
+    "marginal_vs_fsis_only": 0.010305
+  },
+  {
+    "config": "fsis_noaa",
+    "metric": "Salmonella:pr_auc",
+    "value": 0.520829,
+    "marginal_vs_fsis_only": 0.0
+  },
+  {
+    "config": "fsis_only",
+    "metric": "Salmonella:pr_auc",
+    "value": 0.520829,
+    "marginal_vs_fsis_only": 0.0
+  },
+  {
+    "config": "full",
+    "metric": "Salmonella:pr_auc",
+    "value": 0.548398,
+    "marginal_vs_fsis_only": 0.027568
+  }
+]

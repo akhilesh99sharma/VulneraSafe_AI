@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Scientific light theme tokens (Req 14.4). These mirror the palette in
+ * tailwind.config.js so non-Tailwind styling and chart libraries can read the
+ * same values. Orange/red are reserved strictly for active alert conditions.
+ */
+:root {
+  --color-navy: #0f2742;
+  --color-navy-600: #1b3a5b;
+  --color-teal: #0f9b8e;
+  --color-teal-500: #14b8a6;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-alert-warn: #f59e0b;
+  --color-alert-danger: #dc2626;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-surface-muted);
+  color: var(--color-navy);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,9 @@
+dataset,source,rows,columns,date_range,geography,ingestion_status,join_keys
+FSIS_Raw_Poultry_Salmonella,USDA FSIS lab sampling zipped-JSON FY2014-2026,325123,30,2013-10 to 2026-06,US state+establishment,FULLY ingested,establishment_id|state|collection_date
+FSIS_RTE_Listeria,USDA FSIS lab sampling,266031,28,2013-10 to 2026-06,US state+establishment,FULLY ingested,establishment_id|state|collection_date
+FSIS_Raw_Beef_STEC,USDA FSIS lab sampling,232363,29,2013-10 to 2026-06,US state+establishment,FULLY ingested,establishment_id|state|collection_date
+Census_ACS_2022,US Census API acs5_2022.json,3222,NA,2022 vintage,US county to state,FULLY ingested,state_FIPS
+USDA_Food_Access_Atlas_2019,USDA ERS lram_2019.xlsx,72531,NA,2019 vintage,US tract to state,FULLY ingested,state_FIPS
+NOAA_weather,NCEI Access single station,7,5,2023-01 slice,1 station NY not national,PARTIAL thin gap,state+period
+CDC_NORS,data.cdc.gov,0,0,NA,US state,IDENTIFIED placeholder not real,state+period
+FSIS_Recalls_PHA,FSIS Recall API,0,0,NA,US,FIREWALLED 403 not ingested,product/lot id

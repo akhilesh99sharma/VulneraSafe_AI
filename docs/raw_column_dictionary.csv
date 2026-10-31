@@ -1,0 +1,97 @@
+dataset,column,dtype,role,is_target_source,fiscal_years_present,example_values
+FSIS Raw Poultry (Salmonella),form_id,str,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),sample_number,int64,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),establishment_id,int64,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),establishment_number,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),establishment_name,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),establishment_state,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),project_code,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),project_name,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),collection_date,str,time,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),sample_source_name,str,product/context (UNUSED - opportunity),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),product_type,str,product/context (UNUSED - opportunity),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),not_analyzed,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),not_analyzed_explain,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),salmonella_sp_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive; 25-5  Lab problem - lab closed
+FSIS Raw Poultry (Salmonella),salmonella_sp_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",25-5  Lab problem - lab closed
+FSIS Raw Poultry (Salmonella),salmonellae_mpn_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<0.03; 0.036; 4.3; 0.092
+FSIS Raw Poultry (Salmonella),salmonellae_mpn_g_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),salmonellae_mpn_combination,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",00000; 10000; 33100; 20000
+FSIS Raw Poultry (Salmonella),salmonella_quantitative_cfu_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<10; 18; 148; 15
+FSIS Raw Poultry (Salmonella),salmonella_quantitative_cfu_ml,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<10; 19; 21; 32
+FSIS Raw Poultry (Salmonella),salmonella_mpn_qualitative,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",Positive; Negative
+FSIS Raw Poultry (Salmonella),campylobacter_analysis_1ml,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS Raw Poultry (Salmonella),campylobacter_analysis_1ml_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",25-5  Lab problem - lab closed; 46  Temperature too low; 07  Temperature too high
+FSIS Raw Poultry (Salmonella),campylobacter_analysis_30ml,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS Raw Poultry (Salmonella),campylobacter_analysis_30ml_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",25-5  Lab problem - lab closed; 46  Temperature too low; 06  Collected outside scheduled time frame; 07  Temperature too high
+FSIS Raw Poultry (Salmonella),aerobic_plate_count_mpn_ml,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),enterobacteriaceae_mpn_ml,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),aerobic_plate_count_mpn_100_sq_cm,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),enterobacteriaceae_mpn_100_sq_cm,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Poultry (Salmonella),aerobic_plate_count_mpn_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),form_id,str,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),sample_number,int64,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),establishment_id,int64,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),establishment_number,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),establishment_name,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),establishment_state,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),project_code,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),project_name,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),collection_date,str,time,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),sample_source_name,str,product/context (UNUSED - opportunity),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),production_alternative,str,product/context (UNUSED - opportunity),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),not_analyzed,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),not_analyzed_explain,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),salmonella_sp_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS RTE (Listeria),salmonella_sp_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",25-18  Lab problem - equipment failure; 25   Laboratory Problem
+FSIS RTE (Listeria),salmonellae_mpn_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<0.03
+FSIS RTE (Listeria),salmonellae_mpn_g_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),salmonellae_mpn_combination,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",00000
+FSIS RTE (Listeria),salmonellae_mpn_combination_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS RTE (Listeria),salmonella_mpn_qualitative,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",Negative
+FSIS RTE (Listeria),lm_listeria_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive; Confirmed Negative of a Previous Presumptive
+FSIS RTE (Listeria),lm_listeria_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",26 Lab closed
+FSIS RTE (Listeria),non_lm_listeria_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS RTE (Listeria),non_lm_listeria_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),lm_listeria_mpn,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<0.03; 0.036; 0.23; 0.074
+FSIS RTE (Listeria),lm_listeria_mpn_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS RTE (Listeria),lm_listeria_mpn_combination,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",00000; 10000; 30000; 11000
+FSIS RTE (Listeria),lm_listeria_mpn_combination_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS Raw Beef (STEC),form_id,str,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),sample_number,int64,identifier,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),establishment_id,int64,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),establishment_number,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),establishment_name,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),establishment_state,str,establishment/geography,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),project_code,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),project_name,str,sampling program,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),collection_date,str,time,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),sample_source_name,str,product/context (UNUSED - opportunity),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),not_analyzed,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),not_analyzed_explain,str,QA/exclusion,no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),stec_o157_h7_mpn,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<0.03; 43
+FSIS Raw Beef (STEC),stec_o157_h7_mpn_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS Raw Beef (STEC),stec_o157_h7_mpn_combination,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",00000; 33310
+FSIS Raw Beef (STEC),stec_o157_h7_mpn_combination_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS Raw Beef (STEC),stec_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive; Confirmed Negative of a Previous Presumptive
+FSIS Raw Beef (STEC),stec_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",25-18  Lab problem - equipment failure
+FSIS Raw Beef (STEC),pcr_stx_1_2_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS Raw Beef (STEC),pcr_eae_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS Raw Beef (STEC),salmonella_sp_analysis,str,LAB RESULT (outcome / target-source - leakage if same sample),YES,"FY2014,FY2019,FY2023,FY2026",Negative; Positive; 25-23 Lab problem - Contamination Issue
+FSIS Raw Beef (STEC),salmonella_sp_analysis_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",26 Lab closed; 25   Laboratory Problem; 25-20  Other - (Describe on form in up to 54 characters)
+FSIS Raw Beef (STEC),salmonellae_mpn_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",<0.03; 0.036; 0.092; 0.03
+FSIS Raw Beef (STEC),salmonellae_mpn_g_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS Raw Beef (STEC),salmonellae_mpn_combination,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",00000; 10000; 20000; 11000
+FSIS Raw Beef (STEC),salmonellae_mpn_combination_canceled,str,QA/cancellation (future-leakage - exclude),no,"FY2014,FY2019,FY2023,FY2026",13  Insufficient tissue or sample
+FSIS Raw Beef (STEC),salmonella_mpn_qualitative,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",Negative; Positive
+FSIS Raw Beef (STEC),aerobic_plate_count_mpn_ml,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+FSIS Raw Beef (STEC),aerobic_plate_count_mpn_g,str,LAB RESULT (outcome / target-source - leakage if same sample),no,"FY2014,FY2019,FY2023,FY2026",
+Census ACS 2022,state_FIPS,str,join key (geography),no,2022,state FIPS 01-56
+Census ACS 2022,total_population,int,static feature,no,2022,county->state aggregated
+Census ACS 2022,elderly_65plus,int,static feature (vulnerability),no,2022,partial coverage
+USDA Food Access Atlas 2019,state_FIPS,str,join key (geography),no,2019,tract->state aggregated
+USDA Food Access Atlas 2019,LILATracts_1And10,int,static feature (access),no,2019,low-income low-access flag
+USDA Food Access Atlas 2019,LowIncomeTracts,int,static feature,no,2019,low-income tract flag
+USDA Food Access Atlas 2019,Pop2010,int,static feature,no,2019,tract population
+NOAA weather (PARTIAL),tmax/tmin/prcp,float,weather feature (THIN - 1 station),no,2023 slice,needs nClimDiv state monthly
+CDC NORS (PLACEHOLDER),outbreaks/illnesses,int,outbreak feature (NOT JOINED),no,n/a,placeholder columns only

@@ -1,0 +1,62 @@
+column,role,in_feature_table,leakage_class,description
+pathogen,identity,feature,key,Pathogen slug (salmonella/listeria/stec)
+state,identity,feature,key,US state (sampling location)
+period,identity,feature,key,Aggregation period label (month or quarter)
+period_start,identity,feature,key,Period start date (temporal ordering key)
+cutoff,identity,feature,key,Data-availability cutoff enforcing no-future-leakage
+resolution,identity,feature,key,monthly or quarterly aggregation
+outcome_routine_samples,current-period outcome,feature,current-outcome - NOT a predictor,Routine samples this period (denominator)
+outcome_routine_positives,current-period outcome,feature,current-outcome - NOT a predictor,Routine positives this period
+outcome_routine_positivity_rate,current-period outcome,feature,current-outcome - NOT a predictor,Positivity rate this period
+routine_positivity_lag1,predictor (lag),feature,safe,Positivity 1 period ago
+routine_samples_lag1,predictor (lag),feature,safe,Samples 1 period ago
+routine_positivity_lag2,predictor (lag),feature,safe,Positivity 2 periods ago
+routine_samples_lag2,predictor (lag),feature,safe,Samples 2 periods ago
+routine_positivity_lag3,predictor (lag),feature,safe,Positivity 3 periods ago
+routine_samples_lag3,predictor (lag),feature,safe,Samples 3 periods ago
+routine_positivity_trailing4_mean,predictor (trailing),feature,safe,"Mean positivity, trailing 4 periods"
+routine_samples_trailing4_mean,predictor (trailing),feature,safe,"Mean samples, trailing 4 periods"
+routine_positivity_trailing12m_mean,predictor (trailing),feature,safe,"Mean positivity, trailing 12 months"
+routine_samples_trailing12m_mean,predictor (trailing),feature,safe,"Mean samples, trailing 12 months"
+national_routine_positivity_lag1,predictor (context),feature,safe,National positivity 1 period ago
+context_forcause_positivity_lag1,predictor (context),feature,safe,For-cause program positivity lag1
+context_forcause_samples_lag1,predictor (context),feature,safe,For-cause samples lag1
+context_forcause_positivity_trailing4_mean,predictor (context),feature,safe,For-cause positivity trailing4
+context_exploratory_positivity_lag1,predictor (context),feature,safe,Exploratory program positivity lag1
+context_exploratory_samples_lag1,predictor (context),feature,safe,Exploratory samples lag1
+context_exploratory_positivity_trailing4_mean,predictor (context),feature,safe,Exploratory positivity trailing4
+season_sin,predictor (seasonality),feature,safe,Sine seasonal encoding
+season_cos,predictor (seasonality),feature,safe,Cosine seasonal encoding
+period_of_year,predictor (seasonality),feature,safe,Month/quarter index within year
+calendar_year,predictor (time),feature,safe (watch drift),Calendar year
+calendar_month,predictor (seasonality),feature,safe,Calendar month
+geo_state,predictor (geography),feature,safe,State identifier feature
+geo_region,predictor (geography),feature,safe,Census region
+weather_tmax_mean_lag1,predictor (weather),feature,safe but sparse,Max temp mean lag1 (THIN NOAA)
+weather_tmin_mean_lag1,predictor (weather),feature,safe but sparse,Min temp mean lag1 (THIN NOAA)
+weather_prcp_total_lag1,predictor (weather),feature,safe but sparse,Precip total lag1 (THIN NOAA)
+weather_tmax_anomaly_lag1,predictor (weather),feature,safe but sparse,Max temp anomaly lag1
+weather_tmin_anomaly_lag1,predictor (weather),feature,safe but sparse,Min temp anomaly lag1
+weather_prcp_anomaly_lag1,predictor (weather),feature,safe but sparse,Precip anomaly lag1
+weather_noaa_lag_days_lag1,predictor (weather),feature,safe,NOAA availability lag days
+static_total_population,predictor (static),feature,safe,ACS total population (state)
+static_elderly_65plus_partial,predictor (static),feature,safe,ACS elderly 65+ (partial)
+static_elderly_share,predictor (static),feature,safe,Elderly share of population
+static_acs_vintage,metadata,feature,constant,ACS vintage year
+static_lila_tract_share,predictor (static),feature,safe,Share of low-income low-access tracts
+static_low_income_tract_share,predictor (static),feature,safe,Share of low-income tracts
+static_atlas_pop_2010,predictor (static),feature,safe,Atlas 2010 population
+static_atlas_vintage,metadata,feature,constant,Atlas vintage year
+baseline,baseline,target/support/meta,reference,Persistence baseline prediction
+y_next_positivity,TARGET (regression src),target/support/meta,TARGET - exclude from X,Next-period observed positivity rate
+next_routine_samples,target support,target/support/meta,future - exclude from X,Next-period sample count (denominator)
+next_routine_positives,target support,target/support/meta,future - exclude from X,Next-period positive count
+next_period,target support,target/support/meta,future - exclude from X,Next-period label
+labelable,label flag v1,target/support/meta,meta,Whether v1 label is defined
+exclusion_reason,label flag v1,target/support/meta,meta,Why excluded (v1)
+y_elevated,TARGET v1 (deprecated),target/support/meta,TARGET v1 - deprecated,v1 elevated flag = next > own trailing mean (NOISE)
+smoothed_next_positivity,target support v2,target/support/meta,future - exclude from X,Empirical-Bayes smoothed next positivity
+v2_threshold,target support v2,target/support/meta,meta,Train-derived tail threshold (fixed)
+labelable_v2,label flag v2,target/support/meta,meta,Whether v2 label is defined
+exclusion_reason_v2,label flag v2,target/support/meta,meta,Why excluded (v2)
+y_elevated_v2,TARGET v2 (ACTIVE),target/support/meta,TARGET v2 - exclude from X,EB-smoothed next positivity >= train 75th-pct threshold

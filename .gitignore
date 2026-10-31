@@ -1,0 +1,45 @@
+# Secrets / tokens
+.env
+.env*
+!.env.example
+*.token
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.hypothesis/
+*.egg-info/
+.venv/
+venv/
+
+# Node / web
+node_modules/
+web/dist/
+web/.vite/
+
+# Large raw & synthetic data payloads (keep structure via .gitkeep)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/fsis/
+data/raw/fsis/*
+!data/raw/fsis/.gitkeep
+!data/raw/fsis/README_FSIS.md
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/synthetic/*
+!data/synthetic/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Challenge-provided source material (not our work product)
+VulneraSafe_Kiro_Ready_to_Use_Packets/
+
+# Large inventory scratch dump (regenerable, not committed)
+scripts/inventory_data.json

@@ -1,0 +1,1382 @@
+[
+  {
+    "rank": 1,
+    "target_id": "Listeria:WY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WY",
+    "pathogen": "Listeria",
+    "risk": 0.99775,
+    "triggering_condition": "predicted elevated-risk probability 0.998 for Listeria in WY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 2,
+    "target_id": "Listeria:DE:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "DE",
+    "pathogen": "Listeria",
+    "risk": 0.99625,
+    "triggering_condition": "predicted elevated-risk probability 0.996 for Listeria in DE (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 3,
+    "target_id": "Listeria:ND:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ND",
+    "pathogen": "Listeria",
+    "risk": 0.984083,
+    "triggering_condition": "predicted elevated-risk probability 0.984 for Listeria in ND (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 4,
+    "target_id": "Listeria:NH:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NH",
+    "pathogen": "Listeria",
+    "risk": 0.938649,
+    "triggering_condition": "predicted elevated-risk probability 0.939 for Listeria in NH (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 5,
+    "target_id": "Listeria:WV:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WV",
+    "pathogen": "Listeria",
+    "risk": 0.75461,
+    "triggering_condition": "predicted elevated-risk probability 0.755 for Listeria in WV (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 6,
+    "target_id": "STEC:TX:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "TX",
+    "pathogen": "STEC",
+    "risk": 0.694991,
+    "triggering_condition": "predicted elevated-risk probability 0.695 for STEC in TX (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 7,
+    "target_id": "STEC:AK:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AK",
+    "pathogen": "STEC",
+    "risk": 0.656281,
+    "triggering_condition": "predicted elevated-risk probability 0.656 for STEC in AK (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 8,
+    "target_id": "STEC:NY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NY",
+    "pathogen": "STEC",
+    "risk": 0.643789,
+    "triggering_condition": "predicted elevated-risk probability 0.644 for STEC in NY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 9,
+    "target_id": "STEC:MS:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MS",
+    "pathogen": "STEC",
+    "risk": 0.593732,
+    "triggering_condition": "predicted elevated-risk probability 0.594 for STEC in MS (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 10,
+    "target_id": "Listeria:TX:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "TX",
+    "pathogen": "Listeria",
+    "risk": 0.590741,
+    "triggering_condition": "predicted elevated-risk probability 0.591 for Listeria in TX (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 11,
+    "target_id": "STEC:WI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WI",
+    "pathogen": "STEC",
+    "risk": 0.580746,
+    "triggering_condition": "predicted elevated-risk probability 0.581 for STEC in WI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 12,
+    "target_id": "Salmonella:MA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MA",
+    "pathogen": "Salmonella",
+    "risk": 0.579403,
+    "triggering_condition": "predicted elevated-risk probability 0.579 for Salmonella in MA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 13,
+    "target_id": "Salmonella:MI:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MI",
+    "pathogen": "Salmonella",
+    "risk": 0.570411,
+    "triggering_condition": "predicted elevated-risk probability 0.570 for Salmonella in MI (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 14,
+    "target_id": "STEC:PA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "PA",
+    "pathogen": "STEC",
+    "risk": 0.569498,
+    "triggering_condition": "predicted elevated-risk probability 0.569 for STEC in PA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 15,
+    "target_id": "Salmonella:MD:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MD",
+    "pathogen": "Salmonella",
+    "risk": 0.569332,
+    "triggering_condition": "predicted elevated-risk probability 0.569 for Salmonella in MD (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 16,
+    "target_id": "Listeria:PR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "PR",
+    "pathogen": "Listeria",
+    "risk": 0.567315,
+    "triggering_condition": "predicted elevated-risk probability 0.567 for Listeria in PR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 17,
+    "target_id": "STEC:CA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CA",
+    "pathogen": "STEC",
+    "risk": 0.526848,
+    "triggering_condition": "predicted elevated-risk probability 0.527 for STEC in CA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 18,
+    "target_id": "Salmonella:RI:2026-05",
+    "target_type": "modeling_unit",
+    "region": "RI",
+    "pathogen": "Salmonella",
+    "risk": 0.516115,
+    "triggering_condition": "predicted elevated-risk probability 0.516 for Salmonella in RI (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 19,
+    "target_id": "Salmonella:KS:2026-05",
+    "target_type": "modeling_unit",
+    "region": "KS",
+    "pathogen": "Salmonella",
+    "risk": 0.487567,
+    "triggering_condition": "predicted elevated-risk probability 0.488 for Salmonella in KS (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 20,
+    "target_id": "Salmonella:CA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "CA",
+    "pathogen": "Salmonella",
+    "risk": 0.476937,
+    "triggering_condition": "predicted elevated-risk probability 0.477 for Salmonella in CA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 21,
+    "target_id": "STEC:WV:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WV",
+    "pathogen": "STEC",
+    "risk": 0.470607,
+    "triggering_condition": "predicted elevated-risk probability 0.471 for STEC in WV (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 22,
+    "target_id": "Listeria:ME:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ME",
+    "pathogen": "Listeria",
+    "risk": 0.468178,
+    "triggering_condition": "predicted elevated-risk probability 0.468 for Listeria in ME (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 23,
+    "target_id": "Salmonella:WA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "WA",
+    "pathogen": "Salmonella",
+    "risk": 0.4681,
+    "triggering_condition": "predicted elevated-risk probability 0.468 for Salmonella in WA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 24,
+    "target_id": "STEC:NM:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NM",
+    "pathogen": "STEC",
+    "risk": 0.464071,
+    "triggering_condition": "predicted elevated-risk probability 0.464 for STEC in NM (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 25,
+    "target_id": "Listeria:FL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "FL",
+    "pathogen": "Listeria",
+    "risk": 0.463062,
+    "triggering_condition": "predicted elevated-risk probability 0.463 for Listeria in FL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 26,
+    "target_id": "STEC:LA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "LA",
+    "pathogen": "STEC",
+    "risk": 0.454687,
+    "triggering_condition": "predicted elevated-risk probability 0.455 for STEC in LA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 27,
+    "target_id": "Salmonella:NJ:2026-05",
+    "target_type": "modeling_unit",
+    "region": "NJ",
+    "pathogen": "Salmonella",
+    "risk": 0.45413,
+    "triggering_condition": "predicted elevated-risk probability 0.454 for Salmonella in NJ (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 28,
+    "target_id": "Salmonella:FL:2026-05",
+    "target_type": "modeling_unit",
+    "region": "FL",
+    "pathogen": "Salmonella",
+    "risk": 0.453533,
+    "triggering_condition": "predicted elevated-risk probability 0.454 for Salmonella in FL (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 29,
+    "target_id": "Listeria:CA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CA",
+    "pathogen": "Listeria",
+    "risk": 0.438183,
+    "triggering_condition": "predicted elevated-risk probability 0.438 for Listeria in CA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 30,
+    "target_id": "Salmonella:IL:2026-05",
+    "target_type": "modeling_unit",
+    "region": "IL",
+    "pathogen": "Salmonella",
+    "risk": 0.437626,
+    "triggering_condition": "predicted elevated-risk probability 0.438 for Salmonella in IL (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 31,
+    "target_id": "Salmonella:PR:2026-05",
+    "target_type": "modeling_unit",
+    "region": "PR",
+    "pathogen": "Salmonella",
+    "risk": 0.434075,
+    "triggering_condition": "predicted elevated-risk probability 0.434 for Salmonella in PR (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 32,
+    "target_id": "STEC:CO:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CO",
+    "pathogen": "STEC",
+    "risk": 0.429843,
+    "triggering_condition": "predicted elevated-risk probability 0.430 for STEC in CO (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 33,
+    "target_id": "Salmonella:VA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "VA",
+    "pathogen": "Salmonella",
+    "risk": 0.427319,
+    "triggering_condition": "predicted elevated-risk probability 0.427 for Salmonella in VA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 34,
+    "target_id": "Salmonella:NY:2026-05",
+    "target_type": "modeling_unit",
+    "region": "NY",
+    "pathogen": "Salmonella",
+    "risk": 0.425401,
+    "triggering_condition": "predicted elevated-risk probability 0.425 for Salmonella in NY (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 35,
+    "target_id": "Salmonella:CO:2026-05",
+    "target_type": "modeling_unit",
+    "region": "CO",
+    "pathogen": "Salmonella",
+    "risk": 0.423999,
+    "triggering_condition": "predicted elevated-risk probability 0.424 for Salmonella in CO (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 36,
+    "target_id": "STEC:NE:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NE",
+    "pathogen": "STEC",
+    "risk": 0.419119,
+    "triggering_condition": "predicted elevated-risk probability 0.419 for STEC in NE (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 37,
+    "target_id": "STEC:ND:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ND",
+    "pathogen": "STEC",
+    "risk": 0.406084,
+    "triggering_condition": "predicted elevated-risk probability 0.406 for STEC in ND (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 38,
+    "target_id": "Salmonella:IN:2026-05",
+    "target_type": "modeling_unit",
+    "region": "IN",
+    "pathogen": "Salmonella",
+    "risk": 0.394681,
+    "triggering_condition": "predicted elevated-risk probability 0.395 for Salmonella in IN (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 39,
+    "target_id": "STEC:MN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MN",
+    "pathogen": "STEC",
+    "risk": 0.391338,
+    "triggering_condition": "predicted elevated-risk probability 0.391 for STEC in MN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 40,
+    "target_id": "Listeria:VT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "VT",
+    "pathogen": "Listeria",
+    "risk": 0.376434,
+    "triggering_condition": "predicted elevated-risk probability 0.376 for Listeria in VT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 41,
+    "target_id": "STEC:UT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "UT",
+    "pathogen": "STEC",
+    "risk": 0.357851,
+    "triggering_condition": "predicted elevated-risk probability 0.358 for STEC in UT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 42,
+    "target_id": "STEC:IA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IA",
+    "pathogen": "STEC",
+    "risk": 0.352424,
+    "triggering_condition": "predicted elevated-risk probability 0.352 for STEC in IA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 43,
+    "target_id": "Listeria:NY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NY",
+    "pathogen": "Listeria",
+    "risk": 0.350165,
+    "triggering_condition": "predicted elevated-risk probability 0.350 for Listeria in NY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 44,
+    "target_id": "STEC:RI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "RI",
+    "pathogen": "STEC",
+    "risk": 0.343165,
+    "triggering_condition": "predicted elevated-risk probability 0.343 for STEC in RI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 45,
+    "target_id": "STEC:KS:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "KS",
+    "pathogen": "STEC",
+    "risk": 0.334442,
+    "triggering_condition": "predicted elevated-risk probability 0.334 for STEC in KS (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 46,
+    "target_id": "Listeria:IL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IL",
+    "pathogen": "Listeria",
+    "risk": 0.334075,
+    "triggering_condition": "predicted elevated-risk probability 0.334 for Listeria in IL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 47,
+    "target_id": "STEC:MI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MI",
+    "pathogen": "STEC",
+    "risk": 0.331188,
+    "triggering_condition": "predicted elevated-risk probability 0.331 for STEC in MI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 48,
+    "target_id": "STEC:CT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CT",
+    "pathogen": "STEC",
+    "risk": 0.327938,
+    "triggering_condition": "predicted elevated-risk probability 0.328 for STEC in CT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 49,
+    "target_id": "Salmonella:NE:2026-05",
+    "target_type": "modeling_unit",
+    "region": "NE",
+    "pathogen": "Salmonella",
+    "risk": 0.325508,
+    "triggering_condition": "predicted elevated-risk probability 0.326 for Salmonella in NE (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 50,
+    "target_id": "STEC:IL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IL",
+    "pathogen": "STEC",
+    "risk": 0.316744,
+    "triggering_condition": "predicted elevated-risk probability 0.317 for STEC in IL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 51,
+    "target_id": "STEC:GA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "GA",
+    "pathogen": "STEC",
+    "risk": 0.307259,
+    "triggering_condition": "predicted elevated-risk probability 0.307 for STEC in GA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 52,
+    "target_id": "STEC:AR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AR",
+    "pathogen": "STEC",
+    "risk": 0.3062,
+    "triggering_condition": "predicted elevated-risk probability 0.306 for STEC in AR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 53,
+    "target_id": "STEC:VT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "VT",
+    "pathogen": "STEC",
+    "risk": 0.302755,
+    "triggering_condition": "predicted elevated-risk probability 0.303 for STEC in VT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 54,
+    "target_id": "STEC:NH:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NH",
+    "pathogen": "STEC",
+    "risk": 0.288581,
+    "triggering_condition": "predicted elevated-risk probability 0.289 for STEC in NH (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 55,
+    "target_id": "Listeria:PA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "PA",
+    "pathogen": "Listeria",
+    "risk": 0.277826,
+    "triggering_condition": "predicted elevated-risk probability 0.278 for Listeria in PA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 56,
+    "target_id": "Listeria:NM:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NM",
+    "pathogen": "Listeria",
+    "risk": 0.277418,
+    "triggering_condition": "predicted elevated-risk probability 0.277 for Listeria in NM (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 57,
+    "target_id": "STEC:MT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MT",
+    "pathogen": "STEC",
+    "risk": 0.27466,
+    "triggering_condition": "predicted elevated-risk probability 0.275 for STEC in MT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 58,
+    "target_id": "STEC:NJ:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NJ",
+    "pathogen": "STEC",
+    "risk": 0.268721,
+    "triggering_condition": "predicted elevated-risk probability 0.269 for STEC in NJ (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 59,
+    "target_id": "Salmonella:SC:2026-05",
+    "target_type": "modeling_unit",
+    "region": "SC",
+    "pathogen": "Salmonella",
+    "risk": 0.263554,
+    "triggering_condition": "predicted elevated-risk probability 0.264 for Salmonella in SC (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 60,
+    "target_id": "Listeria:GA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "GA",
+    "pathogen": "Listeria",
+    "risk": 0.262972,
+    "triggering_condition": "predicted elevated-risk probability 0.263 for Listeria in GA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 61,
+    "target_id": "Salmonella:OH:2026-05",
+    "target_type": "modeling_unit",
+    "region": "OH",
+    "pathogen": "Salmonella",
+    "risk": 0.255793,
+    "triggering_condition": "predicted elevated-risk probability 0.256 for Salmonella in OH (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 62,
+    "target_id": "Listeria:RI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "RI",
+    "pathogen": "Listeria",
+    "risk": 0.255712,
+    "triggering_condition": "predicted elevated-risk probability 0.256 for Listeria in RI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 63,
+    "target_id": "STEC:ID:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ID",
+    "pathogen": "STEC",
+    "risk": 0.253236,
+    "triggering_condition": "predicted elevated-risk probability 0.253 for STEC in ID (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 64,
+    "target_id": "STEC:SD:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "SD",
+    "pathogen": "STEC",
+    "risk": 0.252676,
+    "triggering_condition": "predicted elevated-risk probability 0.253 for STEC in SD (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 65,
+    "target_id": "STEC:WY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WY",
+    "pathogen": "STEC",
+    "risk": 0.248427,
+    "triggering_condition": "predicted elevated-risk probability 0.248 for STEC in WY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 66,
+    "target_id": "STEC:ME:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ME",
+    "pathogen": "STEC",
+    "risk": 0.247296,
+    "triggering_condition": "predicted elevated-risk probability 0.247 for STEC in ME (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 67,
+    "target_id": "Salmonella:UT:2026-05",
+    "target_type": "modeling_unit",
+    "region": "UT",
+    "pathogen": "Salmonella",
+    "risk": 0.241938,
+    "triggering_condition": "predicted elevated-risk probability 0.242 for Salmonella in UT (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 68,
+    "target_id": "Listeria:NC:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NC",
+    "pathogen": "Listeria",
+    "risk": 0.234057,
+    "triggering_condition": "predicted elevated-risk probability 0.234 for Listeria in NC (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 69,
+    "target_id": "STEC:FL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "FL",
+    "pathogen": "STEC",
+    "risk": 0.225796,
+    "triggering_condition": "predicted elevated-risk probability 0.226 for STEC in FL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 70,
+    "target_id": "Salmonella:CT:2026-05",
+    "target_type": "modeling_unit",
+    "region": "CT",
+    "pathogen": "Salmonella",
+    "risk": 0.221556,
+    "triggering_condition": "predicted elevated-risk probability 0.222 for Salmonella in CT (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 71,
+    "target_id": "Salmonella:PA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "PA",
+    "pathogen": "Salmonella",
+    "risk": 0.2155,
+    "triggering_condition": "predicted elevated-risk probability 0.216 for Salmonella in PA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 72,
+    "target_id": "Salmonella:WV:2026-05",
+    "target_type": "modeling_unit",
+    "region": "WV",
+    "pathogen": "Salmonella",
+    "risk": 0.213936,
+    "triggering_condition": "predicted elevated-risk probability 0.214 for Salmonella in WV (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 73,
+    "target_id": "Listeria:MO:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MO",
+    "pathogen": "Listeria",
+    "risk": 0.199238,
+    "triggering_condition": "predicted elevated-risk probability 0.199 for Listeria in MO (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 74,
+    "target_id": "STEC:KY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "KY",
+    "pathogen": "STEC",
+    "risk": 0.196688,
+    "triggering_condition": "predicted elevated-risk probability 0.197 for STEC in KY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 75,
+    "target_id": "Salmonella:SD:2026-05",
+    "target_type": "modeling_unit",
+    "region": "SD",
+    "pathogen": "Salmonella",
+    "risk": 0.191846,
+    "triggering_condition": "predicted elevated-risk probability 0.192 for Salmonella in SD (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 76,
+    "target_id": "STEC:MO:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MO",
+    "pathogen": "STEC",
+    "risk": 0.188421,
+    "triggering_condition": "predicted elevated-risk probability 0.188 for STEC in MO (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 77,
+    "target_id": "STEC:OH:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OH",
+    "pathogen": "STEC",
+    "risk": 0.187633,
+    "triggering_condition": "predicted elevated-risk probability 0.188 for STEC in OH (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 78,
+    "target_id": "STEC:TN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "TN",
+    "pathogen": "STEC",
+    "risk": 0.187112,
+    "triggering_condition": "predicted elevated-risk probability 0.187 for STEC in TN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 79,
+    "target_id": "Salmonella:IA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "IA",
+    "pathogen": "Salmonella",
+    "risk": 0.185289,
+    "triggering_condition": "predicted elevated-risk probability 0.185 for Salmonella in IA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 80,
+    "target_id": "STEC:OK:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OK",
+    "pathogen": "STEC",
+    "risk": 0.179779,
+    "triggering_condition": "predicted elevated-risk probability 0.180 for STEC in OK (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 81,
+    "target_id": "Salmonella:MO:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MO",
+    "pathogen": "Salmonella",
+    "risk": 0.178894,
+    "triggering_condition": "predicted elevated-risk probability 0.179 for Salmonella in MO (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 82,
+    "target_id": "Salmonella:WI:2026-05",
+    "target_type": "modeling_unit",
+    "region": "WI",
+    "pathogen": "Salmonella",
+    "risk": 0.176378,
+    "triggering_condition": "predicted elevated-risk probability 0.176 for Salmonella in WI (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 83,
+    "target_id": "Listeria:OH:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OH",
+    "pathogen": "Listeria",
+    "risk": 0.16012,
+    "triggering_condition": "predicted elevated-risk probability 0.160 for Listeria in OH (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 84,
+    "target_id": "STEC:OR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OR",
+    "pathogen": "STEC",
+    "risk": 0.155022,
+    "triggering_condition": "predicted elevated-risk probability 0.155 for STEC in OR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 85,
+    "target_id": "STEC:NV:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NV",
+    "pathogen": "STEC",
+    "risk": 0.152253,
+    "triggering_condition": "predicted elevated-risk probability 0.152 for STEC in NV (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 86,
+    "target_id": "Listeria:MN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MN",
+    "pathogen": "Listeria",
+    "risk": 0.147468,
+    "triggering_condition": "predicted elevated-risk probability 0.147 for Listeria in MN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 87,
+    "target_id": "STEC:SC:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "SC",
+    "pathogen": "STEC",
+    "risk": 0.146616,
+    "triggering_condition": "predicted elevated-risk probability 0.147 for STEC in SC (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 88,
+    "target_id": "Listeria:TN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "TN",
+    "pathogen": "Listeria",
+    "risk": 0.145066,
+    "triggering_condition": "predicted elevated-risk probability 0.145 for Listeria in TN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 89,
+    "target_id": "Listeria:IN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IN",
+    "pathogen": "Listeria",
+    "risk": 0.141911,
+    "triggering_condition": "predicted elevated-risk probability 0.142 for Listeria in IN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 90,
+    "target_id": "Salmonella:OK:2026-05",
+    "target_type": "modeling_unit",
+    "region": "OK",
+    "pathogen": "Salmonella",
+    "risk": 0.14132,
+    "triggering_condition": "predicted elevated-risk probability 0.141 for Salmonella in OK (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 91,
+    "target_id": "Listeria:LA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "LA",
+    "pathogen": "Listeria",
+    "risk": 0.139847,
+    "triggering_condition": "predicted elevated-risk probability 0.140 for Listeria in LA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 92,
+    "target_id": "STEC:AL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AL",
+    "pathogen": "STEC",
+    "risk": 0.137617,
+    "triggering_condition": "predicted elevated-risk probability 0.138 for STEC in AL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 93,
+    "target_id": "STEC:NC:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NC",
+    "pathogen": "STEC",
+    "risk": 0.137522,
+    "triggering_condition": "predicted elevated-risk probability 0.138 for STEC in NC (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 94,
+    "target_id": "STEC:WA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WA",
+    "pathogen": "STEC",
+    "risk": 0.134887,
+    "triggering_condition": "predicted elevated-risk probability 0.135 for STEC in WA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 95,
+    "target_id": "Listeria:OK:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OK",
+    "pathogen": "Listeria",
+    "risk": 0.132341,
+    "triggering_condition": "predicted elevated-risk probability 0.132 for Listeria in OK (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 96,
+    "target_id": "Listeria:AR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AR",
+    "pathogen": "Listeria",
+    "risk": 0.132108,
+    "triggering_condition": "predicted elevated-risk probability 0.132 for Listeria in AR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 97,
+    "target_id": "Listeria:SC:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "SC",
+    "pathogen": "Listeria",
+    "risk": 0.128566,
+    "triggering_condition": "predicted elevated-risk probability 0.129 for Listeria in SC (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 98,
+    "target_id": "Salmonella:LA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "LA",
+    "pathogen": "Salmonella",
+    "risk": 0.127759,
+    "triggering_condition": "predicted elevated-risk probability 0.128 for Salmonella in LA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 99,
+    "target_id": "Listeria:VA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "VA",
+    "pathogen": "Listeria",
+    "risk": 0.109963,
+    "triggering_condition": "predicted elevated-risk probability 0.110 for Listeria in VA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 100,
+    "target_id": "Listeria:MI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MI",
+    "pathogen": "Listeria",
+    "risk": 0.109119,
+    "triggering_condition": "predicted elevated-risk probability 0.109 for Listeria in MI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 101,
+    "target_id": "STEC:PR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "PR",
+    "pathogen": "STEC",
+    "risk": 0.107852,
+    "triggering_condition": "predicted elevated-risk probability 0.108 for STEC in PR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 102,
+    "target_id": "Listeria:MA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MA",
+    "pathogen": "Listeria",
+    "risk": 0.10016,
+    "triggering_condition": "predicted elevated-risk probability 0.100 for Listeria in MA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 103,
+    "target_id": "Salmonella:DE:2026-05",
+    "target_type": "modeling_unit",
+    "region": "DE",
+    "pathogen": "Salmonella",
+    "risk": 0.097522,
+    "triggering_condition": "predicted elevated-risk probability 0.098 for Salmonella in DE (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 104,
+    "target_id": "Listeria:NJ:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NJ",
+    "pathogen": "Listeria",
+    "risk": 0.097275,
+    "triggering_condition": "predicted elevated-risk probability 0.097 for Listeria in NJ (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 105,
+    "target_id": "Salmonella:MN:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MN",
+    "pathogen": "Salmonella",
+    "risk": 0.094943,
+    "triggering_condition": "predicted elevated-risk probability 0.095 for Salmonella in MN (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 106,
+    "target_id": "Listeria:MD:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MD",
+    "pathogen": "Listeria",
+    "risk": 0.092411,
+    "triggering_condition": "predicted elevated-risk probability 0.092 for Listeria in MD (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 107,
+    "target_id": "Listeria:KY:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "KY",
+    "pathogen": "Listeria",
+    "risk": 0.09027,
+    "triggering_condition": "predicted elevated-risk probability 0.090 for Listeria in KY (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 108,
+    "target_id": "STEC:IN:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IN",
+    "pathogen": "STEC",
+    "risk": 0.087547,
+    "triggering_condition": "predicted elevated-risk probability 0.088 for STEC in IN (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 109,
+    "target_id": "Listeria:WI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WI",
+    "pathogen": "Listeria",
+    "risk": 0.087517,
+    "triggering_condition": "predicted elevated-risk probability 0.088 for Listeria in WI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 110,
+    "target_id": "Listeria:ID:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "ID",
+    "pathogen": "Listeria",
+    "risk": 0.08648,
+    "triggering_condition": "predicted elevated-risk probability 0.086 for Listeria in ID (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 111,
+    "target_id": "STEC:MD:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MD",
+    "pathogen": "STEC",
+    "risk": 0.082006,
+    "triggering_condition": "predicted elevated-risk probability 0.082 for STEC in MD (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 112,
+    "target_id": "Listeria:IA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "IA",
+    "pathogen": "Listeria",
+    "risk": 0.079782,
+    "triggering_condition": "predicted elevated-risk probability 0.080 for Listeria in IA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 113,
+    "target_id": "Salmonella:AZ:2026-05",
+    "target_type": "modeling_unit",
+    "region": "AZ",
+    "pathogen": "Salmonella",
+    "risk": 0.079133,
+    "triggering_condition": "predicted elevated-risk probability 0.079 for Salmonella in AZ (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 114,
+    "target_id": "Listeria:MS:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MS",
+    "pathogen": "Listeria",
+    "risk": 0.075292,
+    "triggering_condition": "predicted elevated-risk probability 0.075 for Listeria in MS (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 115,
+    "target_id": "STEC:AZ:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AZ",
+    "pathogen": "STEC",
+    "risk": 0.07395,
+    "triggering_condition": "predicted elevated-risk probability 0.074 for STEC in AZ (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 116,
+    "target_id": "STEC:HI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "HI",
+    "pathogen": "STEC",
+    "risk": 0.067024,
+    "triggering_condition": "predicted elevated-risk probability 0.067 for STEC in HI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 117,
+    "target_id": "STEC:MA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "MA",
+    "pathogen": "STEC",
+    "risk": 0.066465,
+    "triggering_condition": "predicted elevated-risk probability 0.066 for STEC in MA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 118,
+    "target_id": "STEC:VA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "VA",
+    "pathogen": "STEC",
+    "risk": 0.063739,
+    "triggering_condition": "predicted elevated-risk probability 0.064 for STEC in VA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 119,
+    "target_id": "Salmonella:TX:2026-05",
+    "target_type": "modeling_unit",
+    "region": "TX",
+    "pathogen": "Salmonella",
+    "risk": 0.058795,
+    "triggering_condition": "predicted elevated-risk probability 0.059 for Salmonella in TX (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 120,
+    "target_id": "Listeria:KS:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "KS",
+    "pathogen": "Listeria",
+    "risk": 0.057625,
+    "triggering_condition": "predicted elevated-risk probability 0.058 for Listeria in KS (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 121,
+    "target_id": "Salmonella:NC:2026-05",
+    "target_type": "modeling_unit",
+    "region": "NC",
+    "pathogen": "Salmonella",
+    "risk": 0.054973,
+    "triggering_condition": "predicted elevated-risk probability 0.055 for Salmonella in NC (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 122,
+    "target_id": "Salmonella:KY:2026-05",
+    "target_type": "modeling_unit",
+    "region": "KY",
+    "pathogen": "Salmonella",
+    "risk": 0.053833,
+    "triggering_condition": "predicted elevated-risk probability 0.054 for Salmonella in KY (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 123,
+    "target_id": "Listeria:SD:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "SD",
+    "pathogen": "Listeria",
+    "risk": 0.051624,
+    "triggering_condition": "predicted elevated-risk probability 0.052 for Listeria in SD (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 124,
+    "target_id": "Listeria:WA:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "WA",
+    "pathogen": "Listeria",
+    "risk": 0.049271,
+    "triggering_condition": "predicted elevated-risk probability 0.049 for Listeria in WA (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 125,
+    "target_id": "Listeria:CO:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CO",
+    "pathogen": "Listeria",
+    "risk": 0.043346,
+    "triggering_condition": "predicted elevated-risk probability 0.043 for Listeria in CO (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 126,
+    "target_id": "Listeria:AL:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AL",
+    "pathogen": "Listeria",
+    "risk": 0.040612,
+    "triggering_condition": "predicted elevated-risk probability 0.041 for Listeria in AL (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 127,
+    "target_id": "Salmonella:TN:2026-05",
+    "target_type": "modeling_unit",
+    "region": "TN",
+    "pathogen": "Salmonella",
+    "risk": 0.035113,
+    "triggering_condition": "predicted elevated-risk probability 0.035 for Salmonella in TN (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 128,
+    "target_id": "Listeria:CT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "CT",
+    "pathogen": "Listeria",
+    "risk": 0.034732,
+    "triggering_condition": "predicted elevated-risk probability 0.035 for Listeria in CT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 129,
+    "target_id": "Salmonella:GA:2026-05",
+    "target_type": "modeling_unit",
+    "region": "GA",
+    "pathogen": "Salmonella",
+    "risk": 0.024667,
+    "triggering_condition": "predicted elevated-risk probability 0.025 for Salmonella in GA (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 130,
+    "target_id": "Listeria:OR:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "OR",
+    "pathogen": "Listeria",
+    "risk": 0.019871,
+    "triggering_condition": "predicted elevated-risk probability 0.020 for Listeria in OR (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 131,
+    "target_id": "Listeria:NE:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NE",
+    "pathogen": "Listeria",
+    "risk": 0.019138,
+    "triggering_condition": "predicted elevated-risk probability 0.019 for Listeria in NE (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 132,
+    "target_id": "Listeria:AZ:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "AZ",
+    "pathogen": "Listeria",
+    "risk": 0.018562,
+    "triggering_condition": "predicted elevated-risk probability 0.019 for Listeria in AZ (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 133,
+    "target_id": "Listeria:HI:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "HI",
+    "pathogen": "Listeria",
+    "risk": 0.01077,
+    "triggering_condition": "predicted elevated-risk probability 0.011 for Listeria in HI (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 134,
+    "target_id": "Listeria:NV:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "NV",
+    "pathogen": "Listeria",
+    "risk": 0.010191,
+    "triggering_condition": "predicted elevated-risk probability 0.010 for Listeria in NV (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 135,
+    "target_id": "Salmonella:AL:2026-05",
+    "target_type": "modeling_unit",
+    "region": "AL",
+    "pathogen": "Salmonella",
+    "risk": 0.008958,
+    "triggering_condition": "predicted elevated-risk probability 0.009 for Salmonella in AL (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 136,
+    "target_id": "Listeria:UT:2026-Q1",
+    "target_type": "modeling_unit",
+    "region": "UT",
+    "pathogen": "Listeria",
+    "risk": 0.008577,
+    "triggering_condition": "predicted elevated-risk probability 0.009 for Listeria in UT (2026-Q1)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 137,
+    "target_id": "Salmonella:MS:2026-05",
+    "target_type": "modeling_unit",
+    "region": "MS",
+    "pathogen": "Salmonella",
+    "risk": 0.008488,
+    "triggering_condition": "predicted elevated-risk probability 0.008 for Salmonella in MS (2026-05)",
+    "status": "PREDICTED"
+  },
+  {
+    "rank": 138,
+    "target_id": "Salmonella:AR:2026-05",
+    "target_type": "modeling_unit",
+    "region": "AR",
+    "pathogen": "Salmonella",
+    "risk": 0.007292,
+    "triggering_condition": "predicted elevated-risk probability 0.007 for Salmonella in AR (2026-05)",
+    "status": "PREDICTED"
+  }
+]

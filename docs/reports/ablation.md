@@ -1,0 +1,49 @@
+# Data-source ablations (Req 9.3-9.5)
+
+Exactly four configurations per pathogen, defined by data source, trained with each pathogen's best model on the SAME chronological train split and evaluated on the SAME untouched test. The primary metric is **PR-AUC**; the marginal contribution is the **signed** change vs the FSIS-only baseline (negatives preserved, never clamped).
+
+## Key limitations (honest, feeding Task 8)
+
+- **CDC gap:** there are NO CDC human-health features in the feature matrix (the CDC stream was not joined into harmonize). The **FSIS+CDC** configuration is therefore recorded as a *gap* — its contribution is **not evaluable** and is reported as such, never as a fabricated number.
+- **NOAA thin coverage:** NOAA `weather_*` features exist but are mostly NaN given the thin ingested station slice, so the **FSIS+NOAA** marginal is expected to be ~0 (or slightly negative). That near-zero/negative result is valid and is reported with its real sign.
+- **Static context:** ACS / Food Access Atlas `static_*` columns are slowly-varying demographic / food-access CONTEXT, not a One-Health surveillance stream; they are folded into the **full** configuration.
+
+
+## Salmonella (best model: lightgbm)
+
+Feature groups: FSIS=9, CDC=0, NOAA=2, static=2, other=0. Test periods: 2015-01..2018-12 (n_test_rows=30).
+
+| Configuration | Status | PR-AUC | ROC-AUC | Δ PR-AUC vs FSIS-only | Δ ROC-AUC vs FSIS-only |
+|---|---|---|---|---|---|
+| fsis_only | evaluated | 0.8015 | 0.7273 | +0.0000 | +0.0000 |
+| fsis_cdc | gap | n/a (gap) | n/a (gap) | n/a | n/a |
+| fsis_noaa | evaluated | 0.8015 | 0.7273 | +0.0000 | +0.0000 |
+| full | evaluated | 0.8027 | 0.7273 | +0.0011 | +0.0000 |
+
+> **FSIS+CDC gap:** no CDC features available — contribution not evaluable; recorded as a gap, not a fabricated delta.
+
+## Listeria (best model: random_forest)
+
+Feature groups: FSIS=9, CDC=0, NOAA=2, static=2, other=0. Test periods: 2015-01..2018-12 (n_test_rows=30).
+
+| Configuration | Status | PR-AUC | ROC-AUC | Δ PR-AUC vs FSIS-only | Δ ROC-AUC vs FSIS-only |
+|---|---|---|---|---|---|
+| fsis_only | evaluated | 0.7655 | 0.6794 | +0.0000 | +0.0000 |
+| fsis_cdc | gap | n/a (gap) | n/a (gap) | n/a | n/a |
+| fsis_noaa | evaluated | 0.7655 | 0.6794 | +0.0000 | +0.0000 |
+| full | evaluated | 0.7679 | 0.6842 | +0.0024 | +0.0048 |
+
+> **FSIS+CDC gap:** no CDC features available — contribution not evaluable; recorded as a gap, not a fabricated delta.
+
+## STEC (best model: random_forest)
+
+Feature groups: FSIS=9, CDC=0, NOAA=2, static=2, other=0. Test periods: 2015-01..2018-12 (n_test_rows=30).
+
+| Configuration | Status | PR-AUC | ROC-AUC | Δ PR-AUC vs FSIS-only | Δ ROC-AUC vs FSIS-only |
+|---|---|---|---|---|---|
+| fsis_only | evaluated | 0.7655 | 0.6794 | +0.0000 | +0.0000 |
+| fsis_cdc | gap | n/a (gap) | n/a (gap) | n/a | n/a |
+| fsis_noaa | evaluated | 0.7655 | 0.6794 | +0.0000 | +0.0000 |
+| full | evaluated | 0.7679 | 0.6842 | +0.0024 | +0.0048 |
+
+> **FSIS+CDC gap:** no CDC features available — contribution not evaluable; recorded as a gap, not a fabricated delta.

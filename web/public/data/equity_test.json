@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "disparity": 0.0,
+  "threshold": 0.25,
+  "description": "Equity disparity = (ratio - 1) of High_Need_Community service rate under access-aware policy C vs business-as-usual policy A, averaged over the SIMULATED scenarios. Pass iff the service-rate ratio is within the four-fifths band [0.8, 1.25] (ratio=1.0000). SIMULATED operational service only; no observed illness effect is claimed."
+}

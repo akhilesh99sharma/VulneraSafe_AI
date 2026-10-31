@@ -1,0 +1,1244 @@
+[
+  {
+    "region": "AL",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.040612,
+    "uncertainty": 0.036038,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AR",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.132108,
+    "uncertainty": 0.061821,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AZ",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.018562,
+    "uncertainty": 0.024642,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.438183,
+    "uncertainty": 0.090587,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CO",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.043346,
+    "uncertainty": 0.037179,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CT",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.034732,
+    "uncertainty": 0.033429,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "DE",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.99625,
+    "uncertainty": 0.011159,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "FL",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.463062,
+    "uncertainty": 0.091038,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "GA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.262972,
+    "uncertainty": 0.080378,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "HI",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.01077,
+    "uncertainty": 0.018845,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.079782,
+    "uncertainty": 0.049469,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ID",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.08648,
+    "uncertainty": 0.051316,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IL",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.334075,
+    "uncertainty": 0.086114,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IN",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.141911,
+    "uncertainty": 0.063711,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KS",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.057625,
+    "uncertainty": 0.042546,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KY",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.09027,
+    "uncertainty": 0.05232,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "LA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.139847,
+    "uncertainty": 0.063322,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.10016,
+    "uncertainty": 0.054811,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MD",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.092411,
+    "uncertainty": 0.052875,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ME",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.468178,
+    "uncertainty": 0.091102,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MI",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.109119,
+    "uncertainty": 0.056925,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MN",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.147468,
+    "uncertainty": 0.064736,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MO",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.199238,
+    "uncertainty": 0.072925,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MS",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.075292,
+    "uncertainty": 0.048174,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NC",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.234057,
+    "uncertainty": 0.077303,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ND",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.984083,
+    "uncertainty": 0.02285,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NE",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.019138,
+    "uncertainty": 0.025014,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NH",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.938649,
+    "uncertainty": 0.043813,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NJ",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.097275,
+    "uncertainty": 0.054103,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NM",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.277418,
+    "uncertainty": 0.081743,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NV",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.010191,
+    "uncertainty": 0.018337,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NY",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.350165,
+    "uncertainty": 0.087092,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OH",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.16012,
+    "uncertainty": 0.066953,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OK",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.132341,
+    "uncertainty": 0.061867,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OR",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.019871,
+    "uncertainty": 0.02548,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.277826,
+    "uncertainty": 0.08178,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PR",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.567315,
+    "uncertainty": 0.090456,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "RI",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.255712,
+    "uncertainty": 0.07965,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SC",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.128566,
+    "uncertainty": 0.061111,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SD",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.051624,
+    "uncertainty": 0.040398,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TN",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.145066,
+    "uncertainty": 0.064297,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TX",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.590741,
+    "uncertainty": 0.089771,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "UT",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.008577,
+    "uncertainty": 0.016836,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "VA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.109963,
+    "uncertainty": 0.057117,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "VT",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.376434,
+    "uncertainty": 0.088456,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WA",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.049271,
+    "uncertainty": 0.039515,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WI",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.087517,
+    "uncertainty": 0.051594,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WV",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.75461,
+    "uncertainty": 0.078565,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WY",
+    "pathogen": "Listeria",
+    "period": "2026-Q1",
+    "risk": 0.99775,
+    "uncertainty": 0.008651,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AK",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.656281,
+    "uncertainty": 0.086713,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AL",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.137617,
+    "uncertainty": 0.062896,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AR",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.3062,
+    "uncertainty": 0.084151,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AZ",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.07395,
+    "uncertainty": 0.047778,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.526848,
+    "uncertainty": 0.091155,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CO",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.429843,
+    "uncertainty": 0.090384,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CT",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.327938,
+    "uncertainty": 0.085712,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "FL",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.225796,
+    "uncertainty": 0.076335,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "GA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.307259,
+    "uncertainty": 0.084232,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "HI",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.067024,
+    "uncertainty": 0.045655,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.352424,
+    "uncertainty": 0.08722,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ID",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.253236,
+    "uncertainty": 0.079395,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IL",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.316744,
+    "uncertainty": 0.084935,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IN",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.087547,
+    "uncertainty": 0.051602,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KS",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.334442,
+    "uncertainty": 0.086138,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KY",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.196688,
+    "uncertainty": 0.072572,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "LA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.454687,
+    "uncertainty": 0.090911,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.066465,
+    "uncertainty": 0.045478,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MD",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.082006,
+    "uncertainty": 0.050094,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ME",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.247296,
+    "uncertainty": 0.07877,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MI",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.331188,
+    "uncertainty": 0.085927,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MN",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.391338,
+    "uncertainty": 0.089105,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MO",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.188421,
+    "uncertainty": 0.071395,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MS",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.593732,
+    "uncertainty": 0.089669,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MT",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.27466,
+    "uncertainty": 0.081491,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NC",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.137522,
+    "uncertainty": 0.062878,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "ND",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.406084,
+    "uncertainty": 0.089662,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NE",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.419119,
+    "uncertainty": 0.090085,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NH",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.288581,
+    "uncertainty": 0.082725,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NJ",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.268721,
+    "uncertainty": 0.080934,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NM",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.464071,
+    "uncertainty": 0.091051,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NV",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.152253,
+    "uncertainty": 0.065593,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NY",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.643789,
+    "uncertainty": 0.087431,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OH",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.187633,
+    "uncertainty": 0.07128,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OK",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.179779,
+    "uncertainty": 0.070109,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OR",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.155022,
+    "uncertainty": 0.066078,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.569498,
+    "uncertainty": 0.090401,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PR",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.107852,
+    "uncertainty": 0.056633,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "RI",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.343165,
+    "uncertainty": 0.08668,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SC",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.146616,
+    "uncertainty": 0.064581,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SD",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.252676,
+    "uncertainty": 0.079337,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TN",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.187112,
+    "uncertainty": 0.071204,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TX",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.694991,
+    "uncertainty": 0.084059,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "UT",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.357851,
+    "uncertainty": 0.08752,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "VA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.063739,
+    "uncertainty": 0.044601,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "VT",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.302755,
+    "uncertainty": 0.083884,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WA",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.134887,
+    "uncertainty": 0.062368,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WI",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.580746,
+    "uncertainty": 0.090089,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WV",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.470607,
+    "uncertainty": 0.091129,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WY",
+    "pathogen": "STEC",
+    "period": "2026-Q1",
+    "risk": 0.248427,
+    "uncertainty": 0.07889,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AL",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.008958,
+    "uncertainty": 0.017203,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AR",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.007292,
+    "uncertainty": 0.015533,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "AZ",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.079133,
+    "uncertainty": 0.049285,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.476937,
+    "uncertainty": 0.09119,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CO",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.423999,
+    "uncertainty": 0.090226,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "CT",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.221556,
+    "uncertainty": 0.075822,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "DE",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.097522,
+    "uncertainty": 0.054164,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "FL",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.453533,
+    "uncertainty": 0.090892,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "GA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.024667,
+    "uncertainty": 0.028319,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.185289,
+    "uncertainty": 0.070936,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IL",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.437626,
+    "uncertainty": 0.090574,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "IN",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.394681,
+    "uncertainty": 0.089239,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KS",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.487567,
+    "uncertainty": 0.091259,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "KY",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.053833,
+    "uncertainty": 0.041205,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "LA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.127759,
+    "uncertainty": 0.060947,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.579403,
+    "uncertainty": 0.090129,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MD",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.569332,
+    "uncertainty": 0.090405,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MI",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.570411,
+    "uncertainty": 0.090377,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MN",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.094943,
+    "uncertainty": 0.053519,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MO",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.178894,
+    "uncertainty": 0.069974,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "MS",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.008488,
+    "uncertainty": 0.016749,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NC",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.054973,
+    "uncertainty": 0.041614,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NE",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.325508,
+    "uncertainty": 0.085548,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NJ",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.45413,
+    "uncertainty": 0.090902,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "NY",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.425401,
+    "uncertainty": 0.090265,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OH",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.255793,
+    "uncertainty": 0.079658,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "OK",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.14132,
+    "uncertainty": 0.0636,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.2155,
+    "uncertainty": 0.075069,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "PR",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.434075,
+    "uncertainty": 0.09049,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "RI",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.516115,
+    "uncertainty": 0.09124,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SC",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.263554,
+    "uncertainty": 0.080435,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "SD",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.191846,
+    "uncertainty": 0.071889,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TN",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.035113,
+    "uncertainty": 0.033606,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "TX",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.058795,
+    "uncertainty": 0.042949,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "UT",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.241938,
+    "uncertainty": 0.078189,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "VA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.427319,
+    "uncertainty": 0.090317,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WA",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.4681,
+    "uncertainty": 0.091101,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WI",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.176378,
+    "uncertainty": 0.069587,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  },
+  {
+    "region": "WV",
+    "pathogen": "Salmonella",
+    "period": "2026-05",
+    "risk": 0.213936,
+    "uncertainty": 0.07487,
+    "status": "PREDICTED",
+    "data_freshness": "2026-10-30"
+  }
+]
