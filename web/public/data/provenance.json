@@ -40,14 +40,26 @@
     "license": "US Government public domain (USDA ERS)",
     "geographic_coverage": "United States (census tracts)",
     "temporal_coverage": "2015/2019 Atlas vintage",
-    "checksum": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8",
-    "total_samples": 72531,
+    "checksum": "",
+    "total_samples": null,
     "positive_count": null,
     "missingness": {},
-    "known_biases": [
-      "tract-level access thresholds are policy choices, not ground truth"
-    ],
-    "notes": "USDA Food Access Research Atlas file 'lram_2019_xlsx' downloaded (85803176 bytes)."
+    "known_biases": [],
+    "notes": "GAP: Atlas download failed. USDA Food Access Research Atlas has no API. Download the file from https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx in a browser and place it under data/raw/food_access/."
+  },
+  {
+    "source": "fsis",
+    "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
+    "access_date": "2026-10-31",
+    "license": "US Government public domain (USDA FSIS)",
+    "geographic_coverage": "United States (FSIS-regulated establishments)",
+    "temporal_coverage": "multiple fiscal years (aggregated)",
+    "checksum": "57cd2fd313b75edaa2314b1635e7df96421066fe6cdb0c161d4f73696e752328",
+    "total_samples": 15450,
+    "positive_count": null,
+    "missingness": {},
+    "known_biases": [],
+    "notes": "Manually provided FSIS file; detected class(es): rte_listeria. Loaded locally because FSIS host is firewalled (HTTP 403) in this environment. Download the sampling/recall files from https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data. Program archives go into data/raw/{raw_poultry_sampling_data,rte_sampling_data,raw_beef_sampling_data}/ (one ZIP per fiscal year); ad-hoc files may be dropped into E:\\VulneraSafe_AI\\data\\raw\\fsis (*.csv, *.json, *.zip). See data/raw/fsis/README_FSIS.md."
   },
   {
     "source": "fsis:raw_beef_stec",

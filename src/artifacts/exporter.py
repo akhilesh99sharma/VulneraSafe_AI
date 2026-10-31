@@ -60,6 +60,7 @@ from src.artifacts.schemas import (
     HumanOutbreakComparison,
     LeadLagSummary,
     CommunityImpactRecord,
+    CountyCommunityImpactRecord,
     LensPriority,
     WeightSensitivity,
     ActionQueueItem,
@@ -1783,6 +1784,171 @@ def build_community_impact() -> list[dict]:
     return rows
 
 
+def build_county_community_impact() -> list[dict]:
+    """S07: OBSERVED county vulnerability x state-level hazard ranking.
+
+    Reads the offline cache ``data/interim/s07_county_community_impact.json``
+    (produced by ``python -m src.analysis.county_community_impact``) and flattens
+    it to one ``CountyCommunityImpactRecord`` per (pathogen, county). The hazard
+    is READ-ONLY and state-level: ``hazard_component``/``hazard_positivity`` are
+    identical for every county in the same state+pathogen and never
+    county-measured. Vulnerability is county-level; ``resolution_label`` states
+    the mismatch on every record. The per-pathogen ``weight_sensitivity`` is
+    attached to every row of that pathogen. under-5/pregnancy lenses are
+    unavailable (never fabricated); ``affected_population_context`` is contextual
+    only. If the cache is missing, returns an explicit per-pathogen unavailable
+    record. Rows are sorted by ``(pathogen, county_fips)`` for determinism.
+    """
+    from src.analysis.county_community_impact import load_cache
+
+    stamp = resolve_generated_at()
+    cache = load_cache()
+    rows: list[dict] = []
+
+    method_version = (cache or {}).get("method_version", "s07.v1")
+    resolution_label = (cache or {}).get(
+        "resolution_label", "county vulnerability x state-level hazard"
+    )
+    acs_vintage_top = (cache or {}).get("acs_vintage")
+    atlas_vintage_top = (cache or {}).get("atlas_vintage")
+    default_ctx_note = (
+        "affected_population_context = low-access share x county population. A "
+        "contextual/illustrative count of people who could be affected IF exposed "
+        "— never an observed exposure or illness count."
+    )
+
+    def _lenses(raw_lenses):
+        out = []
+        for L in raw_lenses:
+            out.append(LensPriority(
+                lens=str(L["lens"]),
+                available=bool(L.get("available", False)),
+                vulnerability_component=(_round(L["vulnerability_component"])
+                                         if L.get("vulnerability_component") is not None else None),
+                priority_score=(_round(L["priority_score"]) if L.get("priority_score") is not None else None),
+                weights=str(L.get("weights", "")),
+                unavailable_reason=L.get("unavailable_reason"),
+            ))
+        return out
+
+    def _unavailable(pathogen, commodity, reason):
+        return CountyCommunityImpactRecord(
+            artifact_version=ARTIFACT_VERSION,
+            module_id="S07",
+            method_version=method_version,
+            pathogen=str(pathogen),
+            commodity=str(commodity),
+            county_fips="(all)",
+            county_name=None,
+            state=None,
+            geography_level="county",
+            resolution_label=resolution_label,
+            hazard_positivity=None,
+            hazard_component=None,
+            rank=None,
+            affected_population_context=None,
+            total_population=None,
+            elderly_65plus_share=None,
+            low_income_share=None,
+            low_access_share=None,
+            under5_share=None,
+            acs_vintage=None,
+            atlas_vintage=None,
+            lenses=[],
+            weight_sensitivity=None,
+            contextual_count_note=default_ctx_note,
+            status="OBSERVED",
+            availability_status="unavailable",
+            unavailable_reason=reason,
+            generated_at=stamp,
+        )
+
+    if not cache or not cache.get("pathogens"):
+        for pathogen, commodity, _slug in PATHOGENS:
+            rows.append(_unavailable(
+                pathogen, commodity,
+                "S07 cache not generated; run: python -m src.analysis.county_community_impact",
+            ))
+        return rows
+
+    for pathogen, pdata in cache["pathogens"].items():
+        commodity = pdata.get("commodity", "")
+
+        # The S07 cache stores a SINGLE weight_sensitivity dict PER PATHOGEN (not
+        # keyed by lens). Build it once and attach it to every row of this pathogen.
+        sens_raw = pdata.get("weight_sensitivity")
+        weight_sensitivity = None
+        if sens_raw is not None:
+            weight_sensitivity = WeightSensitivity(
+                default_top=[str(s) for s in sens_raw.get("default_top", [])],
+                alt_top=[str(s) for s in sens_raw.get("alt_top", [])],
+                rank_stable=bool(sens_raw.get("rank_stable", False)),
+                note=str(sens_raw.get("note", "")),
+            )
+
+        records = pdata.get("records", [])
+        if not records and pdata.get("availability_status") != "available":
+            rows.append(_unavailable(
+                pathogen, commodity,
+                pdata.get("unavailable_reason") or "Ranking unavailable for this pathogen.",
+            ))
+            continue
+
+        for r in records:
+            rows.append(CountyCommunityImpactRecord(
+                artifact_version=ARTIFACT_VERSION,
+                module_id="S07",
+                method_version=method_version,
+                pathogen=str(pathogen),
+                commodity=str(r.get("commodity", commodity)),
+                county_fips=str(r["county_fips"]),
+                county_name=r.get("county_name"),
+                state=r.get("state"),
+                geography_level=str(r.get("geography_level", "county")),
+                resolution_label=str(r.get("resolution_label", resolution_label)),
+                hazard_positivity=(_round(r["hazard_positivity"]) if r.get("hazard_positivity") is not None else None),
+                hazard_component=(_round(r["hazard_component"]) if r.get("hazard_component") is not None else None),
+                rank=r.get("rank"),
+                affected_population_context=(_round(r["affected_population_context"])
+                                             if r.get("affected_population_context") is not None else None),
+                total_population=(_round(r["total_population"]) if r.get("total_population") is not None else None),
+                elderly_65plus_share=(_round(r["elderly_65plus_share"]) if r.get("elderly_65plus_share") is not None else None),
+                low_income_share=(_round(r["low_income_share"]) if r.get("low_income_share") is not None else None),
+                low_access_share=(_round(r["low_access_share"]) if r.get("low_access_share") is not None else None),
+                under5_share=None,
+                acs_vintage=r.get("acs_vintage", acs_vintage_top),
+                atlas_vintage=r.get("atlas_vintage", atlas_vintage_top),
+                lenses=_lenses(r.get("lenses", [])),
+                weight_sensitivity=weight_sensitivity,
+                contextual_count_note=r.get("contextual_count_note", default_ctx_note),
+                status="OBSERVED",
+                availability_status=str(r.get("availability_status", "available")),
+                unavailable_reason=r.get("unavailable_reason"),
+                generated_at=stamp,
+            ))
+
+    rows.sort(key=lambda r: (r["pathogen"], r["county_fips"]))
+
+    # Forbidden-field guard (Req 2.1): no row KEY (field name) may contain, case-
+    # insensitively, any banned token. This guards the field NAMES (not values),
+    # mirroring the facility_map guard approach.
+    _banned = (
+        "county_infection", "tract_infection", "infection",
+        "illness_estimate", "predicted_case", "human_case",
+    )
+    for row in rows:
+        for key in row:
+            lowered = key.lower()
+            for token in _banned:
+                if token in lowered:
+                    raise SchemaValidationError(
+                        f"county_community_impact row carries forbidden field name "
+                        f"{key!r} (contains banned token {token!r})."
+                    )
+
+    return rows
+
+
 def build_action_queue() -> list[dict]:
     """Decision layer: ranked, human-review-gated actions derived from the
     OBSERVED S01/S03/S04/S06 surveillance signals (S05 corroboration only).
@@ -2009,6 +2175,8 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
     validate_payload(human_comparison, HumanOutbreakComparison, label="one_health_human_comparison")
     community_impact = build_community_impact()
     validate_payload(community_impact, CommunityImpactRecord, label="community_impact")
+    county_community_impact = build_county_community_impact()
+    validate_payload(county_community_impact, CountyCommunityImpactRecord, label="county_community_impact")
 
     action_queue = build_action_queue()
     validate_payload(action_queue, ActionQueueItem, label="action_queue")
@@ -2036,6 +2204,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "establishment_surveillance": establishment_surveillance,
         "one_health_human_comparison": human_comparison,
         "community_impact": community_impact,
+        "county_community_impact": county_community_impact,
         "action_queue": action_queue,
         "facility_map": facility_map,
         "_modules": modules,  # internal: folded into the manifest, not written standalone

@@ -1450,6 +1450,7 @@ def ingest_census_acs(
     year: int,
     variables: list[str],
     geo: str = "state:*",
+    in_clause: Optional[str] = None,
 ) -> IngestResult:
     """Fetch US Census ACS 5-year data; skip with a gap if no API key.
 
@@ -1466,6 +1467,10 @@ def ingest_census_acs(
         ACS variable codes (e.g. ``["B01001_001E"]`` total population).
     geo:
         Census geography predicate (e.g. ``"state:*"``).
+    in_clause:
+        Optional Census ``in`` predicate, e.g. ``"state:*"`` for a county pull
+        (``&in=state:*``). Default ``None`` adds no ``in`` key, so the existing
+        ``geo="state:*"`` call path is byte-for-byte unaffected.
     """
 
     manual = (
@@ -1488,6 +1493,8 @@ def ingest_census_acs(
 
     get_param = ",".join(["NAME", *variables])
     params = {"get": get_param, "for": geo, "key": key}
+    if in_clause:
+        params["in"] = in_clause
     dest = RAW_ROOT / "census" / f"acs5_{year}.json"
     data_bytes, checksum, err = fetch_url(url, dest=dest, params=params)
 

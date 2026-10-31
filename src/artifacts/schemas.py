@@ -841,6 +841,63 @@ class FacilityMapItem(TypedDict):
     generated_at: str
 
 
+# --------------------------------------------------------------------------- #
+# county_community_impact -> County Communities view (S07)
+# --------------------------------------------------------------------------- #
+
+class CountyCommunityImpactRecord(TypedDict):
+    """One (pathogen, county) vulnerability-aware impact record (S07).
+
+    S07 is the finer-geographic-resolution companion to S06 and combines
+    COUNTY-level vulnerability with the county's STATE-level hazard. The hazard
+    is the READ-ONLY state-level FSIS positivity for the county's
+    ``state``: ``hazard_component``/``hazard_positivity`` are identical for every
+    county in the same state+pathogen and are NEVER county-measured. Vulnerability
+    is county-level (ACS county 65+ share; USDA Atlas county-aggregated low-income
+    / low-access tract-count shares). ``resolution_label`` states the mismatch
+    ("county vulnerability x state-level hazard") on every record, and
+    ``geography_level`` is "county" for vulnerability while the hazard stays
+    state-level. ``affected_population_context`` is an illustrative count (people
+    who COULD be affected IF exposed), never an observed exposure or illness
+    count, and is kept distinct from the [0,1] shares. The under-5 and pregnancy
+    lenses are unavailable (not in the county ACS extraction) and are never
+    fabricated, so ``under5_share`` is always None. ``status`` is OBSERVED (the
+    inputs are real observations). S07 is independent of S06 (``module_id`` "S07",
+    its own ``s07_county_community_impact.json`` cache); ``LensPriority`` and
+    ``WeightSensitivity`` are reused from S06 (their ``*_top`` lists hold county
+    FIPS strings here).
+    """
+
+    artifact_version: str
+    module_id: str                 # "S07"
+    method_version: str
+    pathogen: str
+    commodity: str
+    county_fips: str               # 5-digit (state2 + county3)
+    county_name: Optional[str]
+    state: Optional[str]           # County_State (USPS) whose hazard was used; None if FIPS unmappable
+    geography_level: str           # "county"
+    resolution_label: str          # "county vulnerability x state-level hazard"
+    hazard_positivity: Optional[float]
+    hazard_component: Optional[float]
+    rank: Optional[int]
+    affected_population_context: Optional[float]
+    total_population: Optional[float]
+    elderly_65plus_share: Optional[float]
+    low_income_share: Optional[float]
+    low_access_share: Optional[float]
+    under5_share: Optional[float]  # always None (unavailable, never fabricated)
+    acs_vintage: Optional[str]
+    atlas_vintage: Optional[str]
+    lenses: list[LensPriority]
+    weight_sensitivity: Optional[WeightSensitivity]
+    contextual_count_note: str
+    status: StatusTag              # OBSERVED
+    availability_status: str       # "available" | "unavailable"
+    unavailable_reason: Optional[str]
+    generated_at: str
+
+
 #: All status-bearing literal values, re-exported for lightweight validation.
 STATUS_TAGS: frozenset[str] = frozenset(("OBSERVED", "PREDICTED", "SIMULATED"))
 

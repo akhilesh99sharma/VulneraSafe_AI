@@ -1,0 +1,300 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Extend `ingest_census_acs` with an optional `in_clause` parameter in `src/pipeline/ingest.py`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480746581
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480752495
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480895616
+      }
+    ],
+    "1.3 Implement `scripts/build_county_vulnerability.py` (offline, once, committed output)": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480746655
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480900658
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481129533
+      }
+    ],
+    "1.4 Implement the S07 compute module constants and helpers in `src/analysis/county_community_impact.py`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480746804
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481134284
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481467743
+      }
+    ],
+    "1.5 Implement `weight_sensitivity` and the `compute_county_community_impact` orchestrator": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480746873
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481473288
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481686368
+      }
+    ],
+    "2.1 Run the offline build step to produce and commit the county vulnerability table": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480746940
+      },
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481694788
+      },
+      {
+        "executionId": "4d36e3f3-04ef-412e-ac5e-08e768a3b47a",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793482180579
+      },
+      {
+        "executionId": "4d36e3f3-04ef-412e-ac5e-08e768a3b47a",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793482185593
+      },
+      {
+        "executionId": "ea3ecd76-2164-405a-bdff-398ac5162f37",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793483079763
+      },
+      {
+        "executionId": "ea3ecd76-2164-405a-bdff-398ac5162f37",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793483084361
+      }
+    ],
+    "2.2 Measure and record real county coverage": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747013
+      },
+      {
+        "executionId": "7af2616a-a095-42ec-8f36-d060a9c70018",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793484517608
+      },
+      {
+        "executionId": "1b397120-ef44-405c-bafd-588bbc04955a",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485156652
+      }
+    ],
+    "3.1 Add `CountyCommunityImpactRecord` TypedDict to `src/artifacts/schemas.py`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747165
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485279442
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485458758
+      }
+    ],
+    "3.2 Append the mirrored TypeScript interface to `web/src/types/artifacts.ts`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747237
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485462966
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485550992
+      }
+    ],
+    "4.1 Implement `build_county_community_impact()` and wire it into `build_all_artifacts`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747302
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485556672
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485915055
+      }
+    ],
+    "5. Checkpoint — Python layer green": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747369
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485921824
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793486629229
+      }
+    ],
+    "6.1 Implement `web/src/components/panels/CountyCommunities.tsx`": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747439
+      },
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793486634950
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793486811641
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487039835
+      }
+    ],
+    "6.2 Wire the `countycommunities` tab into `web/src/App.tsx` and update the theme allowlist if needed": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747576
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487049860
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487122219
+      }
+    ],
+    "7. Verification — run the suites in external CMD and record exact counts": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747656
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487593522
+      }
+    ],
+    "8. Review gate — completion report, then STOP for user approval": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793480747735
+      },
+      {
+        "executionId": "6e57295b-c950-4508-822f-49c53b976b2c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793489248195
+      }
+    ],
+    "1. Extend ingest, build the offline county-vulnerability build script, and the S07 compute core (no exporter yet)": [
+      {
+        "executionId": "f5645ba1-bb70-4395-bf70-97403f81c090",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793481686688
+      }
+    ],
+    "2. Run the offline build and MEASURE real county coverage (honest-risk task)": [
+      {
+        "executionId": "1b397120-ef44-405c-bafd-588bbc04955a",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485157170
+      }
+    ],
+    "3. Add the `CountyCommunityImpactRecord` schema and its TypeScript mirror (before the exporter)": [
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485551310
+      }
+    ],
+    "4. Wire `build_county_community_impact` into the exporter": [
+      {
+        "executionId": "9ed1abc0-78fb-44a9-bdb5-43c321c88a0f",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793485915228
+      }
+    ],
+    "6. Build the County Communities web tab and wire it into the app": [
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487122375
+      }
+    ],
+    "6.3 Write `web/src/components/panels/__tests__/CountyCommunities.test.tsx`": [
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487127936
+      },
+      {
+        "executionId": "dc9c2b3c-b447-4d2a-8f3f-18dc919762c6",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793487587096
+      }
+    ]
+  }
+}

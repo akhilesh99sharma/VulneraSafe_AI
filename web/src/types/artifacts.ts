@@ -613,3 +613,47 @@ export interface FacilityMapItem {
   status: StatusTag;
   generated_at: string;
 }
+// county_community_impact -> County Communities view (S07)
+//
+// S07 mirrors the Python `CountyCommunityImpactRecord` TypedDict field-for-field
+// (identical snake_case names; a parity test keeps them in lockstep). It is the
+// finer-resolution companion to S06 and combines COUNTY-level vulnerability with
+// the county's STATE-level hazard. `hazard_positivity`/`hazard_component` are the
+// READ-ONLY state-level FSIS positivity (identical for every county in the same
+// state+pathogen, NEVER county-measured). `resolution_label` is the constant
+// "county vulnerability x state-level hazard". `affected_population_context` is an
+// illustrative count (people who COULD be affected IF exposed), never an observed
+// exposure or illness count, and is kept distinct from the [0,1] shares.
+// `under5_share` is always null (the under-5 / pregnancy lenses are unavailable and
+// never fabricated). `status` is always "OBSERVED". Reuses the S06 `LensPriority`
+// and `WeightSensitivity` interfaces and the shared `StatusTag` union.
+export interface CountyCommunityImpactRecord {
+  artifact_version: string;
+  module_id: string; // "S07"
+  method_version: string;
+  pathogen: string;
+  commodity: string;
+  county_fips: string;
+  county_name: string | null;
+  state: string | null;
+  geography_level: string;
+  resolution_label: string;
+  hazard_positivity: number | null;
+  hazard_component: number | null;
+  rank: number | null;
+  affected_population_context: number | null;
+  total_population: number | null;
+  elderly_65plus_share: number | null;
+  low_income_share: number | null;
+  low_access_share: number | null;
+  under5_share: number | null;
+  acs_vintage: string | null;
+  atlas_vintage: string | null;
+  lenses: LensPriority[];
+  weight_sensitivity: WeightSensitivity | null;
+  contextual_count_note: string;
+  status: StatusTag;
+  availability_status: string;
+  unavailable_reason: string | null;
+  generated_at: string;
+}

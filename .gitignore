@@ -31,6 +31,10 @@ data/interim/*
 !data/interim/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+# S07 county vulnerability table: a small derived artifact (county ACS + USDA Atlas,
+# aggregated to county FIPS) committed for reproducibility so the County Communities
+# map works without a Census key or the 85MB Atlas download. Mirrors data/external/.
+!data/processed/county_vulnerability.json
 data/synthetic/*
 !data/synthetic/.gitkeep
 
