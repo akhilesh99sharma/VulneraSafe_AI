@@ -515,11 +515,23 @@ disclosure". All reported numbers come from real data and exported predictions.
    `facility-map`, `county-community-impact`, and `s02-seasonal-hazard-patterns` specs
    (each with requirements, design, tasks).
 3. Decision-support app — `web/` (React + Vite), deployed at
-   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Eleven
-   tabs: Overview, Dashboard (five mandatory panels), Pathogen Explorer (S01),
-   Emerging Signals (S04), Supplier Monitor (S03), One Health Insights (S05),
-   Vulnerable Communities (S06), Surveillance Actions (ACTIONQ), Facility Map
-   (FACILITYMAP), County Communities (S07), and Seasonal Patterns (S02).
+   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. The
+   app is organized into seven top-level sections (a two-level nav with sub-
+   tabs where a section holds more than one view): (1) Overview; (2) Risk
+   Dashboard - the reference-style command center with KPI cards, the Current
+   Risk Overview map + trend, a top-states table, the Prioritized Attention
+   Queue, and a model-evidence/data-sources rail; (3) Pathogens - Product &
+   Program (S01) / Emerging Signals (S04) / Seasonal Patterns (S02); (4)
+   Communities - a unified view with a State (S06) vs County (S07) resolution
+   toggle; (5) Facilities - a unified view with a Supplier List (S03) vs
+   Facility Map toggle; (6) Decision Actions - Surveillance Actions (ACTIONQ)
+   plus the three mandatory decision panels (Scenario Builder, Recommended
+   Action, Explanation/Evidence), Policy Comparison, and the Population Lens;
+   and (7) One Health & Data - One Health Insights (S05). The five mandatory
+   panels remain individually labeled and reachable (two on the Risk
+   Dashboard, three under Decision Actions). This replaced an earlier flat
+   eleven-tab strip; S06/S07 and S03/Facility Map were merged into single
+   toggled views to remove redundant navigation.
 4. Data dictionary + provenance — `docs/data_dictionary.md`, `docs/provenance.md`.
 5. PDF report — this document (export `docs/reports/final_report.md` to PDF).
 6. README + requirements — `README.md`, `requirements.txt`, `web/package.json`.
