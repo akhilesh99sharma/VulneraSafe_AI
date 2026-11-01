@@ -121,6 +121,31 @@ export interface RiskMapFeature {
 }
 
 // --------------------------------------------------------------------------
+// observed_positivity
+// --------------------------------------------------------------------------
+
+/**
+ * Per-(pathogen, state) latest-period MEASURED routine FSIS positivity —
+ * OBSERVED surveillance, the measured counterpart to the PREDICTED
+ * `RiskMapFeature`. One row per (pathogen, state) for the latest reporting
+ * period that carries a genuine measurement; states/pathogens with no measured
+ * period are OMITTED (never fabricated). `status` is always "OBSERVED".
+ */
+export interface ObservedPositivityFeature {
+  artifact_version: string;
+  module_id: string;
+  pathogen: string;
+  commodity: string;
+  region: string;
+  period: string;
+  positivity: number | null;
+  sample_n: number | null;
+  positive_n: number | null;
+  status: StatusTag;
+  generated_at: string;
+}
+
+// --------------------------------------------------------------------------
 // attention_queue
 // --------------------------------------------------------------------------
 

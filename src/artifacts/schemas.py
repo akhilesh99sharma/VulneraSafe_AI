@@ -144,6 +144,34 @@ class RiskMapFeature(TypedDict):
 
 
 # --------------------------------------------------------------------------- #
+# observed_positivity -> Risk Dashboard "Observed" view (measured counterpart
+# to the PREDICTED risk_map)
+# --------------------------------------------------------------------------- #
+
+class ObservedPositivityFeature(TypedDict):
+    """Per-(pathogen, state) latest-period MEASURED routine FSIS positivity —
+    OBSERVED surveillance, the measured counterpart to the PREDICTED risk_map.
+
+    One row per (pathogen, state) for the LATEST reporting period that carries a
+    genuine measured rate (``outcome_routine_samples > 0`` and a non-null
+    ``outcome_routine_positivity_rate``). States/pathogens with no measured
+    period are OMITTED, never fabricated. ``status`` is always OBSERVED.
+    """
+
+    artifact_version: str
+    module_id: str                 # "OBSERVEDPOS"
+    pathogen: str
+    commodity: str
+    region: str                    # the state
+    period: str
+    positivity: Optional[float]    # measured outcome_routine_positivity_rate
+    sample_n: Optional[int]        # measured outcome_routine_samples
+    positive_n: Optional[int]      # measured outcome_routine_positives
+    status: StatusTag              # always OBSERVED
+    generated_at: str
+
+
+# --------------------------------------------------------------------------- #
 # vulnerability -> Vulnerable Population Lens (Layer 2)
 # --------------------------------------------------------------------------- #
 

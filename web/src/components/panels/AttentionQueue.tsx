@@ -168,7 +168,6 @@ export function AttentionQueue() {
                               </span>
                             ) : null}
                           </p>
-                          <p className="truncate text-[11px] text-navy/50">{item.target_type}</p>
                         </div>
                       </div>
                       <span className="shrink-0 text-sm font-bold text-navy">

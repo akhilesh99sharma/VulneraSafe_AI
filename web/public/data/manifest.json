@@ -347,6 +347,12 @@
       "record_count": 297,
       "status_tagged": true
     },
+    "observed_positivity": {
+      "file": "observed_positivity.json",
+      "checksum_sha256": "d60947b63c200dbf5f945289e378c1c22e221a28702273500a2a1b702b23dee6",
+      "record_count": 157,
+      "status_tagged": true
+    },
     "one_health_human_comparison": {
       "file": "one_health_human_comparison.json",
       "checksum_sha256": "02825f40028686ae4551ccdb5a6d5671bb86f0f32dff4d489e9e7e11db5930a2",

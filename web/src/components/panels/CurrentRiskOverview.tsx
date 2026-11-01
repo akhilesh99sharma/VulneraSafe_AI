@@ -65,7 +65,7 @@ const VIEW_COPY: Record<MapViewMode, { quantity: string; subtitle: string }> = {
     subtitle: "Geographic surveillance risk",
   },
   observed: {
-    quantity: "observed positivity (latest period)",
+    quantity: "observed positivity (latest measured period)",
     subtitle: "Geographic observed positivity",
   },
 };

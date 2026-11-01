@@ -82,6 +82,7 @@ from src.artifacts.schemas import (
     RegulatoryAlert,
     RiskMapFeature,
     RiskTimeseriesPoint,
+    ObservedPositivityFeature,
     ScenarioMetric,
     VulnerabilityProfile,
 )
@@ -554,6 +555,85 @@ def build_risk_map() -> list[dict]:
                     uncertainty=_round(unc),
                     status="PREDICTED",
                     data_freshness=freshness.get("fsis_lab", "unavailable"),
+                )
+            )
+    rows.sort(key=lambda d: (d["pathogen"], d["region"]))
+    return rows
+
+
+def build_observed_positivity() -> list[dict]:
+    """Per-(pathogen, state) latest-period MEASURED routine FSIS positivity.
+
+    This is the OBSERVED surveillance counterpart to :func:`build_risk_map`'s
+    PREDICTED probability. For each (pathogen, state) it reads the real model
+    table (``data/processed/model_<slug>.parquet``) and emits ONE row for the
+    LATEST period that carries a genuine measurement — a non-null
+    ``outcome_routine_positivity_rate`` with ``outcome_routine_samples > 0``.
+
+    Honesty rules:
+    * A state with NO measured period is OMITTED (no fabricated row); the web
+      renders it as a neutral "No data" region, exactly like the predicted
+      map's coverage gaps.
+    * ``positivity`` is the measured rate straight from the column; ``sample_n``
+      / ``positive_n`` are the real integer counts — never invented.
+    * If the model table cannot be read for a slug, that pathogen's rows are
+      skipped rather than crashing the whole export (mirrors the tolerant
+      posture of the other builders).
+    """
+    import pandas as pd
+
+    stamp = resolve_generated_at()
+    rows: list[dict] = []
+    for pathogen, commodity, slug in PATHOGENS:
+        try:
+            df = _load_model_table(slug)
+        except (OSError, ValueError, FileNotFoundError):
+            # Missing/unreadable input for this pathogen -> emit no rows for it.
+            continue
+        needed = {
+            "state", "period",
+            "outcome_routine_positivity_rate",
+            "outcome_routine_samples", "outcome_routine_positives",
+        }
+        if not needed.issubset(set(df.columns)):
+            continue
+
+        rate = pd.to_numeric(df["outcome_routine_positivity_rate"], errors="coerce")
+        samples = pd.to_numeric(df["outcome_routine_samples"], errors="coerce")
+        positives = pd.to_numeric(df["outcome_routine_positives"], errors="coerce")
+        # A row is "measured" iff it has a real rate AND a positive sample count.
+        measured = df.assign(
+            _rate=rate, _samples=samples, _positives=positives
+        )
+        measured = measured[measured["_rate"].notna() & (measured["_samples"] > 0)]
+        if measured.empty:
+            continue
+
+        # Latest measured period per state. Periods are ISO-sortable strings
+        # ("2024-05" monthly, "2024-Q2" quarterly), so lexicographic max of the
+        # measured rows gives the latest sampled period for that state.
+        for state, grp in measured.groupby("state"):
+            # Pick the row with the lexicographically greatest (latest) measured
+            # period for this state — deterministic regardless of input order.
+            latest_period = max(str(p) for p in grp["period"])
+            best = grp[grp["period"].astype(str) == latest_period].iloc[0]
+            rows.append(
+                ObservedPositivityFeature(
+                    artifact_version=ARTIFACT_VERSION,
+                    module_id="OBSERVEDPOS",
+                    pathogen=pathogen,
+                    commodity=commodity,
+                    region=str(state),
+                    period=latest_period,
+                    positivity=_round(float(best["_rate"])),
+                    sample_n=int(best["_samples"]),
+                    positive_n=(
+                        int(best["_positives"])
+                        if pd.notna(best["_positives"])
+                        else None
+                    ),
+                    status="OBSERVED",
+                    generated_at=stamp,
                 )
             )
     rows.sort(key=lambda d: (d["pathogen"], d["region"]))
@@ -2300,6 +2380,11 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
     risk_map = build_risk_map()
     validate_payload(risk_map, RiskMapFeature, label="risk_map")
 
+    observed_positivity = build_observed_positivity()
+    validate_payload(
+        observed_positivity, ObservedPositivityFeature, label="observed_positivity"
+    )
+
     attention_queue = build_attention_queue()
     validate_payload(attention_queue, AttentionQueueItem, label="attention_queue")
 
@@ -2348,6 +2433,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "feasibility_report": feasibility,
         "risk_timeseries": risk_timeseries,
         "risk_map": risk_map,
+        "observed_positivity": observed_positivity,
         "attention_queue": attention_queue,
         "model_metrics": model_metrics,
         "calibration": calibration,

@@ -3,16 +3,15 @@ import { useArtifact, useManifest } from "../../data/hooks";
 import { useSelection } from "../../state/selection";
 import type {
   AttentionQueueItem,
+  ObservedPositivityFeature,
   ProvenanceEntry,
   RiskMapFeature,
-  RiskTimeseriesPoint,
 } from "../../types/artifacts";
 import {
   filterAttentionByPathogen,
   filterMapByPathogen,
   formatRisk,
   formatUncertainty,
-  observedMapFromTimeseries,
   NOT_AVAILABLE,
 } from "../../types/viewModels";
 import {
@@ -84,7 +83,7 @@ export function RiskDashboard() {
 
   const manifest = useManifest();
   const mapState = useArtifact<RiskMapFeature[]>("risk_map");
-  const tsState = useArtifact<RiskTimeseriesPoint[]>("risk_timeseries");
+  const observedState = useArtifact<ObservedPositivityFeature[]>("observed_positivity");
   const queueState = useArtifact<AttentionQueueItem[]>("attention_queue");
   const provenanceState = useArtifact<ProvenanceEntry[]>("provenance");
 
@@ -103,14 +102,37 @@ export function RiskDashboard() {
   //
   // The "View" toggle selects the ACTIVE quantity used by the map, the KPIs and
   // the top-states table so they stay consistent and honestly labeled:
-  //   - predicted -> the raw risk_map features (as before).
-  //   - observed  -> RiskMapFeature-shaped latest-period OBSERVED positivity
-  //                  derived from risk_timeseries (observedMapFromTimeseries).
-  // Missing data in either view yields [] -> the cards/table show N/A honestly.
+  //   - predicted -> the raw risk_map features (the PREDICTED model probability).
+  //   - observed  -> the NEW `observed_positivity` artifact: REAL MEASURED
+  //                  routine positivity for each (pathogen, state)'s latest
+  //                  measured period, mapped into the RiskMapFeature shape the
+  //                  map/KPIs/top-states consume. These are two GENUINELY
+  //                  different, honestly-labeled quantities — not one number
+  //                  relabeled. `uncertainty` is null in observed mode (measured
+  //                  positivity has no model uncertainty band) and surfaces as
+  //                  N/A rather than a fabricated band.
+  // Missing data in either view yields [] -> the cards/table show N/A honestly,
+  // and states with no measured period simply do not appear ("No data").
   const predictedFeatures: RiskMapFeature[] =
     mapState.data && !mapState.error ? mapState.data : [];
   const observedFeatures: RiskMapFeature[] =
-    tsState.data && !tsState.error ? observedMapFromTimeseries(tsState.data) : [];
+    observedState.data && !observedState.error
+      ? observedState.data
+          // Only genuinely measured rows map to a shaded region; a null rate is
+          // omitted so the map renders it as a neutral "No data" region.
+          .filter((o) => o.positivity !== null)
+          .map((o) => ({
+            region: o.region,
+            pathogen: o.pathogen,
+            period: o.period,
+            risk: o.positivity as number,
+            // Observed positivity carries no model uncertainty band — keep it
+            // absent so the UI shows N/A (honest), never an invented interval.
+            uncertainty: null as unknown as number,
+            status: "OBSERVED" as const,
+            data_freshness: o.period,
+          }))
+      : [];
   const mapFeatures: RiskMapFeature[] =
     mapViewMode === "observed" ? observedFeatures : predictedFeatures;
 
@@ -163,7 +185,7 @@ export function RiskDashboard() {
   const quantityWord = mapViewMode === "observed" ? "observed" : "predicted";
   const quantityPhrase =
     mapViewMode === "observed"
-      ? "observed positivity (latest period)"
+      ? "observed positivity (latest measured period)"
       : "predicted next-period elevated-risk probability";
 
   return (
