@@ -72,8 +72,95 @@ function riskBucket(mean: number | null): {
   return { label: NOT_AVAILABLE, tone: "default" };
 }
 
+/** One honest, flat export row mirroring exactly what the dashboard shows. */
+interface ExportRow {
+  region: string;
+  pathogen: string;
+  period: string;
+  view: "predicted" | "observed";
+  value: number;
+  value_label: "predicted_elevated_risk_probability" | "observed_positivity";
+  uncertainty: string; // "" / "N/A" in observed mode (no model band)
+  sample_n: string; // "" / "N/A" in predicted mode (no measured count)
+  status: "PREDICTED" | "OBSERVED";
+}
+
+/** Ordered export columns (also the CSV header row). */
+const EXPORT_COLUMNS: Array<keyof ExportRow> = [
+  "region",
+  "pathogen",
+  "period",
+  "view",
+  "value",
+  "value_label",
+  "uncertainty",
+  "sample_n",
+  "status",
+];
+
+/**
+ * Build export rows from exactly the states currently shown for the active
+ * pathogen + view. Carries the honest per-row status/label; never fabricates
+ * uncertainty (observed) or sample_n (predicted) — those cells are left blank
+ * for the mode that lacks them.
+ */
+function buildExportRows(
+  features: RiskMapFeature[],
+  view: MapViewMode,
+  sampleByKey: Map<string, number | null>,
+): ExportRow[] {
+  const observed = view === "observed";
+  return features.map((f) => {
+    const sample = observed ? sampleByKey.get(`${f.pathogen}:${f.region}`) : undefined;
+    return {
+      region: f.region,
+      pathogen: f.pathogen,
+      period: f.period,
+      view,
+      value: f.risk,
+      value_label: observed ? "observed_positivity" : "predicted_elevated_risk_probability",
+      uncertainty:
+        observed || f.uncertainty === null || f.uncertainty === undefined || Number.isNaN(f.uncertainty)
+          ? ""
+          : String(f.uncertainty),
+      sample_n: observed ? (sample === null || sample === undefined ? "" : String(sample)) : "",
+      status: observed ? "OBSERVED" : "PREDICTED",
+    };
+  });
+}
+
+/** Escape one CSV field per RFC 4180 (quote when it contains , " or newline). */
+function csvField(value: string | number): string {
+  const s = String(value);
+  return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+}
+
+function rowsToCsv(rows: ExportRow[]): string {
+  const header = EXPORT_COLUMNS.join(",");
+  const body = rows.map((r) => EXPORT_COLUMNS.map((c) => csvField(r[c])).join(","));
+  return [header, ...body].join("\r\n");
+}
+
+/**
+ * Trigger a client-side download via a Blob + temporary <a download>. Guards
+ * against environments lacking URL.createObjectURL (older jsdom) so an export
+ * click never throws in tests.
+ */
+function downloadFile(filename: string, mime: string, text: string): void {
+  if (typeof URL === "undefined" || typeof URL.createObjectURL !== "function") return;
+  const blob = new Blob([text], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  if (typeof URL.revokeObjectURL === "function") URL.revokeObjectURL(url);
+}
+
 export function RiskDashboard() {
-  const { pathogen, setPathogen, setRegion } = useSelection();
+  const { pathogen, region, setPathogen, setRegion } = useSelection();
 
   // Map "View" toggle: PREDICTED (default) shows the risk_map's predicted
   // next-period probability; OBSERVED shows the latest-period measured
@@ -151,6 +238,17 @@ export function RiskDashboard() {
     queueState.data && !queueState.error ? queueState.data : [];
 
   const pathogenMap = filterMapByPathogen(mapFeatures, pathogen ?? activePathogen);
+
+  // Region-keyed measured sample sizes for the ACTIVE pathogen, consumed by the
+  // map's hover tooltip in observed mode. Derived from the same observed_positivity
+  // lookup above so no count is fabricated; keyed by plain region code to match
+  // the MapView `sampleByRegion` contract.
+  const activePathogenName = pathogen ?? activePathogen;
+  const sampleByRegion = new Map<string, number | null>();
+  for (const [key, n] of observedSampleByKey) {
+    const [p, r] = key.split(":");
+    if (p === activePathogenName) sampleByRegion.set(r, n);
+  }
   const pathogenQueue = filterAttentionByPathogen(
     queueItems,
     pathogen ?? activePathogen,
@@ -199,6 +297,18 @@ export function RiskDashboard() {
       ? "observed positivity (latest measured period)"
       : "predicted next-period elevated-risk probability";
 
+  // Export the states ACTUALLY shown (pathogenMap) for the active view, so the
+  // file matches the screen exactly and carries the honest per-row label/status.
+  const exportFileBase = `risk-dashboard_${activePathogenName}_${mapViewMode}`;
+  const handleExport = (format: "csv" | "json") => {
+    const rows = buildExportRows(pathogenMap, mapViewMode, observedSampleByKey);
+    if (format === "csv") {
+      downloadFile(`${exportFileBase}.csv`, "text/csv;charset=utf-8", rowsToCsv(rows));
+    } else {
+      downloadFile(`${exportFileBase}.json`, "application/json", JSON.stringify(rows, null, 2));
+    }
+  };
+
   return (
     <div data-testid="risk-dashboard" className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6">
       <PageHeader
@@ -222,6 +332,12 @@ export function RiskDashboard() {
         </ControlGroup>
         <ControlGroup label="View">
           <MapViewToggle value={mapViewMode} onChange={setMapViewMode} />
+        </ControlGroup>
+        <ControlGroup label="Export">
+          <ExportButtons
+            disabled={pathogenMap.length === 0}
+            onExport={handleExport}
+          />
         </ControlGroup>
       </ControlBar>
 
@@ -270,15 +386,22 @@ export function RiskDashboard() {
       </p>
 
       <TwoColumn
-        left={<CurrentRiskOverview view="map" features={mapFeatures} viewMode={mapViewMode} />}
+        left={
+          <CurrentRiskOverview
+            view="map"
+            features={mapFeatures}
+            viewMode={mapViewMode}
+            sampleByRegion={sampleByRegion}
+          />
+        }
         right={
           <SectionCard
             title={mapViewMode === "observed" ? "Top states by positivity" : "Top states by risk"}
             subtitle={`Ranked for ${activePathogen} \u00b7 ${quantityPhrase}`}
             info={
               mapViewMode === "observed"
-                ? "The highest-positivity states for the selected pathogen, read from the latest OBSERVED surveillance period. The pill shows the measured positivity, bucketed into a named band. Select a state to drive the map and the trend below."
-                : "The highest-risk states for the selected pathogen, read directly from the risk map. The risk pill shows the PREDICTED next-period elevated-positivity probability, bucketed into a named band. Select a state to drive the map and the trend below."
+                ? "Positivity % = the measured share of FSIS food samples that tested positive for this pathogen in the latest reporting period (positive samples ÷ samples tested). An observed surveillance rate — not a forecast. These are the highest-positivity states for the selected pathogen; the pill shows the measured positivity, bucketed into a named band. Select a state to drive the map and the trend below."
+                : "Risk % = the model's estimated probability that a state's FSIS food-sample positivity will be elevated above its own recent baseline next period. A prioritization signal — not a case count or a contamination finding. These are the highest-risk states for the selected pathogen, read directly from the risk map; the pill shows that PREDICTED probability, bucketed into a named band. Select a state to drive the map and the trend below."
             }
           >
             <div data-testid="top-states">
@@ -288,6 +411,15 @@ export function RiskDashboard() {
                   detail={`No risk-map features for ${activePathogen}.`}
                 />
               ) : (
+                <>
+                <p
+                  data-testid="top-states-definition"
+                  className="mb-2 text-[11px] italic leading-relaxed text-navy/60"
+                >
+                  {mapViewMode === "observed"
+                    ? "Positivity % = measured share of FSIS food samples that tested positive this period (positive \u00f7 tested). An observed rate, not a forecast."
+                    : "Risk % = the model's estimated probability this state's positivity will be elevated above its own recent baseline next period. A prioritization signal, not a contamination finding."}
+                </p>
                 <table className="w-full text-left text-xs">
                   <thead>
                     <tr className="text-[10px] uppercase tracking-wide text-navy/50">
@@ -302,8 +434,18 @@ export function RiskDashboard() {
                     </tr>
                   </thead>
                   <tbody>
-                    {topStates.map((f, i) => (
-                      <tr key={`${f.region}:${f.period}`} className="border-t border-navy/5">
+                    {topStates.map((f, i) => {
+                      const selected = f.region === region;
+                      return (
+                      <tr
+                        key={`${f.region}:${f.period}`}
+                        data-testid="top-state-row-tr"
+                        data-selected={selected ? "true" : undefined}
+                        aria-selected={selected}
+                        className={`border-t border-navy/5 ${
+                          selected ? "bg-teal/5 border-l-2 border-l-teal" : ""
+                        }`}
+                      >
                         <td className="py-1 pr-2 text-navy/60">{i + 1}</td>
                         <td className="py-1 pr-2">
                           <button
@@ -332,9 +474,11 @@ export function RiskDashboard() {
                             : formatUncertainty(f.uncertainty)}
                         </td>
                       </tr>
-                    ))}
+                      );
+                    })}
                   </tbody>
                 </table>
+                </>
               )}
             </div>
           </SectionCard>
@@ -403,6 +547,49 @@ function MapViewToggle({
           </button>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * The two download buttons. Each exports exactly the states currently shown for
+ * the active pathogen + Predicted/Observed view, with honest per-row status and
+ * labels. Real <button>s with aria-labels; teal/navy only (theme discipline).
+ * Disabled (and visibly so) when there is nothing on screen to export.
+ */
+function ExportButtons({
+  disabled,
+  onExport,
+}: {
+  disabled: boolean;
+  onExport: (format: "csv" | "json") => void;
+}) {
+  const base =
+    "rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-teal";
+  const enabled = "border-navy/15 bg-white text-navy/70 hover:border-navy/30";
+  const off = "cursor-not-allowed border-navy/10 bg-navy/5 text-navy/30";
+  return (
+    <div data-testid="export-controls" className="flex gap-2">
+      <button
+        type="button"
+        data-testid="export-csv"
+        aria-label="Download the current view as CSV"
+        disabled={disabled}
+        onClick={() => onExport("csv")}
+        className={`${base} ${disabled ? off : enabled}`}
+      >
+        Download CSV
+      </button>
+      <button
+        type="button"
+        data-testid="export-json"
+        aria-label="Download the current view as JSON"
+        disabled={disabled}
+        onClick={() => onExport("json")}
+        className={`${base} ${disabled ? off : enabled}`}
+      >
+        Download JSON
+      </button>
     </div>
   );
 }

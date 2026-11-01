@@ -4,7 +4,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { RiskMapFeature } from "../../../types/artifacts";
 import { formatRisk } from "../../../types/viewModels";
-import { colorForRisk, NO_DATA_COLOR, RISK_BANDS } from "./riskBands";
+import { colorForRisk, NO_DATA_COLOR, RISK_BANDS, riskBandLabel } from "./riskBands";
 
 // Re-export so existing importers can pull the shared bucketing from either
 // module; riskBands.ts is the single source of truth.
@@ -24,6 +24,19 @@ export interface MapViewProps {
   features: RiskMapFeature[];
   selectedRegion: string | null;
   onSelectRegion: (region: string) => void;
+  /**
+   * Which quantity the map is displaying. Drives the hover tooltip's value
+   * label only ("Predicted risk" vs "Observed positivity"); defaults to
+   * "predicted" so standalone callers are unaffected.
+   */
+  viewMode?: "predicted" | "observed";
+  /**
+   * Optional per-region measured sample size, keyed by the plain region code
+   * (e.g. "TX"). Only consulted in observed mode: when present it adds an
+   * honest "n = {count}" line to the hover tooltip. A null/absent count omits
+   * the line (never fabricated).
+   */
+  sampleByRegion?: Map<string, number | null>;
 }
 
 const MAP_HEIGHT = 480;
@@ -36,6 +49,32 @@ function buildFillExpression(byPostal: Map<string, number>): any {
   const stops: (string | number)[] = [];
   for (const [p, r] of byPostal) stops.push(p, colorForRisk(r));
   return ["match", ["get", "postal"], ...(stops.length ? stops : ["__none__", NO_DATA_COLOR]), NO_DATA_COLOR];
+}
+
+/** Full-strength vs faded fill opacity for the band-isolate interaction. */
+const FILL_OPACITY_ON = 0.92;
+const FILL_OPACITY_DIM = 0.15;
+
+/**
+ * Data-driven fill-opacity expression for the legend band-isolate feature.
+ * When `activeBand` is null every state keeps full opacity. Otherwise only the
+ * states whose risk falls in `activeBand` (via {@link riskBandLabel}) stay at
+ * full strength and all others fade — a pure show/hide of what is already
+ * shown, so no underlying value changes (honest). Reversible by clearing the
+ * band.
+ */
+function buildFillOpacityExpression(
+  byPostal: Map<string, number>,
+  activeBand: string | null,
+): any {
+  if (!activeBand) return FILL_OPACITY_ON;
+  const stops: (string | number)[] = [];
+  for (const [p, r] of byPostal) {
+    stops.push(p, riskBandLabel(r) === activeBand ? FILL_OPACITY_ON : FILL_OPACITY_DIM);
+  }
+  // Match on postal; anything not listed (no data) is faded while a band is
+  // isolated so attention stays on the isolated band.
+  return ["match", ["get", "postal"], ...(stops.length ? stops : ["__none__", FILL_OPACITY_DIM]), FILL_OPACITY_DIM];
 }
 
 /**
@@ -104,7 +143,13 @@ function centroidOf(geom: any): [number, number] | null {
 
 interface LabelPoint { postal: string; lng: number; lat: number; }
 
-export function MapView({ features, selectedRegion, onSelectRegion }: MapViewProps) {
+export function MapView({
+  features,
+  selectedRegion,
+  onSelectRegion,
+  viewMode = "predicted",
+  sampleByRegion,
+}: MapViewProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [glReady, setGlReady] = useState(false);
@@ -112,8 +157,12 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
   const [labels, setLabels] = useState<LabelPoint[]>([]);
   const [screen, setScreen] = useState<Record<string, { x: number; y: number }>>({});
   const [hover, setHover] = useState<{ postal: string; x: number; y: number } | null>(null);
+  // Legend band isolate: null = show all, otherwise a band label (e.g. "High").
+  const [activeBand, setActiveBand] = useState<string | null>(null);
   const onSelectRef = useRef(onSelectRegion);
   onSelectRef.current = onSelectRegion;
+
+  const observed = viewMode === "observed";
 
   const byPostal = useMemo(() => {
     const m = new Map<string, number>();
@@ -129,7 +178,8 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
       map = new maplibregl.Map({
         container: containerRef.current,
         style: { version: 8, sources: {}, layers: [{ id: "bg", type: "background", paint: { "background-color": "#eef2f6" } }] },
-        center: [-96, 38], zoom: 3.1, attributionControl: false, dragRotate: false,
+        center: [-96, 38], zoom: 3.1, minZoom: 2.5, maxZoom: 7,
+        attributionControl: false, dragRotate: false,
       });
     } catch { setUseGrid(true); return; }
     mapRef.current = map;
@@ -149,6 +199,14 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
       setScreen(next);
     };
 
+    // Built-in zoom (+/−) buttons. Compass hidden since dragRotate is off.
+    try {
+      map.addControl(
+        new maplibregl.NavigationControl({ showCompass: false, showZoom: true }),
+        "top-left",
+      );
+    } catch { /* non-fatal: controls are an enhancement, not a requirement */ }
+
     map.on("load", async () => {
       try {
         map.resize();
@@ -158,11 +216,19 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
         if (cancelled) return;
         map.addSource("states", { type: "geojson", data: gj });
         map.addLayer({ id: "states-fill", type: "fill", source: "states",
-          paint: { "fill-color": buildFillExpression(byPostal), "fill-opacity": 0.92 } });
+          paint: {
+            "fill-color": buildFillExpression(byPostal),
+            "fill-opacity": buildFillOpacityExpression(byPostal, activeBand),
+          } });
         map.addLayer({ id: "states-outline", type: "line", source: "states",
           paint: { "line-color": "#ffffff", "line-width": 0.8 } });
+        // Subtle navy fill emphasis for the selected state (low opacity) so the
+        // selection reads clearly in addition to the heavier outline below.
+        map.addLayer({ id: "states-selected-fill", type: "fill", source: "states",
+          paint: { "fill-color": "#0f2742", "fill-opacity": 0.12 },
+          filter: ["==", ["get", "postal"], selectedRegion ?? "__none__"] });
         map.addLayer({ id: "states-selected", type: "line", source: "states",
-          paint: { "line-color": "#0f2742", "line-width": 2.5 },
+          paint: { "line-color": "#0f2742", "line-width": 3 },
           filter: ["==", ["get", "postal"], selectedRegion ?? "__none__"] });
 
         // Build centroid label points once.
@@ -209,12 +275,21 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
     const map = mapRef.current;
     if (!map || !map.getLayer || !map.getLayer("states-fill")) return;
     map.setPaintProperty("states-fill", "fill-color", buildFillExpression(byPostal));
-  }, [byPostal]);
+    // Recompute band dimming whenever the data changes so the isolate stays
+    // consistent with the current values.
+    map.setPaintProperty(
+      "states-fill",
+      "fill-opacity",
+      buildFillOpacityExpression(byPostal, activeBand),
+    );
+  }, [byPostal, activeBand]);
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !map.getLayer || !map.getLayer("states-selected")) return;
-    map.setFilter("states-selected", ["==", ["get", "postal"], selectedRegion ?? "__none__"]);
+    if (!map || !map.getLayer) return;
+    const filter: any = ["==", ["get", "postal"], selectedRegion ?? "__none__"];
+    if (map.getLayer("states-selected")) map.setFilter("states-selected", filter);
+    if (map.getLayer("states-selected-fill")) map.setFilter("states-selected-fill", filter);
   }, [selectedRegion]);
 
   if (useGrid) {
@@ -222,6 +297,18 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
   }
 
   const hoverRisk = hover ? byPostal.get(hover.postal) : undefined;
+  const hoverSample =
+    observed && hover && sampleByRegion ? sampleByRegion.get(hover.postal) : undefined;
+  const valueLabel = observed ? "Observed positivity" : "Predicted risk";
+
+  const resetView = () => {
+    const map = mapRef.current;
+    if (map) map.flyTo({ center: [-96, 38], zoom: 3.1, duration: 500 });
+    setHover(null);
+  };
+
+  const toggleBand = (label: string) =>
+    setActiveBand((cur) => (cur === label ? null : label));
 
   return (
     <div className="flex flex-col gap-2">
@@ -234,6 +321,18 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
           style={{ position: "absolute", inset: 0, borderRadius: 8, overflow: "hidden" }}
           className="border border-navy/10"
         />
+        {/* Reset-view button: only in the real-map branch, over the nav control. */}
+        {glReady ? (
+          <button
+            type="button"
+            data-testid="map-reset"
+            aria-label="Reset map view"
+            onClick={resetView}
+            className="absolute left-2 top-24 z-20 rounded border border-navy/15 bg-white px-2 py-1 text-[11px] font-semibold text-navy shadow hover:border-teal hover:text-teal focus:outline-none focus:ring-2 focus:ring-teal"
+          >
+            Reset
+          </button>
+        ) : null}
         {/* HTML overlay: 2-letter state labels at projected centroids. */}
         {glReady
           ? labels.map((l) => {
@@ -241,25 +340,40 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
               if (!s) return null;
               const risk = byPostal.get(l.postal);
               const dark = (risk ?? 0) >= 0.5;
+              // Fade labels of out-of-band states while a band is isolated so
+              // the overlay tracks the choropleth dimming (reversible).
+              const inBand = activeBand === null || riskBandLabel(risk) === activeBand;
               return (
                 <span
                   key={l.postal}
                   aria-hidden
-                  style={{ position: "absolute", left: s.x, top: s.y, transform: "translate(-50%,-50%)" }}
-                  className={`pointer-events-none select-none text-[9px] font-bold leading-none ${dark ? "text-white" : "text-navy/80"}`}
+                  style={{
+                    position: "absolute",
+                    left: s.x,
+                    top: s.y,
+                    transform: "translate(-50%,-50%)",
+                    opacity: inBand ? 1 : 0.25,
+                  }}
+                  className={`pointer-events-none select-none text-[9px] font-bold leading-none transition-opacity ${dark ? "text-white" : "text-navy/80"}`}
                 >
                   {l.postal}
                 </span>
               );
             })
           : null}
-        {/* Hover tooltip */}
+        {/* Hover tooltip: state + labeled value + (observed) sample size. */}
         {glReady && hover ? (
           <div
             style={{ position: "absolute", left: hover.x + 10, top: hover.y + 10 }}
-            className="pointer-events-none rounded bg-navy px-2 py-1 text-[11px] font-semibold text-white shadow-lg"
+            className="pointer-events-none flex flex-col gap-0.5 rounded bg-navy px-2 py-1.5 text-[11px] text-white shadow-lg"
           >
-            {hover.postal}: {risk(hoverRisk)}
+            <span className="font-bold">{hover.postal}</span>
+            <span>
+              {valueLabel}: {risk(hoverRisk)}
+            </span>
+            {observed && hoverSample !== null && hoverSample !== undefined ? (
+              <span className="text-white/80">n = {hoverSample.toLocaleString()}</span>
+            ) : null}
           </div>
         ) : null}
         {!glReady ? (
@@ -268,7 +382,7 @@ export function MapView({ features, selectedRegion, onSelectRegion }: MapViewPro
           </div>
         ) : null}
       </div>
-      <MapLegend />
+      <MapLegend activeBand={activeBand} onToggleBand={toggleBand} />
     </div>
   );
 }
@@ -317,23 +431,69 @@ function MapInfoDot({ text }: { text: string }) {
  * "No data" band keeps only its grey swatch; its explanation lives in the
  * adjacent (i) tooltip rather than as verbose inline text.
  */
-function MapLegend() {
+function MapLegend({
+  activeBand,
+  onToggleBand,
+}: {
+  activeBand: string | null;
+  onToggleBand: (label: string) => void;
+}) {
+  // The "No data" band is not an isolable choropleth band (no-data states are
+  // never a risk bucket), so it stays a plain swatch; all risk bands become
+  // clickable isolate toggles.
   return (
     <div
       data-testid="map-legend"
-      className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-navy/70"
-      aria-label="Risk band legend"
+      className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] text-navy/70"
+      aria-label="Risk band legend (click a band to isolate it)"
     >
-      {RISK_BANDS.map((band) => (
-        <span key={band.label} className="inline-flex items-center gap-1.5">
-          <span
-            aria-hidden
-            className="inline-block h-3 w-3 rounded-sm border border-navy/10"
-            style={{ backgroundColor: band.color }}
-          />
-          <span>{band.label}</span>
-        </span>
-      ))}
+      {RISK_BANDS.map((band) => {
+        if (band.label === "No data") {
+          return (
+            <span key={band.label} className="inline-flex items-center gap-1.5">
+              <span
+                aria-hidden
+                className="inline-block h-3 w-3 rounded-sm border border-navy/10"
+                style={{ backgroundColor: band.color }}
+              />
+              <span>{band.label}</span>
+            </span>
+          );
+        }
+        const on = activeBand === band.label;
+        return (
+          <button
+            key={band.label}
+            type="button"
+            data-testid={`legend-band-${band.label}`}
+            aria-pressed={on}
+            aria-label={
+              on ? `Show all bands (currently isolating ${band.label})` : `Isolate ${band.label} band`
+            }
+            onClick={() => onToggleBand(band.label)}
+            className={`inline-flex items-center gap-1.5 rounded px-1.5 py-0.5 transition focus:outline-none focus:ring-2 focus:ring-teal ${
+              on ? "bg-teal/10 text-navy ring-1 ring-teal" : "hover:bg-navy/5"
+            }`}
+          >
+            <span
+              aria-hidden
+              className="inline-block h-3 w-3 rounded-sm border border-navy/10"
+              style={{ backgroundColor: band.color }}
+            />
+            <span>{band.label}</span>
+          </button>
+        );
+      })}
+      {activeBand ? (
+        <button
+          type="button"
+          data-testid="legend-show-all"
+          onClick={() => onToggleBand(activeBand)}
+          className="rounded px-1.5 py-0.5 font-semibold text-teal underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-teal"
+        >
+          Show all
+        </button>
+      ) : null}
       <MapInfoDot text={NO_DATA_INFO} />
     </div>
   );

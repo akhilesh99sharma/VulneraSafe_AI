@@ -56,17 +56,32 @@ export interface CurrentRiskOverviewProps {
    * Only meaningful together with `features`; it selects the honest captions.
    */
   viewMode?: MapViewMode;
+  /**
+   * Optional per-region measured sample size (keyed by plain region code), only
+   * consulted by the map's hover tooltip in observed mode. Passed straight
+   * through to {@link MapView}; never fabricated.
+   */
+  sampleByRegion?: Map<string, number | null>;
 }
 
 /** Human captions per view mode so predicted and observed are never conflated. */
-const VIEW_COPY: Record<MapViewMode, { quantity: string; subtitle: string }> = {
+const VIEW_COPY: Record<
+  MapViewMode,
+  { quantity: string; subtitle: string; title: string; definition: string }
+> = {
   predicted: {
     quantity: "predicted next-period elevated-risk probability",
     subtitle: "Geographic surveillance risk",
+    title: "Current Risk Overview",
+    definition:
+      "Risk % = the model's estimated probability that this state's FSIS food-sample positivity will be elevated above its own recent baseline next period. A prioritization signal — not a case count or a contamination finding.",
   },
   observed: {
     quantity: "observed positivity (latest measured period)",
     subtitle: "Geographic observed positivity",
+    title: "Current Positivity Overview",
+    definition:
+      "Positivity % = the measured share of FSIS food samples that tested positive for this pathogen in the latest reporting period (positive samples ÷ samples tested). An observed surveillance rate — not a forecast.",
   },
 };
 
@@ -74,6 +89,7 @@ export function CurrentRiskOverview({
   view = "full",
   features: injectedFeatures,
   viewMode = "predicted",
+  sampleByRegion,
 }: CurrentRiskOverviewProps) {
   const { pathogen, region, setRegion } = useSelection();
   const artifactMapState = useArtifact<RiskMapFeature[]>("risk_map");
@@ -141,14 +157,22 @@ export function CurrentRiskOverview({
             />
             <p
               data-testid="map-quantity-caption"
-              className="mb-2 text-[11px] leading-relaxed text-navy/50"
+              className="mb-1 text-[11px] leading-relaxed text-navy/50"
             >
               Each state is shaded by its {VIEW_COPY[viewMode].quantity}.
+            </p>
+            <p
+              data-testid="quantity-definition"
+              className="mb-2 text-[11px] italic leading-relaxed text-navy/60"
+            >
+              {VIEW_COPY[viewMode].definition}
             </p>
             <MapView
               features={visible}
               selectedRegion={region}
               onSelectRegion={setRegion}
+              viewMode={viewMode}
+              sampleByRegion={sampleByRegion}
             />
           </div>
         );
@@ -211,7 +235,7 @@ export function CurrentRiskOverview({
 
   return (
     <PanelShell
-      title="Current Risk Overview"
+      title={VIEW_COPY[viewMode].title}
       subtitle={
         view === "map"
           ? VIEW_COPY[viewMode].subtitle

@@ -246,6 +246,61 @@ describe("RiskDashboard", () => {
     expect(texts).toContain("25");
   });
 
+  it("renders the CSV and JSON export buttons and clicking them does not throw", async () => {
+    installArtifactFetch({ manifest: MANIFEST, risk_map: MAP, attention_queue: QUEUE });
+    renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });
+
+    const csv = await screen.findByTestId("export-csv");
+    const json = await screen.findByTestId("export-json");
+    expect(csv).toBeInTheDocument();
+    expect(json).toBeInTheDocument();
+
+    // Wait for the risk_map to load so there are rows to export (buttons enable).
+    await waitFor(() =>
+      expect(
+        within(screen.getByTestId("top-states")).getAllByTestId("top-state-row"),
+      ).toHaveLength(2),
+    );
+
+    // Clicking either export must not throw under jsdom (URL.createObjectURL is
+    // polyfilled in setupTests, and the handler guards a missing one anyway).
+    expect(() => fireEvent.click(csv)).not.toThrow();
+    expect(() => fireEvent.click(json)).not.toThrow();
+  });
+
+  it("highlights the top-states row for the selected region", async () => {
+    installArtifactFetch({ manifest: MANIFEST, risk_map: MAP, attention_queue: QUEUE });
+    renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });
+
+    const topStates = await screen.findByTestId("top-states");
+    await waitFor(() =>
+      expect(within(topStates).getAllByTestId("top-state-row")).toHaveLength(2),
+    );
+
+    // No region selected yet -> rows exist but none is highlighted.
+    expect(
+      within(topStates).getAllByTestId("top-state-row-tr").length,
+    ).toBeGreaterThan(0);
+    expect(
+      within(topStates)
+        .getAllByTestId("top-state-row-tr")
+        .some((tr) => tr.getAttribute("data-selected") === "true"),
+    ).toBe(false);
+
+    // Click the TX row button -> that state's row becomes selected.
+    const txButton = within(topStates)
+      .getAllByTestId("top-state-row")
+      .find((b) => b.getAttribute("data-region") === "TX")!;
+    fireEvent.click(txButton);
+
+    await waitFor(() => {
+      const selectedRows = within(screen.getByTestId("top-states"))
+        .getAllByTestId("top-state-row-tr")
+        .filter((tr) => tr.getAttribute("data-selected") === "true");
+      expect(selectedRows).toHaveLength(1);
+    });
+  });
+
   it("shows N/A for the national-risk KPI when the risk_map is empty (never fabricated)", async () => {
     installArtifactFetch({ manifest: MANIFEST, risk_map: [], attention_queue: [] });
     renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });

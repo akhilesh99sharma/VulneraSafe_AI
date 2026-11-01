@@ -21,7 +21,7 @@ import PanelShell, { ArtifactBody } from "./PanelShell";
  * readable at a glance.
  */
 
-const INITIAL_VISIBLE = 5;
+const INITIAL_VISIBLE = 10;
 const PAGE = 10;
 
 /**
