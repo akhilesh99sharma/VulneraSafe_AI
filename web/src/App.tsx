@@ -5,6 +5,8 @@ import ResponsibleUseBanner from "./components/ResponsibleUseBanner";
 import RegulatoryAlertsStrip from "./components/RegulatoryAlertsStrip";
 import Landing from "./components/Landing";
 import { SelectionProvider, useSelection } from "./state/selection";
+import { SectionTabs } from "./components/ui";
+import type { SectionTab } from "./components/ui";
 import RiskDashboard from "./components/panels/RiskDashboard";
 import VulnerablePopulationLens from "./components/panels/VulnerablePopulationLens";
 import ScenarioBuilder from "./components/panels/ScenarioBuilder";
@@ -23,34 +25,44 @@ import SeasonalHazard from "./components/panels/SeasonalHazard";
 import type { Manifest } from "./types/artifacts";
 
 /**
- * App shell with top-level tabbed navigation (Req 12, 13).
+ * App shell with a two-level navigation model (Req 12, 13).
  *
- *  - "Overview" renders the marketing/explainer Landing page.
- *  - "Dashboard" renders the five mandatory panels wired to the artifacts.
+ * Seven top-level SECTIONS replace the previous flat eleven-tab strip. Sections
+ * that hold more than one view render a secondary <SectionTabs/> sub-tab strip:
  *
- * The responsible-use banner and the always-visible Regulatory Alerts strip
- * stay mounted across tabs so a verified recall is never hidden by navigation.
+ *  1. Overview            -> Landing (onEnter -> Risk Dashboard)
+ *  2. Risk Dashboard      -> RegulatoryAlertsStrip + Controls + manifest + RiskDashboard
+ *  3. Pathogens           -> Product & Program / Emerging Signals / Seasonal Patterns
+ *  4. Communities         -> By State (S06) / By County (S07)
+ *  5. Facilities          -> Supplier Monitor (S03) / Facility Map
+ *  6. Decision Actions    -> Population Lens / Surveillance Actions / Scenario Builder /
+ *                            Recommended Actions / Evidence & Explanation / Policy Comparison
+ *  7. One Health & Data   -> OneHealthInsights (S05)
+ *
+ * No content merges or panel-internal changes happen here — every panel renders
+ * exactly as before, only regrouped. The responsible-use banner and the
+ * always-visible Regulatory Alerts strip stay mounted across all sections so a
+ * verified recall is never hidden by navigation.
  */
 
-type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions" | "facilitymap" | "countycommunities" | "seasonal";
+type Section =
+  | "overview"
+  | "dashboard"
+  | "pathogens"
+  | "communities"
+  | "facilities"
+  | "actions"
+  | "onehealth";
 
-
-
-function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
-  const tabs: Array<{ id: Tab; label: string }> = [
+function Header({ section, setSection }: { section: Section; setSection: (s: Section) => void }) {
+  const tabs: Array<{ id: Section; label: string }> = [
     { id: "overview", label: "Overview" },
-    { id: "dashboard", label: "Dashboard" },
-    { id: "explorer", label: "Pathogen Explorer" },
-    { id: "emerging", label: "Emerging Signals" },
-    { id: "supplier", label: "Supplier Monitor" },
-    { id: "onehealth", label: "One Health Insights" },
-    { id: "communities", label: "Vulnerable Communities" },
-    { id: "actions", label: "Surveillance Actions" },
-    { id: "facilitymap", label: "Facility Map" },
-    { id: "countycommunities", label: "County Communities" },
-    { id: "seasonal", label: "Seasonal Patterns" },
-
-
+    { id: "dashboard", label: "Risk Dashboard" },
+    { id: "pathogens", label: "Pathogens" },
+    { id: "communities", label: "Communities" },
+    { id: "facilities", label: "Facilities" },
+    { id: "actions", label: "Decision Actions" },
+    { id: "onehealth", label: "One Health & Data" },
   ];
   return (
     <header className="sticky top-0 z-20 border-b border-white/10 bg-navy text-white shadow-sm">
@@ -58,7 +70,7 @@ function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
         <div className="flex items-center justify-between gap-3">
           <button
             type="button"
-            onClick={() => setTab("overview")}
+            onClick={() => setSection("overview")}
             className="flex items-center gap-2 text-left"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded bg-teal text-sm font-black text-white">V</span>
@@ -73,10 +85,10 @@ function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
                 key={t.id}
                 type="button"
                 data-testid={`tab-${t.id}`}
-                aria-current={tab === t.id ? "page" : undefined}
-                onClick={() => setTab(t.id)}
+                aria-current={section === t.id ? "page" : undefined}
+                onClick={() => setSection(t.id)}
                 className={`rounded-md px-3 py-1.5 text-sm font-semibold transition ${
-                  tab === t.id ? "bg-white text-navy" : "text-white/80 hover:bg-white/10"
+                  section === t.id ? "bg-white text-navy" : "text-white/80 hover:bg-white/10"
                 }`}
               >
                 {t.label}
@@ -128,35 +140,17 @@ function Controls({ manifest }: { manifest: Manifest | null }) {
 }
 
 /**
- * Decision tools that previously lived in the panel grid. They are
- * mandatory/required panels, so the redesigned dashboard keeps them reachable
- * by stacking them below the new Risk Dashboard rows. A later step will give
- * them a dedicated navigation home.
+ * Risk Dashboard section: the manifest-driven controls + the Risk Dashboard
+ * panel (Current Risk Overview + Prioritized Attention Queue live inside it).
+ * The decision-tool panels that previously stacked below here have moved to the
+ * "Decision Actions" section.
  */
-function DecisionTools() {
-  return (
-    <section className="mx-auto max-w-7xl px-6 pb-6">
-      <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-navy/60">
-        Decision tools
-      </h2>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <VulnerablePopulationLens />
-        <ScenarioBuilder />
-        <RecommendedActionPanel />
-        <ExplanationEvidencePanel />
-        <PolicyComparison />
-      </div>
-    </section>
-  );
-}
-
-function Dashboard() {
+function RiskDashboardSection() {
   const { data: manifest, loading, error } = useManifest();
   return (
     <>
-      <RegulatoryAlertsStrip />
       {/* Retains the manifest-driven pathogen select + region clear control
-          alongside the new dashboard's pathogen pills; both drive the shared
+          alongside the dashboard's own pathogen pills; both drive the shared
           selection. */}
       <Controls manifest={manifest} />
       {error ? (
@@ -174,41 +168,123 @@ function Dashboard() {
         </p>
       ) : null}
       <RiskDashboard />
-      <DecisionTools />
+    </>
+  );
+}
+
+/** Pathogens section: three views over the pathogen-facing artifacts. */
+function PathogensSection() {
+  const subtabs: SectionTab[] = [
+    { id: "product", label: "Product & Program" },
+    { id: "emerging", label: "Emerging Signals" },
+    { id: "seasonal", label: "Seasonal Patterns" },
+  ];
+  const [sub, setSub] = useState<string>("product");
+  return (
+    <>
+      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
+      {sub === "emerging" ? (
+        <EmergingSignals />
+      ) : sub === "seasonal" ? (
+        <SeasonalHazard />
+      ) : (
+        <PathogenExplorer />
+      )}
+    </>
+  );
+}
+
+/** Communities section: state- and county-level views (merge deferred). */
+function CommunitiesSection() {
+  const subtabs: SectionTab[] = [
+    { id: "state", label: "By State (S06)" },
+    { id: "county", label: "By County (S07)" },
+  ];
+  const [sub, setSub] = useState<string>("state");
+  return (
+    <>
+      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
+      {sub === "county" ? <CountyCommunities /> : <VulnerableCommunities />}
+    </>
+  );
+}
+
+/** Facilities section: supplier monitor + facility map (merge deferred). */
+function FacilitiesSection() {
+  const subtabs: SectionTab[] = [
+    { id: "supplier", label: "Supplier Monitor (S03)" },
+    { id: "map", label: "Facility Map" },
+  ];
+  const [sub, setSub] = useState<string>("supplier");
+  return (
+    <>
+      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
+      {sub === "map" ? <FacilityMap /> : <SupplierMonitor />}
+    </>
+  );
+}
+
+/**
+ * Decision Actions section: the full decision layer, including the three
+ * mandatory decision panels (Scenario Builder, Recommended Action Panel,
+ * Explanation / Evidence Panel). The Population Lens — which sets the shared
+ * vulnerable-population lens that drove the old DecisionTools stack — leads the
+ * sub-tab strip so it stays reachable.
+ */
+function DecisionActionsSection() {
+  const subtabs: SectionTab[] = [
+    { id: "lens", label: "Population Lens" },
+    { id: "surveillance", label: "Surveillance Actions" },
+    { id: "scenario", label: "Scenario Builder" },
+    { id: "recommended", label: "Recommended Actions" },
+    { id: "evidence", label: "Evidence & Explanation" },
+    { id: "policy", label: "Policy Comparison" },
+  ];
+  const [sub, setSub] = useState<string>("surveillance");
+  return (
+    <>
+      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
+      {sub === "lens" ? (
+        <VulnerablePopulationLens />
+      ) : sub === "scenario" ? (
+        <ScenarioBuilder />
+      ) : sub === "recommended" ? (
+        <RecommendedActionPanel />
+      ) : sub === "evidence" ? (
+        <ExplanationEvidencePanel />
+      ) : sub === "policy" ? (
+        <PolicyComparison />
+      ) : (
+        <SurveillanceActions />
+      )}
     </>
   );
 }
 
 function AppBody() {
-  const [tab, setTab] = useState<Tab>("overview");
+  const [section, setSection] = useState<Section>("overview");
   return (
     <div className="min-h-full">
-      <Header tab={tab} setTab={setTab} />
+      <Header section={section} setSection={setSection} />
       <ResponsibleUseBanner />
-      {tab === "overview" ? (
-        <Landing onEnter={() => setTab("dashboard")} />
-      ) : tab === "explorer" ? (
-        <PathogenExplorer />
-      ) : tab === "emerging" ? (
-        <EmergingSignals />
-      ) : tab === "supplier" ? (
-        <SupplierMonitor />
-      ) : tab === "onehealth" ? (
+      {/* Hoisted so a verified recall is visible on every section, not hidden
+          behind navigation. */}
+      {section !== "overview" ? <RegulatoryAlertsStrip /> : null}
+      {section === "overview" ? (
+        <Landing onEnter={() => setSection("dashboard")} />
+      ) : section === "pathogens" ? (
+        <PathogensSection />
+      ) : section === "communities" ? (
+        <CommunitiesSection />
+      ) : section === "facilities" ? (
+        <FacilitiesSection />
+      ) : section === "actions" ? (
+        <DecisionActionsSection />
+      ) : section === "onehealth" ? (
         <OneHealthInsights />
-      ) : tab === "communities" ? (
-        <VulnerableCommunities />
-      ) : tab === "actions" ? (
-        <SurveillanceActions />
-      ) : tab === "facilitymap" ? (
-        <FacilityMap />
-      ) : tab === "countycommunities" ? (
-        <CountyCommunities />
-      ) : tab === "seasonal" ? (
-        <SeasonalHazard />
       ) : (
-        <Dashboard />
+        <RiskDashboardSection />
       )}
-      
     </div>
   );
 }

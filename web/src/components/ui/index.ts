@@ -15,3 +15,6 @@ export type { SectionCardProps } from "./SectionCard";
 
 export { TwoColumn } from "./TwoColumn";
 export type { TwoColumnProps } from "./TwoColumn";
+
+export { SectionTabs } from "./SectionTabs";
+export type { SectionTabsProps, SectionTab } from "./SectionTabs";
