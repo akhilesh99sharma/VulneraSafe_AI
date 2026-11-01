@@ -15,11 +15,10 @@ import ExplanationEvidencePanel from "./components/panels/ExplanationEvidencePan
 import PolicyComparison from "./components/panels/PolicyComparison";
 import PathogenExplorer from "./components/panels/PathogenExplorer";
 import EmergingSignals from "./components/panels/EmergingSignals";
-import SupplierMonitor from "./components/panels/SupplierMonitor";
 import OneHealthInsights from "./components/panels/OneHealthInsights";
 import Communities from "./components/panels/Communities";
+import Facilities from "./components/panels/Facilities";
 import SurveillanceActions from "./components/panels/SurveillanceActions";
-import FacilityMap from "./components/panels/FacilityMap";
 import SeasonalHazard from "./components/panels/SeasonalHazard";
 import type { Manifest } from "./types/artifacts";
 
@@ -33,7 +32,7 @@ import type { Manifest } from "./types/artifacts";
  *  2. Risk Dashboard      -> RegulatoryAlertsStrip + Controls + manifest + RiskDashboard
  *  3. Pathogens           -> Product & Program / Emerging Signals / Seasonal Patterns
  *  4. Communities         -> unified Communities with a State ⇄ County toggle
- *  5. Facilities          -> Supplier Monitor (S03) / Facility Map
+ *  5. Facilities          -> unified Facilities with a List ⇄ Map view toggle
  *  6. Decision Actions    -> Population Lens / Surveillance Actions / Scenario Builder /
  *                            Recommended Actions / Evidence & Explanation / Policy Comparison
  *  7. One Health & Data   -> OneHealthInsights (S05)
@@ -193,21 +192,6 @@ function PathogensSection() {
   );
 }
 
-/** Facilities section: supplier monitor + facility map (merge deferred). */
-function FacilitiesSection() {
-  const subtabs: SectionTab[] = [
-    { id: "supplier", label: "Supplier Monitor (S03)" },
-    { id: "map", label: "Facility Map" },
-  ];
-  const [sub, setSub] = useState<string>("supplier");
-  return (
-    <>
-      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
-      {sub === "map" ? <FacilityMap /> : <SupplierMonitor />}
-    </>
-  );
-}
-
 /**
  * Decision Actions section: the full decision layer, including the three
  * mandatory decision panels (Scenario Builder, Recommended Action Panel,
@@ -261,7 +245,7 @@ function AppBody() {
       ) : section === "communities" ? (
         <Communities />
       ) : section === "facilities" ? (
-        <FacilitiesSection />
+        <Facilities />
       ) : section === "actions" ? (
         <DecisionActionsSection />
       ) : section === "onehealth" ? (
