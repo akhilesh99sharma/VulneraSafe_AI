@@ -38,7 +38,24 @@ key (ACS) and the public Atlas file (see src/pipeline/ingest.py).
     python -m src.analysis.establishment_surveillance   (S03 establishment EB surveillance)
     python -m src.analysis.human_comparison             (S05 FSIS vs CDC NORS; needs the NORS CSV)
     python -m src.analysis.community_impact             (S06 vulnerability-aware ranking)
+    python -m src.decision.action_queue                 (Surveillance Actions decision layer -> action_queue.json)
+    python scripts/build_county_vulnerability.py        (S07 offline county ACS + USDA Atlas -> committed data/processed/county_vulnerability.json; needs CENSUS_API_KEY)
+    python -m src.analysis.county_community_impact      (S07 county vulnerability x state-level hazard -> s07_county_community_impact.json)
     python -m src.artifacts.exporter                    (writes web/public/data/*.json + manifest.json)
+
+The exporter now writes 28 files, including action_queue.json, facility_map.json,
+and county_community_impact.json alongside the original artifacts and manifest.json.
+
+Facility Map geocode cache: the committed data/external/facility_geocode.json is built
+once by `python scripts/build_facility_geocode.py` from the FSIS MPI Directory CSVs
+dropped into data/raw/fsis/ (the FSIS host is firewalled in this environment, so the
+MPI Directory is a manual drop like the other FSIS data). The runtime exporter reads
+ONLY the committed geocode cache and makes no network geocode call; build_facility_map,
+build_action_queue, and build_county_community_impact all run as part of the exporter.
+
+Because data/processed/county_vulnerability.json is committed, a reviewer WITHOUT a
+Census key still gets the real county vulnerability table: the S07 compute step reads
+the committed table rather than re-pulling ACS/Atlas.
 
 ## 4. Verify
 
@@ -61,7 +78,12 @@ Then open http://localhost:5173/VulneraSafe_AI/
   built by S04, and S03 reuses the establishment panel from src/models/establishment.py.
   Run them in the order above (or just run the exporter, which triggers the
   builders that read each module's cache).
-- data/raw, data/interim, and data/processed are git-ignored; only the final
-  web/public/data artifacts are committed, so the deployed site needs no raw data.
+- data/raw, data/interim, and most of data/processed are git-ignored; the
+  committed web/public/data artifacts are what the deployed site renders, so it
+  needs no raw data. Two small DERIVED inputs are committed for reproducibility via
+  explicit .gitignore exceptions: data/external/facility_geocode.json (FSIS MPI
+  Directory coordinates) and data/processed/county_vulnerability.json (county ACS +
+  USDA Atlas), so the Facility Map and County Communities tabs reproduce without a
+  Census key or the 85 MB Atlas download.
 - All figures are OBSERVED surveillance or documented context — never fabricated.
   See each module's spec under .kiro/specs/ for its honesty constraints.

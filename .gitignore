@@ -19,6 +19,7 @@ venv/
 node_modules/
 web/dist/
 web/.vite/
+.vite/
 
 # Large raw & synthetic data payloads (keep structure via .gitkeep)
 data/raw/*

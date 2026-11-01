@@ -202,10 +202,48 @@ never a contamination claim.
   under-5 and pregnancy lenses are shown as unavailable (not in the ACS
   extraction), never fabricated; affected-population counts are contextual only.
 
+Three further layers were added after the five science modules above: a decision
+layer and two geographic/finer-resolution surfaces, each OBSERVED and honesty-gated.
+
+- **Surveillance Actions** (`action_queue.json`, module ACTIONQ). A deterministic
+  DECISION layer over the OBSERVED science signals (S01, S03, S04, S06); S05 CDC
+  NORS is corroboration-only and never an action trigger. Produces ranked,
+  human-review-gated retailer decision-support actions (prioritize testing, request
+  supplier verification, protect access, scrutinize sourcing). The committed run
+  yields 90 actions across three pathogens (S04: 12, S03: 36, S06: 24, S01: 18) via
+  deterministic signal-strength x support ranking, with a forbidden-term guard;
+  every row carries human_review=true and status OBSERVED. Distinct from the base
+  platform's SIMULATED optimizer Recommended Action Panel: decision support, never
+  an executed action.
+- **Facility Map** (`facility_map.json`, module FACILITYMAP). A geographic view of
+  signal-bearing FSIS-sampled establishments as a sourcing-scrutiny reference layer.
+  Joins the S03 + action_queue signal set to the FSIS MPI Directory (active +
+  inactive, 8,192 establishments) by numeric establishment_id using the directory
+  PUBLISHED coordinates (no geocoding). Verified coverage is 32/36 = 88.9%
+  (Salmonella 12/12, STEC 11/12, Listeria 9/12). A separate, clearly-labeled
+  supplemental overlay carries 3 researched historical candidates (metadata +
+  evidence only, NO pins, verified_against_fsis_id=false, coordinates not
+  fabricated); B&H Foods is left unresolved (ambiguous identity). Verified coverage
+  is placed-only and never inflated by candidates; OBSERVED; not "your suppliers",
+  not a contamination claim, and distinct from the SIMULATED optimizer and the
+  state-level PREDICTED risk map.
+- **S07 - County Communities** (`county_community_impact.json`). A finer-resolution
+  companion to S06. Ranks county-level vulnerability (Census ACS 2022 65+ share +
+  USDA Food Access Atlas 2019 low-income/low-access, aggregated tract-to-county by
+  5-digit FIPS) against each county's STATE-level FSIS hazard. Coverage over 3,231
+  counties: Listeria 3,231/3,231 (100%), STEC 3,231/3,231 (100%), Salmonella
+  3,090/3,231 (95.6%; the 141 no-state-hazard counties are retained as unavailable,
+  never dropped). The county-vulnerability x state-level-hazard mismatch is labeled
+  on every record and in the UI (hazard normalized over states, vulnerability over
+  counties, so every county in a state shares one hazard value, never
+  county-measured); under-5 and pregnancy lenses are unavailable, never fabricated;
+  status OBSERVED. S06 is left untouched (distinct module_id S07, own cache);
+  `data/processed/county_vulnerability.json` is committed for reproducibility.
+
 Each module ships with Python property tests locking its honesty rules (no
 future-period leakage, low-n never treated as negative/safe, no causal or
-fabricated fields) and web render tests. Full suite at submission: 291 Python
-tests and 81 web tests, all passing; production build clean.
+fabricated fields) and web render tests. Full suite at submission: 343 Python
+tests and 98 web tests, all passing; production build clean.
 
 
 ## Team science
@@ -441,6 +479,12 @@ formal fairness/equity review with stakeholders.
 - STEC forecasting is weak; treated as surveillance-only.
 - ML lift over strong baselines is modest; persistent-risk ranking is not the
   same as emerging-spike prediction.
+- Facility Map verified coverage is 32/36 = 88.9% against the FSIS MPI Directory;
+  3 researched historical candidates remain unplotted pending published
+  coordinates, and B&H Foods is unresolved (ambiguous identity).
+- County Communities (S07) ranks county-level vulnerability against a STATE-level
+  FSIS hazard; the hazard is state-level, not county-measured, so the resolution
+  mismatch is labeled on every record and in the UI.
 
 ## AI assistance
 
@@ -451,14 +495,17 @@ disclosure". All reported numbers come from real data and exported predictions.
 ## Mapping to the six deliverables
 
 1. Reproducible scripts — `src/`, `tests/`, pipeline modules.
-2. Kiro artifacts — `.kiro/specs/` with the base `vulnerasafe-ai` spec plus five
+2. Kiro artifacts — `.kiro/specs/` with the base `vulnerasafe-ai` spec plus the
    per-module expansion specs (s01 is folded into the base; s03/s04/s05/s06 each
-   have requirements, design, tasks).
+   have requirements, design, tasks), and the later `surveillance-actions`,
+   `facility-map`, and `county-community-impact` specs (each with requirements,
+   design, tasks).
 3. Decision-support app — `web/` (React + Vite), deployed at
-   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Seven
+   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Ten
    tabs: Overview, Dashboard (five mandatory panels), Pathogen Explorer (S01),
    Emerging Signals (S04), Supplier Monitor (S03), One Health Insights (S05),
-   Vulnerable Communities (S06).
+   Vulnerable Communities (S06), Surveillance Actions (ACTIONQ), Facility Map
+   (FACILITYMAP), and County Communities (S07).
 4. Data dictionary + provenance — `docs/data_dictionary.md`, `docs/provenance.md`.
 5. PDF report — this document (export `docs/reports/final_report.md` to PDF).
 6. README + requirements — `README.md`, `requirements.txt`, `web/package.json`.
