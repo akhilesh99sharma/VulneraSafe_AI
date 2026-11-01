@@ -159,6 +159,8 @@ export function MapView({
   const [hover, setHover] = useState<{ postal: string; x: number; y: number } | null>(null);
   // Legend band isolate: null = show all, otherwise a band label (e.g. "High").
   const [activeBand, setActiveBand] = useState<string | null>(null);
+  // State-label font size (px), eased gently with map zoom.
+  const [labelPx, setLabelPx] = useState(9);
   const onSelectRef = useRef(onSelectRegion);
   onSelectRef.current = onSelectRegion;
 
@@ -197,6 +199,8 @@ export function MapView({
         next[p.postal] = { x: pt.x, y: pt.y };
       }
       setScreen(next);
+      const _z = map.getZoom();
+      setLabelPx(Math.max(9, Math.min(16, 9 * Math.pow(Math.max(_z, 0.001) / 3.1, 0.7))));
     };
 
     // Built-in zoom (+/−) buttons. Compass hidden since dragRotate is off.
@@ -353,8 +357,9 @@ export function MapView({
                     top: s.y,
                     transform: "translate(-50%,-50%)",
                     opacity: inBand ? 1 : 0.25,
+                    fontSize: labelPx,
                   }}
-                  className={`pointer-events-none select-none text-[9px] font-bold leading-none transition-opacity ${dark ? "text-white" : "text-navy/80"}`}
+                  className={`pointer-events-none select-none font-bold leading-none transition-opacity ${dark ? "text-white" : "text-navy/80"}`}
                 >
                   {l.postal}
                 </span>
