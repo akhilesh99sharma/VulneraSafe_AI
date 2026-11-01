@@ -1,0 +1,326 @@
+import { useArtifact, useManifest } from "../../data/hooks";
+import { useSelection } from "../../state/selection";
+import type {
+  AttentionQueueItem,
+  ProvenanceEntry,
+  RiskMapFeature,
+} from "../../types/artifacts";
+import {
+  filterAttentionByPathogen,
+  filterMapByPathogen,
+  formatRisk,
+  NOT_AVAILABLE,
+} from "../../types/viewModels";
+import { statusOf } from "../../types/status";
+import {
+  PageHeader,
+  ControlBar,
+  ControlGroup,
+  PathogenPills,
+  StatCard,
+  StatCardRow,
+  SectionCard,
+  TwoColumn,
+} from "../ui";
+import EmptyState from "../EmptyState";
+import StatusTag from "../StatusTag";
+import StatusLegend from "../legend/StatusLegend";
+import CurrentRiskOverview from "./CurrentRiskOverview";
+import AttentionQueue from "./AttentionQueue";
+
+/**
+ * Risk Dashboard (UI redesign, step 2).
+ *
+ * Recomposes the existing mandatory panels into a professional dashboard
+ * layout built entirely from the step-1 UI primitives:
+ *   1. navy-gradient {@link PageHeader} with a data-freshness status chip
+ *   2. a single {@link ControlBar} of pathogen pills (driving the shared
+ *      {@link useSelection} selection) + a small lens select
+ *   3. a row of four KPI {@link StatCard}s
+ *   4. {@link TwoColumn}: Current Risk Overview hero + a "Top states by risk"
+ *      ranked table
+ *   5. {@link TwoColumn}: the Attention Queue + a "Model evidence & data
+ *      sources" rail (with the status legend)
+ *
+ * CRITICAL HONESTY CONSTRAINT: every KPI is derived from real loaded artifact
+ * data (the `risk_map` + `attention_queue` artifacts, filtered to the selected
+ * pathogen) or shown as N/A. No value is fabricated. In particular the
+ * reference layout's "predicted national change" card is intentionally NOT
+ * shown — a single national 4-week delta is not defensibly derivable — and is
+ * replaced by the honestly-derivable "Highest-risk state".
+ */
+
+/** The three fallback pathogen pill options when the manifest is unavailable. */
+const FALLBACK_PATHOGENS = ["Salmonella", "Listeria", "STEC"] as const;
+
+/** Threshold at/above which a state counts as "elevated risk" (KPI 2). */
+const ELEVATED_THRESHOLD = 0.5;
+
+/** Bucket a mean 0..1 risk into an honest label + card tone. */
+function riskBucket(mean: number | null): {
+  label: string;
+  tone: "default" | "alert" | "info" | "teal";
+} {
+  if (mean === null || Number.isNaN(mean)) {
+    return { label: NOT_AVAILABLE, tone: "default" };
+  }
+  if (mean >= 0.66) return { label: "High", tone: "alert" };
+  if (mean >= 0.33) return { label: "Moderate", tone: "info" };
+  if (mean > 0) return { label: "Low", tone: "teal" };
+  return { label: NOT_AVAILABLE, tone: "default" };
+}
+
+export function RiskDashboard() {
+  const { pathogen, setPathogen, setRegion } = useSelection();
+
+  const manifest = useManifest();
+  const mapState = useArtifact<RiskMapFeature[]>("risk_map");
+  const queueState = useArtifact<AttentionQueueItem[]>("attention_queue");
+  const provenanceState = useArtifact<ProvenanceEntry[]>("provenance");
+
+  // Pathogen pill options come from the manifest when available, else a
+  // conservative fallback so the control is never empty.
+  const pathogenOptions = manifest.data
+    ? Object.keys(manifest.data.pathogens)
+    : [...FALLBACK_PATHOGENS];
+  // PathogenPills is a controlled single-value selector; map the shared
+  // nullable selection onto the first option when nothing is chosen yet.
+  const activePathogen = pathogen ?? pathogenOptions[0] ?? "";
+
+  // --- KPI inputs: only READ from successfully-loaded artifacts ------------
+  // While an artifact is still loading or errored, its features are treated as
+  // absent so the affected card shows N/A rather than blocking the dashboard.
+  const mapFeatures: RiskMapFeature[] =
+    mapState.data && !mapState.error ? mapState.data : [];
+  const queueItems: AttentionQueueItem[] =
+    queueState.data && !queueState.error ? queueState.data : [];
+
+  const pathogenMap = filterMapByPathogen(mapFeatures, pathogen ?? activePathogen);
+  const pathogenQueue = filterAttentionByPathogen(
+    queueItems,
+    pathogen ?? activePathogen,
+  );
+
+  const n = pathogenMap.length;
+
+  // KPI 1 — Current national risk: bucket of the MEAN risk across the selected
+  // pathogen's map features. N/A when there are no features.
+  const meanRisk =
+    n > 0 ? pathogenMap.reduce((sum, f) => sum + f.risk, 0) / n : null;
+  const bucket = riskBucket(meanRisk);
+
+  // KPI 2 — States at elevated risk: count of features with risk >= 0.5.
+  const elevatedCount =
+    n > 0 ? pathogenMap.filter((f) => f.risk >= ELEVATED_THRESHOLD).length : null;
+
+  // KPI 3 — Highest-risk state: the region with the max risk for the pathogen.
+  // (Honest replacement for the reference "predicted change" card.)
+  const highest =
+    n > 0
+      ? pathogenMap.reduce((best, f) => (f.risk > best.risk ? f : best), pathogenMap[0])
+      : null;
+
+  // KPI 4 — Attention items: count of queue items for the selected pathogen.
+  // The artifact being missing/empty honestly yields 0 (no items), not a guess.
+  const attentionCount =
+    queueState.loading || queueState.error ? NOT_AVAILABLE : pathogenQueue.length;
+
+  // Data-freshness chip: newest date in the manifest's data_freshness map.
+  const freshness = manifest.data?.data_freshness ?? {};
+  const freshnessDates = Object.values(freshness).filter(Boolean);
+  const latestFreshness =
+    freshnessDates.length > 0
+      ? freshnessDates.slice().sort().slice(-1)[0]
+      : null;
+
+  // Top states by risk (right rail of row 4): top 10 features desc by risk.
+  const topStates = [...pathogenMap].sort((a, b) => b.risk - a.risk).slice(0, 10);
+
+  return (
+    <div data-testid="risk-dashboard" className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6">
+      <PageHeader
+        title="Risk Dashboard"
+        subtitle="Predicted surveillance risk and prioritized signals across states, derived only from observed surveillance and validated model output."
+        breadcrumb={["Home", "Risk Dashboard"]}
+        status={{
+          label: latestFreshness ? "Data current" : "Freshness unavailable",
+          detail: latestFreshness ? `as of ${latestFreshness}` : undefined,
+          ok: Boolean(latestFreshness),
+        }}
+      />
+
+      <ControlBar>
+        <ControlGroup label="Pathogen">
+          <PathogenPills
+            value={activePathogen}
+            onChange={(p) => setPathogen(p)}
+            options={pathogenOptions}
+          />
+        </ControlGroup>
+      </ControlBar>
+
+      <StatCardRow>
+        <StatCard
+          label="Current national risk"
+          value={bucket.label}
+          sub={n > 0 ? `mean across ${n} state${n === 1 ? "" : "s"}` : "no states for this pathogen"}
+          tone={bucket.tone}
+        />
+        <StatCard
+          label="States at elevated risk"
+          value={elevatedCount === null ? NOT_AVAILABLE : elevatedCount}
+          sub={
+            elevatedCount === null
+              ? "no map features loaded"
+              : `of ${n} state${n === 1 ? "" : "s"} (risk \u2265 ${ELEVATED_THRESHOLD})`
+          }
+          tone={elevatedCount && elevatedCount > 0 ? "info" : "default"}
+        />
+        <StatCard
+          label="Highest-risk state"
+          value={highest ? highest.region : NOT_AVAILABLE}
+          sub={highest ? formatRisk(highest.risk) : "no map features loaded"}
+          tone="teal"
+        />
+        <StatCard
+          label="Attention items"
+          value={attentionCount}
+          sub="ranked signals"
+          tone="default"
+        />
+      </StatCardRow>
+
+      <p data-testid="kpi-caption" className="text-[11px] leading-relaxed text-navy/50">
+        These figures are derived from the OBSERVED / PREDICTED risk map and the
+        prioritized attention queue. A single national &ldquo;predicted
+        change&rdquo; delta is intentionally not shown because it is not a
+        defensible single national figure; the highest-risk state is shown
+        instead because it is honestly derivable from the map.
+      </p>
+
+      <TwoColumn
+        left={<CurrentRiskOverview />}
+        right={
+          <SectionCard
+            title="Top states by risk"
+            subtitle={`Ranked for ${activePathogen}`}
+            info="The highest-risk states for the selected pathogen, read directly from the risk map. Select a state to drive the map and trend above."
+          >
+            <div data-testid="top-states">
+              {topStates.length === 0 ? (
+                <EmptyState
+                  title="No states to rank"
+                  detail={`No risk-map features for ${activePathogen}.`}
+                />
+              ) : (
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="text-[10px] uppercase tracking-wide text-navy/50">
+                      <th className="py-1 pr-2 font-semibold">#</th>
+                      <th className="py-1 pr-2 font-semibold">State</th>
+                      <th className="py-1 pr-2 font-semibold">Risk</th>
+                      <th className="py-1 font-semibold">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topStates.map((f, i) => (
+                      <tr key={`${f.region}:${f.period}`} className="border-t border-navy/5">
+                        <td className="py-1 pr-2 text-navy/60">{i + 1}</td>
+                        <td className="py-1 pr-2">
+                          <button
+                            type="button"
+                            data-testid="top-state-row"
+                            data-region={f.region}
+                            onClick={() => setRegion(f.region)}
+                            className="font-semibold text-navy hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal"
+                          >
+                            {f.region}
+                          </button>
+                        </td>
+                        <td className="py-1 pr-2 font-semibold text-navy">{formatRisk(f.risk)}</td>
+                        <td className="py-1">
+                          <StatusTag status={statusOf(f)} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </SectionCard>
+        }
+      />
+
+      <TwoColumn
+        left={<AttentionQueue />}
+        right={
+          <SectionCard
+            title="Model evidence & data sources"
+            subtitle="Where the numbers come from"
+            info="The underlying data sources and their freshness, plus the key to the three provenance tags used across the dashboard."
+          >
+            <div data-testid="evidence-rail" className="flex flex-col gap-3">
+              <EvidenceSources
+                provenance={provenanceState.data && !provenanceState.error ? provenanceState.data : null}
+                freshness={freshness}
+              />
+              <StatusLegend />
+            </div>
+          </SectionCard>
+        }
+      />
+    </div>
+  );
+}
+
+/**
+ * The compact source list for the evidence rail. Prefers the `provenance`
+ * artifact (source name + access date); falls back to the manifest
+ * `data_freshness` map; shows an honest note when neither is available.
+ */
+function EvidenceSources({
+  provenance,
+  freshness,
+}: {
+  provenance: ProvenanceEntry[] | null;
+  freshness: Record<string, string>;
+}) {
+  if (provenance && provenance.length > 0) {
+    return (
+      <ul className="flex flex-col gap-2 text-xs">
+        {provenance.map((p) => (
+          <li key={p.source} className="flex items-start justify-between gap-2 border-b border-navy/5 pb-1.5">
+            <span className="min-w-0">
+              <span className="block truncate font-semibold text-navy">{p.source}</span>
+              {p.license ? <span className="block text-[10px] text-navy/50">{p.license}</span> : null}
+            </span>
+            <span className="shrink-0 text-[11px] text-navy/60">{p.access_date || NOT_AVAILABLE}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  const entries = Object.entries(freshness).filter(([, v]) => v);
+  if (entries.length > 0) {
+    return (
+      <ul className="flex flex-col gap-2 text-xs">
+        {entries.map(([source, date]) => (
+          <li key={source} className="flex items-center justify-between gap-2 border-b border-navy/5 pb-1.5">
+            <span className="truncate font-semibold text-navy">{source}</span>
+            <span className="shrink-0 text-[11px] text-navy/60">{date}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <EmptyState
+      title="Sources unavailable"
+      detail="Neither the provenance artifact nor the manifest data-freshness map could be loaded."
+    />
+  );
+}
+
+export default RiskDashboard;

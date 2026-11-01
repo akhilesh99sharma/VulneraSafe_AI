@@ -3,15 +3,13 @@ import { useManifest } from "./data/hooks";
 import EmptyState from "./components/EmptyState";
 import ResponsibleUseBanner from "./components/ResponsibleUseBanner";
 import RegulatoryAlertsStrip from "./components/RegulatoryAlertsStrip";
-import StatusLegend from "./components/legend/StatusLegend";
 import Landing from "./components/Landing";
 import { SelectionProvider, useSelection } from "./state/selection";
-import CurrentRiskOverview from "./components/panels/CurrentRiskOverview";
-import AttentionQueue from "./components/panels/AttentionQueue";
+import RiskDashboard from "./components/panels/RiskDashboard";
+import VulnerablePopulationLens from "./components/panels/VulnerablePopulationLens";
 import ScenarioBuilder from "./components/panels/ScenarioBuilder";
 import RecommendedActionPanel from "./components/panels/RecommendedActionPanel";
 import ExplanationEvidencePanel from "./components/panels/ExplanationEvidencePanel";
-import VulnerablePopulationLens from "./components/panels/VulnerablePopulationLens";
 import PolicyComparison from "./components/panels/PolicyComparison";
 import PathogenExplorer from "./components/panels/PathogenExplorer";
 import EmergingSignals from "./components/panels/EmergingSignals";
@@ -129,19 +127,26 @@ function Controls({ manifest }: { manifest: Manifest | null }) {
   );
 }
 
-function PanelGrid() {
+/**
+ * Decision tools that previously lived in the panel grid. They are
+ * mandatory/required panels, so the redesigned dashboard keeps them reachable
+ * by stacking them below the new Risk Dashboard rows. A later step will give
+ * them a dedicated navigation home.
+ */
+function DecisionTools() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-6">
+    <section className="mx-auto max-w-7xl px-6 pb-6">
+      <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-navy/60">
+        Decision tools
+      </h2>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <CurrentRiskOverview />
         <VulnerablePopulationLens />
-        <AttentionQueue />
         <ScenarioBuilder />
         <RecommendedActionPanel />
         <ExplanationEvidencePanel />
         <PolicyComparison />
       </div>
-    </main>
+    </section>
   );
 }
 
@@ -150,6 +155,9 @@ function Dashboard() {
   return (
     <>
       <RegulatoryAlertsStrip />
+      {/* Retains the manifest-driven pathogen select + region clear control
+          alongside the new dashboard's pathogen pills; both drive the shared
+          selection. */}
       <Controls manifest={manifest} />
       {error ? (
         <div className="mx-auto max-w-7xl px-6 pt-2">
@@ -165,8 +173,8 @@ function Dashboard() {
           {loading ? " · loading…" : ""}
         </p>
       ) : null}
-      <PanelGrid />
-      <StatusLegend />
+      <RiskDashboard />
+      <DecisionTools />
     </>
   );
 }
