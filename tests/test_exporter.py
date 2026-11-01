@@ -139,12 +139,15 @@ def test_manifest_is_complete(exported):
         "equity_test",
         "seasonal_hazard_patterns",  # S02: one new JSON artifact (28 -> 29 written files)
         "observed_positivity",  # OBSERVED positivity: one new JSON artifact (29 -> 30)
+        "observed_timeseries",  # OBSERVED positivity time-series: one new JSON artifact (30 -> 31)
     ):
         assert (exported["dir"] / f"{name}.json").exists()
     # S02's new artifact is also recorded in the manifest (not a CSV companion)
     assert "seasonal_hazard_patterns" in m["artifacts"]
     # The OBSERVED positivity artifact is likewise a JSON-only manifest entry.
     assert "observed_positivity" in m["artifacts"]
+    # The OBSERVED positivity time-series is also a JSON-only manifest entry.
+    assert "observed_timeseries" in m["artifacts"]
 
 
 def test_scenario_and_regulatory_artifacts_preserved(exported):

@@ -22,8 +22,12 @@ from __future__ import annotations
 import pandas as pd
 
 from src.artifacts import exporter
-from src.artifacts.exporter import build_observed_positivity, validate_payload
-from src.artifacts.schemas import ObservedPositivityFeature
+from src.artifacts.exporter import (
+    build_observed_positivity,
+    build_observed_positivity_timeseries,
+    validate_payload,
+)
+from src.artifacts.schemas import ObservedPositivityFeature, RiskTimeseriesPoint
 
 
 def _two_state_frame() -> pd.DataFrame:
@@ -132,6 +136,57 @@ def test_observed_positivity_tolerates_missing_model_table(monkeypatch):
     monkeypatch.setattr(exporter, "_load_model_table", _raise)
     rows = build_observed_positivity()
     assert rows == []
+
+
+# --------------------------------------------------------------------------- #
+# OBSERVED positivity TIME SERIES (build_observed_positivity_timeseries)
+# --------------------------------------------------------------------------- #
+def test_observed_timeseries_emits_one_row_per_measured_period(monkeypatch):
+    # The time-series builder keeps EVERY measured (state, period) — not just
+    # the latest — so the National Risk Trend can follow the Observed toggle.
+    monkeypatch.setattr(exporter, "_load_model_table", lambda slug: _two_state_frame())
+
+    rows = build_observed_positivity_timeseries()
+    assert rows
+    # Every row is OBSERVED (never PREDICTED) and shares the RiskTimeseriesPoint
+    # shape (no module_id / generated_at — this is the risk_timeseries contract).
+    assert all(r["status"] == "OBSERVED" for r in rows)
+    assert all("module_id" not in r for r in rows)
+
+    salm = [r for r in rows if r["pathogen"] == "Salmonella"]
+    # TX has TWO measured periods -> both appear (unlike the latest-only snapshot).
+    tx = sorted((r for r in salm if r["region"] == "TX"), key=lambda r: r["period"])
+    assert [r["period"] for r in tx] == ["2024-01", "2024-02"]
+    assert [r["value"] for r in tx] == [0.1, 0.2]
+
+    # CA contributes only its ONE measured period (2024-01); the 2024-02 row has
+    # zero samples / null rate and is omitted (never fabricated).
+    ca = [r for r in salm if r["region"] == "CA"]
+    assert [r["period"] for r in ca] == ["2024-01"]
+
+    # ND has no measured period at all -> fully omitted.
+    assert all(r["region"] != "ND" for r in rows)
+
+    # The CI is a REAL Wilson interval bracketing the measured rate, not the
+    # fixed predicted display band: ci_low <= value <= ci_high with a real band.
+    tx_latest = next(r for r in tx if r["period"] == "2024-02")
+    assert tx_latest["ci_low"] <= tx_latest["value"] <= tx_latest["ci_high"]
+    assert tx_latest["ci_low"] < tx_latest["ci_high"]  # a genuine (non-degenerate) band
+
+    # Deterministic sort by (pathogen, region, period).
+    keys = [(r["pathogen"], r["region"], r["period"]) for r in rows]
+    assert keys == sorted(keys)
+
+    # Validates against the SHARED RiskTimeseriesPoint schema (no new contract).
+    validate_payload(rows, RiskTimeseriesPoint, label="observed_timeseries")
+
+
+def test_observed_timeseries_tolerates_missing_model_table(monkeypatch):
+    def _raise(slug):
+        raise FileNotFoundError(f"no model table for {slug}")
+
+    monkeypatch.setattr(exporter, "_load_model_table", _raise)
+    assert build_observed_positivity_timeseries() == []
 
 
 # --------------------------------------------------------------------------- #

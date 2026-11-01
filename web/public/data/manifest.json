@@ -353,6 +353,12 @@
       "record_count": 157,
       "status_tagged": true
     },
+    "observed_timeseries": {
+      "file": "observed_timeseries.json",
+      "checksum_sha256": "04b5882b07e0249e13c94e58d65f1e263e65224f8cafed32dcb2d9b2e9bb6173",
+      "record_count": 11173,
+      "status_tagged": true
+    },
     "one_health_human_comparison": {
       "file": "one_health_human_comparison.json",
       "checksum_sha256": "926803c1193b24ed4610a40cd504f431028f18e3116e2b93ade04b36c8a50916",

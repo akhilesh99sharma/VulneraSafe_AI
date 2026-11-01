@@ -94,6 +94,7 @@ __all__ = [
     "SchemaValidationError",
     "validate_payload",
     "resolve_generated_at",
+    "build_observed_positivity_timeseries",
     "build_all_artifacts",
     "export_all",
 ]
@@ -637,6 +638,93 @@ def build_observed_positivity() -> list[dict]:
                 )
             )
     rows.sort(key=lambda d: (d["pathogen"], d["region"]))
+    return rows
+
+
+def build_observed_positivity_timeseries() -> list[dict]:
+    """Per-(pathogen, state, period) MEASURED routine FSIS positivity OVER TIME.
+
+    This is the OBSERVED time-series counterpart to :func:`build_risk_timeseries`
+    (which is PREDICTED model probability). Where
+    :func:`build_observed_positivity` keeps ONLY the latest measured period per
+    state, this emits EVERY measured period so the Risk Dashboard's National Risk
+    Trend can follow the Predicted/Observed toggle honestly.
+
+    For each (pathogen, state, period) row in the real model table
+    (``data/processed/model_<slug>.parquet``) that carries a genuine measurement
+    — a non-null ``outcome_routine_positivity_rate`` with
+    ``outcome_routine_samples > 0`` — it emits a :class:`RiskTimeseriesPoint`
+    (the SAME TypedDict risk_timeseries uses, no new schema):
+
+    * ``value`` is the measured rate straight from the column;
+    * ``ci_low`` / ``ci_high`` are a REAL Wilson 95% interval computed from the
+      real integer counts (positives, samples) — honest, unlike the predicted
+      display band. When the Wilson CI is undefined (e.g. the counts cannot be
+      coerced to integers) it is clamped to ``value`` so the row stays a valid
+      point with no band, because the shared schema types ``ci_low`` /
+      ``ci_high`` as ``float`` (not ``Optional``);
+    * ``status`` is always OBSERVED.
+
+    Honesty rules: rows with NO measured positivity are OMITTED (never
+    fabricated); if a slug's model table cannot be read it is skipped rather
+    than crashing the whole export (mirrors the other tolerant builders).
+    Sorted by (pathogen, region, period).
+    """
+    import pandas as pd
+
+    from src.analysis.program_product import wilson_ci
+
+    rows: list[dict] = []
+    for pathogen, commodity, slug in PATHOGENS:
+        try:
+            df = _load_model_table(slug)
+        except (OSError, ValueError, FileNotFoundError):
+            continue
+        needed = {
+            "state", "period",
+            "outcome_routine_positivity_rate",
+            "outcome_routine_samples", "outcome_routine_positives",
+        }
+        if not needed.issubset(set(df.columns)):
+            continue
+
+        rate = pd.to_numeric(df["outcome_routine_positivity_rate"], errors="coerce")
+        samples = pd.to_numeric(df["outcome_routine_samples"], errors="coerce")
+        positives = pd.to_numeric(df["outcome_routine_positives"], errors="coerce")
+        measured = df.assign(_rate=rate, _samples=samples, _positives=positives)
+        # A row is "measured" iff it has a real rate AND a positive sample count.
+        measured = measured[measured["_rate"].notna() & (measured["_samples"] > 0)]
+        if measured.empty:
+            continue
+
+        for rec in measured.to_dict(orient="records"):
+            value = _round(float(rec["_rate"]))
+            # Real Wilson interval from the genuine integer counts. Fall back to
+            # a bandless point (ci == value) when the counts are undefined.
+            try:
+                n = int(rec["_samples"])
+                pos = int(rec["_positives"]) if pd.notna(rec["_positives"]) else None
+            except (TypeError, ValueError):
+                n, pos = 0, None
+            if pos is not None and n > 0:
+                lo, hi = wilson_ci(pos, n)
+            else:
+                lo, hi = (None, None)
+            ci_low = _round(lo) if lo is not None else value
+            ci_high = _round(hi) if hi is not None else value
+            rows.append(
+                RiskTimeseriesPoint(
+                    pathogen=pathogen,
+                    commodity=commodity,
+                    region=str(rec["state"]),
+                    period=str(rec["period"]),
+                    value=value,
+                    ci_low=ci_low,
+                    ci_high=ci_high,
+                    status="OBSERVED",
+                )
+            )
+    rows.sort(key=lambda d: (d["pathogen"], d["region"], d["period"]))
     return rows
 
 
@@ -2389,6 +2477,11 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         observed_positivity, ObservedPositivityFeature, label="observed_positivity"
     )
 
+    observed_timeseries = build_observed_positivity_timeseries()
+    validate_payload(
+        observed_timeseries, RiskTimeseriesPoint, label="observed_timeseries"
+    )
+
     attention_queue = build_attention_queue()
     validate_payload(attention_queue, AttentionQueueItem, label="attention_queue")
 
@@ -2438,6 +2531,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "risk_timeseries": risk_timeseries,
         "risk_map": risk_map,
         "observed_positivity": observed_positivity,
+        "observed_timeseries": observed_timeseries,
         "attention_queue": attention_queue,
         "model_metrics": model_metrics,
         "calibration": calibration,

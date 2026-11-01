@@ -10,6 +10,22 @@ import { formatRisk } from "../../../types/viewModels";
 export interface TimeSeriesProps {
   points: RiskTimeseriesPoint[];
   ariaLabel: string;
+  /**
+   * Legend label for the plotted line. Defaults to "Predicted risk" so existing
+   * callers are unaffected; the Observed trend passes "Observed positivity".
+   */
+  valueLabel?: string;
+  /**
+   * Legend label for the shaded band. Defaults to "95% uncertainty" (the
+   * predicted display band); the Observed trend passes "95% Wilson interval"
+   * because its band is a real Wilson CI from measured counts.
+   */
+  bandLabel?: string;
+  /**
+   * Rotated Y-axis title. Defaults to "Elevated-risk probability" (predicted);
+   * the Observed trend passes "Observed positivity" (a measured rate).
+   */
+  yLabel?: string;
 }
 
 const WIDTH = 560;
@@ -30,7 +46,13 @@ function scaleY(value: number): number {
 
 const Y_TICKS = [0, 0.25, 0.5, 0.75, 1.0];
 
-export function TimeSeries({ points, ariaLabel }: TimeSeriesProps) {
+export function TimeSeries({
+  points,
+  ariaLabel,
+  valueLabel = "Predicted risk",
+  bandLabel = "95% uncertainty",
+  yLabel = "Elevated-risk probability",
+}: TimeSeriesProps) {
   const n = points.length;
   const line = points.map((p, i) => `${scaleX(i, n)},${scaleY(p.value)}`).join(" ");
   const bandTop = points.map((p, i) => `${scaleX(i, n)},${scaleY(p.ci_high)}`);
@@ -46,10 +68,10 @@ export function TimeSeries({ points, ariaLabel }: TimeSeriesProps) {
       {/* Legend */}
       <figcaption className="mb-1 flex items-center gap-4 text-[11px] text-navy/70">
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block h-0.5 w-4 rounded bg-teal" /> Predicted risk
+          <span className="inline-block h-0.5 w-4 rounded bg-teal" /> {valueLabel}
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-4 rounded-sm" style={{ backgroundColor: "rgba(15,155,142,0.18)" }} /> 95% uncertainty
+          <span className="inline-block h-2.5 w-4 rounded-sm" style={{ backgroundColor: "rgba(15,155,142,0.18)" }} /> {bandLabel}
         </span>
       </figcaption>
 
@@ -80,7 +102,7 @@ export function TimeSeries({ points, ariaLabel }: TimeSeriesProps) {
         {/* Y-axis title */}
         <text x={12} y={HEIGHT / 2} fontSize="10" fill="rgba(15,39,66,0.6)"
           transform={`rotate(-90 12 ${HEIGHT / 2})`} textAnchor="middle">
-          Elevated-risk probability
+          {yLabel}
         </text>
 
         {/* X-axis title */}

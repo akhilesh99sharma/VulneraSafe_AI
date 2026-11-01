@@ -136,6 +136,17 @@ export function RiskDashboard() {
   const mapFeatures: RiskMapFeature[] =
     mapViewMode === "observed" ? observedFeatures : predictedFeatures;
 
+  // Observed-mode sample counts, keyed by `${pathogen}:${region}`, read straight
+  // from the observed_positivity artifact. RiskMapFeature carries no sample_n,
+  // so the top-states "Samples (n)" column (observed mode only) looks the real
+  // measured count up here rather than fabricating one or widening the schema.
+  const observedSampleByKey = new Map<string, number | null>();
+  if (observedState.data && !observedState.error) {
+    for (const o of observedState.data) {
+      observedSampleByKey.set(`${o.pathogen}:${o.region}`, o.sample_n);
+    }
+  }
+
   const queueItems: AttentionQueueItem[] =
     queueState.data && !queueState.error ? queueState.data : [];
 
@@ -282,8 +293,12 @@ export function RiskDashboard() {
                     <tr className="text-[10px] uppercase tracking-wide text-navy/50">
                       <th className="py-1 pr-2 font-semibold">#</th>
                       <th className="py-1 pr-2 font-semibold">State</th>
-                      <th className="py-1 pr-2 font-semibold">Risk</th>
-                      <th className="py-1 font-semibold">Uncertainty</th>
+                      <th className="py-1 pr-2 font-semibold">
+                        {mapViewMode === "observed" ? "Positivity" : "Risk"}
+                      </th>
+                      <th className="py-1 font-semibold">
+                        {mapViewMode === "observed" ? "Samples (n)" : "Uncertainty"}
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -304,7 +319,18 @@ export function RiskDashboard() {
                         <td className="py-1 pr-2">
                           <RiskPill risk={f.risk} />
                         </td>
-                        <td className="py-1 text-navy/70">{formatUncertainty(f.uncertainty)}</td>
+                        <td className="py-1 text-navy/70" data-testid="top-state-third-col">
+                          {mapViewMode === "observed"
+                            ? ((): string => {
+                                const nSamples = observedSampleByKey.get(
+                                  `${f.pathogen}:${f.region}`,
+                                );
+                                return nSamples === null || nSamples === undefined
+                                  ? NOT_AVAILABLE
+                                  : nSamples.toLocaleString();
+                              })()
+                            : formatUncertainty(f.uncertainty)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

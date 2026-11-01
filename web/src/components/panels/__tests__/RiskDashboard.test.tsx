@@ -3,6 +3,7 @@ import { screen, fireEvent, waitFor, within } from "@testing-library/react";
 import type {
   AttentionQueueItem,
   Manifest,
+  ObservedPositivityFeature,
   RiskMapFeature,
 } from "../../../types/artifacts";
 import RiskDashboard from "../RiskDashboard";
@@ -79,6 +80,38 @@ const QUEUE: AttentionQueueItem[] = [
     risk: 0.6,
     triggering_condition: "rising trend",
     status: "PREDICTED",
+  },
+];
+
+// Observed-positivity fixture (measured FSIS positivity with real sample counts)
+// for the Observed-view assertions: TX measured at 0.30 from 40 samples, NY at
+// 0.10 from 25 samples. These are MEASURED rows, never the predicted probability.
+const OBSERVED: ObservedPositivityFeature[] = [
+  {
+    artifact_version: "0.1.0",
+    module_id: "OBSERVEDPOS",
+    pathogen: "Salmonella",
+    commodity: "raw_poultry",
+    region: "TX",
+    period: "2026-01",
+    positivity: 0.3,
+    sample_n: 40,
+    positive_n: 12,
+    status: "OBSERVED",
+    generated_at: "2026-01-01T00:00:00Z",
+  },
+  {
+    artifact_version: "0.1.0",
+    module_id: "OBSERVEDPOS",
+    pathogen: "Salmonella",
+    commodity: "raw_poultry",
+    region: "NY",
+    period: "2026-01",
+    positivity: 0.1,
+    sample_n: 25,
+    positive_n: 3,
+    status: "OBSERVED",
+    generated_at: "2026-01-01T00:00:00Z",
   },
 ];
 
@@ -165,6 +198,52 @@ describe("RiskDashboard", () => {
     expect(
       await screen.findByRole("heading", { name: /national risk trend/i }),
     ).toBeInTheDocument();
+  });
+
+  it("switches the top-states header/column to Positivity + Samples in observed mode", async () => {
+    installArtifactFetch({
+      manifest: MANIFEST,
+      risk_map: MAP,
+      attention_queue: QUEUE,
+      observed_positivity: OBSERVED,
+    });
+    renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });
+
+    // Predicted (default): headers read "Risk" + "Uncertainty".
+    const topStates = await screen.findByTestId("top-states");
+    await waitFor(() =>
+      expect(within(topStates).getAllByTestId("top-state-row")).toHaveLength(2),
+    );
+    expect(within(topStates).getByRole("columnheader", { name: "Risk" })).toBeInTheDocument();
+    expect(
+      within(topStates).getByRole("columnheader", { name: "Uncertainty" }),
+    ).toBeInTheDocument();
+
+    // Flip to Observed: the measured positivity artifact drives the table.
+    fireEvent.click(screen.getByTestId("view-observed"));
+
+    await waitFor(() =>
+      expect(
+        within(screen.getByTestId("top-states")).getByRole("columnheader", {
+          name: "Positivity",
+        }),
+      ).toBeInTheDocument(),
+    );
+    const observedTable = screen.getByTestId("top-states");
+    // Header switches "Uncertainty" -> "Samples (n)".
+    expect(
+      within(observedTable).getByRole("columnheader", { name: "Samples (n)" }),
+    ).toBeInTheDocument();
+    expect(
+      within(observedTable).queryByRole("columnheader", { name: "Uncertainty" }),
+    ).not.toBeInTheDocument();
+
+    // The third column now shows the REAL sample counts (40 for TX, 25 for NY),
+    // read from observed_positivity — never fabricated.
+    const thirdCols = within(observedTable).getAllByTestId("top-state-third-col");
+    const texts = thirdCols.map((c) => c.textContent);
+    expect(texts).toContain("40");
+    expect(texts).toContain("25");
   });
 
   it("shows N/A for the national-risk KPI when the risk_map is empty (never fabricated)", async () => {

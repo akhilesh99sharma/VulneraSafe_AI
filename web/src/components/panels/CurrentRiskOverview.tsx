@@ -77,7 +77,12 @@ export function CurrentRiskOverview({
 }: CurrentRiskOverviewProps) {
   const { pathogen, region, setRegion } = useSelection();
   const artifactMapState = useArtifact<RiskMapFeature[]>("risk_map");
-  const tsState = useArtifact<RiskTimeseriesPoint[]>("risk_timeseries");
+  // The trend follows the Predicted/Observed toggle: in observed mode it reads
+  // the OBSERVED positivity time-series (measured rate per state across ALL
+  // periods, with a real Wilson band), otherwise the PREDICTED risk_timeseries.
+  // Both share the RiskTimeseriesPoint shape so TimeSeriesSection is unchanged.
+  const tsName = viewMode === "observed" ? "observed_timeseries" : "risk_timeseries";
+  const tsState = useArtifact<RiskTimeseriesPoint[]>(tsName);
 
   // When the dashboard injects a feature list (Predicted/Observed toggle), wrap
   // it in a synthetic "loaded" artifact state so the SAME ArtifactBody render
@@ -156,7 +161,12 @@ export function CurrentRiskOverview({
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {mapPanel}
             <div>
-              <TimeSeriesSection state={tsState} region={region} pathogen={pathogen} />
+              <TimeSeriesSection
+                state={tsState}
+                region={region}
+                pathogen={pathogen}
+                viewMode={viewMode}
+              />
             </div>
           </div>
         );
@@ -166,14 +176,30 @@ export function CurrentRiskOverview({
 
   if (view === "trend") {
     // Only the time-series, in its own panel. Region selection (shared
-    // selection) still drives it; all empty-state gap messages are intact.
+    // selection) still drives it; all empty-state gap messages are intact. The
+    // title/subtitle/info follow the active view so the Observed trend never
+    // reads as a PREDICTED forecast.
+    const observed = viewMode === "observed";
     return (
       <PanelShell
-        title="National Risk Trend"
-        subtitle="Historical trend for the selected region"
-        info="Risk over time for the region selected on the map, as a PREDICTED probability of elevated pathogen surveillance positivity with a 95% uncertainty band. This is a prioritization signal, not a contamination finding."
+        title={observed ? "National Positivity Trend" : "National Risk Trend"}
+        subtitle={
+          observed
+            ? "Historical observed positivity for the selected region"
+            : "Historical trend for the selected region"
+        }
+        info={
+          observed
+            ? "Observed positivity over time for the selected region: measured FSIS routine positivity across every reporting period that has real samples, with a 95% Wilson interval from the real counts. This is a measured surveillance rate, not a forecast and not a contamination finding."
+            : "Risk over time for the region selected on the map, as a PREDICTED probability of elevated pathogen surveillance positivity with a 95% uncertainty band. This is a prioritization signal, not a contamination finding."
+        }
       >
-        <TimeSeriesSection state={tsState} region={region} pathogen={pathogen} />
+        <TimeSeriesSection
+          state={tsState}
+          region={region}
+          pathogen={pathogen}
+          viewMode={viewMode}
+        />
       </PanelShell>
     );
   }
@@ -231,18 +257,27 @@ function TimeSeriesSection({
   state,
   region,
   pathogen,
+  viewMode = "predicted",
 }: {
   state: ReturnType<typeof useArtifact<RiskTimeseriesPoint[]>>;
   region: string | null;
   pathogen: string | null;
+  viewMode?: MapViewMode;
 }) {
+  // Honest labels per view: observed = measured positivity with a real Wilson
+  // band; predicted = elevated-risk probability with the display band.
+  const observed = viewMode === "observed";
+  const valueLabel = observed ? "Observed positivity" : "Predicted risk";
+  const bandLabel = observed ? "95% Wilson interval" : "95% uncertainty";
+  const yLabel = observed ? "Observed positivity" : "Elevated-risk probability";
+  const artifactName = observed ? "observed_timeseries" : "risk_timeseries";
   return (
     <ArtifactBody
       state={state}
-      artifactName="risk_timeseries"
+      artifactName={artifactName}
       isEmpty={(p) => p.length === 0}
       emptyTitle="No time-series data available"
-      emptyDetail="The risk_timeseries artifact is present but contains no points."
+      emptyDetail={`The ${artifactName} artifact is present but contains no points.`}
       render={(points) => {
         if (!region) {
           return (
@@ -297,11 +332,14 @@ function TimeSeriesSection({
               <StatusTag status={status} />
             </div>
             <p className="mb-2 text-[11px] text-navy/50">
-              Showing {resolution} reporting periods for {effectivePathogen}.
+              Showing {resolution} {observed ? "measured positivity" : "reporting"} periods for {effectivePathogen}.
             </p>
             <TimeSeries
               points={series}
-              ariaLabel={`Risk time-series for region ${region}, ${effectivePathogen}`}
+              ariaLabel={`${observed ? "Observed positivity" : "Risk"} time-series for region ${region}, ${effectivePathogen}`}
+              valueLabel={valueLabel}
+              bandLabel={bandLabel}
+              yLabel={yLabel}
             />
           </div>
         );
