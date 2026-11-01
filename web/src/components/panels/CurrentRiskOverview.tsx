@@ -27,7 +27,19 @@ import TimeSeries from "./charts/TimeSeries";
  * pathogen and period.
  */
 
-export function CurrentRiskOverview() {
+/**
+ * Which halves of the overview to render:
+ *   - "full"  → map + time-series side by side (default, unchanged behavior)
+ *   - "map"   → only the geographic map, full width
+ *   - "trend" → only the time-series ("National Risk Trend"), full width
+ *
+ * The split modes let the dashboard promote the map to a full hero and move the
+ * trend into its own full-width row, while every mode reuses the SAME inner map
+ * and trend render logic below (no duplicated/divergent honesty logic).
+ */
+export type CurrentRiskView = "full" | "map" | "trend";
+
+export function CurrentRiskOverview({ view = "full" }: { view?: CurrentRiskView }) {
   const { pathogen, region, setRegion } = useSelection();
   const mapState = useArtifact<RiskMapFeature[]>("risk_map");
   const tsState = useArtifact<RiskTimeseriesPoint[]>("risk_timeseries");
@@ -37,73 +49,100 @@ export function CurrentRiskOverview() {
   const first = mapState.data?.[0];
   const headerStatus = first ? statusOf(first) : null;
 
+  // The map body (label + MapView). `layout` controls whether the inner grid
+  // shows the trend beside the map ("full") or the map spans full width.
+  const mapBody = (layout: "full" | "map") => (
+    <ArtifactBody
+      state={mapState}
+      artifactName="risk_map"
+      isEmpty={(f) => f.length === 0}
+      emptyTitle="No risk-map data available"
+      emptyDetail="The risk_map artifact is present but contains no regions."
+      render={(features) => {
+        const visible = filterMapByPathogen(features, pathogen);
+        const activePathogen = orNotAvailable(pathogen ?? visible[0]?.pathogen);
+
+        if (visible.length === 0) {
+          return (
+            <EmptyState
+              title="No risk-map data for the selected pathogen"
+              detail={`No regions carry ${activePathogen} risk for this view.`}
+            />
+          );
+        }
+
+        // Six mandatory map-label fields (Req 14.1), each read from the
+        // artifact; any absent one becomes an explicit N/A (Req 14.2, 14.6).
+        const sample = visible[0];
+        // Geography: a selected region if one is chosen, else the set of
+        // regions this map covers.
+        const geography = region
+          ? region
+          : `${visible.length} region${visible.length === 1 ? "" : "s"}`;
+        // Status read verbatim off the record — never invented (Req 14.3).
+        const labelStatus = statusOf(sample);
+
+        const mapPanel = (
+          <div>
+            <MapLabel
+              pathogen={pathogen ?? sample.pathogen}
+              geography={geography}
+              period={sample.period}
+              status={labelStatus}
+              uncertainty={formatUncertainty(sample.uncertainty)}
+              dataFreshness={sample.data_freshness}
+            />
+            <MapView
+              features={visible}
+              selectedRegion={region}
+              onSelectRegion={setRegion}
+            />
+          </div>
+        );
+
+        // "map" layout: the map fills the whole panel body.
+        if (layout === "map") return mapPanel;
+
+        // "full" layout: map beside the trend (historical behavior).
+        return (
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {mapPanel}
+            <div>
+              <TimeSeriesSection state={tsState} region={region} pathogen={pathogen} />
+            </div>
+          </div>
+        );
+      }}
+    />
+  );
+
+  if (view === "trend") {
+    // Only the time-series, in its own panel. Region selection (shared
+    // selection) still drives it; all empty-state gap messages are intact.
+    return (
+      <PanelShell
+        title="National Risk Trend"
+        subtitle="Historical trend for the selected region"
+        info="Risk over time for the region selected on the map, as a PREDICTED probability of elevated pathogen surveillance positivity with a 95% uncertainty band. This is a prioritization signal, not a contamination finding."
+      >
+        <TimeSeriesSection state={tsState} region={region} pathogen={pathogen} />
+      </PanelShell>
+    );
+  }
+
   return (
     <PanelShell
       title="Current Risk Overview"
-      subtitle="Geographic surveillance risk + historical trend"
+      subtitle={
+        view === "map"
+          ? "Geographic surveillance risk"
+          : "Geographic surveillance risk + historical trend"
+      }
       info="Each state is shaded by its PREDICTED probability of elevated pathogen surveillance positivity next period (teal = higher). This is a prioritization signal, not a contamination finding. Click a state to see its risk over time with a 95% uncertainty band."
-      className="lg:col-span-2"
+      className={view === "full" ? "lg:col-span-2" : undefined}
       accessory={headerStatus ? <StatusTag status={headerStatus} /> : null}
     >
-      <ArtifactBody
-        state={mapState}
-        artifactName="risk_map"
-        isEmpty={(f) => f.length === 0}
-        emptyTitle="No risk-map data available"
-        emptyDetail="The risk_map artifact is present but contains no regions."
-        render={(features) => {
-          const visible = filterMapByPathogen(features, pathogen);
-          const activePathogen = orNotAvailable(pathogen ?? visible[0]?.pathogen);
-
-          if (visible.length === 0) {
-            return (
-              <EmptyState
-                title="No risk-map data for the selected pathogen"
-                detail={`No regions carry ${activePathogen} risk for this view.`}
-              />
-            );
-          }
-
-          // Six mandatory map-label fields (Req 14.1), each read from the
-          // artifact; any absent one becomes an explicit N/A (Req 14.2, 14.6).
-          const sample = visible[0];
-          // Geography: a selected region if one is chosen, else the set of
-          // regions this map covers.
-          const geography = region
-            ? region
-            : `${visible.length} region${visible.length === 1 ? "" : "s"}`;
-          // Status read verbatim off the record — never invented (Req 14.3).
-          const labelStatus = statusOf(sample);
-
-          return (
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <div>
-                <MapLabel
-                  pathogen={pathogen ?? sample.pathogen}
-                  geography={geography}
-                  period={sample.period}
-                  status={labelStatus}
-                  uncertainty={formatUncertainty(sample.uncertainty)}
-                  dataFreshness={sample.data_freshness}
-                />
-                <MapView
-                  features={visible}
-                  selectedRegion={region}
-                  onSelectRegion={setRegion}
-                />
-              </div>
-
-              <div>
-                <TimeSeriesSection
-                  state={tsState}
-                  region={region}
-                  pathogen={pathogen}
-                />
-              </div>
-            </div>
-          );
-        }}
-      />
+      {mapBody(view === "map" ? "map" : "full")}
     </PanelShell>
   );
 }

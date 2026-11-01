@@ -9,9 +9,9 @@ import {
   filterAttentionByPathogen,
   filterMapByPathogen,
   formatRisk,
+  formatUncertainty,
   NOT_AVAILABLE,
 } from "../../types/viewModels";
-import { statusOf } from "../../types/status";
 import {
   PageHeader,
   ControlBar,
@@ -23,10 +23,10 @@ import {
   TwoColumn,
 } from "../ui";
 import EmptyState from "../EmptyState";
-import StatusTag from "../StatusTag";
 import StatusLegend from "../legend/StatusLegend";
 import CurrentRiskOverview from "./CurrentRiskOverview";
 import AttentionQueue from "./AttentionQueue";
+import { colorForRisk, riskBandLabel } from "./charts/riskBands";
 
 /**
  * Risk Dashboard (UI redesign, step 2).
@@ -199,12 +199,12 @@ export function RiskDashboard() {
       </p>
 
       <TwoColumn
-        left={<CurrentRiskOverview />}
+        left={<CurrentRiskOverview view="map" />}
         right={
           <SectionCard
             title="Top states by risk"
             subtitle={`Ranked for ${activePathogen}`}
-            info="The highest-risk states for the selected pathogen, read directly from the risk map. Select a state to drive the map and trend above."
+            info="The highest-risk states for the selected pathogen, read directly from the risk map. The risk pill shows the PREDICTED next-period elevated-positivity probability, bucketed into a named band. Select a state to drive the map and the trend below."
           >
             <div data-testid="top-states">
               {topStates.length === 0 ? (
@@ -219,7 +219,7 @@ export function RiskDashboard() {
                       <th className="py-1 pr-2 font-semibold">#</th>
                       <th className="py-1 pr-2 font-semibold">State</th>
                       <th className="py-1 pr-2 font-semibold">Risk</th>
-                      <th className="py-1 font-semibold">Status</th>
+                      <th className="py-1 font-semibold">Uncertainty</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -237,10 +237,10 @@ export function RiskDashboard() {
                             {f.region}
                           </button>
                         </td>
-                        <td className="py-1 pr-2 font-semibold text-navy">{formatRisk(f.risk)}</td>
-                        <td className="py-1">
-                          <StatusTag status={statusOf(f)} />
+                        <td className="py-1 pr-2">
+                          <RiskPill risk={f.risk} />
                         </td>
+                        <td className="py-1 text-navy/70">{formatUncertainty(f.uncertainty)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -250,6 +250,8 @@ export function RiskDashboard() {
           </SectionCard>
         }
       />
+
+      <CurrentRiskOverview view="trend" />
 
       <TwoColumn
         left={<AttentionQueue />}
@@ -270,6 +272,30 @@ export function RiskDashboard() {
         }
       />
     </div>
+  );
+}
+
+/**
+ * Color-coded risk pill for the top-states table. The background is the shared
+ * teal-ramp color for the risk (single source of truth: {@link colorForRisk}),
+ * the label is the honest percentage ({@link formatRisk}), and the accessible
+ * name carries the named band so screen readers hear e.g. "Very high risk,
+ * 80.0%". Text contrast mirrors the map's label rule (white at/above 0.5 risk,
+ * navy below). Teal/navy only — no alert colors (theme discipline, Req 14.4).
+ */
+function RiskPill({ risk }: { risk: number }) {
+  const dark = risk >= 0.5;
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+        dark ? "text-white" : "text-navy"
+      }`}
+      style={{ backgroundColor: colorForRisk(risk) }}
+      title={`${riskBandLabel(risk)} risk`}
+      aria-label={`${riskBandLabel(risk)} risk, ${formatRisk(risk)}`}
+    >
+      {formatRisk(risk)}
+    </span>
   );
 }
 

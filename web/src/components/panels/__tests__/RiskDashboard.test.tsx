@@ -136,6 +136,37 @@ describe("RiskDashboard", () => {
     expect(within(cards[0]).getByText("Low")).toBeInTheDocument();
   });
 
+  it("renders each top-state row with a risk % pill and an uncertainty value", async () => {
+    installArtifactFetch({ manifest: MANIFEST, risk_map: MAP, attention_queue: QUEUE });
+    renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });
+
+    const topStates = await screen.findByTestId("top-states");
+    await waitFor(() =>
+      expect(within(topStates).getAllByTestId("top-state-row")).toHaveLength(2),
+    );
+
+    // The leader (TX, 0.8) shows its honest risk percentage inside the pill and
+    // its stored ± uncertainty band (0.1 -> "± 10.0%"). Both are read from the
+    // artifact, never fabricated.
+    expect(within(topStates).getByText("80.0%")).toBeInTheDocument();
+    expect(within(topStates).getAllByText("± 10.0%").length).toBeGreaterThanOrEqual(1);
+
+    // The pill is accessible: its name carries the named band + percentage.
+    expect(
+      within(topStates).getByLabelText(/very high risk, 80\.0%/i),
+    ).toBeInTheDocument();
+  });
+
+  it("renders the National Risk Trend as its own region below the hero", async () => {
+    installArtifactFetch({ manifest: MANIFEST, risk_map: MAP, attention_queue: QUEUE });
+    renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });
+
+    // The trend half is promoted into its own full-width panel.
+    expect(
+      await screen.findByRole("heading", { name: /national risk trend/i }),
+    ).toBeInTheDocument();
+  });
+
   it("shows N/A for the national-risk KPI when the risk_map is empty (never fabricated)", async () => {
     installArtifactFetch({ manifest: MANIFEST, risk_map: [], attention_queue: [] });
     renderWithSelection(<RiskDashboard />, { pathogen: "Salmonella" });

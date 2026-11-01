@@ -3,7 +3,12 @@ import type { CSSProperties } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { RiskMapFeature } from "../../../types/artifacts";
-import { formatRisk, riskToIntensity } from "../../../types/viewModels";
+import { formatRisk } from "../../../types/viewModels";
+import { colorForRisk, NO_DATA_COLOR, RISK_BANDS } from "./riskBands";
+
+// Re-export so existing importers can pull the shared bucketing from either
+// module; riskBands.ts is the single source of truth.
+export { colorForRisk, riskBandLabel } from "./riskBands";
 
 /**
  * Geographic risk choropleth (Req 12.1, task 6.3).
@@ -21,35 +26,16 @@ export interface MapViewProps {
   onSelectRegion: (region: string) => void;
 }
 
-const MAP_HEIGHT = 340;
-const TEAL_RAMP: Array<[number, string]> = [
-  [0.0, "#e6f6f4"], [0.2, "#b3e3dd"], [0.4, "#6fcabf"],
-  [0.6, "#2fa99b"], [0.8, "#0f8578"], [1.0, "#0b5f55"],
-];
+const MAP_HEIGHT = 480;
 
 function geojsonUrl(): string {
   const base = import.meta.env.BASE_URL ?? "/";
   return `${base}geo/us-states.json`;
 }
-function colorForRisk(risk: number): string {
-  const r = riskToIntensity(risk);
-  let lo = TEAL_RAMP[0], hi = TEAL_RAMP[TEAL_RAMP.length - 1];
-  for (let i = 0; i < TEAL_RAMP.length - 1; i++) {
-    if (r >= TEAL_RAMP[i][0] && r <= TEAL_RAMP[i + 1][0]) { lo = TEAL_RAMP[i]; hi = TEAL_RAMP[i + 1]; break; }
-  }
-  const span = hi[0] - lo[0] || 1;
-  return lerpHex(lo[1], hi[1], (r - lo[0]) / span);
-}
-function lerpHex(a: string, b: string, t: number): string {
-  const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16));
-  const pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16));
-  const ch = pa.map((c, i) => Math.round(c + (pb[i] - c) * Math.max(0, Math.min(1, t))));
-  return `#${ch.map((c) => c.toString(16).padStart(2, "0")).join("")}`;
-}
 function buildFillExpression(byPostal: Map<string, number>): any {
   const stops: (string | number)[] = [];
   for (const [p, r] of byPostal) stops.push(p, colorForRisk(r));
-  return ["match", ["get", "postal"], ...(stops.length ? stops : ["__none__", "#e5e7eb"]), "#e5e7eb"];
+  return ["match", ["get", "postal"], ...(stops.length ? stops : ["__none__", NO_DATA_COLOR]), NO_DATA_COLOR];
 }
 
 /** Rough centroid of a GeoJSON Polygon/MultiPolygon outer rings (lng,lat). */
@@ -237,15 +223,28 @@ function risk(v: number | undefined): string {
   return v === undefined ? "no data" : formatRisk(v);
 }
 
+/**
+ * Discrete, named risk-band legend (teal ramp + neutral grey for no-data). Each
+ * row is a small color swatch + the band name, sharing the single-source
+ * {@link RISK_BANDS} so the legend and the choropleth bucket identically.
+ */
 function MapLegend() {
-  const stops = [0, 0.2, 0.4, 0.6, 0.8, 1.0];
   return (
-    <div className="flex items-center gap-2 text-[11px] text-navy/70">
-      <span>Lower risk</span>
-      <div className="flex h-3 flex-1 overflow-hidden rounded">
-        {stops.map((s) => (<div key={s} style={{ backgroundColor: colorForRisk(s), flex: 1 }} />))}
-      </div>
-      <span>Higher risk</span>
+    <div
+      data-testid="map-legend"
+      className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-navy/70"
+      aria-label="Risk band legend"
+    >
+      {RISK_BANDS.map((band) => (
+        <span key={band.label} className="inline-flex items-center gap-1.5">
+          <span
+            aria-hidden
+            className="inline-block h-3 w-3 rounded-sm border border-navy/10"
+            style={{ backgroundColor: band.color }}
+          />
+          <span>{band.label}</span>
+        </span>
+      ))}
     </div>
   );
 }
