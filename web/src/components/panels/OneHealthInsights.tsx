@@ -1,7 +1,7 @@
 ﻿import { useMemo, useState } from "react";
 import { useArtifact } from "../../data/hooks";
 import type { HumanOutbreakComparison } from "../../types/artifacts";
-import { formatRisk } from "../../types/viewModels";
+import { formatNumber, formatRisk } from "../../types/viewModels";
 import EmptyState from "../EmptyState";
 import PanelShell, { ArtifactBody } from "./PanelShell";
 
@@ -96,6 +96,8 @@ interface YearPoint {
   fsis_sample_n: number;
   nors_outbreaks: number | null;
   nors_illnesses: number | null;
+  nors_hospitalizations: number | null;
+  nors_deaths: number | null;
   coverage: string;
 }
 
@@ -132,7 +134,9 @@ function InsightsBody({
       const y = Number(r.period);
       const pt = byYear.get(y) ?? {
         year: y, fsis_positivity: null, fsis_sample_n: 0,
-        nors_outbreaks: null, nors_illnesses: null, coverage: r.coverage_status,
+        nors_outbreaks: null, nors_illnesses: null,
+        nors_hospitalizations: null, nors_deaths: null,
+        coverage: r.coverage_status,
       };
       // FSIS: weight positivity by sample_n to form a scope-level rate
       if (r.fsis_sample_n && r.fsis_positive_n != null) {
@@ -140,9 +144,14 @@ function InsightsBody({
         pt.fsis_sample_n += r.fsis_sample_n;
         pt.fsis_positivity = pt.fsis_sample_n ? (priorPos + r.fsis_positive_n) / pt.fsis_sample_n : null;
       }
-      // NORS: sum where present (null stays null until at least one real value)
+      // NORS: sum where present (null stays null until at least one real value).
+      // Hospitalizations and deaths are OBSERVED outbreak outcomes carried
+      // through with the SAME null-aware pattern as illnesses — corroboration
+      // context only, never a prediction or a food-to-illness causal claim.
       if (r.nors_outbreak_count != null) pt.nors_outbreaks = (pt.nors_outbreaks ?? 0) + r.nors_outbreak_count;
       if (r.nors_illness_count != null) pt.nors_illnesses = (pt.nors_illnesses ?? 0) + r.nors_illness_count;
+      if (r.nors_hospitalization_count != null) pt.nors_hospitalizations = (pt.nors_hospitalizations ?? 0) + r.nors_hospitalization_count;
+      if (r.nors_death_count != null) pt.nors_deaths = (pt.nors_deaths ?? 0) + r.nors_death_count;
       // a year is "covered" if ANY contributing cell had real NORS data (ok);
       // otherwise it stays coverage_limited / not-available.
       if (r.coverage_status === "ok") pt.coverage = "ok";
@@ -154,6 +163,27 @@ function InsightsBody({
 
   const leadLag = available.find((r) => r.lead_lag)?.lead_lag ?? null;
   const coverageLimited = available.some((r) => r.coverage_status === "coverage_limited");
+
+  // OBSERVED CDC NORS outbreak-outcome totals across the selected scope. Each
+  // figure stays null (surfaced as N/A) until at least one covered cell carries
+  // a real value — a coverage-limited scope never fabricates a zero. These are
+  // corroboration-only outcomes, never causally linked to the FSIS signal.
+  const norsTotals = useMemo(() => {
+    const sum = (pick: (p: YearPoint) => number | null): number | null => {
+      let acc: number | null = null;
+      for (const p of series) {
+        const v = pick(p);
+        if (v != null) acc = (acc ?? 0) + v;
+      }
+      return acc;
+    };
+    return {
+      outbreaks: sum((p) => p.nors_outbreaks),
+      illnesses: sum((p) => p.nors_illnesses),
+      hospitalizations: sum((p) => p.nors_hospitalizations),
+      deaths: sum((p) => p.nors_deaths),
+    };
+  }, [series]);
 
   if (unavailable) {
     return <EmptyState title={`${pathogen} — not available`} detail={unavailable.unavailable_reason ?? "Comparison unavailable."} />;
@@ -194,6 +224,34 @@ function InsightsBody({
 
       <DualTimeline series={series} />
 
+      {/* OBSERVED CDC NORS human-impact context (outbreaks / illnesses /
+          hospitalizations / deaths). Corroboration only — never a prediction
+          and never causally linked to the food-positivity signal. */}
+      <div className="rounded-lg border border-navy/10 bg-white p-4" data-testid="nors-human-impact">
+        <h3 className="mb-1 text-sm font-bold text-navy">
+          Observed human-impact context (CDC NORS)
+        </h3>
+        <p className="mb-3 text-[11px] leading-relaxed text-navy/60">
+          Reported outbreak outcomes across the selected scope and overlap window. Shown as
+          corroboration context, not a prediction.
+        </p>
+        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <NorsStat label="Outbreaks" value={norsTotals.outbreaks} testid="nors-outbreaks" />
+          <NorsStat label="Illnesses" value={norsTotals.illnesses} testid="nors-illnesses" />
+          <NorsStat
+            label="Hospitalizations"
+            value={norsTotals.hospitalizations}
+            testid="nors-hospitalizations"
+          />
+          <NorsStat label="Deaths" value={norsTotals.deaths} testid="nors-deaths" />
+        </dl>
+        <p className="mt-3 text-[10px] italic leading-relaxed text-navy/50">
+          Observed CDC NORS outbreak outcomes (hospitalizations and deaths among outbreak-associated
+          illnesses) — corroboration only, not causally linked to the food-positivity signal. A
+          coverage-limited scope shows N/A rather than a fabricated zero.
+        </p>
+      </div>
+
       {/* Exploratory lead-lag — shown modestly */}
       <div className="rounded-lg border border-navy/10 bg-white p-4">
         <h3 className="mb-1 text-sm font-bold text-navy">Exploratory lead–lag (descriptive only)</h3>
@@ -227,6 +285,27 @@ function InsightsBody({
         causation, and no sub-state or individual human estimate is produced. Later FSIS years without a
         CDC counterpart are shown as not-available, never zero.
       </p>
+    </div>
+  );
+}
+
+/** One OBSERVED CDC NORS outcome figure. Null (coverage-limited) renders as the
+ * standard not-available treatment, never a fabricated zero. Navy/teal only. */
+function NorsStat({
+  label,
+  value,
+  testid,
+}: {
+  label: string;
+  value: number | null;
+  testid: string;
+}) {
+  return (
+    <div className="rounded-lg border border-navy/10 bg-navy/5 px-3 py-2">
+      <dt className="text-[10px] font-semibold uppercase tracking-wide text-navy/50">{label}</dt>
+      <dd className="mt-0.5 text-lg font-bold text-navy" data-testid={testid}>
+        {value == null ? "N/A" : formatNumber(value, 0)}
+      </dd>
     </div>
   );
 }

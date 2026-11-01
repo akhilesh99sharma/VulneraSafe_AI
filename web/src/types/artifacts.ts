@@ -508,6 +508,8 @@ export interface HumanOutbreakComparison {
   fsis_ci_high: number | null;
   nors_outbreak_count: number | null;
   nors_illness_count: number | null;
+  nors_hospitalization_count: number | null;
+  nors_death_count: number | null;
   nors_available_from_year: number | null;
   availability_lag_days: number;
   lead_lag: LeadLagSummary | null;

@@ -632,6 +632,13 @@ class HumanOutbreakComparison(TypedDict):
     ``nors_outbreak_count`` 0) from missing/thin coverage ("coverage_limited"
     with null NORS counts) and from years beyond NORS ("nors_not_available").
     ``status`` is OBSERVED; the core StatusTag union is unchanged.
+
+    ``nors_hospitalization_count`` and ``nors_death_count`` are OBSERVED CDC
+    NORS outbreak OUTCOMES (hospitalizations and deaths among the
+    outbreak-associated illnesses), carried through with the SAME
+    true-zero-vs-coverage_limited handling as ``nors_illness_count``. They are
+    corroboration-only context and are NEVER causally linked to the FSIS food
+    signal nor used to predict it.
     """
 
     artifact_version: str
@@ -651,6 +658,8 @@ class HumanOutbreakComparison(TypedDict):
     fsis_ci_high: Optional[float]
     nors_outbreak_count: Optional[int]
     nors_illness_count: Optional[int]
+    nors_hospitalization_count: Optional[int]
+    nors_death_count: Optional[int]
     nors_available_from_year: Optional[int]
     availability_lag_days: int     # 365
     lead_lag: Optional[LeadLagSummary]

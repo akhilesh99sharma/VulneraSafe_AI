@@ -126,3 +126,53 @@ def test_fsis_denominator_conservation():
             assert r["nors_outbreak_count"] >= 0
         if r["nors_illness_count"] is not None:
             assert r["nors_illness_count"] >= 0
+        if r["nors_hospitalization_count"] is not None:
+            assert r["nors_hospitalization_count"] >= 0
+        if r["nors_death_count"] is not None:
+            assert r["nors_death_count"] >= 0
+
+
+# --------------------------------------------------------------------------- #
+# Property 8: OBSERVED NORS outbreak OUTCOMES (hospitalizations/deaths) are
+# aggregated by nors_by_cell and carried through the artifact with the SAME
+# true-zero-vs-coverage_limited handling as the illness count. Corroboration
+# context only — never predicted, never causally linked to FSIS.
+# --------------------------------------------------------------------------- #
+
+def test_nors_by_cell_aggregates_hospitalizations_and_deaths():
+    rows = [
+        {"year": 2015, "state": "GA", "illnesses": 10, "hospitalizations": 3,
+         "deaths": 1, "pathogens": {"Salmonella"}},
+        {"year": 2015, "state": "GA", "illnesses": 5, "hospitalizations": 2,
+         "deaths": 0, "pathogens": {"Salmonella", "STEC"}},
+    ]
+    cells = hc.nors_by_cell(rows)
+    salm = cells[("Salmonella", "GA", 2015)]
+    assert salm["outbreaks"] == 2
+    assert salm["illnesses"] == 15
+    assert salm["hospitalizations"] == 5
+    assert salm["deaths"] == 1
+    # the multi-pathogen outbreak also attributes its outcomes to STEC
+    stec = cells[("STEC", "GA", 2015)]
+    assert stec["hospitalizations"] == 2
+    assert stec["deaths"] == 0
+
+
+def test_artifact_carries_hospitalizations_and_deaths():
+    rows = build_human_outbreak_comparison()
+    avail = [r for r in rows if r["availability_status"] == "available"]
+    assert avail, "expected at least one available cell"
+    # every available cell exposes both new OBSERVED outcome fields
+    for r in avail:
+        assert "nors_hospitalization_count" in r
+        assert "nors_death_count" in r
+    # covered ("ok") cells never carry a null outcome (genuine zero or a count);
+    # coverage-limited cells carry null (never a fabricated zero) — mirroring
+    # the existing nors_outbreak_count discipline.
+    cov_ok = [r for r in avail if r["coverage_status"] == "ok"]
+    assert all(r["nors_hospitalization_count"] is not None for r in cov_ok)
+    assert all(r["nors_death_count"] is not None for r in cov_ok)
+    limited = [r for r in rows if r["coverage_status"] == "coverage_limited"]
+    if limited:
+        assert any(r["nors_hospitalization_count"] is None for r in limited)
+        assert any(r["nors_death_count"] is None for r in limited)

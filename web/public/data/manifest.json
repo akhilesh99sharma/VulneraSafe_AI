@@ -3,15 +3,15 @@
   "generated_at": "2027-01-01T00:00:00Z",
   "generated_at_policy": "Deterministic: resolved from VULNERASAFE_GENERATED_AT when set, else the fixed documented constant '2027-01-01T00:00:00Z'. This field is excluded from every per-artifact checksum so repeated exports from identical inputs are byte-identical in substance.",
   "data_freshness": {
-    "noaa_nclimdiv:tavg": "2026-10-31",
-    "noaa_nclimdiv:pcpn": "2026-10-31",
-    "noaa_nclimdiv:tmax": "2026-10-31",
-    "noaa_nclimdiv:tmin": "2026-10-31",
-    "cdc_nors": "2026-10-31",
-    "noaa": "2026-10-31",
-    "acs": "2026-10-31",
-    "food_access_atlas": "2026-10-31",
-    "fsis_lab": "2026-10-31",
+    "noaa_nclimdiv:tavg": "2026-11-01",
+    "noaa_nclimdiv:pcpn": "2026-11-01",
+    "noaa_nclimdiv:tmax": "2026-11-01",
+    "noaa_nclimdiv:tmin": "2026-11-01",
+    "cdc_nors": "2026-11-01",
+    "noaa": "2026-11-01",
+    "acs": "2026-11-01",
+    "food_access_atlas": "2026-11-01",
+    "fsis_lab": "2026-11-01",
     "fsis_recalls": "unavailable (feed firewalled)",
     "cdc_substitute": "lagged (corroboration only)"
   },
@@ -186,84 +186,84 @@
     {
       "source": "cdc_nors",
       "url": "https://data.cdc.gov/resource/5xkq-dg7x.json",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (CDC NORS)",
       "checksum_sha256": "7db2bec2b2f9537fbac95d57882ae3c30c471225b57482723372f82e8fa5fed9"
     },
     {
       "source": "census_acs",
       "url": "https://api.census.gov/data/2022/acs/acs5",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (US Census Bureau)",
       "checksum_sha256": "9ac0f79190719662b45b105f271775cd4c9b8bc9e121eef0fe010f95be95be25"
     },
     {
       "source": "food_access_atlas",
       "url": "https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (USDA ERS)",
       "checksum_sha256": "4faf369a75c0cd45e8707bd23c95f48ad055df3a643f59c3223a52490792daa8"
     },
     {
       "source": "fsis",
       "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (USDA FSIS)",
       "checksum_sha256": "57cd2fd313b75edaa2314b1635e7df96421066fe6cdb0c161d4f73696e752328"
     },
     {
       "source": "fsis:raw_beef_stec",
       "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (USDA FSIS)",
       "checksum_sha256": "f1ecb08de71ad63eb5d4fc433d37f78be4940bf3362c69e474ded8f278300419"
     },
     {
       "source": "fsis:raw_poultry_salmonella",
       "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (USDA FSIS)",
       "checksum_sha256": "1fd3e0cd3d09640168d0f984bb227b6d77f33bbf773f29c1841bc321778b9a02"
     },
     {
       "source": "fsis:rte_listeria",
       "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (USDA FSIS)",
       "checksum_sha256": "e1c47789f8a4e9da285b43d14618dd411d1758ec6c627046fb388bf3ef27ecf3"
     },
     {
       "source": "noaa",
       "url": "https://www.ncei.noaa.gov/access/services/data/v1",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (NOAA NCEI)",
       "checksum_sha256": "26e025feb26629cf3dd754f4e07d7f70d9a2619bd7846aff2d86d2afa37b66cb"
     },
     {
       "source": "noaa_nclimdiv:pcpn",
       "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-pcpnst-v1.0.0-20261006",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (NOAA NCEI)",
       "checksum_sha256": "4cb027fcacaa077dab05efe53c4a8a0a10a153c62e19cbdf3564410064e1015a"
     },
     {
       "source": "noaa_nclimdiv:tavg",
       "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmpcst-v1.0.0-20261006",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (NOAA NCEI)",
       "checksum_sha256": "8e83b1a8e830d9f4cd87bbc17c3f80c534cde7b7015be8132964ecbff7a8441b"
     },
     {
       "source": "noaa_nclimdiv:tmax",
       "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmaxst-v1.0.0-20261006",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (NOAA NCEI)",
       "checksum_sha256": "c6c1edd94576bb2cf450fdc173ac1b23e8090e6b3096a91b933b06eaf4a98dbd"
     },
     {
       "source": "noaa_nclimdiv:tmin",
       "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tminst-v1.0.0-20261006",
-      "access_date": "2026-10-31",
+      "access_date": "2026-11-01",
       "license": "US Government public domain (NOAA NCEI)",
       "checksum_sha256": "ca6d786a6c2657a09d6959cf32553334000bbedae21078679528de917da45c1b"
     }
@@ -355,13 +355,13 @@
     },
     "one_health_human_comparison": {
       "file": "one_health_human_comparison.json",
-      "checksum_sha256": "02825f40028686ae4551ccdb5a6d5671bb86f0f32dff4d489e9e7e11db5930a2",
+      "checksum_sha256": "926803c1193b24ed4610a40cd504f431028f18e3116e2b93ade04b36c8a50916",
       "record_count": 1690,
       "status_tagged": true
     },
     "provenance": {
       "file": "provenance.json",
-      "checksum_sha256": "ce7301ec6327540c3f1fc0c163714b9215ac4ab40d2c6215484a96f82d6bc40b",
+      "checksum_sha256": "fc30e48114200b9149f2c988be9493695df1867eda439362871df36f03b12e6c",
       "record_count": 13,
       "status_tagged": true
     },
@@ -373,7 +373,7 @@
     },
     "risk_map": {
       "file": "risk_map.json",
-      "checksum_sha256": "85129aaba8eaae92526d6b8ea0e8ce188f8c6151397794dfd8c1be3bd0b12a6f",
+      "checksum_sha256": "32db5313bb466152923f8e6f22124b3f7fe244a9f3cc02759b39034cbba782a0",
       "record_count": 138,
       "status_tagged": true
     },

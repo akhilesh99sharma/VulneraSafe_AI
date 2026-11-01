@@ -23,6 +23,8 @@ function rec(over: Partial<HumanOutbreakComparison>): HumanOutbreakComparison {
     fsis_ci_high: 0.2,
     nors_outbreak_count: 2,
     nors_illness_count: 40,
+    nors_hospitalization_count: 7,
+    nors_death_count: 1,
     nors_available_from_year: 2016,
     availability_lag_days: 365,
     lead_lag: {
@@ -48,16 +50,17 @@ function rec(over: Partial<HumanOutbreakComparison>): HumanOutbreakComparison {
 }
 
 const SALM: HumanOutbreakComparison[] = [
-  rec({ region: "GA", period: "2015", nors_outbreak_count: 2 }),
-  rec({ region: "GA", period: "2016", nors_outbreak_count: 0 }), // true zero
-  rec({ region: "TX", period: "2015", nors_outbreak_count: 1, fsis_positive_n: 8, fsis_positivity: 0.08 }),
+  rec({ region: "GA", period: "2015", nors_outbreak_count: 2, nors_hospitalization_count: 7, nors_death_count: 1 }),
+  rec({ region: "GA", period: "2016", nors_outbreak_count: 0, nors_hospitalization_count: 0, nors_death_count: 0 }), // true zero
+  rec({ region: "TX", period: "2015", nors_outbreak_count: 1, nors_hospitalization_count: 3, nors_death_count: 0, fsis_positive_n: 8, fsis_positivity: 0.08 }),
 ];
 
-// Listeria: coverage limited, null counts, no lead-lag.
+// Listeria: coverage limited, null counts (incl. null outcomes), no lead-lag.
 const LIST: HumanOutbreakComparison[] = [
   rec({
     pathogen: "Listeria", commodity: "rte", region: "CA", period: "2014",
     coverage_status: "coverage_limited", nors_outbreak_count: null, nors_illness_count: null,
+    nors_hospitalization_count: null, nors_death_count: null,
     lead_lag: null, fsis_positivity: 0.004, fsis_positive_n: 2, fsis_sample_n: 500,
   }),
 ];
@@ -101,6 +104,29 @@ describe("OneHealthInsights", () => {
     );
     expect(screen.getByText("coverage limited")).toBeInTheDocument();
 
+  });
+
+  it("surfaces OBSERVED NORS hospitalizations and deaths as human-impact context", async () => {
+    installArtifactFetch({ one_health_human_comparison: ROWS });
+    render(<OneHealthInsights />);
+    await waitFor(() => expect(screen.getByText(/observed human-impact context/i)).toBeInTheDocument());
+    // national Salmonella scope: hospitalizations 7+0+3 = 10, deaths 1+0+0 = 1
+    expect(screen.getByTestId("nors-hospitalizations")).toHaveTextContent("10");
+    expect(screen.getByTestId("nors-deaths")).toHaveTextContent("1");
+    // honest corroboration-only caption is present near the figures
+    expect(
+      screen.getByText(/not causally linked to the food-positivity signal/i),
+    ).toBeInTheDocument();
+  });
+
+  it("shows N/A (never a fabricated zero) for coverage-limited outcome figures", async () => {
+    installArtifactFetch({ one_health_human_comparison: ROWS });
+    render(<OneHealthInsights />);
+    await waitFor(() => expect(screen.getByText(/fsis food surveillance vs/i)).toBeInTheDocument());
+    fireEvent.click(screen.getByRole("button", { name: /^Listeria$/ }));
+    await waitFor(() => expect(screen.getByText(/observed human-impact context/i)).toBeInTheDocument());
+    expect(screen.getByTestId("nors-hospitalizations")).toHaveTextContent("N/A");
+    expect(screen.getByTestId("nors-deaths")).toHaveTextContent("N/A");
   });
 
   it("degrades to an honest empty state when the artifact is missing", async () => {

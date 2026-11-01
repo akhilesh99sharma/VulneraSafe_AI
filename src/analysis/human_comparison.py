@@ -156,17 +156,23 @@ def load_nors_foodborne(path: Path = NORS_PATH) -> tuple[list[dict], dict]:
     return rows, meta
 
 def nors_by_cell(rows: list[dict]) -> dict[tuple[str, str, int], dict]:
-    """Aggregate to (pathogen, state, year) -> {outbreaks, illnesses}.
+    """Aggregate to (pathogen, state, year) -> {outbreaks, illnesses,
+    hospitalizations, deaths}.
 
     A multi-pathogen outbreak contributes its counts to EACH matched pathogen
-    (documented attribution; counts are not invented, only attributed)."""
+    (documented attribution; counts are not invented, only attributed).
+    hospitalizations/deaths are OBSERVED CDC NORS outbreak OUTCOMES among the
+    outbreak-associated illnesses — corroboration-only context, never causally
+    linked to the FSIS food signal."""
     cells: dict[tuple[str, str, int], dict] = {}
     for r in rows:
         for p in r["pathogens"]:
             key = (p, r["state"], r["year"])
-            c = cells.setdefault(key, {"outbreaks": 0, "illnesses": 0})
+            c = cells.setdefault(key, {"outbreaks": 0, "illnesses": 0, "hospitalizations": 0, "deaths": 0})
             c["outbreaks"] += 1
             c["illnesses"] += r["illnesses"]
+            c["hospitalizations"] += r["hospitalizations"]
+            c["deaths"] += r["deaths"]
     return cells
 
 def fsis_state_year() -> dict[str, dict[tuple[str, int], dict]]:
@@ -334,16 +340,20 @@ def compute_human_comparison(*, round_to: int = 6) -> dict[str, Any]:
             positivity = (fsis_pos / fsis_n) if (fsis_n and fsis_pos is not None) else None
             lo, hi = wilson_ci(fsis_pos or 0, fsis_n or 0) if fsis_n else (None, None)
             # NORS present for this cell? distinguish true zero vs missing coverage.
+            # hospitalizations/deaths are OBSERVED outbreak OUTCOMES carried
+            # through with the SAME true-zero-vs-coverage_limited handling as the
+            # illness count — corroboration-only, never causally linked to FSIS.
             if ng is not None:
-                nors_out, nors_ill, cov = ng["outbreaks"], ng["illnesses"], coverage
+                nors_out, nors_ill = ng["outbreaks"], ng["illnesses"]
+                nors_hosp, nors_deaths, cov = ng["hospitalizations"], ng["deaths"], coverage
             else:
                 # FSIS-only cell: NORS reported nothing here. Within a covered
                 # pathogen this is a genuine zero; for a coverage-limited pathogen
                 # mark it limited rather than asserting zero human burden.
                 if coverage == "ok":
-                    nors_out, nors_ill, cov = 0, 0, "ok"
+                    nors_out, nors_ill, nors_hosp, nors_deaths, cov = 0, 0, 0, 0, "ok"
                 else:
-                    nors_out, nors_ill, cov = None, None, "coverage_limited"
+                    nors_out, nors_ill, nors_hosp, nors_deaths, cov = None, None, None, None, "coverage_limited"
             cell_rows.append({
                 "region": s, "period": str(y),
                 "fsis_sample_n": fsis_n, "fsis_positive_n": fsis_pos,
@@ -352,6 +362,8 @@ def compute_human_comparison(*, round_to: int = 6) -> dict[str, Any]:
                 "fsis_ci_high": round(hi, round_to) if hi is not None else None,
                 "nors_outbreak_count": nors_out,
                 "nors_illness_count": nors_ill,
+                "nors_hospitalization_count": nors_hosp,
+                "nors_death_count": nors_deaths,
                 "nors_available_from_year": availability_year(y),
                 "coverage_status": cov,
             })

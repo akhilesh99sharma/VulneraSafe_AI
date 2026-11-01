@@ -2,7 +2,7 @@
   {
     "source": "cdc_nors",
     "url": "https://data.cdc.gov/resource/5xkq-dg7x.json",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (CDC NORS)",
     "geographic_coverage": "United States (state-level)",
     "temporal_coverage": "2014..2023 (outbreak dates)",
@@ -20,7 +20,7 @@
   {
     "source": "census_acs",
     "url": "https://api.census.gov/data/2022/acs/acs5",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (US Census Bureau)",
     "geographic_coverage": "state:*",
     "temporal_coverage": "ACS5 2022",
@@ -36,7 +36,7 @@
   {
     "source": "food_access_atlas",
     "url": "https://www.ers.usda.gov/media/5626/2019-large-retailer-access-map-lram-formerly-known-as-the-food-access-research-atlas-fara-data.xlsx",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA ERS)",
     "geographic_coverage": "United States (census tracts)",
     "temporal_coverage": "2015/2019 Atlas vintage",
@@ -52,7 +52,7 @@
   {
     "source": "fsis",
     "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA FSIS)",
     "geographic_coverage": "United States (FSIS-regulated establishments)",
     "temporal_coverage": "multiple fiscal years (aggregated)",
@@ -66,7 +66,7 @@
   {
     "source": "fsis:raw_beef_stec",
     "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA FSIS)",
     "geographic_coverage": "United States (FSIS-regulated establishments)",
     "temporal_coverage": "multiple fiscal years (aggregated)",
@@ -80,7 +80,7 @@
   {
     "source": "fsis:raw_poultry_salmonella",
     "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA FSIS)",
     "geographic_coverage": "United States (FSIS-regulated establishments)",
     "temporal_coverage": "multiple fiscal years (aggregated)",
@@ -94,7 +94,7 @@
   {
     "source": "fsis:rte_listeria",
     "url": "https://www.fsis.usda.gov/science-data/data-sets-visualizations/laboratory-sampling-data",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA FSIS)",
     "geographic_coverage": "United States (FSIS-regulated establishments)",
     "temporal_coverage": "multiple fiscal years (aggregated)",
@@ -108,7 +108,7 @@
   {
     "source": "fsis_recalls",
     "url": "https://www.fsis.usda.gov/fsis/api/recall/v/1",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (USDA FSIS)",
     "geographic_coverage": "United States",
     "temporal_coverage": "unknown (unavailable)",
@@ -122,7 +122,7 @@
   {
     "source": "noaa",
     "url": "https://www.ncei.noaa.gov/access/services/data/v1",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (NOAA NCEI)",
     "geographic_coverage": "GHCND stations: USW00094728",
     "temporal_coverage": "2023-01-01..2023-01-07",
@@ -138,7 +138,7 @@
   {
     "source": "noaa_nclimdiv:pcpn",
     "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-pcpnst-v1.0.0-20261006",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (NOAA NCEI)",
     "geographic_coverage": "United States statewide (49 states)",
     "temporal_coverage": "2014..2026",
@@ -155,7 +155,7 @@
   {
     "source": "noaa_nclimdiv:tavg",
     "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmpcst-v1.0.0-20261006",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (NOAA NCEI)",
     "geographic_coverage": "United States statewide (49 states)",
     "temporal_coverage": "2014..2026",
@@ -172,7 +172,7 @@
   {
     "source": "noaa_nclimdiv:tmax",
     "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tmaxst-v1.0.0-20261006",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (NOAA NCEI)",
     "geographic_coverage": "United States statewide (49 states)",
     "temporal_coverage": "2014..2026",
@@ -189,7 +189,7 @@
   {
     "source": "noaa_nclimdiv:tmin",
     "url": "https://www.ncei.noaa.gov/pub/data/cirs/climdiv/climdiv-tminst-v1.0.0-20261006",
-    "access_date": "2026-10-31",
+    "access_date": "2026-11-01",
     "license": "US Government public domain (NOAA NCEI)",
     "geographic_coverage": "United States statewide (49 states)",
     "temporal_coverage": "2014..2026",
