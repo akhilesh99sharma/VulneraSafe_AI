@@ -17,10 +17,9 @@ import PathogenExplorer from "./components/panels/PathogenExplorer";
 import EmergingSignals from "./components/panels/EmergingSignals";
 import SupplierMonitor from "./components/panels/SupplierMonitor";
 import OneHealthInsights from "./components/panels/OneHealthInsights";
-import VulnerableCommunities from "./components/panels/VulnerableCommunities";
+import Communities from "./components/panels/Communities";
 import SurveillanceActions from "./components/panels/SurveillanceActions";
 import FacilityMap from "./components/panels/FacilityMap";
-import CountyCommunities from "./components/panels/CountyCommunities";
 import SeasonalHazard from "./components/panels/SeasonalHazard";
 import type { Manifest } from "./types/artifacts";
 
@@ -33,7 +32,7 @@ import type { Manifest } from "./types/artifacts";
  *  1. Overview            -> Landing (onEnter -> Risk Dashboard)
  *  2. Risk Dashboard      -> RegulatoryAlertsStrip + Controls + manifest + RiskDashboard
  *  3. Pathogens           -> Product & Program / Emerging Signals / Seasonal Patterns
- *  4. Communities         -> By State (S06) / By County (S07)
+ *  4. Communities         -> unified Communities with a State ⇄ County toggle
  *  5. Facilities          -> Supplier Monitor (S03) / Facility Map
  *  6. Decision Actions    -> Population Lens / Surveillance Actions / Scenario Builder /
  *                            Recommended Actions / Evidence & Explanation / Policy Comparison
@@ -194,21 +193,6 @@ function PathogensSection() {
   );
 }
 
-/** Communities section: state- and county-level views (merge deferred). */
-function CommunitiesSection() {
-  const subtabs: SectionTab[] = [
-    { id: "state", label: "By State (S06)" },
-    { id: "county", label: "By County (S07)" },
-  ];
-  const [sub, setSub] = useState<string>("state");
-  return (
-    <>
-      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
-      {sub === "county" ? <CountyCommunities /> : <VulnerableCommunities />}
-    </>
-  );
-}
-
 /** Facilities section: supplier monitor + facility map (merge deferred). */
 function FacilitiesSection() {
   const subtabs: SectionTab[] = [
@@ -275,7 +259,7 @@ function AppBody() {
       ) : section === "pathogens" ? (
         <PathogensSection />
       ) : section === "communities" ? (
-        <CommunitiesSection />
+        <Communities />
       ) : section === "facilities" ? (
         <FacilitiesSection />
       ) : section === "actions" ? (
