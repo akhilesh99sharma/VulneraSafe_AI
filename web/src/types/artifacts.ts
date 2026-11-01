@@ -657,3 +657,46 @@ export interface CountyCommunityImpactRecord {
   unavailable_reason: string | null;
   generated_at: string;
 }
+
+// seasonal_hazard_patterns -> Seasonal Patterns view (S02)
+//
+// S02 mirrors the Python `SeasonalHazardRecord` TypedDict field-for-field
+// (identical snake_case names; a parity test keeps them in lockstep). One record
+// per (pathogen, view, bucket): `view` is "month" (buckets "01".."12") or
+// "quarter" (buckets "Q1".."Q4"). Every value-bearing field is OBSERVED
+// historical FSIS positivity pooled into the calendar bucket, never a forecast or
+// contamination claim, so `status` is always "OBSERVED". A bucket below its
+// minimum-sample gate is present-but-unavailable: `rate`/`ci_low`/`ci_high`/
+// `seasonal_index` are null with the actual counts still recorded, never
+// fabricated. The trend block (`trend_slope` + its availability) and the per-view
+// peak flag (`is_peak`) are repeated on each of a pathogen's rows. `pattern_label`
+// is the constant "historical seasonal pattern". Reuses the shared `StatusTag` union.
+export interface SeasonalHazardRecord {
+  artifact_version: string;
+  module_id: string; // "S02"
+  method_version: string; // "s02.v1"
+  pathogen: string;
+  commodity: string;
+  view: string; // "month" | "quarter"
+  bucket_label: string; // "01".."12" or "Q1".."Q4"
+  sample_n: number | null;
+  positive_n: number | null;
+  rate: number | null;
+  ci_low: number | null;
+  ci_high: number | null;
+  ci_method: string;
+  seasonal_index: number | null;
+  overall_rate: number | null;
+  is_peak: boolean;
+  trend_method: string;
+  trend_slope: number | null;
+  trend_years_used: number[];
+  trend_availability_status: string;
+  trend_unavailable_reason: string | null;
+  pattern_label: string;
+  status: StatusTag;
+  availability_status: string;
+  unavailable_reason: string | null;
+  periods_read_count: number;
+  generated_at: string;
+}

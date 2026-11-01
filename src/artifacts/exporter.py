@@ -61,6 +61,7 @@ from src.artifacts.schemas import (
     LeadLagSummary,
     CommunityImpactRecord,
     CountyCommunityImpactRecord,
+    SeasonalHazardRecord,
     LensPriority,
     WeightSensitivity,
     ActionQueueItem,
@@ -1949,6 +1950,160 @@ def build_county_community_impact() -> list[dict]:
     return rows
 
 
+def build_seasonal_hazard_patterns() -> list[dict]:
+    """S02: OBSERVED seasonal / temporal hazard positivity patterns.
+
+    Reads the offline cache ``data/interim/s02_seasonal_hazard_patterns.json``
+    (produced by ``python -m src.analysis.seasonal_hazard_patterns``) and
+    flattens it to one ``SeasonalHazardRecord`` per (pathogen, view, bucket) —
+    ``view`` is "month" (buckets "01".."12") or "quarter" ("Q1".."Q4"). Every
+    value-bearing field is OBSERVED historical FSIS positivity pooled into the
+    calendar bucket, never a forecast or contamination claim, so ``status`` is
+    always "OBSERVED" and ``pattern_label`` is the constant "historical seasonal
+    pattern". ``rate`` is pooled positivity with a Wilson 95% interval;
+    ``seasonal_index`` is the bucket rate divided by the pathogen's
+    ``overall_rate``. A bucket below its minimum-sample gate is
+    present-but-unavailable with null ``rate``/``ci_low``/``ci_high``/
+    ``seasonal_index`` and the actual counts still recorded, never fabricated.
+    The pathogen's trend block and the per-view peak flag (``is_peak``) are
+    repeated on each of that pathogen's rows. If the cache is missing, returns
+    one explicit per-pathogen unavailable sentinel row (``view="quarter"``,
+    ``bucket_label="(all)"``) instead of raising, mirroring the S07 cache-missing
+    path. Rows are sorted by ``(pathogen, view, bucket_label)`` for determinism.
+    """
+    from src.analysis.seasonal_hazard_patterns import load_cache
+
+    stamp = resolve_generated_at()
+    cache = load_cache()
+    rows: list[dict] = []
+
+    method_version = (cache or {}).get("method_version", "s02.v1")
+    ci_method_top = (cache or {}).get("ci_method", "wilson_95")
+
+    def _unavailable(pathogen, commodity, reason):
+        return SeasonalHazardRecord(
+            artifact_version=ARTIFACT_VERSION,
+            module_id="S02",
+            method_version=method_version,
+            pathogen=str(pathogen),
+            commodity=str(commodity),
+            view="quarter",
+            bucket_label="(all)",
+            sample_n=None,
+            positive_n=None,
+            rate=None,
+            ci_low=None,
+            ci_high=None,
+            ci_method=ci_method_top,
+            seasonal_index=None,
+            overall_rate=None,
+            is_peak=False,
+            trend_method="ordinal_year_ols_slope",
+            trend_slope=None,
+            trend_years_used=[],
+            trend_availability_status="unavailable",
+            trend_unavailable_reason=reason,
+            pattern_label="historical seasonal pattern",
+            status="OBSERVED",
+            availability_status="unavailable",
+            unavailable_reason=reason,
+            periods_read_count=0,
+            generated_at=stamp,
+        )
+
+    if not cache or not cache.get("pathogens"):
+        for pathogen, commodity, _slug in PATHOGENS:
+            rows.append(_unavailable(
+                pathogen, commodity,
+                "S02 cache not generated; run: python -m src.analysis.seasonal_hazard_patterns",
+            ))
+        return rows
+
+    for pathogen, pdata in cache["pathogens"].items():
+        commodity = pdata.get("commodity", "")
+        overall_rate = pdata.get("overall_rate")
+        periods_read_count = len(pdata.get("periods_read", []))
+        peak_month = pdata.get("peak_month")
+        peak_quarter = pdata.get("peak_quarter")
+
+        trend = pdata.get("trend") or {}
+        trend_method = str(trend.get("method", "ordinal_year_ols_slope"))
+        trend_slope = _round(trend.get("slope")) if trend.get("slope") is not None else None
+        trend_years_used = [int(y) for y in trend.get("years_used", [])]
+        trend_availability_status = str(trend.get("availability_status", "unavailable"))
+        trend_unavailable_reason = trend.get("unavailable_reason")
+
+        month_buckets = pdata.get("month_buckets", [])
+        quarter_buckets = pdata.get("quarter_buckets", [])
+
+        # A pathogen whose series could not be built (Req 2.4): a single
+        # per-pathogen unavailable sentinel, like the S07 per-pathogen path.
+        if pdata.get("availability_status") != "available" and not month_buckets and not quarter_buckets:
+            rows.append(_unavailable(
+                pathogen, commodity,
+                pdata.get("unavailable_reason") or "Seasonal patterns unavailable for this pathogen.",
+            ))
+            continue
+
+        for view, buckets, peak in (
+            ("month", month_buckets, peak_month),
+            ("quarter", quarter_buckets, peak_quarter),
+        ):
+            for b in buckets:
+                bucket_label = str(b.get("label"))
+                rows.append(SeasonalHazardRecord(
+                    artifact_version=ARTIFACT_VERSION,
+                    module_id="S02",
+                    method_version=method_version,
+                    pathogen=str(pathogen),
+                    commodity=str(commodity),
+                    view=view,
+                    bucket_label=bucket_label,
+                    sample_n=b.get("n"),
+                    positive_n=b.get("pos"),
+                    rate=(_round(b["rate"]) if b.get("rate") is not None else None),
+                    ci_low=(_round(b["ci_low"]) if b.get("ci_low") is not None else None),
+                    ci_high=(_round(b["ci_high"]) if b.get("ci_high") is not None else None),
+                    ci_method=ci_method_top,
+                    seasonal_index=(_round(b["seasonal_index"]) if b.get("seasonal_index") is not None else None),
+                    overall_rate=(_round(overall_rate) if overall_rate is not None else None),
+                    is_peak=(peak is not None and bucket_label == peak),
+                    trend_method=trend_method,
+                    trend_slope=trend_slope,
+                    trend_years_used=trend_years_used,
+                    trend_availability_status=trend_availability_status,
+                    trend_unavailable_reason=trend_unavailable_reason,
+                    pattern_label="historical seasonal pattern",
+                    status="OBSERVED",
+                    availability_status=str(b.get("availability_status", "available")),
+                    unavailable_reason=b.get("unavailable_reason"),
+                    periods_read_count=periods_read_count,
+                    generated_at=stamp,
+                ))
+
+    rows.sort(key=lambda r: (r["pathogen"], r["view"], r["bucket_label"]))
+
+    # Forbidden-field guard (Req 6.3): no row KEY (field name) may contain, case-
+    # insensitively, any banned fabrication token. This guards the field NAMES
+    # (not values), mirroring the county_community_impact guard approach. The 27
+    # chosen field names are clean, so this never fires in practice.
+    _banned = (
+        "forecast", "predicted", "prediction", "contaminat", "infection",
+        "future", "illness_estimate", "predicted_case", "human_case",
+    )
+    for row in rows:
+        for key in row:
+            lowered = key.lower()
+            for token in _banned:
+                if token in lowered:
+                    raise SchemaValidationError(
+                        f"seasonal_hazard_patterns row carries forbidden field name "
+                        f"{key!r} (contains banned token {token!r})."
+                    )
+
+    return rows
+
+
 def build_action_queue() -> list[dict]:
     """Decision layer: ranked, human-review-gated actions derived from the
     OBSERVED S01/S03/S04/S06 surveillance signals (S05 corroboration only).
@@ -2177,6 +2332,8 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
     validate_payload(community_impact, CommunityImpactRecord, label="community_impact")
     county_community_impact = build_county_community_impact()
     validate_payload(county_community_impact, CountyCommunityImpactRecord, label="county_community_impact")
+    seasonal_hazard_patterns = build_seasonal_hazard_patterns()
+    validate_payload(seasonal_hazard_patterns, SeasonalHazardRecord, label="seasonal_hazard_patterns")
 
     action_queue = build_action_queue()
     validate_payload(action_queue, ActionQueueItem, label="action_queue")
@@ -2205,6 +2362,7 @@ def build_all_artifacts(scenario_payload: Optional[dict] = None) -> dict[str, An
         "one_health_human_comparison": human_comparison,
         "community_impact": community_impact,
         "county_community_impact": county_community_impact,
+        "seasonal_hazard_patterns": seasonal_hazard_patterns,
         "action_queue": action_queue,
         "facility_map": facility_map,
         "_modules": modules,  # internal: folded into the manifest, not written standalone

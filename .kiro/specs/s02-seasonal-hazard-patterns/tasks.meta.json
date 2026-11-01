@@ -1,0 +1,247 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Implement the S02 analysis core": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499517844
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499525867
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499727613
+      }
+    ],
+    "2. Implement the cache build entry point and tolerant reader": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499517992
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499731493
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499901660
+      }
+    ],
+    "3.1 Implement core honesty/gating property tests (not optional — honesty is the hard constraint)": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499518229
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499909074
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500183583
+      }
+    ],
+    "3.3 Write example tests for guardrail copy and no-mutation": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499518389
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499910048
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500184588
+      }
+    ],
+    "4. Add the SeasonalHazardRecord TypedDict to the Python schema": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499518534
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499732479
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499900700
+      }
+    ],
+    "5.1 Add the mirrored SeasonalHazardRecord interface to the web types": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499518705
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499911088
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500185702
+      }
+    ],
+    "5.2 Write the Python↔TS parity test": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499519042
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500201021
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500365419
+      }
+    ],
+    "6. Add the exporter builder and register it": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499519248
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500201661
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500364569
+      }
+    ],
+    "7.1 Write the exporter builder validation and guard tests": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499519448
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500378226
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500627937
+      }
+    ],
+    "7.2 Bump the exporter written-file-count assertion from 28 to 29": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499519644
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500379525
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500629320
+      }
+    ],
+    "8. Build the SeasonalHazard web panel": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499519858
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500377089
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500630344
+      }
+    ],
+    "9. Wire the new Seasonal Patterns tab into the app": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499520251
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500637827
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500696587
+      }
+    ],
+    "10. Write the SeasonalHazard web component test": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793499520557
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500700074
+      },
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793501228415
+      }
+    ],
+    "3. Write the core honesty, gating, peak, trend, and determinism tests": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500184668
+      }
+    ],
+    "5. Add the TS mirror interface and the Python↔TS parity test": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500365686
+      }
+    ],
+    "7. Add exporter tests and bump the written-file-count assertion": [
+      {
+        "executionId": "49a2f959-e2d7-43db-aec8-4af5390a135c",
+        "chatSessionId": "sess_d0f199bc-f718-4c00-9c65-f410b127055f",
+        "timestamp": 1793500629544
+      }
+    ]
+  }
+}

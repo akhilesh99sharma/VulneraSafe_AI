@@ -978,3 +978,54 @@ class EmergingRiskStratum(TypedDict):
 
 #: All alert-source literal values.
 ALERT_SOURCES: frozenset[str] = frozenset(("MODEL", "REGULATORY"))
+
+# --------------------------------------------------------------------------- #
+# seasonal_hazard_patterns -> Seasonal Patterns view (S02)
+# --------------------------------------------------------------------------- #
+
+class SeasonalHazardRecord(TypedDict):
+    """One OBSERVED seasonal-pattern record for S02.
+
+    One record per (pathogen, view, bucket): ``view`` is "month" (buckets
+    "01".."12") or "quarter" (buckets "Q1".."Q4"). Every value-bearing field is
+    OBSERVED historical FSIS positivity pooled into the calendar bucket, never a
+    forecast or contamination claim, so ``status`` is always "OBSERVED". ``rate``
+    is the pooled positivity (positive_n / sample_n) with a Wilson 95% interval;
+    ``seasonal_index`` is the bucket rate divided by the pathogen's
+    ``overall_rate``. ``availability_status``/``unavailable_reason`` are carried
+    per statistic (Req 6.4): a bucket below its minimum-sample gate is
+    present-but-unavailable with null ``rate``/``ci_low``/``ci_high``/
+    ``seasonal_index`` and the actual counts still recorded, never fabricated.
+    The trend block (``trend_slope`` + its availability) and the per-view peak
+    flag (``is_peak``) are repeated on each of a pathogen's rows so the web tab
+    reads them without a second artifact. ``pattern_label`` is the constant
+    "historical seasonal pattern".
+    """
+
+    artifact_version: str
+    module_id: str                       # "S02"
+    method_version: str                  # "s02.v1"
+    pathogen: str
+    commodity: str
+    view: str                            # "month" | "quarter"
+    bucket_label: str                    # "01".."12" or "Q1".."Q4"
+    sample_n: Optional[int]
+    positive_n: Optional[int]
+    rate: Optional[float]                # pooled positivity; null when unavailable
+    ci_low: Optional[float]
+    ci_high: Optional[float]
+    ci_method: str                       # "wilson_95"
+    seasonal_index: Optional[float]      # bucket rate / overall rate
+    overall_rate: Optional[float]        # pathogen pooled overall
+    is_peak: bool                        # True when this bucket is the view's Peak_Season
+    trend_method: str                    # "ordinal_year_ols_slope"
+    trend_slope: Optional[float]         # per-year change; null when trend unavailable
+    trend_years_used: list[int]          # distinct years used
+    trend_availability_status: str       # "available" | "unavailable"
+    trend_unavailable_reason: Optional[str]
+    pattern_label: str                   # constant "historical seasonal pattern"
+    status: StatusTag                    # always "OBSERVED"
+    availability_status: str             # "available" | "unavailable"
+    unavailable_reason: Optional[str]    # names the gate + count when unavailable
+    periods_read_count: int              # count of months read for the pathogen (audit)
+    generated_at: str

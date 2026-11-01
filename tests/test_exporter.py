@@ -137,8 +137,11 @@ def test_manifest_is_complete(exported):
         "provenance",
         "feasibility_report",
         "equity_test",
+        "seasonal_hazard_patterns",  # S02: one new JSON artifact (28 -> 29 written files)
     ):
         assert (exported["dir"] / f"{name}.json").exists()
+    # S02's new artifact is also recorded in the manifest (not a CSV companion)
+    assert "seasonal_hazard_patterns" in m["artifacts"]
 
 
 def test_scenario_and_regulatory_artifacts_preserved(exported):

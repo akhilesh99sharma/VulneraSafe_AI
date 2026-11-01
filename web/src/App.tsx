@@ -21,6 +21,7 @@ import VulnerableCommunities from "./components/panels/VulnerableCommunities";
 import SurveillanceActions from "./components/panels/SurveillanceActions";
 import FacilityMap from "./components/panels/FacilityMap";
 import CountyCommunities from "./components/panels/CountyCommunities";
+import SeasonalHazard from "./components/panels/SeasonalHazard";
 import type { Manifest } from "./types/artifacts";
 
 /**
@@ -33,7 +34,7 @@ import type { Manifest } from "./types/artifacts";
  * stay mounted across tabs so a verified recall is never hidden by navigation.
  */
 
-type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions" | "facilitymap" | "countycommunities";
+type Tab = "overview" | "dashboard" | "explorer" | "emerging" | "supplier" | "onehealth" | "communities" | "actions" | "facilitymap" | "countycommunities" | "seasonal";
 
 
 
@@ -49,6 +50,7 @@ function Header({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
     { id: "actions", label: "Surveillance Actions" },
     { id: "facilitymap", label: "Facility Map" },
     { id: "countycommunities", label: "County Communities" },
+    { id: "seasonal", label: "Seasonal Patterns" },
 
 
   ];
@@ -193,6 +195,8 @@ function AppBody() {
         <FacilityMap />
       ) : tab === "countycommunities" ? (
         <CountyCommunities />
+      ) : tab === "seasonal" ? (
+        <SeasonalHazard />
       ) : (
         <Dashboard />
       )}

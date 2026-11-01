@@ -41,17 +41,18 @@ key (ACS) and the public Atlas file (see src/pipeline/ingest.py).
     python -m src.decision.action_queue                 (Surveillance Actions decision layer -> action_queue.json)
     python scripts/build_county_vulnerability.py        (S07 offline county ACS + USDA Atlas -> committed data/processed/county_vulnerability.json; needs CENSUS_API_KEY)
     python -m src.analysis.county_community_impact      (S07 county vulnerability x state-level hazard -> s07_county_community_impact.json)
+    python -m src.analysis.seasonal_hazard_patterns    (S02 seasonal/quarter positivity patterns -> s02_seasonal_hazard_patterns.json)
     python -m src.artifacts.exporter                    (writes web/public/data/*.json + manifest.json)
 
-The exporter now writes 28 files, including action_queue.json, facility_map.json,
-and county_community_impact.json alongside the original artifacts and manifest.json.
+The exporter now writes 29 files, including action_queue.json, facility_map.json,
+county_community_impact.json, and seasonal_hazard_patterns.json alongside the original artifacts and manifest.json.
 
 Facility Map geocode cache: the committed data/external/facility_geocode.json is built
 once by `python scripts/build_facility_geocode.py` from the FSIS MPI Directory CSVs
 dropped into data/raw/fsis/ (the FSIS host is firewalled in this environment, so the
 MPI Directory is a manual drop like the other FSIS data). The runtime exporter reads
 ONLY the committed geocode cache and makes no network geocode call; build_facility_map,
-build_action_queue, and build_county_community_impact all run as part of the exporter.
+build_action_queue, build_county_community_impact, and build_seasonal_hazard_patterns all run as part of the exporter.
 
 Because data/processed/county_vulnerability.json is committed, a reviewer WITHOUT a
 Census key still gets the real county vulnerability table: the S07 compute step reads

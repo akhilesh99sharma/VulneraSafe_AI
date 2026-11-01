@@ -165,7 +165,7 @@ full signal→output→action walk-through is in Section "8. One realistic scena
 
 ## Science-first expansion modules
 
-Beyond the five mandatory panels, the app adds five validated science modules,
+Beyond the five mandatory panels, the app adds six validated science modules,
 each a tab wired to its own schema-validated artifact. All are OBSERVED
 surveillance or explicitly-labeled context — never a forecast unless validated,
 never a contamination claim.
@@ -240,10 +240,24 @@ layer and two geographic/finer-resolution surfaces, each OBSERVED and honesty-ga
   status OBSERVED. S06 is left untouched (distinct module_id S07, own cache);
   `data/processed/county_vulnerability.json` is committed for reproducibility.
 
+A further descriptive science module was added after the above:
+
+- **S02 - Seasonal Patterns** (`seasonal_hazard_patterns.json`). Decomposes each
+  pathogen's OBSERVED FSIS positivity history into a calendar-month and calendar-
+  quarter seasonality profile plus an ordinal-year OLS trend, so the director can
+  plan inspection/testing cadence by time of year. Pooled positivity (total
+  positives / total samples) per bucket with a Wilson 95% interval; a bucket below
+  the documented minimum-sample gate (month and quarter >= 30, trend >= 3 distinct
+  years) is shown as unavailable with the reason and the actual count, never
+  fabricated or interpolated. This is a historical seasonal pattern of what was
+  observed - it trains no model, makes no forecast, and is not a contamination
+  claim; status OBSERVED. Reuses the S04 dated-series readers read-only and leaves
+  every existing module untouched (distinct module_id S02, own cache).
+
 Each module ships with Python property tests locking its honesty rules (no
 future-period leakage, low-n never treated as negative/safe, no causal or
-fabricated fields) and web render tests. Full suite at submission: 343 Python
-tests and 98 web tests, all passing; production build clean.
+fabricated fields) and web render tests. Full suite at submission: 356 Python
+tests and 102 web tests, all passing; production build clean.
 
 
 ## Team science
@@ -498,14 +512,14 @@ disclosure". All reported numbers come from real data and exported predictions.
 2. Kiro artifacts — `.kiro/specs/` with the base `vulnerasafe-ai` spec plus the
    per-module expansion specs (s01 is folded into the base; s03/s04/s05/s06 each
    have requirements, design, tasks), and the later `surveillance-actions`,
-   `facility-map`, and `county-community-impact` specs (each with requirements,
-   design, tasks).
+   `facility-map`, `county-community-impact`, and `s02-seasonal-hazard-patterns` specs
+   (each with requirements, design, tasks).
 3. Decision-support app — `web/` (React + Vite), deployed at
-   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Ten
+   https://akhilesh99sharma.github.io/VulneraSafe_AI/ via GitHub Actions. Eleven
    tabs: Overview, Dashboard (five mandatory panels), Pathogen Explorer (S01),
    Emerging Signals (S04), Supplier Monitor (S03), One Health Insights (S05),
    Vulnerable Communities (S06), Surveillance Actions (ACTIONQ), Facility Map
-   (FACILITYMAP), and County Communities (S07).
+   (FACILITYMAP), County Communities (S07), and Seasonal Patterns (S02).
 4. Data dictionary + provenance — `docs/data_dictionary.md`, `docs/provenance.md`.
 5. PDF report — this document (export `docs/reports/final_report.md` to PDF).
 6. README + requirements — `README.md`, `requirements.txt`, `web/package.json`.
