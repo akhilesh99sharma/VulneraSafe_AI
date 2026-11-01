@@ -27,26 +27,22 @@ const LENSES: Array<{ id: string; label: string }> = [
   { id: "pregnancy", label: "Pregnancy / newborn" },
 ];
 
-function Bar({ value, color }: { value: number; color: string }) {
-  return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-navy/10" aria-hidden>
-      <div className="h-full rounded-full" style={{ width: `${Math.min(100, value * 100)}%`, backgroundColor: color }} />
-    </div>
-  );
-}
-
 export function VulnerableCommunities() {
   const state = useArtifact<CommunityImpactRecord[]>("community_impact");
   const [pathogen, setPathogen] = useState<Pathogen>("Salmonella");
   const [lens, setLens] = useState<string>("elderly_65plus");
+  // Live hazard weight (vulnerability = 1 - this). Default 0.6 matches the
+  // artifact\u2019s own priority_score weighting; the slider only re-weights
+  // values already in the data (hazard_component + vulnerability_component).
+  const [weightHazard, setWeightHazard] = useState(0.6);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-6">
-      <section className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-navy-600 to-teal-600 px-6 py-10 text-white">
+      <section className="mb-5 overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-navy-600 to-teal-600 px-6 py-6 text-white">
         <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-teal-500 ring-1 ring-white/20">
           Food safety + food security · Vulnerability-aware prioritization
         </span>
-        <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Vulnerable Communities</h1>
+        <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">Vulnerable Communities</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/80">
           Where does elevated food-safety surveillance risk coincide with high-need populations?
           Vulnerability context reprioritizes attention — it never changes the underlying hazard.
@@ -122,7 +118,15 @@ export function VulnerableCommunities() {
           isEmpty={(rows) => rows.length === 0}
           emptyTitle="No community-impact data available"
           emptyDetail="The community_impact artifact is present but empty. Run: python -m src.analysis.community_impact && python -m src.artifacts.exporter"
-          render={(rows) => <CommunitiesBody rows={rows} pathogen={pathogen} lens={lens} />}
+          render={(rows) => (
+            <CommunitiesBody
+              rows={rows}
+              pathogen={pathogen}
+              lens={lens}
+              weightHazard={weightHazard}
+              onWeight={setWeightHazard}
+            />
+          )}
         />
       </PanelShell>
     </div>
@@ -133,10 +137,14 @@ function CommunitiesBody({
   rows,
   pathogen,
   lens,
+  weightHazard,
+  onWeight,
 }: {
   rows: CommunityImpactRecord[];
   pathogen: Pathogen;
   lens: string;
+  weightHazard: number;
+  onWeight: (w: number) => void;
 }) {
   const forPathogen = useMemo(() => rows.filter((r) => r.pathogen === pathogen), [rows, pathogen]);
   const unavailable = forPathogen.find((r) => r.availability_status === "unavailable" && r.region === "(all)");
@@ -163,14 +171,55 @@ function CommunitiesBody({
   const atlasVintage = available.find((r) => r.atlas_vintage)?.atlas_vintage ?? null;
   const ctxNote = available[0]?.contextual_count_note ?? "";
 
-  // Build ranked rows by the selected lens's priority_score (if available).
+  // LIVE priority = w*hazard + (1-w)*vulnerability, re-weighting ONLY the
+  // hazard_component + vulnerability_component already in the data (no fabrication).
+  // At the default w=0.6 this equals the artifact's own priority_score.
+  const priorityOf = (rec: CommunityImpactRecord, L: ReturnType<typeof lensEntry>) =>
+    weightHazard * (rec.hazard_component ?? 0) + (1 - weightHazard) * (L?.vulnerability_component ?? 0);
   const ranked = [...available]
-    .map((r) => ({ r, L: lensEntry(r) }))
+    .map((rec) => ({ r: rec, L: lensEntry(rec) }))
     .filter((x) => x.L && x.L.available && x.L.priority_score !== null)
-    .sort((a, b) => (b.L!.priority_score ?? 0) - (a.L!.priority_score ?? 0));
+    .map((x) => ({ ...x, P: priorityOf(x.r, x.L) }))
+    .sort((a, b) => b.P - a.P);
 
+  const top = ranked[0];
   return (
     <div className="flex flex-col gap-5">
+      {top ? (
+        <div className="rounded-xl border border-teal/20 bg-teal/5 px-4 py-3">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-teal-700">Top priority</p>
+          <p className="mt-0.5 text-[13px] leading-relaxed text-navy/80">
+            <span className="font-bold text-navy">{top.r.region}</span> ranks highest for this lens
+            at the current {Math.round(weightHazard * 100)}/{100 - Math.round(weightHazard * 100)} hazard/vulnerability weighting
+            (priority {formatRisk(top.P)}). Attention, not a contamination claim.
+          </p>
+        </div>
+      ) : null}
+      <div className="flex flex-col gap-2 rounded-lg border border-navy/10 bg-surface-muted px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-xs font-semibold text-navy">Balance hazard vs vulnerability</span>
+          <button
+            type="button"
+            onClick={() => onWeight(0.6)}
+            className="rounded border border-navy/20 px-2 py-0.5 text-[10px] font-semibold text-navy/70 hover:bg-navy/5"
+          >
+            Reset to default (60/40)
+          </button>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={Math.round(weightHazard * 100)}
+          onChange={(e) => onWeight(Number(e.target.value) / 100)}
+          aria-label="Hazard weight percent"
+          className="h-1.5 w-full cursor-pointer accent-teal"
+        />
+        <div className="flex justify-between text-[10px] text-navy/60">
+          <span className="font-semibold text-teal-700">hazard {Math.round(weightHazard * 100)}%</span>
+          <span className="font-semibold text-navy/70">vulnerability {100 - Math.round(weightHazard * 100)}%</span>
+        </div>
+      </div>
       {/* side-by-side legends */}
       <div className="flex flex-wrap items-center gap-3 text-[10px]">
         <span className="flex items-center gap-1 rounded-full bg-teal/10 px-2 py-0.5 font-semibold text-teal-700">
@@ -202,29 +251,35 @@ function CommunitiesBody({
             <span className="text-[10px] text-navy/40">{ranked.length} states</span>
           </div>
           <p className="mb-3 text-[11px] text-navy/50">
-            Ranked by priority (0.6 × hazard + 0.4 × this lens's vulnerability). Hazard bar is identical no matter
-            which lens is selected; only the ordering changes.
+            Ranked by a live priority score blending {Math.round(weightHazard * 100)}% hazard with{" "}
+            {100 - Math.round(weightHazard * 100)}% vulnerability. Hazard is identical no matter which
+            lens is selected; the slider and lens only re-order the list.
           </p>
-          <ul className="flex flex-col gap-2">
-            {ranked.slice(0, 15).map(({ r, L }) => (
-              <li key={r.region} className="grid grid-cols-[2.5rem,1fr,auto] items-center gap-x-3">
-                <span className="text-xs font-bold text-navy">{r.region}</span>
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <span className="w-14 text-[9px] uppercase tracking-wide text-teal-700">hazard</span>
-                    <Bar value={r.hazard_component ?? 0} color="#0d9488" />
+          <ul className="flex flex-col gap-2.5">
+            {ranked.slice(0, 15).map(({ r, L, P }, i) => {
+              const haz = r.hazard_component ?? 0;
+              const vul = L!.vulnerability_component ?? 0;
+              const hazPart = weightHazard * haz;
+              const vulPart = (1 - weightHazard) * vul;
+              const total = Math.max(hazPart + vulPart, 0.0001);
+              const hazPct = (hazPart / total) * 100;
+              return (
+                <li key={r.region} className="grid grid-cols-[2.25rem,1fr,auto] items-center gap-x-3">
+                  <span className="flex items-center gap-1.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy text-[10px] font-bold text-white">{i + 1}</span>
+                    <span className="text-[13px] font-bold text-navy">{r.region}</span>
+                  </span>
+                  <div className="flex h-3 w-full overflow-hidden rounded-full bg-navy/10" title={`hazard ${formatRisk(haz)} * ${Math.round(weightHazard * 100)}% + vulnerability ${formatRisk(vul)} * ${100 - Math.round(weightHazard * 100)}%`}>
+                    <div className="h-full bg-teal" style={{ width: `${hazPct}%` }} />
+                    <div className="h-full bg-navy" style={{ width: `${100 - hazPct}%` }} />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-14 text-[9px] uppercase tracking-wide text-navy/60">vulnerab.</span>
-                    <Bar value={L!.vulnerability_component ?? 0} color="#1e3a5f" />
+                  <div className="text-right">
+                    <span className="text-[13px] font-bold text-navy">{formatRisk(P)}</span>
+                    <div className="text-[9px] text-navy/40">priority</div>
                   </div>
-                </div>
-                <div className="text-right text-xs">
-                  <span className="font-bold text-navy">{formatRisk(L!.priority_score)}</span>
-                  <div className="text-[9px] text-navy/40">priority</div>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

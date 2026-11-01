@@ -94,8 +94,10 @@ describe("VulnerableCommunities", () => {
     fireEvent.click(screen.getByRole("button", { name: /low-income tracts/i }));
     await waitFor(() => expect(screen.getByText(/priority ranking — low-income tracts/i)).toBeInTheDocument());
     // both states still listed (hazard unchanged, only order/priority differ)
-    expect(screen.getByText("ME")).toBeInTheDocument();
-    expect(screen.getByText("TX")).toBeInTheDocument();
+    // Each state now appears both in the top-priority callout and its ranked row,
+    // so assert presence (>=1) rather than uniqueness.
+    expect(screen.getAllByText("ME").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("TX").length).toBeGreaterThanOrEqual(1);
   });
 
   it("shows an explicit not-available state for the pregnancy lens", async () => {
