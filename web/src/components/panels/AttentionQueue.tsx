@@ -67,8 +67,18 @@ export function isBoilerplateTrigger(text: string | null | undefined): boolean {
   return text.toLowerCase().includes("predicted elevated-risk probability");
 }
 
-export function AttentionQueue() {
-  const { pathogen, lens } = useSelection();
+interface AttentionQueueProps {
+  /** When true, ignore the shared population lens entirely (no re-rank, no
+   * emphasized tags, no re-rank banner). Used on the Risk Dashboard, which
+   * has no lens control, so a lens set elsewhere never silently reorders it. */
+  ignoreLens?: boolean;
+}
+
+export function AttentionQueue({ ignoreLens = false }: AttentionQueueProps = {}) {
+  const { pathogen, lens: sharedLens } = useSelection();
+  // The Risk Dashboard mounts this with ignoreLens (it has no lens control),
+  // so the shared lens never reorders the queue or shows a banner there.
+  const lens = ignoreLens ? null : sharedLens;
   const state = useArtifact<AttentionQueueItem[]>("attention_queue");
   const [visible, setVisible] = useState(INITIAL_VISIBLE);
 
@@ -80,7 +90,7 @@ export function AttentionQueue() {
   const emphasizedSet = lens ? new Set(LENS_EMPHASIS[lens]) : null;
 
   return (
-    <PanelShell title="Prioritized Attention Queue"
+    <PanelShell className="h-full" title="Prioritized Attention Queue"
       subtitle="Highest predicted-risk states first"
       info="A ranked worklist by PREDICTED risk (highest first) — where to focus limited attention. Every item is a model prioritization, never a claim that a specific product is contaminated.">
       <ArtifactBody
@@ -108,13 +118,6 @@ export function AttentionQueue() {
           const nextBatch = Math.min(PAGE, remaining);
           return (
             <div className="flex flex-col gap-2.5">
-              <p
-                data-testid="attention-provenance-note"
-                className="text-[11px] leading-relaxed text-navy/50"
-              >
-                All items are model prioritizations (PREDICTED), never
-                contamination claims.
-              </p>
               {lens ? (
                 <div
                   data-testid="attention-lens-banner"
@@ -141,7 +144,7 @@ export function AttentionQueue() {
                 </span>
               </div>
 
-              <ol data-testid="attention-queue-list" className="flex flex-col gap-2">
+              <ol data-testid="attention-queue-list" className="flex flex-col gap-3">
                 {shown.map((item) => (
                   <li
                     key={`${item.rank}:${item.target_id}`}

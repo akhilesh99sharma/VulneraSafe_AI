@@ -388,6 +388,7 @@ export function RiskDashboard() {
       <TwoColumn
         left={
           <CurrentRiskOverview
+            className="h-full"
             view="map"
             features={mapFeatures}
             viewMode={mapViewMode}
@@ -395,7 +396,9 @@ export function RiskDashboard() {
           />
         }
         right={
+          <div className="flex h-full flex-col gap-4">
           <SectionCard
+            className="flex-1"
             title={mapViewMode === "observed" ? "Top states by positivity" : "Top states by risk"}
             subtitle={`Ranked for ${activePathogen} \u00b7 ${quantityPhrase}`}
             info={
@@ -423,12 +426,12 @@ export function RiskDashboard() {
                 <table className="w-full text-left text-xs">
                   <thead>
                     <tr className="text-[10px] uppercase tracking-wide text-navy/50">
-                      <th className="py-1 pr-2 font-semibold">#</th>
-                      <th className="py-1 pr-2 font-semibold">State</th>
-                      <th className="py-1 pr-2 font-semibold">
+                      <th className="py-2 pr-2 font-semibold">#</th>
+                      <th className="py-2 pr-2 font-semibold">State</th>
+                      <th className="py-2 pr-2 font-semibold">
                         {mapViewMode === "observed" ? "Positivity" : "Risk"}
                       </th>
-                      <th className="py-1 font-semibold">
+                      <th className="py-2 font-semibold">
                         {mapViewMode === "observed" ? "Samples (n)" : "Uncertainty"}
                       </th>
                     </tr>
@@ -446,8 +449,8 @@ export function RiskDashboard() {
                           selected ? "bg-teal/5 border-l-2 border-l-teal" : ""
                         }`}
                       >
-                        <td className="py-1 pr-2 text-navy/60">{i + 1}</td>
-                        <td className="py-1 pr-2">
+                        <td className="py-2 pr-2 text-navy/60">{i + 1}</td>
+                        <td className="py-2 pr-2">
                           <button
                             type="button"
                             data-testid="top-state-row"
@@ -458,10 +461,10 @@ export function RiskDashboard() {
                             {f.region}
                           </button>
                         </td>
-                        <td className="py-1 pr-2">
+                        <td className="py-2 pr-2">
                           <RiskPill risk={f.risk} />
                         </td>
-                        <td className="py-1 text-navy/70" data-testid="top-state-third-col">
+                        <td className="py-2 text-navy/70" data-testid="top-state-third-col">
                           {mapViewMode === "observed"
                             ? ((): string => {
                                 const nSamples = observedSampleByKey.get(
@@ -482,15 +485,23 @@ export function RiskDashboard() {
               )}
             </div>
           </SectionCard>
+          <SectionCard
+            title="Legend"
+            subtitle="How to read the tags and alert color"
+          >
+            <StatusLegend variant="bare" />
+          </SectionCard>
+          </div>
         }
       />
 
       <CurrentRiskOverview view="trend" />
 
       <TwoColumn
-        left={<AttentionQueue />}
+        left={<AttentionQueue ignoreLens />}
         right={
           <SectionCard
+            className="h-full"
             title="Model evidence & data sources"
             subtitle="Where the numbers come from"
             info="The underlying data sources and their freshness, plus the key to the three provenance tags used across the dashboard."
@@ -500,7 +511,6 @@ export function RiskDashboard() {
                 provenance={provenanceState.data && !provenanceState.error ? provenanceState.data : null}
                 freshness={freshness}
               />
-              <StatusLegend />
             </div>
           </SectionCard>
         }
@@ -636,8 +646,8 @@ function EvidenceSources({
         {provenance.map((p) => (
           <li key={p.source} className="flex items-start justify-between gap-2 border-b border-navy/5 pb-1.5">
             <span className="min-w-0">
-              <span className="block truncate font-semibold text-navy">{p.source}</span>
-              {p.license ? <span className="block text-[10px] text-navy/50">{p.license}</span> : null}
+              <span className="block truncate text-[13px] font-semibold text-navy">{p.source}</span>
+              {p.license ? <span className="block text-[11px] text-navy/50">{p.license}</span> : null}
             </span>
             <span className="shrink-0 text-[11px] text-navy/60">{p.access_date || NOT_AVAILABLE}</span>
           </li>
@@ -652,7 +662,7 @@ function EvidenceSources({
       <ul className="flex flex-col gap-2 text-xs">
         {entries.map(([source, date]) => (
           <li key={source} className="flex items-center justify-between gap-2 border-b border-navy/5 pb-1.5">
-            <span className="truncate font-semibold text-navy">{source}</span>
+            <span className="truncate text-[13px] font-semibold text-navy">{source}</span>
             <span className="shrink-0 text-[11px] text-navy/60">{date}</span>
           </li>
         ))}

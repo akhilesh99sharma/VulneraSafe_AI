@@ -370,14 +370,14 @@ export function MapView({
         {glReady && hover ? (
           <div
             style={{ position: "absolute", left: hover.x + 10, top: hover.y + 10 }}
-            className="pointer-events-none flex flex-col gap-0.5 rounded bg-navy px-2 py-1.5 text-[11px] text-white shadow-lg"
+            className="pointer-events-none flex flex-col gap-0.5 rounded bg-navy px-3 py-2 text-[13px] text-white shadow-lg"
           >
             <span className="font-bold">{hover.postal}</span>
             <span>
               {valueLabel}: {risk(hoverRisk)}
             </span>
             {observed && hoverSample !== null && hoverSample !== undefined ? (
-              <span className="text-white/80">n = {hoverSample.toLocaleString()}</span>
+              <span className="text-[11px] text-white/80">n = {hoverSample.toLocaleString()}</span>
             ) : null}
           </div>
         ) : null}

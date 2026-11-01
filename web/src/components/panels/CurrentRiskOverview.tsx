@@ -62,6 +62,8 @@ export interface CurrentRiskOverviewProps {
    * through to {@link MapView}; never fabricated.
    */
   sampleByRegion?: Map<string, number | null>;
+  /** Extra classes forwarded to the panel shell (e.g. "h-full" to fill a grid cell). */
+  className?: string;
 }
 
 /** Human captions per view mode so predicted and observed are never conflated. */
@@ -90,6 +92,7 @@ export function CurrentRiskOverview({
   features: injectedFeatures,
   viewMode = "predicted",
   sampleByRegion,
+  className,
 }: CurrentRiskOverviewProps) {
   const { pathogen, region, setRegion } = useSelection();
   const artifactMapState = useArtifact<RiskMapFeature[]>("risk_map");
@@ -242,7 +245,7 @@ export function CurrentRiskOverview({
           : `${VIEW_COPY[viewMode].subtitle} + historical trend`
       }
       info={info}
-      className={view === "full" ? "lg:col-span-2" : undefined}
+      className={[view === "full" ? "lg:col-span-2" : "", className ?? ""].filter(Boolean).join(" ") || undefined}
       accessory={headerStatus ? <StatusTag status={headerStatus} /> : null}
     >
       {mapBody(view === "map" ? "map" : "full")}
