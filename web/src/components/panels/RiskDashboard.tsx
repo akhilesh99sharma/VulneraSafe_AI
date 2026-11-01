@@ -1,15 +1,18 @@
+import { useState } from "react";
 import { useArtifact, useManifest } from "../../data/hooks";
 import { useSelection } from "../../state/selection";
 import type {
   AttentionQueueItem,
   ProvenanceEntry,
   RiskMapFeature,
+  RiskTimeseriesPoint,
 } from "../../types/artifacts";
 import {
   filterAttentionByPathogen,
   filterMapByPathogen,
   formatRisk,
   formatUncertainty,
+  observedMapFromTimeseries,
   NOT_AVAILABLE,
 } from "../../types/viewModels";
 import {
@@ -24,7 +27,7 @@ import {
 } from "../ui";
 import EmptyState from "../EmptyState";
 import StatusLegend from "../legend/StatusLegend";
-import CurrentRiskOverview from "./CurrentRiskOverview";
+import CurrentRiskOverview, { type MapViewMode } from "./CurrentRiskOverview";
 import AttentionQueue from "./AttentionQueue";
 import { colorForRisk, riskBandLabel } from "./charts/riskBands";
 
@@ -73,8 +76,15 @@ function riskBucket(mean: number | null): {
 export function RiskDashboard() {
   const { pathogen, setPathogen, setRegion } = useSelection();
 
+  // Map "View" toggle: PREDICTED (default) shows the risk_map's predicted
+  // next-period probability; OBSERVED shows the latest-period measured
+  // positivity derived from risk_timeseries. These are DIFFERENT quantities,
+  // clearly labeled — never the same number relabeled.
+  const [mapViewMode, setMapViewMode] = useState<MapViewMode>("predicted");
+
   const manifest = useManifest();
   const mapState = useArtifact<RiskMapFeature[]>("risk_map");
+  const tsState = useArtifact<RiskTimeseriesPoint[]>("risk_timeseries");
   const queueState = useArtifact<AttentionQueueItem[]>("attention_queue");
   const provenanceState = useArtifact<ProvenanceEntry[]>("provenance");
 
@@ -90,8 +100,20 @@ export function RiskDashboard() {
   // --- KPI inputs: only READ from successfully-loaded artifacts ------------
   // While an artifact is still loading or errored, its features are treated as
   // absent so the affected card shows N/A rather than blocking the dashboard.
-  const mapFeatures: RiskMapFeature[] =
+  //
+  // The "View" toggle selects the ACTIVE quantity used by the map, the KPIs and
+  // the top-states table so they stay consistent and honestly labeled:
+  //   - predicted -> the raw risk_map features (as before).
+  //   - observed  -> RiskMapFeature-shaped latest-period OBSERVED positivity
+  //                  derived from risk_timeseries (observedMapFromTimeseries).
+  // Missing data in either view yields [] -> the cards/table show N/A honestly.
+  const predictedFeatures: RiskMapFeature[] =
     mapState.data && !mapState.error ? mapState.data : [];
+  const observedFeatures: RiskMapFeature[] =
+    tsState.data && !tsState.error ? observedMapFromTimeseries(tsState.data) : [];
+  const mapFeatures: RiskMapFeature[] =
+    mapViewMode === "observed" ? observedFeatures : predictedFeatures;
+
   const queueItems: AttentionQueueItem[] =
     queueState.data && !queueState.error ? queueState.data : [];
 
@@ -136,6 +158,14 @@ export function RiskDashboard() {
   // Top states by risk (right rail of row 4): top 10 features desc by risk.
   const topStates = [...pathogenMap].sort((a, b) => b.risk - a.risk).slice(0, 10);
 
+  // Short word + longer phrase for the active quantity, used in honest captions
+  // so predicted probability and observed positivity are never conflated.
+  const quantityWord = mapViewMode === "observed" ? "observed" : "predicted";
+  const quantityPhrase =
+    mapViewMode === "observed"
+      ? "observed positivity (latest period)"
+      : "predicted next-period elevated-risk probability";
+
   return (
     <div data-testid="risk-dashboard" className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6">
       <PageHeader
@@ -157,27 +187,34 @@ export function RiskDashboard() {
             options={pathogenOptions}
           />
         </ControlGroup>
+        <ControlGroup label="View">
+          <MapViewToggle value={mapViewMode} onChange={setMapViewMode} />
+        </ControlGroup>
       </ControlBar>
 
       <StatCardRow>
         <StatCard
-          label="Current national risk"
+          label={mapViewMode === "observed" ? "Current national positivity" : "Current national risk"}
           value={bucket.label}
-          sub={n > 0 ? `mean across ${n} state${n === 1 ? "" : "s"}` : "no states for this pathogen"}
+          sub={
+            n > 0
+              ? `${quantityWord} mean across ${n} state${n === 1 ? "" : "s"}`
+              : `no ${quantityWord} states for this pathogen`
+          }
           tone={bucket.tone}
         />
         <StatCard
-          label="States at elevated risk"
+          label={mapViewMode === "observed" ? "States at elevated positivity" : "States at elevated risk"}
           value={elevatedCount === null ? NOT_AVAILABLE : elevatedCount}
           sub={
             elevatedCount === null
               ? "no map features loaded"
-              : `of ${n} state${n === 1 ? "" : "s"} (risk \u2265 ${ELEVATED_THRESHOLD})`
+              : `of ${n} state${n === 1 ? "" : "s"} (${quantityWord} \u2265 ${ELEVATED_THRESHOLD})`
           }
           tone={elevatedCount && elevatedCount > 0 ? "info" : "default"}
         />
         <StatCard
-          label="Highest-risk state"
+          label={mapViewMode === "observed" ? "Highest-positivity state" : "Highest-risk state"}
           value={highest ? highest.region : NOT_AVAILABLE}
           sub={highest ? formatRisk(highest.risk) : "no map features loaded"}
           tone="teal"
@@ -191,20 +228,25 @@ export function RiskDashboard() {
       </StatCardRow>
 
       <p data-testid="kpi-caption" className="text-[11px] leading-relaxed text-navy/50">
-        These figures are derived from the OBSERVED / PREDICTED risk map and the
+        These figures are derived from the {quantityPhrase} for the selected
+        view ({mapViewMode === "observed" ? "OBSERVED" : "PREDICTED"}) and the
         prioritized attention queue. A single national &ldquo;predicted
         change&rdquo; delta is intentionally not shown because it is not a
-        defensible single national figure; the highest-risk state is shown
-        instead because it is honestly derivable from the map.
+        defensible single national figure; the highest-{quantityWord} state is
+        shown instead because it is honestly derivable from the map.
       </p>
 
       <TwoColumn
-        left={<CurrentRiskOverview view="map" />}
+        left={<CurrentRiskOverview view="map" features={mapFeatures} viewMode={mapViewMode} />}
         right={
           <SectionCard
-            title="Top states by risk"
-            subtitle={`Ranked for ${activePathogen}`}
-            info="The highest-risk states for the selected pathogen, read directly from the risk map. The risk pill shows the PREDICTED next-period elevated-positivity probability, bucketed into a named band. Select a state to drive the map and the trend below."
+            title={mapViewMode === "observed" ? "Top states by positivity" : "Top states by risk"}
+            subtitle={`Ranked for ${activePathogen} \u00b7 ${quantityPhrase}`}
+            info={
+              mapViewMode === "observed"
+                ? "The highest-positivity states for the selected pathogen, read from the latest OBSERVED surveillance period. The pill shows the measured positivity, bucketed into a named band. Select a state to drive the map and the trend below."
+                : "The highest-risk states for the selected pathogen, read directly from the risk map. The risk pill shows the PREDICTED next-period elevated-positivity probability, bucketed into a named band. Select a state to drive the map and the trend below."
+            }
           >
             <div data-testid="top-states">
               {topStates.length === 0 ? (
@@ -271,6 +313,48 @@ export function RiskDashboard() {
           </SectionCard>
         }
       />
+    </div>
+  );
+}
+
+/**
+ * The map "View" toggle: two pill buttons switching the map + KPIs + top-states
+ * between the PREDICTED (default) and OBSERVED quantities. Teal-when-active /
+ * navy-outline-when-inactive, matching the pathogen-pill idiom (theme
+ * discipline: teal/navy only, Req 14.4). Controlled; no internal state.
+ */
+function MapViewToggle({
+  value,
+  onChange,
+}: {
+  value: MapViewMode;
+  onChange: (v: MapViewMode) => void;
+}) {
+  const options: Array<{ mode: MapViewMode; label: string; testid: string }> = [
+    { mode: "predicted", label: "Predicted", testid: "view-predicted" },
+    { mode: "observed", label: "Observed", testid: "view-observed" },
+  ];
+  return (
+    <div data-testid="map-view-toggle" className="flex gap-2">
+      {options.map((o) => {
+        const on = o.mode === value;
+        return (
+          <button
+            key={o.mode}
+            type="button"
+            data-testid={o.testid}
+            aria-pressed={on}
+            onClick={() => onChange(o.mode)}
+            className={`rounded-lg border px-4 py-2 text-sm font-semibold transition ${
+              on
+                ? "border-teal bg-teal text-white"
+                : "border-navy/15 bg-white text-navy/70 hover:border-navy/30"
+            }`}
+          >
+            {o.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

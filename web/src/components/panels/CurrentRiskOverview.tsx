@@ -39,10 +39,52 @@ import TimeSeries from "./charts/TimeSeries";
  */
 export type CurrentRiskView = "full" | "map" | "trend";
 
-export function CurrentRiskOverview({ view = "full" }: { view?: CurrentRiskView }) {
+/** Which quantity the map is displaying (drives labels + captions). */
+export type MapViewMode = "predicted" | "observed";
+
+export interface CurrentRiskOverviewProps {
+  view?: CurrentRiskView;
+  /**
+   * Optional injected map features. When provided, the map body renders these
+   * instead of reading the `risk_map` artifact itself — this lets the dashboard
+   * drive a Predicted/Observed toggle through one honest code path. When
+   * omitted the component reads `risk_map` exactly as before (standalone use).
+   */
+  features?: RiskMapFeature[];
+  /**
+   * Which quantity the injected features represent. Defaults to "predicted".
+   * Only meaningful together with `features`; it selects the honest captions.
+   */
+  viewMode?: MapViewMode;
+}
+
+/** Human captions per view mode so predicted and observed are never conflated. */
+const VIEW_COPY: Record<MapViewMode, { quantity: string; subtitle: string }> = {
+  predicted: {
+    quantity: "predicted next-period elevated-risk probability",
+    subtitle: "Geographic surveillance risk",
+  },
+  observed: {
+    quantity: "observed positivity (latest period)",
+    subtitle: "Geographic observed positivity",
+  },
+};
+
+export function CurrentRiskOverview({
+  view = "full",
+  features: injectedFeatures,
+  viewMode = "predicted",
+}: CurrentRiskOverviewProps) {
   const { pathogen, region, setRegion } = useSelection();
-  const mapState = useArtifact<RiskMapFeature[]>("risk_map");
+  const artifactMapState = useArtifact<RiskMapFeature[]>("risk_map");
   const tsState = useArtifact<RiskTimeseriesPoint[]>("risk_timeseries");
+
+  // When the dashboard injects a feature list (Predicted/Observed toggle), wrap
+  // it in a synthetic "loaded" artifact state so the SAME ArtifactBody render
+  // path handles both. Otherwise fall back to reading the risk_map artifact.
+  const mapState = injectedFeatures
+    ? { data: injectedFeatures, loading: false, error: null }
+    : artifactMapState;
 
   // The status tag reflects the nature of the map values; read verbatim off the
   // artifact record (never invented). Absent until the first feature loads.
@@ -92,6 +134,12 @@ export function CurrentRiskOverview({ view = "full" }: { view?: CurrentRiskView 
               uncertainty={formatUncertainty(sample.uncertainty)}
               dataFreshness={sample.data_freshness}
             />
+            <p
+              data-testid="map-quantity-caption"
+              className="mb-2 text-[11px] leading-relaxed text-navy/50"
+            >
+              Each state is shaded by its {VIEW_COPY[viewMode].quantity}.
+            </p>
             <MapView
               features={visible}
               selectedRegion={region}
@@ -130,15 +178,20 @@ export function CurrentRiskOverview({ view = "full" }: { view?: CurrentRiskView 
     );
   }
 
+  const info =
+    viewMode === "observed"
+      ? "Each state is shaded by its OBSERVED positivity in the latest reporting period (teal = higher) — a measured surveillance rate, not a forecast and not a contamination finding. Click a state to see its risk over time with a 95% uncertainty band."
+      : "Each state is shaded by its PREDICTED probability of elevated pathogen surveillance positivity next period (teal = higher). This is a prioritization signal, not a contamination finding. Click a state to see its risk over time with a 95% uncertainty band.";
+
   return (
     <PanelShell
       title="Current Risk Overview"
       subtitle={
         view === "map"
-          ? "Geographic surveillance risk"
-          : "Geographic surveillance risk + historical trend"
+          ? VIEW_COPY[viewMode].subtitle
+          : `${VIEW_COPY[viewMode].subtitle} + historical trend`
       }
-      info="Each state is shaded by its PREDICTED probability of elevated pathogen surveillance positivity next period (teal = higher). This is a prioritization signal, not a contamination finding. Click a state to see its risk over time with a 95% uncertainty band."
+      info={info}
       className={view === "full" ? "lg:col-span-2" : undefined}
       accessory={headerStatus ? <StatusTag status={headerStatus} /> : null}
     >

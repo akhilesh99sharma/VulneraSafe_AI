@@ -38,14 +38,68 @@ function buildFillExpression(byPostal: Map<string, number>): any {
   return ["match", ["get", "postal"], ...(stops.length ? stops : ["__none__", NO_DATA_COLOR]), NO_DATA_COLOR];
 }
 
-/** Rough centroid of a GeoJSON Polygon/MultiPolygon outer rings (lng,lat). */
+/**
+ * Area-weighted centroid of a single polygon outer ring (the standard
+ * polygon-centroid formula), clamped to the ring's bounding box. Returns the
+ * centroid and the signed area magnitude so a MultiPolygon can pick its largest
+ * sub-polygon. A degenerate (zero-area) ring falls back to its bbox center so a
+ * label still lands inside the ring rather than at an undefined point.
+ */
+function ringCentroid(ring: number[][]): { c: [number, number]; area: number } | null {
+  if (!ring || ring.length < 3) return null;
+  let a = 0, cx = 0, cy = 0;
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (let i = 0; i < ring.length; i++) {
+    const [x0, y0] = ring[i];
+    const [x1, y1] = ring[(i + 1) % ring.length];
+    const cross = x0 * y1 - x1 * y0;
+    a += cross;
+    cx += (x0 + x1) * cross;
+    cy += (y0 + y1) * cross;
+    if (x0 < minX) minX = x0;
+    if (y0 < minY) minY = y0;
+    if (x0 > maxX) maxX = x0;
+    if (y0 > maxY) maxY = y0;
+  }
+  a *= 0.5;
+  let c: [number, number];
+  if (Math.abs(a) < 1e-12) {
+    // Degenerate ring: use the bounding-box center.
+    c = [(minX + maxX) / 2, (minY + maxY) / 2];
+  } else {
+    c = [cx / (6 * a), cy / (6 * a)];
+    // Clamp into the ring's bounding box so a near-degenerate case still lands
+    // inside the polygon rather than drifting outside.
+    c = [
+      Math.min(maxX, Math.max(minX, c[0])),
+      Math.min(maxY, Math.max(minY, c[1])),
+    ];
+  }
+  return { c, area: Math.abs(a) };
+}
+
+/**
+ * Label anchor for a GeoJSON geometry (lng,lat):
+ *   - Polygon:      area-weighted centroid of its OUTER ring.
+ *   - MultiPolygon: area-weighted centroid of the LARGEST sub-polygon's outer
+ *     ring, so states with islands/panhandles (FL, HI, AK, LA, MI) keep their
+ *     label on the mainland instead of at the vertex-average of every polygon.
+ */
 function centroidOf(geom: any): [number, number] | null {
-  let x = 0, y = 0, n = 0;
-  const addRing = (ring: number[][]) => { for (const [lng, lat] of ring) { x += lng; y += lat; n++; } };
   if (!geom) return null;
-  if (geom.type === "Polygon") geom.coordinates.forEach((r: number[][]) => addRing(r));
-  else if (geom.type === "MultiPolygon") geom.coordinates.forEach((poly: number[][][]) => poly.forEach((r) => addRing(r)));
-  return n ? [x / n, y / n] : null;
+  if (geom.type === "Polygon") {
+    const r = ringCentroid(geom.coordinates?.[0]);
+    return r ? r.c : null;
+  }
+  if (geom.type === "MultiPolygon") {
+    let best: { c: [number, number]; area: number } | null = null;
+    for (const poly of geom.coordinates ?? []) {
+      const r = ringCentroid(poly?.[0]);
+      if (r && (!best || r.area > best.area)) best = r;
+    }
+    return best ? best.c : null;
+  }
+  return null;
 }
 
 interface LabelPoint { postal: string; lng: number; lat: number; }
@@ -224,9 +278,44 @@ function risk(v: number | undefined): string {
 }
 
 /**
+ * Plain-language explanation of the neutral-grey "No data" band, surfaced in a
+ * small (i) tooltip beside the legend instead of verbose inline legend text.
+ */
+const NO_DATA_INFO =
+  "Grey = No data: not enough FSIS sampling to produce a defensible estimate for this state and pathogen in this view. Coverage varies by pathogen and by Predicted vs Observed view.";
+
+/**
+ * Accessible info marker (copied from the PanelShell/SectionCard idiom): shows
+ * `text` on hover and keyboard focus. Kept local so the map does not invent a
+ * new tooltip mechanism.
+ */
+function MapInfoDot({ text }: { text: string }) {
+  return (
+    <span className="group relative inline-flex">
+      <button
+        type="button"
+        data-testid="map-info"
+        aria-label="What does grey mean on this map?"
+        className="flex h-4 w-4 items-center justify-center rounded-full border border-navy/30 text-[10px] font-bold text-navy/60 hover:bg-navy/5 focus:outline-none focus:ring-2 focus:ring-teal"
+      >
+        i
+      </button>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute left-0 bottom-6 z-30 w-64 rounded-lg border border-navy/10 bg-navy px-3 py-2 text-[11px] leading-relaxed text-white opacity-0 shadow-lg transition group-hover:opacity-100 group-focus-within:opacity-100"
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
+
+/**
  * Discrete, named risk-band legend (teal ramp + neutral grey for no-data). Each
  * row is a small color swatch + the band name, sharing the single-source
- * {@link RISK_BANDS} so the legend and the choropleth bucket identically.
+ * {@link RISK_BANDS} so the legend and the choropleth bucket identically. The
+ * "No data" band keeps only its grey swatch; its explanation lives in the
+ * adjacent (i) tooltip rather than as verbose inline text.
  */
 function MapLegend() {
   return (
@@ -245,6 +334,7 @@ function MapLegend() {
           <span>{band.label}</span>
         </span>
       ))}
+      <MapInfoDot text={NO_DATA_INFO} />
     </div>
   );
 }

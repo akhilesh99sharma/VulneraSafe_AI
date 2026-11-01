@@ -10,7 +10,6 @@ import {
 import { LENS_EMPHASIS } from "../../types/lens";
 import type { PopulationLens } from "../../state/selection";
 import EmptyState from "../EmptyState";
-import StatusTag from "../StatusTag";
 import PanelShell, { ArtifactBody } from "./PanelShell";
 
 /**
@@ -56,14 +55,16 @@ function reRankForLens(
   return [...front, ...back];
 }
 
-/** A thin horizontal risk meter (teal fill scaled by risk). */
-function RiskMeter({ risk }: { risk: number }) {
-  const pct = Math.min(100, Math.max(0, risk * 100));
-  return (
-    <div className="h-1.5 w-full overflow-hidden rounded-full bg-navy/10" aria-hidden>
-      <div className="h-full rounded-full bg-teal" style={{ width: `${pct}%` }} />
-    </div>
-  );
+/**
+ * Is a `triggering_condition` just the auto-generated probability boilerplate?
+ * The percentage is already shown on the row, so a machine restatement of it
+ * (e.g. "predicted elevated-risk probability 0.82") is redundant noise and is
+ * suppressed. A genuine human reason ("confirmed recall nearby", "weather
+ * anomaly") is NOT boilerplate and is always shown. Case-insensitive.
+ */
+export function isBoilerplateTrigger(text: string | null | undefined): boolean {
+  if (!text) return false;
+  return text.toLowerCase().includes("predicted elevated-risk probability");
 }
 
 export function AttentionQueue() {
@@ -80,8 +81,8 @@ export function AttentionQueue() {
 
   return (
     <PanelShell title="Prioritized Attention Queue"
-      subtitle="Highest predicted-risk modeling units first"
-      info="A ranked worklist of state-period cells by PREDICTED risk (highest first) — where to focus limited attention. Every item is a model prioritization, never a claim that a specific product is contaminated.">
+      subtitle="Highest predicted-risk states first"
+      info="A ranked worklist by PREDICTED risk (highest first) — where to focus limited attention. Every item is a model prioritization, never a claim that a specific product is contaminated.">
       <ArtifactBody
         state={state}
         artifactName="attention_queue"
@@ -106,7 +107,14 @@ export function AttentionQueue() {
           const remaining = ordered.length - shown.length;
           const nextBatch = Math.min(PAGE, remaining);
           return (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2.5">
+              <p
+                data-testid="attention-provenance-note"
+                className="text-[11px] leading-relaxed text-navy/50"
+              >
+                All items are model prioritizations (PREDICTED), never
+                contamination claims.
+              </p>
               {lens ? (
                 <div
                   data-testid="attention-lens-banner"
@@ -163,17 +171,15 @@ export function AttentionQueue() {
                           <p className="truncate text-[11px] text-navy/50">{item.target_type}</p>
                         </div>
                       </div>
-                      <div className="flex shrink-0 flex-col items-end gap-1">
-                        <span className="text-sm font-bold text-navy">{formatRisk(item.risk)}</span>
-                        <StatusTag status={item.status} />
-                      </div>
+                      <span className="shrink-0 text-sm font-bold text-navy">
+                        {formatRisk(item.risk)}
+                      </span>
                     </div>
-                    <div className="mt-2">
-                      <RiskMeter risk={item.risk} />
-                    </div>
-                    <p className="mt-2 text-[11px] leading-relaxed text-navy/60">
-                      {item.triggering_condition}
-                    </p>
+                    {isBoilerplateTrigger(item.triggering_condition) ? null : (
+                      <p className="mt-1.5 text-[11px] leading-relaxed text-navy/60">
+                        {item.triggering_condition}
+                      </p>
+                    )}
                   </li>
                 ))}
               </ol>
