@@ -50,7 +50,9 @@ describe("PathogenExplorer", () => {
     installArtifactFetch({ multipathogen_program_product: ROWS });
     render(<PathogenExplorer />);
     await waitFor(() => expect(screen.getByText(/overall positivity/i)).toBeInTheDocument());
-    fireEvent.click(screen.getByRole("button", { name: /STEC/i }));
+    // Click the pathogen SELECTOR pill specifically (the hero glance also has a
+    // STEC button); its accessible name is the full "STEC (E. coli)" label.
+    fireEvent.click(screen.getByRole("button", { name: /STEC \(E\. coli\)/i }));
  
         // The STEC product dimension specifically reports its unavailable reason.
     await waitFor(() =>

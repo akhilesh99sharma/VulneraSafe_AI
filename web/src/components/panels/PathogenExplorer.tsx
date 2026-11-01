@@ -29,12 +29,69 @@ const MIN_N = 30; // groups below this are too small for a meaningful rate
 
 type SortMode = "rate" | "size";
 
-function Bar({ value, max }: { value: number; max: number }) {
-  const pct = max > 0 ? Math.min(100, (value / max) * 100) : 0;
+function Bar({
+  value,
+  max,
+  baseline = null,
+  ciLow = null,
+  ciHigh = null,
+}: {
+  value: number;
+  max: number;
+  /** Overall pathogen positivity, drawn as a thin vertical baseline marker. */
+  baseline?: number | null;
+  /** 95% Wilson interval bounds, drawn as a faint navy band on the track. */
+  ciLow?: number | null;
+  ciHigh?: number | null;
+}) {
+  const clamp = (n: number) => Math.max(0, Math.min(100, n));
+  const pct = max > 0 ? clamp((value / max) * 100) : 0;
+  const showCi =
+    max > 0 && ciLow !== null && ciLow !== undefined && ciHigh !== null && ciHigh !== undefined;
+  const ciLeft = showCi ? clamp(((ciLow as number) / max) * 100) : 0;
+  const ciRight = showCi ? clamp(((ciHigh as number) / max) * 100) : 0;
+  const ciWidth = Math.max(0.5, ciRight - ciLeft);
+  const showBase =
+    max > 0 && baseline !== null && baseline !== undefined && !Number.isNaN(baseline);
+  const basePct = showBase ? clamp(((baseline as number) / max) * 100) : 0;
   return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-navy/10" aria-hidden>
-      <div className="h-full rounded-full bg-teal" style={{ width: `${pct}%` }} />
+    <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-navy/10" aria-hidden>
+      {showCi ? (
+        <div
+          className="absolute inset-y-0 rounded-full bg-navy/15"
+          style={{ left: `${ciLeft}%`, width: `${ciWidth}%` }}
+        />
+      ) : null}
+      <div className="absolute inset-y-0 left-0 rounded-full bg-teal" style={{ width: `${pct}%` }} />
+      {showBase ? (
+        <div
+          className="absolute inset-y-0 w-px bg-navy/50"
+          style={{ left: `${basePct}%` }}
+        />
+      ) : null}
     </div>
+  );
+}
+
+/** Accessible info marker (local copy of the PanelShell/SectionCard idiom):
+ * shows `text` on hover and keyboard focus. Kept local so the explorer does
+ * not invent a new tooltip mechanism. */
+function InfoDot({ text }: { text: string }) {
+  return (
+    <span className="group relative inline-flex">
+      <button
+        type="button"
+        aria-label="What is this?"
+        className="flex h-4 w-4 items-center justify-center rounded-full border border-navy/30 text-[10px] font-bold text-navy/60 hover:bg-navy/5 focus:outline-none focus:ring-2 focus:ring-teal"
+      >
+        i
+      </button>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute left-0 top-6 z-30 w-64 rounded-lg border border-navy/10 bg-navy px-3 py-2 text-[11px] leading-relaxed text-white opacity-0 shadow-lg transition group-hover:opacity-100 group-focus-within:opacity-100">
+        {text}
+      </span>
+    </span>
   );
 }
 
@@ -43,19 +100,61 @@ export function PathogenExplorer() {
   const [pathogen, setPathogen] = useState<Pathogen>("Salmonella");
   const [sortMode, setSortMode] = useState<SortMode>("rate");
 
+  // Per-pathogen OVERALL positivity (the dimension==="overall" row), read straight
+  // from the artifact so the at-a-glance strip never fabricates a number.
+  const overallByPathogen = useMemo(() => {
+    const rows = state.data ?? [];
+    const m: Record<string, ProgramProductStratum | undefined> = {};
+    for (const p of PATHOGENS) {
+      m[p] = rows.find((r) => r.pathogen === p && r.dimension === "overall");
+    }
+    return m;
+  }, [state.data]);
+
   return (
     <div className="mx-auto max-w-7xl px-6 py-6">
-      {/* Hero consistent with the site */}
-      <section className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-navy-600 to-teal-600 px-6 py-10 text-white">
-        <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-teal-500 ring-1 ring-white/20">
-          Data-driven food safety · Earlier insights · Safer food
-        </span>
-        <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Pathogen Explorer</h1>
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/80">
-          Explore OBSERVED FSIS surveillance positivity for each pathogen, broken down by
-          sampling program, sample source, and product category. These are historical
-          laboratory results — not forecasts and never a claim that any product is contaminated.
-        </p>
+      {/* Slim hero + cross-pathogen at-a-glance */}
+      <section className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-navy-600 to-teal-600 px-6 py-6 text-white">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="min-w-0">
+            <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-teal-500 ring-1 ring-white/20">
+              Data-driven food safety · OBSERVED surveillance · not a forecast
+            </span>
+            <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">Pathogen Explorer</h1>
+            <p className="mt-1 max-w-xl text-[13px] leading-relaxed text-white/80">
+              Observed FSIS positivity by program, sample source and product. Historical lab
+              results — never a claim that any product is contaminated.
+            </p>
+          </div>
+          <dl className="grid grid-cols-3 gap-2 text-center" aria-label="Overall observed positivity by pathogen">
+            {PATHOGENS.map((p) => {
+              const o = overallByPathogen[p];
+              const on = p === pathogen;
+              return (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setPathogen(p)}
+                  aria-label={`${p} overall positivity`}
+                  aria-pressed={on}
+                  className={`min-w-[84px] rounded-xl border px-3 py-2 text-left transition ${
+                    on ? "border-teal bg-white/10 ring-1 ring-teal" : "border-white/15 hover:border-white/40"
+                  }`}
+                >
+                  <dt className="truncate text-[10px] font-semibold uppercase tracking-wide text-white/70">
+                    {p === "STEC" ? "STEC" : p}
+                  </dt>
+                  <dd className="text-lg font-extrabold text-white">
+                    {o && o.value !== null ? formatRisk(o.value) : "n‑a"}
+                  </dd>
+                  <dd className="text-[10px] text-white/60">
+                    {o && o.sample_n ? `${o.sample_n.toLocaleString()} tests` : "—"}
+                  </dd>
+                </button>
+              );
+            })}
+          </dl>
+        </div>
       </section>
 
       {/* Pathogen selector */}
@@ -252,31 +351,42 @@ function DimensionSection({
   }
 
   const shown = expanded ? ranked : ranked.slice(0, TOP_N);
+  // The pathogen OVERALL positivity (read from its own "overall" row), drawn
+  // as a thin baseline marker on each bar so groups read as above/below typical.
+  const baseline = rows.find((r) => r.dimension === "overall")?.value ?? null;
   const maxVal = Math.max(...ranked.map((c) => c.value ?? 0), unspecified?.value ?? 0, 0.0001);
   const note = takeaway(dim, ranked, pathogen);
 
   return (
     <div className="rounded-lg border border-navy/10 bg-white p-4">
       <div className="mb-1 flex items-center justify-between gap-2">
-        <h3 className="text-sm font-bold text-navy">{dim.label}</h3>
+        <div className="flex items-center gap-1.5">
+          <h3 className="text-[15px] font-bold text-navy">{dim.label}</h3>
+          <InfoDot text={dim.help} />
+        </div>
         <span className="text-[10px] text-navy/40">
           {ranked.length} {dim.noun}
           {smallGroups > 0 ? ` · ${smallGroups} small (n<${MIN_N}) hidden` : ""}
         </span>
       </div>
-      <p className="mb-2 text-[11px] text-navy/50">{dim.help}</p>
 
-      {/* Plain-English takeaway */}
+      {/* Key finding (promoted) */}
       {note ? (
-        <p className="mb-3 rounded-md bg-teal/5 px-3 py-2 text-[11px] leading-relaxed text-navy/80">
-          <span className="font-semibold text-teal-700">What this shows: </span>
-          {note}
+        <div className="mb-3 rounded-lg border border-teal/20 bg-teal/5 px-3 py-2.5">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-teal-700">Key finding</p>
+          <p className="mt-0.5 text-[13px] leading-relaxed text-navy/80">{note}</p>
+        </div>
+      ) : null}
+      {baseline !== null ? (
+        <p className="mb-2 flex items-center gap-1.5 text-[10px] text-navy/50">
+          <span className="inline-block h-3 w-px bg-navy/50" aria-hidden />
+          Vertical marker = overall {pathogen} positivity ({formatRisk(baseline)}); teal bar = this group; faint band = 95% likely range.
         </p>
       ) : null}
 
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-3">
         {shown.map((c) => (
-          <Row key={`${dim.id}:${c.category}`} c={c} max={maxVal} />
+          <Row key={`${dim.id}:${c.category}`} c={c} max={maxVal} baseline={baseline} />
         ))}
       </ul>
 
@@ -303,20 +413,20 @@ function DimensionSection({
   );
 }
 
-function Row({ c, max, muted = false }: { c: ProgramProductStratum; max: number; muted?: boolean }) {
+function Row({ c, max, muted = false, baseline = null }: { c: ProgramProductStratum; max: number; muted?: boolean; baseline?: number | null }) {
   return (
     <li className="grid grid-cols-[1fr,auto] items-center gap-x-3 gap-y-1">
       <div className="min-w-0">
-        <p className={`truncate text-xs font-medium ${muted ? "text-navy/50" : "text-navy"}`} title={c.category}>
+        <p className={`truncate text-[13px] font-medium ${muted ? "text-navy/50" : "text-navy"}`} title={c.category}>
           {c.category}
         </p>
-        <Bar value={c.value ?? 0} max={max} />
+        <Bar value={c.value ?? 0} max={max} baseline={baseline} ciLow={c.ci_low} ciHigh={c.ci_high} />
       </div>
-      <div className="text-right text-xs">
+      <div className="text-right text-[13px]">
         <span className={`font-bold ${muted ? "text-navy/50" : "text-navy"}`}>
           {c.value === null ? "—" : formatRisk(c.value)}
         </span>
-        <div className="text-[10px] text-navy/50">
+        <div className="text-[11px] text-navy/50">
           {c.positive_n?.toLocaleString() ?? "—"}/{c.sample_n?.toLocaleString() ?? "—"} positive
           {c.ci_low !== null && c.ci_high !== null ? (
             <span title="95% likely range: with many tests this is narrow (more certain); with few tests it is wide (less certain).">
