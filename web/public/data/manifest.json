@@ -325,7 +325,7 @@
     },
     "facility_map": {
       "file": "facility_map.json",
-      "checksum_sha256": "e9287ba6821e5e14132509cc9909987c48154c5cd4cdcdf6d57d02990dcf00ca",
+      "checksum_sha256": "3291e5cf302787cbcc3fb87cffd9df2be1f39f165bfe60b953ddd7f65ad7de3d",
       "record_count": 36,
       "status_tagged": true
     },

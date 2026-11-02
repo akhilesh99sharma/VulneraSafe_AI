@@ -133,23 +133,24 @@ describe("Facilities (unified S03 + Facility Map)", () => {
     expect(screen.getByTestId("facilities-view-map")).toBeInTheDocument();
   });
 
-  it("defaults to the Supplier List (S03) view and does NOT show the map", async () => {
+  it("defaults to the Facility Map view and does NOT show the S03 list", async () => {
     installBoth();
     renderWithSelection(<Facilities />);
 
-    // List is the default view: its button is pressed.
-    expect(screen.getByTestId("facilities-view-list")).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByTestId("facilities-view-map")).toHaveAttribute("aria-pressed", "false");
+    // Map is the default view: its button is pressed.
+    expect(screen.getByTestId("facilities-view-map")).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByTestId("facilities-view-list")).toHaveAttribute("aria-pressed", "false");
 
-    // The S03 list body renders (its "establishments by EB positivity" title).
-    expect(await screen.findByText(/establishments by EB positivity/i)).toBeInTheDocument();
+    // FacilityMap renders its accessible fallback grid under jsdom; its
+    // container keeps data-testid="facility-map-view" and the placed row is a facility-pin.
+    expect(await screen.findByTestId("facility-map-view")).toBeInTheDocument();
+    expect(await screen.findAllByTestId("facility-pin")).toHaveLength(1);
 
-    // The map container / pins are absent.
-    expect(screen.queryByTestId("facility-map-view")).not.toBeInTheDocument();
-    expect(screen.queryByTestId("facility-pin")).not.toBeInTheDocument();
+    // The S03 list title is absent while map is shown.
+    expect(screen.queryByText(/establishments by EB positivity/i)).not.toBeInTheDocument();
   });
 
-  it("switches to the Facility Map view when 'Facility Map' is clicked", async () => {
+    it("switches to the Facility Map view when 'Facility Map' is clicked", async () => {
     installBoth();
     renderWithSelection(<Facilities />);
 

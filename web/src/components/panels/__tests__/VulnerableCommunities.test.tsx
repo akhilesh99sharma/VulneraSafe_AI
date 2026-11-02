@@ -78,6 +78,7 @@ describe("VulnerableCommunities", () => {
     installArtifactFetch({ community_impact: ROWS });
     render(<VulnerableCommunities />);
     await waitFor(() => expect(screen.getByText(/priority ranking/i)).toBeInTheDocument());
+    fireEvent.click(screen.getByTestId("communities-view-list"));
     expect(screen.getByText(/hazard \(read-only surveillance\)/i)).toBeInTheDocument();
     expect(screen.getByText(/vulnerability \(this lens\)/i)).toBeInTheDocument();
   });
@@ -86,6 +87,8 @@ describe("VulnerableCommunities", () => {
     installArtifactFetch({ community_impact: ROWS });
     render(<VulnerableCommunities />);
     await waitFor(() => expect(screen.getByText(/priority ranking/i)).toBeInTheDocument());
+    // map is the default view; switch to the ranked list to test list reordering
+    fireEvent.click(screen.getByTestId("communities-view-list"));
     // under 65+, ME (hazard 1.0, vuln 1.0 -> priority 1.0) ranks above TX.
     // Switch to low-income: TX vuln 0.9 but hazard only 0.4; ME still leads on
     // priority, but the point under test is that hazard bars are per-record and

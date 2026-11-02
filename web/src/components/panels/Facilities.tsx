@@ -31,7 +31,7 @@ const VIEWS: Array<{ id: View; label: string; testid: string }> = [
 ];
 
 export function Facilities() {
-  const [view, setView] = useState<View>("list");
+  const [view, setView] = useState<View>("map");
 
   return (
     <div data-testid="facilities">

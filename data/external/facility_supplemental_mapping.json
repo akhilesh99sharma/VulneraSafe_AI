@@ -10,9 +10,9 @@
       "state": "CA",
       "historical_inspection_number": "M44857 / P44857",
       "historical_address": "155 Klug Circle, Corona, CA 92880",
-      "lat": null,
-      "lon": null,
-      "coordinate_source": null,
+      "lat": 33.8906,
+      "lon": -117.6125,
+      "coordinate_source": "address geocode of 155 Klug Cir, Corona CA 92880 (street-level; anchored to adjacent 250 Klug Cir, compstak.com); approximate, external, NOT FSIS-published",
       "evidence_urls": [
         "https://www.citizen.org/wp-content/uploads/PC-v.-DOL-OSHA-Jan-29-2021.pdf",
         "https://www.osha.gov/ords/imis/establishment.inspection_detail?id=1493169.015"
@@ -29,9 +29,9 @@
       "state": "FL",
       "historical_inspection_number": "M46167 / P46167",
       "historical_address": "2050 McKinley Street, Bay 1, Hollywood, FL 33020",
-      "lat": null,
-      "lon": null,
-      "coordinate_source": null,
+      "lat": 26.0169,
+      "lon": -80.1527,
+      "coordinate_source": "address geocode of 2050 McKinley St, Hollywood FL 33020 (street-level); approximate, external, NOT FSIS-published",
       "evidence_urls": [
         "https://www.citizen.org/wp-content/uploads/PC-v.-DOL-OSHA-Jan-29-2021.pdf",
         "https://www.meatpoultry.com/articles/20910-rte-chicken-salad-products-recalled"
@@ -48,9 +48,9 @@
       "state": "ND",
       "historical_inspection_number": "M47494 / P47494 / V47494",
       "historical_address": "9214 Highway 21, Mott, ND 58646",
-      "lat": null,
-      "lon": null,
-      "coordinate_source": null,
+      "lat": 46.371175,
+      "lon": -102.307709,
+      "coordinate_source": "FSIS-published site geolocation for 9214 Highway 21, Mott ND 58646 (same physical site as FSIS est. M2560/M47494); identity link to S03 id 6165673 remains unconfirmed",
       "evidence_urls": [
         "https://www.peta.org/wp-content/uploads/2022/09/south-40-farms-noncompliance-records.pdf",
         "https://www.peta.org/media/news-releases/pigs-repeatedly-shot-in-the-head-peta-seeks-federal-probe-2/"

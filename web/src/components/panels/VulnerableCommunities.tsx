@@ -37,7 +37,7 @@ export function VulnerableCommunities() {
   // values already in the data (hazard_component + vulnerability_component).
   const [weightHazard, setWeightHazard] = useState(0.6);
   // List <-> Map view toggle (presentational only; no value changes).
-  const [view, setView] = useState<"list" | "map">("list");
+  const [view, setView] = useState<"list" | "map">("map");
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-6">
