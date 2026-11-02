@@ -155,7 +155,7 @@ No observed illness reduction is claimed; operational outcomes are SIMULATED bec
 | Hannah Zonnevylle | Environmental science / spatial ecology / remote sensing | Environmental and spatial dimension: geographic variability, environmental conditions, and the ecological context of food-safety risk. |
 | Ruth Nichols | Mathematical and biological sciences | Quantitative and biological interpretation: complex-systems reasoning, integrating forms of evidence, and recognizing uncertainty in biological observations. |
 
-**Honest discipline gaps (declared, not faked):** a practicing retail supply-chain / logistics operations professional, a veterinary / agricultural production specialist, and a credentialed epidemiologist are disciplines the team did not directly cover.
+**Disciplines not directly covered.** The team did not include a practicing retail supply-chain / logistics operations professional, a veterinary / agricultural production specialist, or a credentialed epidemiologist; these are noted as gaps for future collaboration.
 
 **A real decision changed by interdisciplinary input.** The original intent was to rank establishments purely by pathogen-risk estimates. Viewing the problem through environmental-systems, biological, and quantitative lenses highlighted that this ignores the consequences of restricting or delaying food distribution - geographic variability, surveillance uncertainty, and the vulnerability of affected communities. As a result the design expanded to incorporate population vulnerability, food-security considerations, and alternative intervention scenarios, turning a risk-monitoring dashboard into a broader One Health decision-support platform.
 
