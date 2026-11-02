@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent, within } from "@testing-library/react";
 import App from "../App";
 import { installArtifactFetch } from "../test/renderHelpers";
 import type { Manifest } from "../types/artifacts";
@@ -43,23 +43,25 @@ describe("App", () => {
       expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
     }
 
-    // Decision Actions section: the remaining three mandatory panels, each on
-    // its own sub-tab. Navigate the sub-tab strip to reach each one.
+    // Decision Actions section: a guided three-step flow (Act / Decide / Plan).
+    // The three remaining mandatory panels live inside Decide (Recommended +
+    // Evidence, side by side) and Plan (Scenario Builder + Policy Comparison).
     fireEvent.click(screen.getByTestId("tab-actions"));
 
-    fireEvent.click(screen.getByTestId("subtab-scenario"));
-    expect(
-      screen.getByRole("heading", { name: "Scenario Builder" }),
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByTestId("subtab-recommended"));
+    // Step 2 - Decide: Recommended Action Panel and Explanation / Evidence Panel
+    // are co-located, so both are present at once.
+    fireEvent.click(screen.getByTestId("step-decide"));
     expect(
       screen.getByRole("heading", { name: "Recommended Action Panel" }),
     ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByTestId("subtab-evidence"));
     expect(
       screen.getByRole("heading", { name: "Explanation / Evidence Panel" }),
+    ).toBeInTheDocument();
+
+    // Step 3 - Plan: Scenario Builder sits beside the Policy Comparison.
+    fireEvent.click(screen.getByTestId("step-plan"));
+    expect(
+      screen.getByRole("heading", { name: "Scenario Builder" }),
     ).toBeInTheDocument();
   });
 
@@ -69,11 +71,9 @@ describe("App", () => {
     // The manifest-driven pathogen select still lives on the Risk Dashboard.
     fireEvent.click(screen.getByTestId("tab-dashboard"));
 
-    const select = (await screen.findByTestId(
-      "pathogen-select",
-    )) as HTMLSelectElement;
-    const options = Array.from(select.options).map((o) => o.value);
-    expect(options).toEqual(["", "Salmonella", "Listeria"]);
+    const pills = await screen.findByTestId("pathogen-pills");
+    const labels = within(pills).getAllByRole("button").map((b) => b.textContent);
+    expect(labels).toEqual(["Salmonella", "Listeria"]);
   });
 
   it("still renders panels when the manifest fails to load (graceful degradation)", async () => {

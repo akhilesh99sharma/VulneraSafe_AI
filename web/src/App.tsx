@@ -2,25 +2,18 @@ import { useState } from "react";
 import { useManifest } from "./data/hooks";
 import EmptyState from "./components/EmptyState";
 import ResponsibleUseBanner from "./components/ResponsibleUseBanner";
-import RegulatoryAlertsStrip from "./components/RegulatoryAlertsStrip";
 import Landing from "./components/Landing";
 import { SelectionProvider, useSelection } from "./state/selection";
 import { SectionTabs } from "./components/ui";
 import type { SectionTab } from "./components/ui";
 import RiskDashboard from "./components/panels/RiskDashboard";
-import VulnerablePopulationLens from "./components/panels/VulnerablePopulationLens";
-import ScenarioBuilder from "./components/panels/ScenarioBuilder";
-import RecommendedActionPanel from "./components/panels/RecommendedActionPanel";
-import ExplanationEvidencePanel from "./components/panels/ExplanationEvidencePanel";
-import PolicyComparison from "./components/panels/PolicyComparison";
+import DecisionActions from "./components/panels/DecisionActions";
 import PathogenExplorer from "./components/panels/PathogenExplorer";
 import EmergingSignals from "./components/panels/EmergingSignals";
 import OneHealthInsights from "./components/panels/OneHealthInsights";
 import Communities from "./components/panels/Communities";
 import Facilities from "./components/panels/Facilities";
-import SurveillanceActions from "./components/panels/SurveillanceActions";
 import SeasonalHazard from "./components/panels/SeasonalHazard";
-import type { Manifest } from "./types/artifacts";
 
 /**
  * App shell with a two-level navigation model (Req 12, 13).
@@ -29,7 +22,7 @@ import type { Manifest } from "./types/artifacts";
  * that hold more than one view render a secondary <SectionTabs/> sub-tab strip:
  *
  *  1. Overview            -> Landing (onEnter -> Risk Dashboard)
- *  2. Risk Dashboard      -> RegulatoryAlertsStrip + Controls + manifest + RiskDashboard
+ *  2. Risk Dashboard      -> Controls + manifest + RiskDashboard
  *  3. Pathogens           -> Product & Program / Emerging Signals / Seasonal Patterns
  *  4. Communities         -> unified Communities with a State ⇄ County toggle
  *  5. Facilities          -> unified Facilities with a List ⇄ Map view toggle
@@ -99,30 +92,14 @@ function Header({ section, setSection }: { section: Section; setSection: (s: Sec
   );
 }
 
-function Controls({ manifest }: { manifest: Manifest | null }) {
-  const { pathogen, setPathogen, region, setRegion } = useSelection();
-  const pathogens = manifest ? Object.keys(manifest.pathogens) : [];
+function Controls() {
+  const { region, setRegion } = useSelection();
   return (
     <nav
-      aria-label="Pathogen and region controls"
+      aria-label="Region controls"
       className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-6 py-3"
     >
-      <label className="flex items-center gap-2 text-xs font-semibold text-navy">
-        Pathogen
-        <select
-          id="pathogen-select"
-          name="pathogen"
-          data-testid="pathogen-select"
-          value={pathogen ?? ""}
-          onChange={(e) => setPathogen(e.target.value === "" ? null : e.target.value)}
-          className="rounded border border-navy/20 bg-white px-2 py-1 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal"
-        >
-          <option value="">All pathogens</option>
-          {pathogens.map((p) => (
-            <option key={p} value={p}>{p}</option>
-          ))}
-        </select>
-      </label>
+      <span className="text-xs font-semibold text-navy/60">Pathogen &amp; region are set on the dashboard below.</span>
       {region ? (
         <button
           type="button"
@@ -150,7 +127,7 @@ function RiskDashboardSection() {
       {/* Retains the manifest-driven pathogen select + region clear control
           alongside the dashboard's own pathogen pills; both drive the shared
           selection. */}
-      <Controls manifest={manifest} />
+      <Controls />
       {error ? (
         <div className="mx-auto max-w-7xl px-6 pt-2">
           <EmptyState
@@ -193,40 +170,14 @@ function PathogensSection() {
 }
 
 /**
- * Decision Actions section: the full decision layer, including the three
- * mandatory decision panels (Scenario Builder, Recommended Action Panel,
- * Explanation / Evidence Panel). The Population Lens — which sets the shared
- * vulnerable-population lens that drove the old DecisionTools stack — leads the
- * sub-tab strip so it stays reachable.
+ * Decision Actions section -> the DecisionActions panel, a guided three-step
+ * flow (Act / Decide / Plan). The three mandatory decision panels (Scenario
+ * Builder, Recommended Action Panel, Explanation / Evidence Panel) all live
+ * inside it; the standalone Population Lens tab was removed (its global lens
+ * had no live surface here - lens exploration lives on the Communities section).
  */
 function DecisionActionsSection() {
-  const subtabs: SectionTab[] = [
-    { id: "lens", label: "Population Lens" },
-    { id: "surveillance", label: "Surveillance Actions" },
-    { id: "scenario", label: "Scenario Builder" },
-    { id: "recommended", label: "Recommended Actions" },
-    { id: "evidence", label: "Evidence & Explanation" },
-    { id: "policy", label: "Policy Comparison" },
-  ];
-  const [sub, setSub] = useState<string>("surveillance");
-  return (
-    <>
-      <SectionTabs tabs={subtabs} active={sub} onChange={setSub} />
-      {sub === "lens" ? (
-        <VulnerablePopulationLens />
-      ) : sub === "scenario" ? (
-        <ScenarioBuilder />
-      ) : sub === "recommended" ? (
-        <RecommendedActionPanel />
-      ) : sub === "evidence" ? (
-        <ExplanationEvidencePanel />
-      ) : sub === "policy" ? (
-        <PolicyComparison />
-      ) : (
-        <SurveillanceActions />
-      )}
-    </>
-  );
+  return <DecisionActions />;
 }
 
 function AppBody() {
@@ -235,9 +186,6 @@ function AppBody() {
     <div className="min-h-full">
       <Header section={section} setSection={setSection} />
       <ResponsibleUseBanner />
-      {/* Hoisted so a verified recall is visible on every section, not hidden
-          behind navigation. */}
-      {section !== "overview" ? <RegulatoryAlertsStrip /> : null}
       {section === "overview" ? (
         <Landing onEnter={() => setSection("dashboard")} />
       ) : section === "pathogens" ? (

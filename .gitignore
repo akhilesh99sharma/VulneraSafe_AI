@@ -36,6 +36,12 @@ data/processed/*
 # aggregated to county FIPS) committed for reproducibility so the County Communities
 # map works without a Census key or the 85MB Atlas download. Mirrors data/external/.
 !data/processed/county_vulnerability.json
+
+# Recall cache: small public openFDA food-enforcement recall extract (50 records),
+# committed so build_regulatory_alerts rebuilds regulatory_alerts.json offline
+# (reproducibility), mirroring county_vulnerability.json above.
+!data/raw/recalls/
+!data/raw/recalls/openfda_food_enforcement.json
 data/synthetic/*
 !data/synthetic/.gitkeep
 

@@ -33,12 +33,11 @@ supporting document in `docs/reports/` rather than duplicating prose.
 - Required sections present: **8 of 8** (Methods, Results, Model validation,
   Uncertainty, Figures, Scenario comparison, Team science, Limitations).
 - Final-report questions answered from real evidence: **10 of 10** (Q1–Q10).
-- **Flagged for attention:** the Team science section (Q9 / Part A) currently
-  relies on **placeholders** in `docs/team_science.md`; its substance (dataset
-  additions, the NOAA ablation, the honest findings) is real and measured, but
-  the individual member identities and the attributed decision owner are
-  placeholders pending real team information. This is disclosed, not presented as
-  final. No final-report question is otherwise unanswered.
+- Team science section (Q9 / Part A): complete. `docs/team_science.md` carries
+  the real roster (Akhilesh Sharma, Hannah Zonnevylle, Ruth Nichols), their
+  disciplines and contributions, the real added-data ablation numbers, the
+  interdisciplinary design decision, declared discipline gaps, and future
+  partners. No final-report question is unanswered.
 
 ---
 
@@ -262,11 +261,13 @@ tests and 102 web tests, all passing; production build clean.
 
 ## Team science
 
-> **Placeholder flag.** The *substance* below is real and measured; the
-> *individual member identities* and the attributed decision owner in
-> `docs/team_science.md` are **placeholders pending real team information** and
-> must be replaced before submission. Per Requirement 17.5, no people,
-> discussions, or contributions are invented here.
+> Team: **Akhilesh Sharma** (project lead - AI / data science; architecture,
+> modeling, decision logic, Kiro app), **Hannah Zonnevylle** (environmental
+> science / spatial ecology), and **Ruth Nichols** (mathematical and biological
+> sciences). Full roster, contributions, declared discipline gaps, the real
+> ablation numbers, and the interdisciplinary design decision are in
+> `docs/team_science.md`. Per Requirement 17, no people, discussions, or
+> contributions are invented.
 
 Cross-disciplinary work that shaped the project (full statement and dataset
 ablation in `docs/team_science.md`): data science redesigned the target to a
@@ -317,9 +318,13 @@ verification and testing.
   corroboration, deliberately NOT as a real-time predictive feature.
 - **Food / animal / regulatory** — USDA FSIS establishment laboratory sampling
   (raw poultry Salmonella, RTE Listeria, raw beef STEC), FY2014–FY2026, ~823K
-  records. This is the surveillance backbone of the risk model. The FSIS
-  Recall/PHA feed is firewalled in this environment and is reported as an honest
-  gap, never fabricated.
+  records. This is the surveillance backbone of the risk model. Verified official recalls are integrated as REAL regulatory evidence
+  from the openFDA food enforcement API (FDA jurisdiction) - 50 cached of 382
+  ongoing listeria/salmonella/E.coli recalls, fetched 2026-11-02 - and surfaced
+  as regulatory alerts independent of model uncertainty (Req 16.6). Honest
+  jurisdiction caveat: the USDA FSIS meat/poultry recall feed is WAF-blocked
+  (HTTP 403) for non-browser clients here, so those specific recalls could not
+  be retrieved and are recorded as a gap, never fabricated.
 - **Environmental** — NOAA nClimDiv statewide monthly temperature/precipitation
   with anomalies, covering 46–49 states. Lagged so only fully-published months
   are used at a given cutoff.
@@ -450,8 +455,10 @@ because no real retailer data exists.
 
 ## 9. How team science changed the analysis
 
-See `docs/team_science.md` (placeholders for real team members pending). Intended
-cross-disciplinary contributions: data science (target redesign to a denominator-
+See `docs/team_science.md` for the full statement. The real team - Akhilesh
+Sharma (AI / data science), Hannah Zonnevylle (environmental science), and Ruth
+Nichols (mathematical and biological sciences) - brought these cross-disciplinary
+contributions: data science (target redesign to a denominator-
 aware beta-binomial after a domain reviewer flagged the v1 target as near-noise),
 food-safety domain expertise (keeping actions retailer-appropriate and non-
 regulatory), and public-health framing (treating CDC NORS as lagged corroboration
@@ -471,8 +478,9 @@ scenario-generated recall as a verified regulatory alert, or claim an observed
 reduction in illness.
 
 **Needed for real deployment.** A timely human-health feed (PulseNet or an
-approved near-real-time CDC source) rather than lagged NORS; a live FSIS
-Recall/PHA integration (firewalled here); real retailer operational data
+approved near-real-time CDC source) rather than lagged NORS; a live USDA FSIS
+Recall/PHA integration (WAF-blocked here, so only FDA-jurisdiction openFDA
+recalls are currently integrated); real retailer operational data
 (shipments, lots, inventory, routes) in place of the SIMULATED network;
 independent prospective validation on a truly untouched future period; and a
 formal fairness/equity review with stakeholders.
@@ -486,6 +494,12 @@ formal fairness/equity review with stakeholders.
   real NORS foodborne data compared against FSIS as corroboration), but remains
   LAGGED corroboration (~365 days), not a real-time predictor, and is never used
   as a causal or forecasting signal.
+- Regulatory recalls are REAL openFDA food enforcement records (FDA
+  jurisdiction; 50 cached of 382 ongoing, fetched 2026-11-02), surfaced as
+  regulatory evidence independent of model uncertainty. The USDA FSIS
+  meat/poultry recall feed is WAF-blocked (HTTP 403) for non-browser clients
+  here, so FSIS-jurisdiction recalls for the same pathogens could not be
+  retrieved - an honest gap, not fabricated.
 - NOAA weather (nClimDiv statewide monthly, national coverage) gives a small,
   pathogen-dependent lift: +0.0211 PR-AUC for Salmonella, +0.0050 for STEC,
   -0.0076 for Listeria. Modest and honest, not a headline driver.

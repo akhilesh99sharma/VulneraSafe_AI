@@ -949,7 +949,15 @@ def build_provenance() -> list[dict]:
 #: no hand-authored alerts exist. It is NOT a RegulatoryAlert list (never a
 #: fabricated alert and never a claim of a confirmed zero-recall state); it is a
 #: distinct object the React strip renders as "source unavailable" (Req 16.6).
-REGULATORY_FEED_SOURCE = "https://www.fsis.usda.gov/fsis/api/recall/v/1"
+REGULATORY_FEED_SOURCE = "https://api.fda.gov/food/enforcement.json"
+#: The USDA FSIS meat/poultry recall feed is WAF-blocked (HTTP 403) for
+#: non-browser clients in this environment; recorded honestly, not used.
+FSIS_RECALL_FEED_BLOCKED = "https://www.fsis.usda.gov/fsis/api/recall/v/1"
+
+#: Committed one-time offline cache of REAL openFDA food-enforcement recalls
+#: (FDA jurisdiction) filtered to our pathogens. Produced by
+#: scripts/fetch_recalls.py; read-only at build time (no network).
+OPENFDA_RECALLS_CACHE = REPO_ROOT / "data" / "raw" / "recalls" / "openfda_food_enforcement.json"
 
 
 def _regulatory_unavailable_payload() -> dict:
@@ -976,32 +984,69 @@ def _regulatory_unavailable_payload() -> dict:
     }
 
 
-def build_regulatory_alerts(*, source_dir: Optional[Path] = None) -> Any:
-    """Build the regulatory-track payload independent of the destination.
+def _map_openfda_recall(r: dict) -> dict:
+    """Map one openFDA food-enforcement record to a RegulatoryAlert dict.
 
-    Reads the hand-authored ``regulatory_alerts.json`` from ``source_dir``
-    (defaulting to the repo's :data:`WEB_DATA_DIR`), validates it against
-    :class:`RegulatoryAlert`, and returns the list verbatim when present. When
-    the official feed / hand-authored file is unavailable, returns an honest
-    unavailable-source object (see :func:`_regulatory_unavailable_payload`) --
-    never fabricated alerts and never a claim of confirmed zero recalls. The
-    return value is always schema-valid for writing: either a validated
-    ``list[RegulatoryAlert]`` or the unavailable marker dict.
+    Pure field projection; invents nothing. Missing fields degrade to safe
+    defaults. Date is normalised from openFDA YYYYMMDD to ISO YYYY-MM-DD.
+    alert_source is always REGULATORY and status always OBSERVED (Req 16.5).
     """
-    src_dir = source_dir or WEB_DATA_DIR
-    path = src_dir / "regulatory_alerts.json"
+    import re as _re
+    def _iso(d):
+        d = str(d or "").strip()
+        if len(d) == 8 and d.isdigit():
+            return d[0:4] + "-" + d[4:6] + "-" + d[6:8]
+        return d or "n/a"
+    code = str(r.get("code_info") or "").strip()
+    lots = [c.strip() for c in _re.split(r"[;,]\s*", code) if c.strip()][:12] if code else []
+    firm = str(r.get("recalling_firm") or "").strip()
+    desc = str(r.get("product_description") or "").strip()
+    product = (desc[:160] + "...") if len(desc) > 160 else desc
+    if firm:
+        product = (product + " - " + firm) if product else firm
+    event = str(r.get("event_id") or "").strip()
+    if event:
+        url = "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=" + event
+    else:
+        url = "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts"
+    return {
+        "recall_id": str(r.get("recall_number") or event or "UNKNOWN"),
+        "product": product or "(product not described)",
+        "lot_ids": lots,
+        "classification": str(r.get("classification") or "Unclassified"),
+        "date": _iso(r.get("report_date") or r.get("recall_initiation_date")),
+        "source_url": url,
+        "alert_source": "REGULATORY",
+        "status": "OBSERVED",
+    }
+
+
+def build_regulatory_alerts(*, source_dir: Optional[Path] = None) -> Any:
+    """Build the regulatory-track payload from REAL recall data (Req 16.5, 16.6).
+
+    Reads the committed one-time offline cache of openFDA food-enforcement
+    recalls (OPENFDA_RECALLS_CACHE, produced by scripts/fetch_recalls.py),
+    filtered to our pathogens, and maps each record to a validated
+    RegulatoryAlert. These are REAL, current FDA-jurisdiction food recalls,
+    NOT fabricated. The USDA FSIS meat/poultry recall feed is WAF-blocked
+    (HTTP 403) for non-browser clients here, so true FSIS recalls cannot be
+    retrieved; that is recorded honestly rather than faked.
+
+    No network call happens at build time: only the committed cache is read
+    (same offline-reproducible discipline as every other dataset). When the
+    cache is absent/unreadable/empty, returns the honest unavailable-source
+    marker; never a fabricated alert and never a confirmed-zero-recall claim.
+    """
+    path = OPENFDA_RECALLS_CACHE
     if not path.exists():
         return _regulatory_unavailable_payload()
     payload = _read_json(path)
-    if isinstance(payload, dict) and payload.get("feed_available") is False:
-        # Already an unavailable-source marker; preserve as-is.
-        return payload
-    if isinstance(payload, list) and not payload:
-        # Empty list on disk is ambiguous as a "zero recalls" claim; normalize
-        # to the explicit unavailable marker to stay honest.
+    results = payload.get("results", []) if isinstance(payload, dict) else []
+    if not results:
         return _regulatory_unavailable_payload()
-    validate_payload(payload, RegulatoryAlert, label="regulatory_alerts")
-    return payload
+    alerts = [_map_openfda_recall(r) for r in results]
+    validate_payload(alerts, RegulatoryAlert, label="regulatory_alerts")
+    return alerts
 
 
 def build_equity_test(scenario_payload: Optional[dict] = None) -> dict:

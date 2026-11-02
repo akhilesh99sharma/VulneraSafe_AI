@@ -1,26 +1,867 @@
 [
   {
-    "recall_id": "EXAMPLE-0001",
-    "product": "[EXAMPLE] Ready-to-eat chicken breast strips, 10 oz pouches",
+    "recall_id": "99833",
+    "product": "Made Fresh brand Black Bean and Corn Salad; 5lb white plastic tub - Made Fresh Salads Inc",
     "lot_ids": [
-      "EX-LOT-1180A",
-      "EX-LOT-1180B"
+      "Expiration dates from 09/03/2026 to 09/18/2026"
     ],
     "classification": "Class I",
-    "date": "2026-01-10",
-    "source_url": "https://www.fsis.usda.gov/recalls",
+    "date": "2026-10-21",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99833",
     "alert_source": "REGULATORY",
     "status": "OBSERVED"
   },
   {
-    "recall_id": "EXAMPLE-0002",
-    "product": "[EXAMPLE] Raw ground beef chubs, 3 lb packages",
+    "recall_id": "N/A",
+    "product": "SIERRA NEVADA CHEESE GRAZIERS RAW MILK SHARP CHEDDAR NET WT. 40 LBS Item 6516 - Sierra Nevada Cheese Company, Inc",
     "lot_ids": [
-      "EX-LOT-2207"
+      "Lot: 00116265",
+      "00310265",
+      "00317261",
+      "00512264",
+      "00923252",
+      "00926251",
+      "01002251",
+      "01010252",
+      "01021251",
+      "01031254",
+      "01107253",
+      "01205254"
+    ],
+    "classification": "Not Yet Classified",
+    "date": "2026-10-14",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99986",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-0014-2027",
+    "product": "Lemon Alfredo Fettuccine packed in a yellow plastic sealed bag with pink and black lettering; label reads in part as \"bettergoods Lemon Alfredo Fettuccine, MADE... - GIAS FOOD INC.",
+    "lot_ids": [
+      "L6081A SEP 21 2027"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-14",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=100010",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-0013-2027",
+    "product": "Berlin Seeds Alfalfa Sprouting Seeds, packaged in 1/4 lb., 1/2 lb., 1 lb., and 5 lb. resealable bags and 50 lb. woven poly bags - Berlin Seeds",
+    "lot_ids": [
+      "Lot # SAL2-24JB (on 5 lb. and 50 lb. bags only)"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-14",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99894",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-0002-2027",
+    "product": "LEASA Living Alfalfa Sprouts; packaged in plastic clamshell containers; KEEP REFRIGERATED; NET WT. 4 OZ. (113g); Grown & Packaged by: LEASA Industries Co., Inc.... - LEASA  Industries Co., Inc.",
+    "lot_ids": [
+      "Expiration Date (s): 9/4/26",
+      "9/8/26",
+      "9/10/26",
+      "9/15/26",
+      "9/17/26",
+      "9/18/26"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-14",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99951",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1407-2026",
+    "product": "Todd's Seeds Salad Sprouting Mixture - Broccoli, Mustard, Alfalfa and Cabbage, packaged in heat-sealed resealable bags in the following sizes: 1/4 lb., 1/2 lb.,... - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: TS-633-2 Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1405-2026",
+    "product": "Todd's Seeds Broccoli & Friends Sprouting Seed Mix - Broccoli, Alfalfa, Radish, Clover, packaged in 1 oz. sample packets and heat-sealed resealable bags in the ... - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: TS-245-MIX-13 Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1403-2026",
+    "product": "Coco G's Courmet Flaming Cheddar Hots, Spicy Cheddar Cheese Popcorn.  Packaged in the following sized plastic bags:   1.  2.5 oz (81g), UPC 6 94161-25911 9.   2... - Coco G's Snack Foods, Inc.",
+    "lot_ids": [
+      "Lot Numbers:007560   Best By June 10",
+      "2026"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=98954",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1398-2026",
+    "product": "Salata Salad Kitchen Jalapen¿o Avocado Dressing.  Keep Refrigerated.   Packaged in the following sizes:  1.  12.5 fl. oz. (369 mL), UPC 8 50043-70646 5.   2.  1... - Salata Dressings, LLC",
+    "lot_ids": [
+      "1.  Batch Number 2628-106/2628-111 EXP:  11/5/2026",
+      "Batch Number  2629-114 / 2629-118 EXP 11/13/2026",
+      "Batch Number  2630-039 / 2630-041 EXP 11/18/2026",
+      "Batch Number 2631-050 / 2631-056 EXP 11/25/2026.    2.  MFG:  07/08/26",
+      "Expires:  10/06/26",
+      "Batch # 2628-126 / 2628-143",
+      "MFG:  07/16/26",
+      "Expires:  10/14/26",
+      "Batch # 2629-130 / 2629-145",
+      "MFG:  07/21/26",
+      "Expires:  10/20/26",
+      "Batch # 2630-045 / 2630-060"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99602",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1409-2026",
+    "product": "Todd's Seeds Variety Pack of Sprouting Seeds - Broccoli, Alfalfa, Radish Mung & Clover, packaged as a multi-pack consisting of 2 oz. heat-sealed resealable bags... - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: TS-VARSPRT-1 Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1408-2026",
+    "product": "Todd's Seeds Alfalfa & Mung Bundle (1lb each), packaged separately in heat-sealed resealable bags - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: TS-229-4-MK Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1406-2026",
+    "product": "Todd's Seeds Sprouting Seed Mix - Broccoli, Radish, Alfalfa, packaged in heat-sealed resealable bags in the following sizes: 1/4 lb., 1/2 lb., 1 lb., and 5 lb. - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: TS-111-MIX-13 Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1404-2026",
+    "product": "Todd's Seeds Alfalfa Sprouting Seeds, packaged in heat-sealed resealable bags in the following sizes: 1/4 lb., 1/2 lb., 1 lb., 2.5 lb., and 5 lb. - TODD'S SEEDS LLC",
+    "lot_ids": [
+      "Lot No: SAL2-24JB (1/4",
+      "1/2",
+      "and 1 lb.)",
+      "TS-1462-2.5-4 (2.5 lb. only)",
+      "TS-1462-5-3 (5 lb. only) Use By: 12/31/2029"
+    ],
+    "classification": "Class I",
+    "date": "2026-10-07",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99887",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1396-2026",
+    "product": "Lemon Alfredo Fettuccine packed in a yellow plastic sealed bag with pink and black lettering; label reads in part as \"bettergoods Lemon Alfredo Fettuccine, MADE... - GIAS FOOD INC.",
+    "lot_ids": [
+      "L6080C SEP 20 2027 L6079C SEP 19 2027"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-30",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99853",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1390-2026",
+    "product": "Evergreen Fresh Sprouts LLC, Broccoli Sprouts, packaged in clear plastic zip lock bag, net wt. 4oz, UPC 8 38796 00105 1.  Firm distributed cases (6/4oz. bags pe... - Evergreen Fresh Sprouts LLC",
+    "lot_ids": [
+      "Use By Date (9/16/2026) Use By Date (9/14/2026) Use By Date (9/11/2026) Use By Date (9/09/2026) Use By Date (9/07/2026)"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-30",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99842",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1389-2026",
+    "product": "Pecorino Toscano D.O.P. STAGIONATO cheese wheels.  Product of Italy.  Each cheese wheel is approximately 3-4 lbs.  Wheels contain a wax rind.  Keep Refrigerated... - Elegant Foods, LLC",
+    "lot_ids": [
+      "Lot 093DPD"
     ],
     "classification": "Class II",
-    "date": "2026-01-08",
-    "source_url": "https://www.fsis.usda.gov/recalls",
+    "date": "2026-09-30",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99702",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1339-2026",
+    "product": "Everything Sprouts Crunchy Protein Sprout Mix, containing Alfalfa Fenugreek, Cabbage, Mung, Adzuki, Lentils, Green Pea, Net Wt. 5.0 oz (142 g) UPC 0 87906-01018... - Everything Sprouts, LLC",
+    "lot_ids": [
+      "Lot# 222",
+      "223",
+      "226",
+      "230"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99737",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1364-2026",
+    "product": "Tomato Salsa Fresca. Ingredients: Tomatoes, Yellow Onion, Red Onion, Cilantro, Jalapeno Pepper, Garlic, Salt, Ground Cumin, Lemon Juice. Net Wt: 4 lbs. Keep Ref... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Tennessee: TFTN2162",
+      "8/19/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1379-2026",
+    "product": "PICO DE GALLO-HOT-6/9oz HEB-PICO-HOT-12/14oz - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184 - 190A26216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1355-2026",
+    "product": "Pico De Gallo. Ingredients: Tomato, Onion, Jalapeno Pepper, Cilantro, Garlic, Salt, Black Pepper. Net Wt: 7 oz. Keep Refrigerated.  Distributed By: ADUSA Distri... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Rhode Island: TFNE210A",
+      "8/9/2026",
+      "TFNE212A",
+      "8/11/2026",
+      "TFNE213A",
+      "8/12/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1354-2026",
+    "product": "Pineapple Mango Salsa Mild. Ingredients: Mango, Pineapple, Pasteurized Lime Juice, Pasteurized Lemon Juice, Jalapeno Pepper, Serrano Pepper, Lime Flavored Zest ... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC211",
+      "8/7/2026. Texas: TFTX209U11",
+      "8/7/2026",
+      "TFTX211",
+      "8/9/2026",
+      "TFTX213U11",
+      "8/11/2026",
+      "TFTX216",
+      "8/14/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1378-2026",
+    "product": "HEB-PICO-MEDIUM-12/14oz PICO DE GALLO-MEDIUM-6/14oz PICO DE GALLO-MEDIUM-6/9oz PICO-DE-GALLO-MEDIUM-BGC-1/5# PICO-MEDIUM-SNACK-12/4oz - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "400B26184",
+      "400B26187",
+      "400B26188",
+      "400B26189",
+      "400B26190",
+      "400B26191",
+      "400B26194",
+      "400B26195",
+      "400B26196",
+      "400B26197",
+      "400B26198",
+      "400B26201"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1351-2026",
+    "product": "Spicy Guacamole. Ingredients: Guacamole, Pico De Gallo. Spec Sheet: Guacamole (Avocado, Pico De Gallo, Serrano Peper, Lime Juice, Salt, Pepper); Pico De Gallo (... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Tennessee: TFTN2171",
+      "8/13/2026. Texas: TFTX211",
+      "8/7/2026",
+      "TFTX213",
+      "8/9/2026",
+      "TFTX215U11",
+      "8/11/2026",
+      "TFTX216U11",
+      "8/12/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1342-2026",
+    "product": "Martina brand Fresh Whole Mangoes; Individual whole mangoes, variable weight; 9 mangoes per carton box - Panorama Produce Sales Inc.",
+    "lot_ids": [
+      "Lot 038",
+      "PLU 4584"
+    ],
+    "classification": "Class II",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99780",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1349-2026",
+    "product": "Taco Dip. Ingredients: Refried Vegetarian Beans *** Guacamole (***Pico De Gallo [***Jalapeno Pepper]***), Pico De Gallo (***Jalapeno Pepper), Mild Cheddar Chees... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Florida: TFFL211",
+      "8/7/2026",
+      "TFFL212",
+      "8/18/2026",
+      "TFFL214",
+      "8/11/2026. Tennessee: TFTN2161",
+      "8/12/2026",
+      "TFTN2171",
+      "8/13/2026. Texas: TFTX211",
+      "8/7/2026",
+      "TFTX213",
+      "8/9/2026"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1356-2026",
+    "product": "Pico De Gallo. Ingredients: Tomato, Onion, Jalapeno, Cilantro. Net Wt: 16 oz. Keep Refrigerated.  Distributed By: Taylor Farms Inc., Salinas, CA 93902.  UPC: 03... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Texas: TFTX208016",
+      "8/7/2026",
+      "TFTX210016",
+      "8/9/2026",
+      "TFTX212016",
+      "8/11/2026",
+      "TFTX215016",
+      "8/14/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1348-2026",
+    "product": "Spicy Pimento Cheese Dip. Ingredients: Sharp Cheddar Cheese *** Cream Cheese *** Piquillo Peppers *** Jalapeno Pepper, Mayonnaise *** Cayenne Pepper Sauce *** D... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Kentucky: TFKY216B",
+      "8/13/2026",
+      "TFKY217B",
+      "8/14/2026. Texas: TFTX209",
+      "8/7/2026",
+      "TFTX210",
+      "8/8/2026",
+      "TFTX211",
+      "8/9/2026",
+      "TFTX212",
+      "8/10/2026",
+      "TFTX213"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1368-2026",
+    "product": "BH Bold Chef Salad Kit. Ingredients: Iceberg Lettuce, Pico De Gallo (***Jalapeno Pepper), Jalapeno Ranch Dressing (***Jalapeno Peppers***), Egg, Cucumber, Black... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Florida: TFFL209",
+      "8/9/2026",
+      "TFFL210",
+      "8/10/2026",
+      "TFFL211",
+      "8/11/2026",
+      "TFFL212",
+      "8/12/2026",
+      "TFFL213",
+      "8/13/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1376-2026",
+    "product": "NatureBest Mild Cheddar & Jalapeno Stuffed Mushrooms 8oz (227g) HEB SI JAL POP STFFD MUSHRM-6/8oz - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184 - 190A26216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1373-2026",
+    "product": "SOUP MIX-6/58oz Tray, PPS971 CLR PET 900/cs 32cs/pal, film-sealed (18\" 16 Micron Perserva Wrap 5000/rl), packed in 30# Kale 44ect - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184",
+      "190A26187",
+      "190A26189",
+      "190A26192",
+      "190A26194",
+      "190A26196",
+      "190A26199",
+      "190A26201",
+      "190A26203",
+      "190A26206",
+      "190A26208",
+      "190A26210"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1362-2026",
+    "product": "Salsa Verde Mild. Ingredients: Whole Tomatillos (***), Roasted Poblano Chile, Jalapeno Pepper, Cilantro, Serrano Pepper, Garlic, Salt. Net Wt: 12 oz. Keep Refri... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC207",
+      "8/7/2026",
+      "TFIC209",
+      "8/9/2026",
+      "TFIC211",
+      "8/11/2026. Texas: TFTX209U11",
+      "8/9/2026",
+      "TFTX211",
+      "8/11/2026",
+      "TFTX213U11",
+      "8/13/2026",
+      "TFTX216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1377-2026",
+    "product": "HEB-GUAC KIT-MILD-3/57.5oz - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "400B26184",
+      "400B26187",
+      "400B26188",
+      "400B26189",
+      "400B26190",
+      "400B26191",
+      "400B26194",
+      "400B26195",
+      "400B26196",
+      "400B26197",
+      "400B26198",
+      "400B26201"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1357-2026",
+    "product": "Mild Pico De Gallo. Ingredients: Tomatoes, Red Onions, Lime Juice Concentrate, Jalapeno Peppers, Garlic, Cilantro, Salt. Net Wt: 10 oz. Keep Refrigerated.  Dist... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Florida: TFFL208",
+      "8/9/2026",
+      "TFFL210",
+      "8/10/2026",
+      "TFFL212",
+      "8/13/2026. Kentucky: TFKY216B",
+      "8/17/2026. Texas: TFTX208016",
+      "8/8/2026",
+      "TFTX209016",
+      "8/9/2026",
+      "TFTX210016",
+      "8/10/2026"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1358-2026",
+    "product": "Hot Pico De Gallo. Ingredients: Tomatoes, Red Onions, Jalapeno Peppers, Lime Juice Concentrate, Serrano Peppers, Cilantro, Garlic, Salt. Net Wt: 10 oz. Keep Ref... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Florida: TFFL208",
+      "8/9/2026",
+      "TFFL210",
+      "8/10/2026",
+      "TFFL212",
+      "8/13/2026. Kentucky: TFKY215B",
+      "8/16/2026",
+      "TFKY217B",
+      "8/18/2026. Texas: TFTX208016",
+      "8/8/2026",
+      "TFTX209016",
+      "8/9/2026"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1372-2026",
+    "product": "PICO DE GALLO-MILD-4oz PICO DE GALLO-MILD-6/14oz PICO DE GALLO-4/5# PICO DE GALLO-1/5# PICO DE GALLO-MILD-1/5# - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184 - 190A26216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1363-2026",
+    "product": "Salsa Fresca Medium. Ingredients: Tomato, Yellow Onion, Jalapeno Pepper, Pasteurized Lemon Juice, Garlic, Salt, Cilantro, Ground Cumin. Net Wt: 12 oz. Keep Refr... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC207",
+      "8/7/2026",
+      "TFIC209",
+      "8/9/2026",
+      "TFIC211",
+      "8/11/2026. Texas: TFTX209U11",
+      "8/9/2026",
+      "TFTX211",
+      "8/11/2026",
+      "TFTX213U11",
+      "8/13/2026",
+      "TFTX216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1360-2026",
+    "product": "Pico De Gallo Spicy. Ingredients: Tomato, Yellow Onion, Serrano Pepper, Jalapeno Pepper, Cilantro, Pasteurized Lime Juice, Salt. Net Wt: 10 oz. Keep Refrigerate... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC207",
+      "8/7/2026",
+      "TFIC209",
+      "8/9/2026",
+      "TFIC211",
+      "8/11/2026. Texas: TFTX209",
+      "8/9/2026",
+      "TFTX211016",
+      "8/11/2026",
+      "TFTX213008",
+      "8/13/2026",
+      "TFTX216016"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1374-2026",
+    "product": "HEB-PICO-MANGO-12/14oz PICO DE GALLO-MANGO-4/14oz PICO DE GALLO-MANGO-6/14oz - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184 - 190A26216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1365-2026",
+    "product": "Pico De Gallo Hot. Ingredients: Tomato, Red Onion, Jalapeno Pepper, Lemon Juice, Cilantro, Salt. Net Wt: 2.5 lbs. - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Tennessee: TFTN2162",
+      "8/18/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1366-2026",
+    "product": "Fresh Pico Tray. Ingredients: Tomato, Yellow Onion, Jalapeno Pepper, Cilantro. Net Wt: 5 lbs. - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Tennessee: TFTN2162",
+      "8/18/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1352-2026",
+    "product": "Authentic Guacamole. Ingredients: Guacamole, Pico De Gallo. Spec Sheet: Guacamole (Avocado, Pico De Gallo, Lime Juice, Cumin, Salt, Pepper); Pico De Gallo (Cila... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Texas: TFTX211",
+      "8/7/2026",
+      "TFTX213",
+      "8/9/2026",
+      "TFTX215U11",
+      "8/11/2026",
+      "TFTX216U11",
+      "8/12/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1350-2026",
+    "product": "Fiesta Salad with Shrimp. Ingredients: Salad (Romaine Lettuce, Cooked Shrimp *** Pico De Gallo [***Jalapeno Peppers], Fire Roasted Corn, Cooked Black Beans, Lim... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Texas: TFTX212",
+      "8/7/2026",
+      "TFTX213U11",
+      "8/8/2026",
+      "TFTX214",
+      "8/9/2026",
+      "TFTX215U11",
+      "8/10/2026",
+      "TFTX216U11",
+      "8/11/2026",
+      "TFTX217U11",
+      "8/12/2026."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1338-2026",
+    "product": "Everything Sprouts Zesty Garlic Mix, containing Garlic, Onion and Alfalfa Sprouts, Net Wt. 5.0 oz (142 g) UPC 0 87906-00016 7.  everythingsprouts.com - Everything Sprouts, LLC",
+    "lot_ids": [
+      "Lot# 222",
+      "223",
+      "225",
+      "226",
+      "230."
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99737",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1388-2026",
+    "product": "Mon Sire Brie, soft-ripened French cheese, 1 kg, packed in carboard carton and wrapped in plastic parchment paper, 2 units each, Keep Refrigerated - Optimus Inc. d/b/a/ Markys Caviar",
+    "lot_ids": [
+      "LOT 00000ZRAA1  EXP 08/15/2026 LOT 00000ZUAD2  EXP 08/18/2026"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99841",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1347-2026",
+    "product": "Spicy Jalapeno Jarlsberg Dip. Ingredients: Mayonnaise *** Jarlsberg Cheese *** Red Onion, Jalapeno Pepper. Net Wt: 10 oz. Keep Refrigerated.  Distributed By: Ta... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Kentucky: TFKY216B",
+      "8/13/2026",
+      "TFKY217B",
+      "8/14/2026",
+      "TFKY218B",
+      "8/15/2026. Texas: TFTX210",
+      "8/7/2026",
+      "TFTX211",
+      "8/8/2026",
+      "TFTX212",
+      "8/9/2026",
+      "TFTX213"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1346-2026",
+    "product": "Spicy Roast Beef Sandwich (closed-face). Ingredients: Fully Cooked Seasoned Roast Beef Top Round *** Brioche Bun *** Hatch Chile Spread (***Jalapeno Pepper), Re... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Tennessee: TFTN2171",
+      "8/11/2026. Texas: TFTX211",
+      "8/7/2026",
+      "TFTX212",
+      "8/8/2026",
+      "TFTX213",
+      "8/9/2026",
+      "TFTX214",
+      "8/10/2026",
+      "TFTX215",
+      "8/11/2026",
+      "TFTX216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1361-2026",
+    "product": "Salsa Roja Medium. Ingredients: Fire Roasted Diced Tomatoes in Juice (***), Yellow Onion, Jalapeno Peppers, Arbol Chile Water Mix (***), Cilantro, Garlic, Salt,... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC207",
+      "8/7/2026",
+      "TFIC209",
+      "8/9/2026",
+      "TFIC211",
+      "8/11/2026. Texas: TFTX209",
+      "8/9/2026",
+      "TFTX211",
+      "8/11/2026",
+      "TFTX213U11",
+      "8/13/2026",
+      "TFTX216"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1340-2026",
+    "product": "Everything Sprouts Robust Radish Mix, Net Wt. 5.0 oz (142 g) UPC 0 87906-00007 5.  Keep Refrigerated.  everythingsprouts.com - Everything Sprouts, LLC",
+    "lot_ids": [
+      "Lot# 223",
+      "226",
+      "230",
+      "233"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99737",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1375-2026",
+    "product": "PEPPER-JALAPENO-DC 1/4\"-4/5# PEPPER-JALAPENO-DC 1/4\"-1/5# PEPPER-JALAPENO-SL 1/8\"-1/5# PEPPER-JAL/SER-MINCE W/SD-6/5# PEPPER-JALAPENO-DC 3/8\"-4/5# PEPPER-JALAPE... - NatureBest Pre-Cut & Produce LLc",
+    "lot_ids": [
+      "190A26184",
+      "190A26187",
+      "190A26188",
+      "190A26189",
+      "190A26190",
+      "190A26192",
+      "190A26195",
+      "190A26196",
+      "190A26197",
+      "190A26198",
+      "190A26199",
+      "190A26201"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99594",
+    "alert_source": "REGULATORY",
+    "status": "OBSERVED"
+  },
+  {
+    "recall_id": "H-1359-2026",
+    "product": "Pico De Gallo Mild. Ingredients: Tomato, Yellow Onion, Jalapeno Pepper, Cilantro, Pasteurized Lime Juice, Salt. Net Wt: 10 oz. Keep Refrigerated.  Distributed B... - Taylor Fresh Foods Inc",
+    "lot_ids": [
+      "Illinois: TFIC207",
+      "8/7/2026",
+      "TFIC209",
+      "8/9/2026",
+      "TFIC211",
+      "8/11/2026. Texas: TFTX209",
+      "8/9/2026",
+      "TFTX211016",
+      "8/11/2026",
+      "TFTX213008",
+      "8/13/2026",
+      "TFTX216016"
+    ],
+    "classification": "Class I",
+    "date": "2026-09-23",
+    "source_url": "https://www.accessdata.fda.gov/scripts/ires/index.cfm?event=99611",
     "alert_source": "REGULATORY",
     "status": "OBSERVED"
   }

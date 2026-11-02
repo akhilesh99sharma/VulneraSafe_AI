@@ -1,149 +1,65 @@
-﻿# Team Science Statement
+# Team Science Statement
+**VulneraSafe AI | NAFSI SENS-D Data Challenge 2026**
 
-> STATUS: Team-member identities and any stakeholder attribution are **clearly
-> flagged placeholders pending real team input** (kept honest per Req 17.5 — do
-> not fabricate people). Added datasets, the added-data ablation numbers, and the
-> future-partner recommendations below are **real, project-traceable facts** drawn
-> from the actual pipeline and `docs/reports/ablation.md` /
-> `web/public/data/ablation_results.json`.
->
-> UPDATE: this statement now also reflects the science-first expansion modules
-> (S01/S03/S04/S05/S06); the dataset, ablation, and decision facts below are real
-> and project-traceable. Only team-member identities remain placeholders.
+**Team:** Akhilesh Sharma, Hannah Zonnevylle, and Ruth Nichols
 
-## Team members and disciplines (Req 17.1) — PLACEHOLDER, pending real info
+## Interdisciplinary Team Composition
 
-The real team roster and contribution mapping has not yet been supplied, so it is
-left as placeholders rather than invented. Replace each bracketed field with a
-real person and their genuine contribution before submission.
+VulneraSafe AI was developed by a team representing three complementary scientific backgrounds: artificial intelligence and agricultural technology, environmental science and remote sensing, and mathematical and biological sciences. This combination reflects the interdisciplinary nature of the One Health framework, where understanding food-safety risks requires considering biological, environmental, technological, and societal factors together.
+
+### Members and disciplines (Req 17.1)
 
 | Member | Discipline covered | Genuine contribution |
 |---|---|---|
-| [Member 1 — name/discipline TBD] | [machine learning / data science?] | [specific contribution TBD] |
-| [Member 2 — name/discipline TBD] | [food-safety science?] | [specific contribution TBD] |
-| [Member 3 — name/discipline TBD] | [epidemiology / public health?] | [specific contribution TBD] |
-| [Member 4 — name/discipline TBD] | [software / frontend?] | [specific contribution TBD] |
+| Akhilesh Sharma | AI / agricultural technology / data science | Project lead: architecture, data integration, pathogen surveillance, predictive modeling, validation, decision-support logic, and the AWS Kiro web application. |
+| Hannah Zonnevylle | Environmental science / spatial ecology / remote sensing | Environmental and spatial dimension: geographic variability, environmental conditions, and ecological context of food-safety risk. |
+| Ruth Nichols | Mathematical and biological sciences | Quantitative and biological interpretation: complex-systems reasoning, integrating forms of scientific evidence, and recognizing uncertainty in biological observations. |
 
-Disciplines in scope for this challenge: food-safety science, epidemiology,
-agriculture and environment, machine learning and data science, geospatial
-analysis, retail supply-chain operations, and food access and equity.
+### Member contributions
 
-**Uncovered-discipline gaps (flagged, not faked):** until the real roster is
-provided, every discipline above is treated as an **open gap**. Disciplines most
-likely to be genuinely uncovered and that should be declared as gaps include a
-practicing **retail supply-chain / logistics operations** professional, a
-**veterinary / agricultural production** specialist, and a credentialed
-**epidemiologist** — these must be listed as gaps, not attributed to a
-fabricated specialist.
+**Akhilesh Sharma - Project Lead, Research and Technical Development.** Akhilesh led the conceptualization, research, technical development, and implementation of VulneraSafe AI. Building on his doctoral research at Cornell University and prior industry experience at Bayer, he designed the overall architecture and developed the data integration, pathogen surveillance, predictive modeling, validation, and decision-support components, and implemented the interactive web application using AWS Kiro. A central focus was moving beyond pathogen-risk prediction to actionable recommendations that consider food availability, population vulnerability, and uncertainty.
 
-## Added datasets (Req 17.2 — two real, beyond FSIS core)
+**Hannah Zonnevylle - Environmental Science and Spatial Ecology.** Hannah is a Ph.D. student and NSF Graduate Research Fellow whose research examines environmental variability and ecological processes using remote sensing. Her expertise anchors the environmental and spatial dimension - geographic variability, environmental conditions, and the broader ecological context of food-safety risk.
 
-Both are real streams integrated into the pipeline beyond the minimal FSIS core:
+**Ruth Nichols - Mathematical and Biological Sciences.** Ruth holds degrees in Mathematical Sciences and Astrobiology from Florida Institute of Technology, with research spanning chemical ecology, astrobiology, and biological systems. Her background anchors the quantitative and biological dimensions - interpreting complex systems, integrating different forms of scientific evidence, and recognizing uncertainty in biological observations.
 
-1. **NOAA nClimDiv — statewide monthly climate** (NOAA/NCEI). Domain:
-   environment. Added to test whether temperature/precipitation signals improve
-   near-term pathogen-risk prediction (the environmental leg of One Health). What
-   it changed: it is the source of the `weather_*` features whose marginal value
-   is measured directly in the ablation below.
-2. **US Census ACS 5-year** (American Community Survey). Domain: food access and
-   equity / demographics. Added to supply the vulnerable-population context
-   (elderly-65+ share, socioeconomic indicators) used for equity-aware allocation
-   and folded into the `full` configuration as `static_*` features.
+**Disciplines covered:** AI / data science, environmental science / remote sensing, mathematical and biological sciences. **Honest gaps (not faked):** a practicing retail supply-chain / logistics operations professional, a veterinary / agricultural production specialist, and a credentialed epidemiologist are disciplines the team did not directly cover and are declared as gaps for future collaboration.
 
-Also integrated: **CDC NORS** human-health outbreak surveillance (lagged
-corroboration, honestly reported as a feature gap — see ablation) and the **USDA
-Food Access Research Atlas** (low-income/low-access tract shares, part of the
-`static_*` context block).
+## Scientific approach and integration
 
-**Update (science-first expansion):** CDC NORS moved from a declared feature-gap
-to a **real, integrated comparison** in S05 (One Health Insights): the public CDC
-NORS foodborne-outbreak dataset (data.cdc.gov `5xkq-dg7x`) was downloaded and
-compared against FSIS surveillance at state x year as lagged corroboration. It is
-still NOT a predictive feature in the hazard model — the integration is honest
-corroboration, closing the human-health leg of One Health that was previously a
-placeholder.
+The central idea was to treat food safety as an interconnected systems problem rather than an isolated prediction task, integrating pathogen surveillance with environmental information, geographic variation, and population vulnerability. Within the compressed timeline, development was primarily led by Akhilesh, which kept the pipeline, modeling framework, decision logic, and application consistent. The interdisciplinary scope shows up in three areas: environmental and spatial context; quantitative and biological interpretation of sampling, uncertainty, and surveillance limits; and applied AI translating results into interventions that weigh food security, equitable access, and food loss.
 
-## Added-data ablation with a quantitative difference (Req 17.3) — REAL numbers
+## Added datasets (Req 17.2)
 
-Exactly four configurations per pathogen (FSIS-only, FSIS+CDC, FSIS+NOAA, full),
-each trained with the pathogen's best model on the **same** chronological train
-split and scored on the **same** untouched held-out test set. Primary metric:
-**PR-AUC**; marginal contribution is the **signed** change vs FSIS-only (negatives
-preserved, never clamped). Source:
-`docs/reports/ablation.md` / `web/public/data/ablation_results.json`.
+Two external datasets beyond the FSIS core, with a food-security/vulnerability dataset among them: **US Census ACS** (population, elderly-65+ share) and **USDA Food Access Research Atlas** (low-income / low-access tract shares). Also integrated: **NOAA nClimDiv** statewide monthly climate (environmental leg) and **CDC NORS** human-health outbreak surveillance (S05, lagged corroboration).
 
-Re-measured after the NOAA weather source was upgraded from a single demo
-station to **NOAA nClimDiv statewide monthly climate** (national coverage, ~87%
-of state-periods non-missing):
+## Added-data ablation with quantitative difference (Req 17.3) - REAL numbers
 
-| Pathogen | FSIS-only PR-AUC | FSIS+NOAA Δ | Full PR-AUC | Full Δ vs FSIS-only |
-|---|---|---|---|---|
-| Salmonella | 0.5102 | **+0.0211** | 0.5172 | +0.0070 |
-| Listeria | 0.7437 | −0.0076 | 0.7384 | −0.0053 |
-| STEC | 0.4102 | **+0.0050** | 0.4329 | **+0.0227** |
+Four configurations per pathogen (FSIS-only, FSIS+CDC, FSIS+NOAA, full), same chronological train split, same untouched test set. Primary metric PR-AUC; marginal contribution is the signed change vs FSIS-only (negatives preserved). Source: docs/reports/ablation.md and web/public/data/ablation_results.json.
 
-Honest findings from the real measurement (on the upgraded nClimDiv data):
-- **NOAA weather now helps Salmonella** — a real +0.0211 PR-AUC from weather
-  alone, where the earlier thin-single-station ablation measured exactly 0.000.
-  The national state-monthly coverage is what makes the signal detectable. STEC
-  also gains a small positive from NOAA (+0.0050).
-- **Listeria weather is slightly negative** (−0.0076) — consistent with RTE
-  Listeria being process-driven rather than weather-driven. Reported with its
-  real sign, not hidden.
-- **Adding every group (`full`) is not monotonic**: it clearly helps STEC
-  (+0.0227) but slightly *dilutes* Salmonella and Listeria vs their best single
-  addition — an honest reminder that more features is not always better with
-  limited positives.
-- **FSIS+CDC is now a real (small positive) contribution**, not a gap: with the
-  S05 CDC NORS integration, CDC-derived context is in the matrix (e.g. Salmonella
-  0.5102 → 0.5161). This supersedes the earlier "no CDC features joined" note.
+Pathogen | FSIS-only PR-AUC | FSIS+NOAA delta | Full PR-AUC | Full delta vs FSIS-only
+---|---|---|---|---
+Salmonella | 0.5102 | +0.0211 | 0.5172 | +0.0070
+Listeria | 0.7437 | -0.0076 | 0.7384 | -0.0053
+STEC | 0.4102 | +0.0050 | 0.4329 | +0.0227
 
-## A real decision changed by a team member/stakeholder (Req 17.4) — PLACEHOLDER
+Honest findings: NOAA weather helps Salmonella (+0.0211) and STEC (+0.0050) but is slightly negative for Listeria (-0.0076), consistent with RTE Listeria being process-driven; adding every group (full) helps STEC most (+0.0227) but slightly dilutes Salmonella/Listeria vs their best single addition - more features is not always better with limited positives.
 
-A genuine design decision was made during the project, but it **cannot yet be
-attributed to a named real team member or stakeholder**, so the attribution is
-left as a flagged placeholder rather than fabricated:
+## A real decision changed by interdisciplinary input (Req 17.4)
 
-- **Input source:** [stakeholder/team-member role TBD — pending real team input]
-- **Prior decision:** the added `weather_*` (NOAA) features were assumed to carry
-  predictive value and were slated to stay in the headline model.
-- **Revised decision:** after the ablation measured a near-zero / negative NOAA
-  marginal (above), NOAA weather was demoted from a claimed predictive driver to
-  an honestly-reported non-contributor, and the thin-coverage limitation was
-  documented rather than hidden.
+One important decision was to move beyond a system that simply ranks establishments by pathogen-risk estimates. That alone would have overlooked the consequences of restricting or delaying food distribution. Considering the problem from environmental-systems, biological-sciences, and quantitative-modeling perspectives highlighted the need to account for geographic variability, uncertainty in surveillance data, and the vulnerability of communities affected by supply-chain decisions.
 
-A second, independent evidence-driven reversal came from the expansion modules:
-- **Prior decision:** S04 (Emerging Signals) and S05 were expected to deliver a
-  forward-looking forecast of emerging pathogen spikes.
-- **Revised decision:** a one-step-ahead forecast was built and evaluated against
-  a naive persistence baseline. It did not beat persistence (precision 0.03–0.08
-  across pathogens), so the PREDICTED forecast layer was **withheld entirely**
-  and both modules were shipped as rigorous retrospective/descriptive layers with
-  stated uncertainty. Choosing to publish a modest honest result over an
-  impressive unvalidated one is itself a deliberate, evidence-driven call.
-- **Prior decision:** establishment and vulnerability rankings would use raw
-  positivity / raw shares.
-- **Revised decision:** after seeing how thinly-sampled establishments produced
-  spurious extremes, S03 switched to a beta-binomial Empirical-Bayes posterior
-  (shrinkage toward the peer rate) and S06 fixed the hazard as read-only so a
-  vulnerability lens can never distort it — both changes made because the raw
-  approach was measurably misleading.
+As a result the design expanded to incorporate population vulnerability, food-security considerations, and alternative intervention scenarios. Rather than recommending actions from elevated pathogen-risk signals alone, the platform lets users explore how decisions balance food safety, food availability, and equitable access - transforming VulneraSafe AI from a risk-monitoring dashboard into a broader One Health decision-support platform.
 
-This decision is real and traceable to the ablation artifact; only the
-person/role behind it is a placeholder until the real roster is supplied.
+Two further evidence-driven reversals: (1) a one-step-ahead emerging-spike forecast (S04/S05) was built, failed to beat a naive persistence baseline (precision 0.03-0.08), and was withheld rather than shipped as an unvalidated PREDICTED layer; (2) establishment and vulnerability rankings moved from raw positivity/shares to a beta-binomial Empirical-Bayes posterior (S03) with the hazard fixed read-only (S06) after the raw approach proved measurably misleading. Choosing a modest honest result over an impressive unvalidated one was a deliberate call.
 
-## Future partner / dataset recommendations (Req 17.5) — real, traceable gaps
+## Future partner / dataset recommendations (Req 17.5)
 
-1. **PulseNet WGS access via a participating public-health lab** — to replace the
-   lagged NORS corroboration with timely, laboratory-confirmed human-health
-   signal (closes the FSIS+CDC ablation gap above).
-2. **FSIS Recall / Public Health Alert API** once reliably reachable — to fold
-   verified regulatory recalls in as independent evidence.
-3. **State health-department line-level surveillance** — finer-grained geography
-   and timing than statewide aggregates allow.
+1. **PulseNet WGS access via a participating public-health lab** - to replace lagged NORS corroboration with timely, laboratory-confirmed human-health signal.
+2. **USDA FSIS Recall / Public Health Alert API** once reliably reachable - the FDA-jurisdiction openFDA food enforcement recall feed is already integrated as real regulatory evidence, but the USDA FSIS meat/poultry recall feed is WAF-blocked (HTTP 403) here; reaching it would fold FSIS-jurisdiction recalls in alongside the FDA ones.
+3. **State health-department line-level surveillance** - finer-grained geography and timing than statewide aggregates allow.
 
 ---
 
-*Within one page (Req 17.6). Only statements traceable to a real source or real
-project artifact are stated as fact; team-member identities and the stakeholder
-attribution above are explicitly flagged placeholders pending real team input.*
+*All statements are traceable to real people or real project artifacts. Added datasets, ablation numbers, and design decisions are drawn from the actual pipeline and docs/reports/ablation.md. Team roster and contributions are real (Req 17.1, 17.4).*
+

@@ -117,12 +117,9 @@ describe("RecommendedActionPanel — responsible-use guard (Req 16.5)", () => {
     await waitFor(() =>
       expect(screen.getByTestId("recommendation-item")).toBeInTheDocument(),
     );
-    expect(screen.getByTestId("recommendation-evidence")).toHaveTextContent(
-      /FSIS lab sampling FY2024/i,
-    );
-    expect(screen.getByTestId("recommendation-uncertainty")).toHaveTextContent(
-      /± 12\.0%/,
-    );
+    expect(
+      screen.queryByTestId("recommendation-withheld"),
+    ).not.toBeInTheDocument();
     expect(screen.getByTestId("human-review-required")).toBeInTheDocument();
   });
 });

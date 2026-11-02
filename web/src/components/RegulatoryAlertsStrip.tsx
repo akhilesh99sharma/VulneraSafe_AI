@@ -146,10 +146,13 @@ export function RegulatoryAlertsStrip() {
           data-testid="regulatory-alerts-list"
           className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3"
         >
-          {alerts.map((alert) => (
+          {alerts.slice(0, 6).map((alert) => (
             <RecallCard key={alert.recall_id} alert={alert} />
           ))}
         </ol>
+        {alerts.length > 6 ? (
+          <p className="mt-3 text-[11px] text-navy/50">Showing 6 of {alerts.length} current recalls for the tracked pathogens.</p>
+        ) : null}
       </>
     );
 
@@ -159,12 +162,12 @@ export function RegulatoryAlertsStrip() {
       data-testid="regulatory-alerts-strip"
       // Strong authoritative styling, clearly distinct from any model-derived
       // alert surface: navy band with a red top accent.
-      className="border-y-2 border-alert-danger/60 bg-navy/[0.04]"
+      className="border-t-4 border-alert-danger/70 bg-white"
     >
       <div className="mx-auto max-w-7xl px-6 py-4">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <h2 className="text-sm font-bold uppercase tracking-wide text-navy">
-            Regulatory Recalls
+            Current Recalls
           </h2>
           <span className="rounded bg-alert-danger/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-alert-danger">
             Verified official source

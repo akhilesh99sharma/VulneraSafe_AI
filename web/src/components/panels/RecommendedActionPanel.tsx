@@ -1,10 +1,7 @@
 import { useArtifact } from "../../data/hooks";
 import { useSelection } from "../../state/selection";
 import type { Recommendation } from "../../types/artifacts";
-import {
-  evaluateRecommendationGuard,
-  formatUncertainty,
-} from "../../types/viewModels";
+import { evaluateRecommendationGuard } from "../../types/viewModels";
 import AlertBadge from "../AlertBadge";
 import StatusTag from "../StatusTag";
 import PanelShell, { ArtifactBody } from "./PanelShell";
@@ -110,35 +107,7 @@ export function RecommendedActionPanel() {
                       )}
                     </div>
 
-                    <div className="mt-2">
-                      <p className="text-xs font-semibold text-navy/60">
-                        Supporting evidence
-                      </p>
-                      {rec.evidence_refs.length > 0 ? (
-                        <ul
-                          data-testid="recommendation-evidence"
-                          className="mt-1 list-disc pl-5 text-xs text-navy"
-                        >
-                          {rec.evidence_refs.map((ref, i) => (
-                            <li key={`${rec.target_id}-evidence-${i}`}>{ref}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="mt-1 text-xs italic text-navy/50">
-                          None recorded.
-                        </p>
-                      )}
-                    </div>
 
-                    <p
-                      data-testid="recommendation-uncertainty"
-                      className="mt-2 text-xs text-navy"
-                    >
-                      <span className="font-semibold text-navy/60">
-                        Uncertainty:{" "}
-                      </span>
-                      {formatUncertainty(rec.uncertainty)}
-                    </p>
 
                     <div className="mt-2">
                       {rec.human_review_required ? (
