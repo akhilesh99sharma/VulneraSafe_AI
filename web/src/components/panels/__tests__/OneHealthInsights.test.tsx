@@ -89,7 +89,9 @@ describe("OneHealthInsights", () => {
   it("reports the exploratory lead-lag modestly, not as a finding", async () => {
     installArtifactFetch({ one_health_human_comparison: ROWS });
     render(<OneHealthInsights />);
-    await waitFor(() => expect(screen.getByText(/exploratory lead.lag/i)).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByRole("heading", { name: /exploratory lead.lag/i })).toBeInTheDocument(),
+    );
     // the modest caveat must be present
     expect(screen.getByText(/does not establish that either signal predicts or causes/i)).toBeInTheDocument();
   });
