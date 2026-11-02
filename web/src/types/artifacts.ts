@@ -468,6 +468,9 @@ export interface EstablishmentSurveillanceRecord {
   peer_rate: number | null;
   persistence: PersistenceEvidence | null;
   support_status: string;
+  county: string | null;
+  fips_code: string | null;
+  city: string | null;
   latitude: number | null;
   longitude: number | null;
   coordinates_status: string;

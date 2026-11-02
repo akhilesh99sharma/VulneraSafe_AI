@@ -154,6 +154,7 @@ function MonitorBody({
   const yearLabel = years.length ? `${years[0]}–${years[years.length - 1]}` : "—";
   const peer = available.find((r) => r.peer_rate != null)?.peer_rate ?? null;
   const maxEb = Math.max(...ranked.map((r) => r.eb_posterior ?? 0), 0.0001);
+  const coordCount = filtered.filter((r) => r.latitude != null && r.longitude != null).length;
 
   const [expanded, setExpanded] = useState(false);
   const shown = expanded ? ranked : ranked.slice(0, TOP_N);
@@ -239,16 +240,17 @@ function MonitorBody({
         </div>
       ) : null}
 
-      {/* Facility map — honestly unavailable */}
+      {/* Facility locations */}
       <div className="rounded-lg border border-navy/10 bg-white p-4">
-        <h3 className="mb-1 text-sm font-bold text-navy">Facility map</h3>
-        <div className="flex items-center justify-center rounded-md border border-dashed border-navy/20 bg-surface-muted px-4 py-8 text-center">
-          <p className="text-[11px] italic text-navy/60">
-            Establishment coordinates are not available in the FSIS source data, so no map points are shown.
-            Plotting fabricated locations would be dishonest. A verified geocode source would enable this in a
-            future build (full facility map is part of the Supplier Monitor page, Page 06).
-          </p>
-        </div>
+        <h3 className="mb-1 text-sm font-bold text-navy">Facility locations</h3>
+        <p className="text-[11px] leading-relaxed text-navy/60">
+          <span className="font-semibold text-navy">{coordCount}</span> of {filtered.length}{" "}
+          establishment{filtered.length === 1 ? "" : "s"} in this selection carry a verified county and
+          coordinate joined from the FSIS Meat, Poultry &amp; Egg Inspection (MPI) establishment directory on
+          establishment id. These mark the processing or sampling site — never where a product was sold and
+          never where anyone became ill. The remainder had no directory match and are shown without a
+          location rather than a fabricated one.
+        </p>
       </div>
 
       <p className="text-[10px] italic text-navy/50">
@@ -279,6 +281,14 @@ function EstRow({
         <p className={`truncate text-xs font-medium ${muted ? "text-navy/50" : "text-navy"}`} title={name}>
           {name} <span className="text-navy/40">· {r.region}</span>
         </p>
+        {r.county || r.city ? (
+          <p className="truncate text-[10px] text-navy/45" title={[r.city, r.county].filter(Boolean).join(", ")}>
+            {[r.city, r.county].filter(Boolean).join(", ")}
+            {r.latitude != null && r.longitude != null ? (
+              <span className="text-navy/35"> · {r.latitude.toFixed(3)}, {r.longitude.toFixed(3)}</span>
+            ) : null}
+          </p>
+        ) : null}
         <Bar value={r.eb_posterior ?? 0} max={max} />
       </div>
       <div className="text-right text-xs">

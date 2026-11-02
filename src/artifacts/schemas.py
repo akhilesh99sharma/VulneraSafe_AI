@@ -561,8 +561,11 @@ class EstablishmentSurveillanceRecord(TypedDict):
     sampling (establishment) location, never a product destination or illness
     location, and no supplier/retailer relationship is implied.
 
-    The source data carries no verified coordinates, so ``latitude``/``longitude``
-    are null and ``coordinates_status`` is "unavailable". ``status`` is OBSERVED
+    County/coordinates come from the official FSIS MPI establishment directory
+    joined on ``establishment_id``; they are the processing-site location, NEVER a
+    consumption or illness location. An unmatched establishment keeps null
+    county/coordinates and ``coordinates_status="unavailable"`` (never fabricated).
+    ``status`` is OBSERVED
     for every descriptive row (establishment forecasting is not supported in the
     current data; ``predictive_status="descriptive_only"``). When a pathogen
     cannot support the analysis a single record carries
@@ -589,6 +592,9 @@ class EstablishmentSurveillanceRecord(TypedDict):
     peer_rate: Optional[float]
     persistence: Optional[PersistenceEvidence]
     support_status: str            # "ok" | "low_support"
+    county: Optional[str]         # FSIS MPI directory (processing-site); None if unmatched
+    fips_code: Optional[str]      # 5-digit county FIPS from the MPI directory
+    city: Optional[str]
     latitude: Optional[float]
     longitude: Optional[float]
     coordinates_status: str        # "unavailable"

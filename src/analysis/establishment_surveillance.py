@@ -56,6 +56,52 @@ PRIOR_FIT_MIN_SUPPORT = 30       # establishments informing the beta-prior fit
 _COMMODITY = {"Salmonella": "raw_poultry", "Listeria": "rte", "STEC": "raw_beef"}
 _PATHOGENS = ("Salmonella", "Listeria", "STEC")
 
+#: FSIS MPI establishment directory -> per-establishment location. This is the
+#: official FSIS-published plant directory (data/raw/fsis/...), keyed by the
+#: same numeric establishment_id the sampling files carry. It gives each plant's
+#: PROCESSING-SITE county + coordinates - never a consumption or illness location.
+MPI_DIRECTORY = REPO_ROOT / "data" / "raw" / "fsis" / "MPI_Directory_by_Establishment_Number.csv"
+
+def _clean(val: Optional[str]) -> Optional[str]:
+    if val is None:
+        return None
+    t = str(val).strip()
+    return t or None
+
+def _float(val: Optional[str]) -> Optional[float]:
+    t = _clean(val)
+    if t is None:
+        return None
+    try:
+        return float(t)
+    except ValueError:
+        return None
+
+def load_mpi_directory() -> dict[str, dict]:
+    """Map establishment_id -> {county, fips_code, city, latitude, longitude}.
+
+    Reads the official FSIS MPI directory. Missing/unparsable location fields
+    stay None (never fabricated). Returns {} if the file is absent so S03
+    degrades honestly to coordinates-unavailable.
+    """
+    import csv
+    out: dict[str, dict] = {}
+    if not MPI_DIRECTORY.exists():
+        return out
+    with open(MPI_DIRECTORY, newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            eid = _clean(row.get("establishment_id"))
+            if eid is None:
+                continue
+            out[eid] = {
+                "county": _clean(row.get("county")),
+                "fips_code": _clean(row.get("fips_code")),
+                "city": _clean(row.get("city")),
+                "latitude": _float(row.get("latitude")),
+                "longitude": _float(row.get("longitude")),
+            }
+    return out
+
 def fit_beta_prior(rates: list[float]) -> tuple[float, float, float]:
     """Method-of-moments Beta(alpha0, beta0) from per-establishment rates.
 
@@ -119,6 +165,7 @@ def _persistence(quarter_rows: list[dict]) -> dict[str, Any]:
 def compute_establishment_surveillance(*, round_to: int = 6) -> dict[str, Any]:
     """Run the EB establishment surveillance for all three pathogens; write cache."""
     pathogens_out: dict[str, Any] = {}
+    mpi = load_mpi_directory()
 
     for pathogen in _PATHOGENS:
         commodity = _COMMODITY[pathogen]
@@ -186,10 +233,14 @@ def compute_establishment_surveillance(*, round_to: int = 6) -> dict[str, Any]:
 
         # Per-establishment EB posterior + persistence.
         est_out = {}
+        coord_hit = 0
         for eid, e in establishments.items():
             n, pos = e["n"], e["pos"]
             e["quarters"].sort(key=lambda q: q["quarter_start"])
             mean, lo, hi = eb_posterior(pos, n, alpha0, beta0)
+            loc = mpi.get(eid, {})
+            if loc.get("latitude") is not None and loc.get("longitude") is not None:
+                coord_hit += 1
             est_out[eid] = {
                 "establishment_id": eid,
                 "establishment_name": name_by_id.get(eid),
@@ -202,6 +253,16 @@ def compute_establishment_surveillance(*, round_to: int = 6) -> dict[str, Any]:
                 "ci_high": round(hi, round_to) if hi is not None else None,
                 "support_status": "ok" if n >= MIN_SUPPORT_ESTABLISHMENT else "low_support",
                 "persistence": _persistence(e["quarters"]),
+                "county": loc.get("county"),
+                "fips_code": loc.get("fips_code"),
+                "city": loc.get("city"),
+                "latitude": loc.get("latitude"),
+                "longitude": loc.get("longitude"),
+                "coordinates_status": (
+                    "available"
+                    if (loc.get("latitude") is not None and loc.get("longitude") is not None)
+                    else "unavailable"
+                ),
             }
 
         pathogens_out[pathogen] = {
@@ -217,6 +278,8 @@ def compute_establishment_surveillance(*, round_to: int = 6) -> dict[str, Any]:
             "predictive_status": "descriptive_only",
             "establishment_missing": est_missing,
             "n_establishments": len(est_out),
+            "coordinates_available": coord_hit,
+            "coordinates_total": len(est_out),
             "establishments": est_out,
         }
 
@@ -227,7 +290,7 @@ def compute_establishment_surveillance(*, round_to: int = 6) -> dict[str, Any]:
         "min_support_establishment": MIN_SUPPORT_ESTABLISHMENT,
         "prior_fit_min_support": PRIOR_FIT_MIN_SUPPORT,
         "ci_method": "beta_eb_95",
-        "geography_level": "establishment (sampling location)",
+        "geography_level": "establishment (sampling location); county/coordinates from the FSIS MPI directory are the processing-site location, never a consumption or illness location",
         "cohort": "routine_surveillance_only (via load_establishment_samples)",
         "pathogens": pathogens_out,
     }

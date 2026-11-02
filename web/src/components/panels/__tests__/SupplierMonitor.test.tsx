@@ -34,6 +34,9 @@ function rec(over: Partial<EstablishmentSurveillanceRecord>): EstablishmentSurve
     latitude: null,
     longitude: null,
     coordinates_status: "unavailable",
+    county: null,
+    fips_code: null,
+    city: null,
     predictive_status: "descriptive_only",
     status: "OBSERVED",
     availability_status: "available",
@@ -45,7 +48,7 @@ function rec(over: Partial<EstablishmentSurveillanceRecord>): EstablishmentSurve
 }
 
 const ROWS: EstablishmentSurveillanceRecord[] = [
-  rec({ establishment_id: "1000", establishment_name: "High Support Plant", region: "GA", eb_posterior: 0.29, support_status: "ok" }),
+  rec({ establishment_id: "1000", establishment_name: "High Support Plant", region: "GA", eb_posterior: 0.29, support_status: "ok", county: "Elbert County", fips_code: "13105", city: "Elberton", latitude: 34.098, longitude: -82.838, coordinates_status: "available" }),
   rec({ establishment_id: "1001", establishment_name: "Mid Support Plant", region: "TX", eb_posterior: 0.18, support_status: "ok", sample_n: 90, positive_n: 15, value: 0.167 }),
   rec({ establishment_id: "2000", establishment_name: "Thinly Tested Plant", region: "GA", support_status: "low_support", sample_n: 6, positive_n: 3, value: 0.5, eb_posterior: 0.15, ci_low: 0.03, ci_high: 0.34 }),
 ];
@@ -71,17 +74,18 @@ describe("SupplierMonitor", () => {
     expect(screen.getByText("Thinly Tested Plant", { exact: false })).toBeInTheDocument();
   });
 
-  it("shows an honest coordinates-unavailable facility map state", async () => {
+  it("shows an honest facility-locations summary with real county and coordinate", async () => {
     installArtifactFetch({ establishment_surveillance: ROWS });
     render(<SupplierMonitor />);
     await waitFor(() =>
-      expect(
-        screen.getByText(/establishment coordinates are not available in the fsis source data/i),
-      ).toBeInTheDocument(),
+      expect(screen.getByRole("heading", { name: /^facility locations$/i })).toBeInTheDocument(),
     );
-    // the facility-map heading is present (use a role query to avoid the
-    // tooltip text that also contains "facility map").
-    expect(screen.getByRole("heading", { name: /^facility map$/i })).toBeInTheDocument();
+    // the honest MPI-join caveat is present
+    expect(
+      screen.getByText(/processing or sampling site/i),
+    ).toBeInTheDocument();
+    // a matched establishment shows its real county + coordinate
+    expect(screen.getAllByText(/elbert county/i).length).toBeGreaterThan(0);
   });
 
 

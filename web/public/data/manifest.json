@@ -319,7 +319,7 @@
     },
     "establishment_surveillance": {
       "file": "establishment_surveillance.json",
-      "checksum_sha256": "ee1ed22b9baac006b60c5ee037c55e48664c004a8191eb6e0959e8ff3ee5c1ba",
+      "checksum_sha256": "82bdaba8b2b996a4edd7d460909eefa80d53e0d1878417d61d943981315c8f87",
       "record_count": 7622,
       "status_tagged": true
     },
