@@ -31,6 +31,8 @@ The honest headline: the models give a useful risk-prioritization signal (Lister
 
 ## 2. One Health contribution of each core dataset
 
+![One Health system map: five data pathways feed a unified (state, period) integration layer, then analytics (risk model, surveillance science, optimizer), decision logic, recommended retailer actions, and a human-in-the-loop review gate.](one_health_system_map.png)
+
 Five pathways feed the tool. Each is labeled by integration status so no signal is overstated.
 
 | Pathway | Dataset(s) | Role | Status |
