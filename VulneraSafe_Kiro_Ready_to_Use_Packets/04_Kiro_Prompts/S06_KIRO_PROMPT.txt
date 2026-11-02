@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S06: Vulnerability-aware impact ranking
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Overlay validated surveillance signals with independent community vulnerability and food-access context without modifying hazard probabilities.
+Pathogens: All three; lens-specific consequences
+Data to audit: ACS county 2022, USDA Atlas 2019 tract, state risk forecasts, county FIPS, state/tract geographic crosswalk; no true county pathogen label.
+Analysis algorithm: Verify all under-five and 65+ age bands and missingness; if pregnancy unavailable state unavailable; construct transparent component scores or a multi-criteria priority, normalizing by meaningful population denominators and documenting all weights.
+Evaluation: Sensitivity of ranking to weights/county aggregation, differences between population counts and shares, no unjustified link to actual exposure; report affected-community count as contextual/simulated only.
+Artifact: `community_impact.json`: group, county demographics, tract access, separate state risk, optional ranking and attribution.
+Frontend: Vulnerable Communities and County Map: county/tract choropleth, group tabs, side-by-side hazard and vulnerability legends.
+Tests: Tests: hazard unchanged upon lens switch, no invented pregnancy counts, FIPS joins valid, static vintages disclosed, no tract infection claim.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

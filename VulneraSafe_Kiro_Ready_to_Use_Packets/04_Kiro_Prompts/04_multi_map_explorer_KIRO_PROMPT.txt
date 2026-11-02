@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 04: Multi-Map Explorer IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 04_multi_map_explorer.docx and 04_multi_map_explorer.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Make several scientifically distinct maps, not cosmetic color variants.
+Required analysis: Map layers: state-level forecast; observed testing positivity; persistent versus emerging; county/tract demographic and food access; sampling-evidence sufficiency; confirmed establishment coordinates (if found); SIMULATED stores/allocation.
+Data: FSIS + forecast artifacts + ACS/Food Access Atlas + confirmed geocodes + simulated network; NOAA context optional.
+Interactions: Map layer switch, synchronized selection, geography disclosure, period/pathogen filters, dual-map compare and export; empty states.
+Science tasks: S04/S06/S10/S11/S07/S09; aggregation logic must be explicit.
+Safety: Do not paint state risk into counties as county prediction. Avoid global map for US-only dataset. No individual illness mapping.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

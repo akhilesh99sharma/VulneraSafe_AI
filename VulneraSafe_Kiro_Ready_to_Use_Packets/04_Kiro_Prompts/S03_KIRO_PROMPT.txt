@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S03: Persistent establishment surveillance monitor
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Identify repeatedly elevated historical pathogen-positive testing at establishments without confusing low testing with safety.
+Pathogens: All three; different confidence by pathogen
+Data to audit: FSIS establishment_id, product/program, collection_date, primary result; counts: Salmonella 1,409 establishments; Listeria 3,765; STEC 2,524 in earlier audit.
+Analysis algorithm: Build establishment×program×period history, calculate positive and eligible sample counts, uncertainty-aware beta-binomial EB posterior and partial pooling, credible interval, repeated-positive periods, recent support and sampling gaps; do not claim unknown facilities are retailer suppliers.
+Evaluation: Evaluate rate calibration and future positive capture under equal effort vs state average and EB persistence, separately for familiar and unseen establishments; do not demand facility forecast for Listeria/STEC when rare event coverage inadequate.
+Artifact: `establishment_surveillance.json` including each establishment’s sample support, observed positivity/CI, descriptive/predictive status and region; avoid public release of unnecessary contact details.
+Frontend: Supplier Monitor page and facility map point selection only for verified geocoded coordinates; no fabricated rank scores.
+Tests: Tests: no double counted samples, posterior smoothing, anonymization/provenance, known-unknown site separation, no synthetic supplier relationship.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

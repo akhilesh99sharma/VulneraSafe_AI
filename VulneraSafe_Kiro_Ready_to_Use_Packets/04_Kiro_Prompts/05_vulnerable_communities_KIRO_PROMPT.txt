@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 05: Vulnerable Communities / Population Lenses IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 05_vulnerable_communities.docx and 05_vulnerable_communities.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Connect hazard evidence to downstream consequences without changing pathogen predictions.
+Required analysis: Pregnancy/newborn; children under 5; age 65+; community population and food-access patterns; county/tract map; separate hazard and vulnerability panels.
+Data: ACS 2022 counties (~3,222), Food Access Atlas 2019 (~72,531 tracts), validated state-level pathogen outputs.
+Interactions: Choose lens, region/county/tract, food-access overlay; compare raw hazard vs consequence-aware priority; open data provenance.
+Science tasks: S06/S07; derive under-5 age bands properly, verify 65+; pregnancy counts unavailable unless separately verified.
+Safety: Never invent pregnant residents, county infection probabilities, or infer who consumed contaminated products.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

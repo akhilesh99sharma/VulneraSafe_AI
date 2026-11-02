@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S02: Lagged microbial co-indicator early warning
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Test whether earlier Campylobacter detections predict future Salmonella routine-positivity more accurately than established baselines.
+Pathogens: Salmonella primary; exploratory RTE/beef if supported
+Data to audit: FSIS poultry: salmonella_sp_analysis, campylobacter_analysis_1ml/30ml, sample_number, establishment_id, collection_date, product_type, project_code.
+Analysis algorithm: Audit by year and assay method; construct positive/valid assay counts within historical windows, peer-group and program-specific lagged rates, coverage indicators, test volume; handle post-sample laboratory availability; explicitly prevent same-sample Campylobacter input to Salmonella outcome.
+Evaluation: Compare base feature matrix versus +product-program and +lagged Campylobacter on identical historical cutoffs; use rolling-origin PR-AUC lift, Brier, calibration, top-K and paired uncertainty; compare on equal eligible periods and separate missing assay coverage.
+Artifact: `microbial_early_warning.json`: assay coverage, evidence availability, historical features, signed ablation, ci, status.
+Frontend: Pathogen Explorer microbiology panel, time-lag plot, feature evidence, explicit benefit/no benefit label.
+Tests: Tests: no same-sample result, cutoff lag, assay-availability flags, cross-year missingness, signed ablation reproducibility.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

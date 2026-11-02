@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S05: Food surveillance–human outbreaks comparison
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Compare FSIS pathogen-surveillance history with CDC NORS human outbreak reports while respecting geographic/temporal lag and noncausality.
+Pathogens: All three when NORS match supports it
+Data to audit: FSIS state-period testing results; CDC NORS outbreak count and illnesses, pathogen/state/event year, 365-day modeled availability lag; source data vintage.
+Analysis algorithm: Standardize pathogen category carefully, map reported outbreak event date vs assumed knowledge availability, produce separate time series and lag/distribution summaries, allow explicit count denominators, identify periods where substate coverage not supported.
+Evaluation: Descriptive lead–lag correlation with permutation/bootstrap exploratory only; never infer same-strain link or food-testing causality; report sample size/missingness and publication lag.
+Artifact: `one_health_human_comparison.json`: aligned series, coverage, status CORROBORATION, lag description, no-causal-link warning.
+Frontend: One Health Insights: linked FSIS/CDC timelines, source badges and path explanation.
+Tests: Tests: 365-day delay enforced, no CDC predictor leakage, genuine missing distinction, no causal labels or nonexistent human county case forecast.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

@@ -1,0 +1,15 @@
+IMPORTANT CORRECTION — SCIENCE-FIRST MULTIPATHOGEN EXPANSION OF EXISTING VULNERASAFE AI
+
+The earlier design-only kit was insufficient. This new package includes (a) 14 professional images, (b) 14 Word page/map specs and matching prompts, (c) 16 research/engineering science modules with matching prompts, and (d) a master implementation guide. Read MASTER first.
+
+The goal is NEW SCIENTIFIC WORK (feature engineering, multiple pathogen analyses, forecasting validation, establishment history, spatial overlays, modeling ablations, safety-constrained operations) PLUS WORKING INTERACTIVE WEBSITE/MAPS, not CSS-only. Do not recreate the repository; modify E:\VulneraSafe_AI, reuse the already trained models, CDC/NOAA, OR-Tools optimizer, artifacts and passing tests.
+
+Treat Salmonella/raw poultry, Listeria/RTE meat and STEC/raw beef as three first-class scientific modules, each with own sampling programs, product/source categories, model performance and different feasibility. STEC remains surveillance-only unless new rigorous evaluation changes that.
+
+Explicitly implement every requested research idea across the 16 modules: lagged Campylobacter; establishment persistent risk; emerging vs persistent; FSIS–CDC NORS comparison with a real 365-day lag; county vulnerability and Food Access Atlas; food-shortage resilience; top-K inspection value; safe recall response; testing uncertainty; product-program stratification; facility geocodes; replay; NOAA context; pathogen-specific Listeria and STEC; Salmonella facility forecast experiment.
+
+STRICT DATA GATE: processing plant location does not mean retail shipping destination, county contamination or county human infections. Use county demographics as context, not as an invented infection forecast. Pregnancy counts unavailable without a separate verified source. No WGS/serotype. NORS corroboration ≠ live feed. Recalled stock can never be allocated. Actual retailer network is not available; operational numbers are SIMULATED. Live official recall feed unavailable; never label mockups as VERIFIED alerts. Negative model ablation is a legitimate result, do not hide it.
+
+IMPLEMENT ONLY FIRST SCIENCE MODULE S01 AND MATCHING PAGE 03 PATHOGEN EXPLORER INITIALLY. Inspect actual schema, perform analyses for ALL THREE PATHOGENS, validate, create new versioned artifact, build the interactive page matching supplied white/navy/teal design, run targeted Python tests and production npm build, report measured results and localhost URL, and STOP for user visual inspection before proceeding.
+
+Do not replace unrelated pages. No speculative refactor; keep static GitHub Pages build. Preserve all existing functionality. For long Python commands, external CMD is acceptable.

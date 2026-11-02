@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S10: Uncertainty-aware testing planner
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Show where evidence is thin and where more testing may yield useful information without treating missing data as low risk.
+Pathogens: All three, with rare-positive safeguards
+Data to audit: FSIS sample counts by state/period/program/facility, EB posterior or Wilson intervals, forecast calibration/CI, historical test timing.
+Analysis algorithm: Compute evidence sufficiency from denominator and effective sample size, posterior width and staleness, separate risk from uncertainty; optional expected information gain with clearly stated assumptions, prioritizing support rather than guessed danger.
+Evaluation: Evaluate interval coverage and decision stability under subsampling; compare allocation of extra test slots with random/baseline plans in retrospective fixed-cutoff replay.
+Artifact: `testing_evidence_gaps.json`: support, uncertainty, data gaps, recommended follow-up class, no-data reason.
+Frontend: Uncertainty Map: uncertainty choropleth with optional points, test count popover and top-K test suggestion.
+Tests: Tests: zero observations → unknown, rare confidence larger, no artificial observed negatives, valid denominator for interval.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

@@ -49,8 +49,11 @@ data/synthetic/*
 .DS_Store
 Thumbs.db
 
-# Challenge-provided source material (not our work product)
-VulneraSafe_Kiro_Ready_to_Use_Packets/
-
 # Large inventory scratch dump (regenerable, not committed)
 scripts/inventory_data.json
+# Local diagnostic scratch files
+/_probe.log
+/_pt2*.log
+/_git_*_check.txt
+/_publish_inventory.json
+/_demo_backup_path.txt

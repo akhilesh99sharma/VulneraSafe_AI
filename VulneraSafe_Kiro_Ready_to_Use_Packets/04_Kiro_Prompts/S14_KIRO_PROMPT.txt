@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S14: Listeria-specific RTE surveillance research
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Use production alternatives and sample sources to study sparse *L. monocytogenes* detections and improve quarterly predictions where possible.
+Pathogens: Listeria
+Data to audit: FSIS Listeria 266,031 samples, 1,599 positives, 3,765 facilities; lm_listeria_analysis, production_alternative, sample_source_name, project_code, collection_date, establishment_id.
+Analysis algorithm: Audit production_alternative availability and definitions across years; compare routine vs for-cause; build lagged historical group-level rates and partial pooling; don’t use nearly 100%-null non_lm_listeria_analysis or same-sample Salmonella screen.
+Evaluation: Time-forward Listeria model PR-AUC ROC-AUC/calibration and top-K against logistic persistence; contextualize prior reported RF PR~0.736 ROC~0.838, small model lift; test 65+ and pregnancy consequence separately.
+Artifact: `listeria_rte_intelligence.json`: category counts, EB rates, CI, baseline delta, surveillance status.
+Frontend: Listeria Pathogen Explorer tab; RTE class breakdown; state-quarter map; vulnerability side panel, evidence of missingness.
+Tests: Tests: rare data availability, nonsampled category unknown, quarterly horizon, no false direct pregnancy-risk score.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

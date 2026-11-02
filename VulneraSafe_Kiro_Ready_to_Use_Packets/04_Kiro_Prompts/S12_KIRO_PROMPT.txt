@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S12: Historical forecast replay and prospectiveness
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Demonstrate honest prior-cutoff predictions versus later observed tests, clearly separating re-fit and previously inspected holdout.
+Pathogens: All three, quarterly/monthly as defined
+Data to audit: Saved out-of-time predictions, training cutoffs, model versions, actual period labels, feature-availability logs and source provenance.
+Analysis algorithm: Export chronological replay frames with past information shown before reveal and later results in separate layer; freeze model versions and thresholds, denote retrospective pseudo-prospective due unknown FSIS publication dates.
+Evaluation: Metrics by fold/origin, confusion details and anomaly capture; no post-selection untouched claims when targets revised after v1 test review.
+Artifact: `forecast_replay.json`: cutoff, pred_valid_at, known_at, future outcome, reveal time, CI, model version.
+Frontend: Full surveillance map: time scrubber, step-forward, show outcome, confidence and decision impact.
+Tests: Tests: future not visible before reveal, cutoff enforcement, model version stable, period mapping correct.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

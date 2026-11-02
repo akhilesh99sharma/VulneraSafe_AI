@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S09: Recall response and safe replacement simulator
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Show human-reviewed response to official validated recall or explicitly simulated event, including lot isolation and compliant replacement.
+Pathogens: Listeria primary; raw poultry and beef variants
+Data to audit: FSIS recall if accessible with source id/date/affected lots; otherwise fully SIMULATED recall inputs; synthetic supply network and OR-Tools.
+Analysis algorithm: Build independent VERIFIED REGULATORY event track only if official feed actually present, otherwise simulation mode; link exact lot IDs when real facts permit; automatically block recalled lot distribution; route compliant substitute stock; explain human-review steps.
+Evaluation: Compare A/B/C same scenario, all safety feasible; show no-safe-solution cases. Do not conflate synthetic affected lots with actual public recall.
+Artifact: `recall_scenario.json`: source_status, verified_identifier or null, simulated_lots, blocked_lots, replacements, action trace.
+Frontend: Recalls & Actions and Recall Map: scenario badge, isolated lots, affected simulated stores/routes and intervention timeline.
+Tests: Tests: recall independence from model, verified flag only on official evidence, every blocked lot isolated, unavailable feed honest.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

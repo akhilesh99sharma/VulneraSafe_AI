@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 03: Three-Pathogen Explorer IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 03_pathogen_explorer.docx and 03_pathogen_explorer.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Make all three pathogens first-class scientific modules, not three labels on one Salmonella analysis.
+Required analysis: Salmonella product/source and Campylobacter experiments; Listeria production_alternative and RTE-source patterns; STEC raw-beef programs, PCR coverage and uncertainty. Per-pathogen tab has real observed trends and its own evaluation report.
+Data: FSIS raw program tables for all three; product_type when present; sample_source_name, project_code; historical assay fields; predictions; feasibility/metrics.
+Interactions: Switch three pathogen tabs; compare product/program distribution; drill into state and product/assay coverage; show unavailable assay fields explicitly.
+Science tasks: S01, S02, S14, S15, S16; feature ablations must use chronological split and same target.
+Safety: No cross-pathogen metric leakage; Listeria/STEC rare-events uncertainty; no invented serotypes or human case estimates.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

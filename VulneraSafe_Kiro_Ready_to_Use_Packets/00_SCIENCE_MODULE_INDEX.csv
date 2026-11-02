@@ -1,0 +1,17 @@
+module,name,pathogens,word_spec,prompt
+S01,Multi-pathogen product & program stratification,All three pathogens,03_Scientific_Research_Modules/S01_multi-pathogen_product_and_program_stratification.docx,04_Kiro_Prompts/S01_KIRO_PROMPT.txt
+S02,Lagged microbial co-indicator early warning,Salmonella primary; exploratory RTE/beef if supported,03_Scientific_Research_Modules/S02_lagged_microbial_co-indicator_early_warning.docx,04_Kiro_Prompts/S02_KIRO_PROMPT.txt
+S03,Persistent establishment surveillance monitor,All three; different confidence by pathogen,03_Scientific_Research_Modules/S03_persistent_establishment_surveillance_monitor.docx,04_Kiro_Prompts/S03_KIRO_PROMPT.txt
+S04,Persistent versus emerging risk detector,All three; label separate forecast and retrospective anomaly,03_Scientific_Research_Modules/S04_persistent_versus_emerging_risk_detector.docx,04_Kiro_Prompts/S04_KIRO_PROMPT.txt
+S05,Food surveillance–human outbreaks comparison,All three when NORS match supports it,03_Scientific_Research_Modules/S05_food_surveillance-human_outbreaks_comparison.docx,04_Kiro_Prompts/S05_KIRO_PROMPT.txt
+S06,Vulnerability-aware impact ranking,All three; lens-specific consequences,03_Scientific_Research_Modules/S06_vulnerability-aware_impact_ranking.docx,04_Kiro_Prompts/S06_KIRO_PROMPT.txt
+S07,Food-shortage resilience and equitable allocation,All three scenarios; modeled logistics,03_Scientific_Research_Modules/S07_food-shortage_resilience_and_equitable_allocation.docx,04_Kiro_Prompts/S07_KIRO_PROMPT.txt
+S08,Inspection-budget value and top-K policy,All three with valid evaluation; primarily Salmonella,03_Scientific_Research_Modules/S08_inspection-budget_value_and_top-k_policy.docx,04_Kiro_Prompts/S08_KIRO_PROMPT.txt
+S09,Recall response and safe replacement simulator,Listeria primary; raw poultry and beef variants,03_Scientific_Research_Modules/S09_recall_response_and_safe_replacement_simulator.docx,04_Kiro_Prompts/S09_KIRO_PROMPT.txt
+S10,Uncertainty-aware testing planner,"All three, with rare-positive safeguards",03_Scientific_Research_Modules/S10_uncertainty-aware_testing_planner.docx,04_Kiro_Prompts/S10_KIRO_PROMPT.txt
+S11,Establishment geography and product-source limits,All three,03_Scientific_Research_Modules/S11_establishment_geography_and_product-source_limits.docx,04_Kiro_Prompts/S11_KIRO_PROMPT.txt
+S12,Historical forecast replay and prospectiveness,"All three, quarterly/monthly as defined",03_Scientific_Research_Modules/S12_historical_forecast_replay_and_prospectiveness.docx,04_Kiro_Prompts/S12_KIRO_PROMPT.txt
+S13,NOAA environmental context and truthful ablations,All three,03_Scientific_Research_Modules/S13_noaa_environmental_context_and_truthful_ablations.docx,04_Kiro_Prompts/S13_KIRO_PROMPT.txt
+S14,Listeria-specific RTE surveillance research,Listeria,03_Scientific_Research_Modules/S14_listeria-specific_rte_surveillance_research.docx,04_Kiro_Prompts/S14_KIRO_PROMPT.txt
+S15,STEC-specific rare-event and virulence-marker research,STEC,03_Scientific_Research_Modules/S15_stec-specific_rare-event_and_virulence-marker_research.docx,04_Kiro_Prompts/S15_KIRO_PROMPT.txt
+S16,Salmonella establishment-level future surveillance experiment,Salmonella,03_Scientific_Research_Modules/S16_salmonella_establishment-level_future_surveillance_experiment.docx,04_Kiro_Prompts/S16_KIRO_PROMPT.txt

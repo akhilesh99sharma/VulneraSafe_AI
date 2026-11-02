@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 09: One Health Evidence & Connections IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 09_one_health_insights.docx and 09_one_health_insights.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Show actual food, environment, human outbreak, and food-access data without implying causality.
+Required analysis: FSIS testing, NOAA nClimDiv, CDC NORS 365-day-lagged outbreaks, ACS/Food Access data; cross-plots, delay diagram, ablations and model evidence.
+Data: Real NORS history, 46–49 state NOAA coverage and missingness, FSIS seasonality, lag provenance and metrics.
+Interactions: Choose pathogen/state/period, see aligned timelines, compare sources, view reporting-lag disclaimer, inspect signed ablation deltas.
+Science tasks: S05/S13/S12; CDC is corroboration only; NOAA did not improve forecasts; keep that visible.
+Safety: No FSIS–CDC strain linkage, no pathogen exposure causality, no realtime CDC claim.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

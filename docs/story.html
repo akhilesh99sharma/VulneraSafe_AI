@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VulneraSafe AI — The Story</title>
+<style>
+  :root{
+    --navy:#0f2742; --navy-2:#16375f; --teal:#1a8f8f; --teal-soft:#1aa7a7;
+    --ink:#132235; --muted:#5b6b7d; --line:#e4e9f0; --bg:#f7f9fc; --white:#ffffff;
+    --amber:#c77b17; --red:#b2342b; --green:#1f8a54;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--navy); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; min-height:100vh;
+  }
+  .deck{width:100%; max-width:1180px; padding:24px}
+  .slide{
+    position:relative; display:none; background:var(--white);
+    border-radius:16px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.4);
+    aspect-ratio:16/9; width:100%;
+  }
+  .slide.active{display:block}
+  .pad{padding:54px 64px}
+  .chapter{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:800}
+  .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); font-weight:700}
+  h1{font-size:46px; line-height:1.08; color:var(--navy); font-weight:800; letter-spacing:-.01em}
+  h2{font-size:33px; color:var(--navy); font-weight:800; letter-spacing:-.01em; margin-bottom:6px}
+  h3{font-size:18px; color:var(--navy); font-weight:700}
+  p,li{font-size:17px; line-height:1.5; color:var(--ink)}
+  .sub{color:var(--muted); font-size:18px}
+  .lede{font-size:21px;line-height:1.55;color:var(--ink)}
+  .big-quote{font-size:28px;line-height:1.4;color:var(--navy);font-weight:700;max-width:860px}
+  .accentbar{height:6px; width:84px; background:var(--teal); border-radius:3px; margin:16px 0 24px}
+  .hero{height:100%}
+  .hero .pad{height:100%;display:flex;flex-direction:column;justify-content:center}
+  .dark{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 55%,#1d4e6b 100%);color:#fff}
+  .dark h1,.dark h2{color:#fff}
+  .dark .sub,.dark .lede{color:#cfe0f0}
+  .dark .chapter,.dark .eyebrow{color:#7fe3e3}
+  .dark .big-quote{color:#eaf4ff}
+  .logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:22px}
+  .logo .mark{width:46px;height:46px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:#fff}
+  .logo .name{font-size:20px;font-weight:800;color:#fff}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{margin-bottom:6px}
+  .card p{font-size:15px;color:var(--muted)}
+  ul.clean{list-style:none}
+  ul.clean li{position:relative;padding-left:26px;margin-bottom:12px}
+  ul.clean li:before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:3px;background:var(--teal)}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .pill.obs{background:#e7f0ff;color:#1c4e8a}
+  .pill.pred{background:#e5f5f0;color:#1f8a54}
+  .pill.sim{background:#fff1e0;color:#a9671a}
+  .kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center}
+  .kpi .num{font-size:34px;font-weight:800;color:var(--teal);line-height:1}
+  .kpi .lbl{font-size:12px;color:var(--muted);margin-top:8px;font-weight:600}
+  .journey{display:flex;align-items:stretch;gap:0;margin:26px 0}
+  .step{flex:1;text-align:center;position:relative;padding:0 8px}
+  .step .dot{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 10px;font-size:15px}
+  .step.on .dot{background:var(--teal)}
+  .step .st{font-size:14px;font-weight:700;color:var(--navy)}
+  .step .sd{font-size:12px;color:var(--muted);margin-top:3px}
+  .step:not(:last-child):after{content:"";position:absolute;top:17px;left:60%;right:-40%;height:2px;background:var(--line)}
+  .tour{display:flex;gap:22px;align-items:center}
+  .browser{flex:1;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(15,39,66,.14)}
+  .bar{background:#eef2f7;padding:9px 12px;display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--line)}
+  .bar i{width:11px;height:11px;border-radius:50%;display:inline-block;background:#cdd6e0}
+  .bar .url{margin-left:10px;font-size:11px;color:var(--muted);background:#fff;border-radius:6px;padding:3px 10px;flex:1}
+  .screen{padding:18px;background:#fff;min-height:188px}
+  .screen .navy-band{background:var(--navy);color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;display:flex;gap:8px;flex-wrap:wrap}
+  .screen .navy-band span{background:rgba(255,255,255,.12);padding:3px 8px;border-radius:5px;font-size:10px;font-weight:600}
+  .screen .navy-band span.cur{background:#fff;color:var(--navy)}
+  .mini-row{display:flex;gap:10px;margin-top:12px}
+  .mini{flex:1;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:11px;color:var(--muted)}
+  .mini b{display:block;color:var(--navy);font-size:12px;margin-bottom:3px}
+  .tour-copy{flex:1}
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .node{background:var(--navy);color:#fff;border-radius:10px;padding:11px 13px;font-size:13px;font-weight:700;text-align:center;min-width:88px}
+  .node.alt{background:var(--teal)}
+  .arrow{color:var(--teal);font-weight:900;font-size:20px}
+  .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:12px}
+  .pagefoot{position:absolute;bottom:18px;left:64px;right:64px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .dark .pagefoot{color:#9fb6cd}
+  .controls{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;z-index:50}
+  .controls button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;font-weight:600}
+  .controls button:hover{background:rgba(255,255,255,.24)}
+  .counter{color:#cfe0f0;font-size:13px;min-width:70px;text-align:center}
+  .hint{position:fixed;top:16px;right:20px;color:#9fb6cd;font-size:12px;z-index:50}
+  @media print{
+    @page{size:1180px 664px;margin:0}
+    body{background:#fff;display:block}
+    .deck{max-width:none;padding:0}
+    .slide{display:block!important;page-break-after:always;border-radius:0;box-shadow:none;aspect-ratio:auto;height:664px}
+    .controls,.hint{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="hint">← / → to navigate · F fullscreen · P to print/PDF</div>
+<div class="deck">
+
+  <!-- 1 — COLD OPEN -->
+  <section class="slide active hero dark">
+    <div class="pad">
+      <div class="logo"><span class="mark">V</span><span class="name">VulneraSafe AI</span></div>
+      <div class="chapter">A Story in Seven Chapters</div>
+      <h1 style="font-size:54px;margin-top:8px">From a scattered signal<br/>to a decision you can defend.</h1>
+      <p class="lede" style="max-width:800px;margin-top:22px">This is the journey of one food-safety team — and the platform that turns public surveillance data into an action they can stand behind. Follow it from the first worry to the final, human-approved decision.</p>
+    </div>
+  </section>
+
+  <!-- 2 — CHAPTER 1: THE WORRY -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 1 · The Worry</div>
+      <h2>It starts with a question no one can answer in time</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div>
+          <p class="big-quote">"Somewhere in next month's shipments, a pathogen risk is rising. Where should my team look first — and what do I do when I find it?"</p>
+          <p class="note">— the Food Safety Operations Director of a regional grocery chain</p>
+        </div>
+        <div class="card">
+          <h3>Why it's hard</h3>
+          <ul class="clean" style="margin-top:8px">
+            <li>The warning signs are real but scattered across agencies</li>
+            <li>Inspection, testing and supplier budgets are finite</li>
+            <li>Acting late means contaminated product reaches shelves</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">Salmonella, Listeria and STEC send hundreds of thousands of people to hospital every year — and they hit the most vulnerable hardest. The data to see it coming exists. It just never becomes a signal anyone can act on.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>02</span></div>
+  </section>
+
+  <!-- 3 — CHAPTER 1: WHO PAYS -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 1 · The Stakes</div>
+      <h2>Vulnerability isn't evenly spread</h2>
+      <div class="accentbar"></div>
+      <div class="grid3">
+        <div class="card"><h3>Pregnancy &amp; newborns</h3><p>Listeria in ready-to-eat foods can cause miscarriage, stillbirth and severe newborn infection.</p></div>
+        <div class="card"><h3>Children under 5</h3><p>Higher rates of severe STEC complications and Salmonella hospitalization.</p></div>
+        <div class="card"><h3>Adults 65+</h3><p>Weakened immunity drives higher hospitalization and death across all three pathogens.</p></div>
+      </div>
+      <p class="lede" style="margin-top:24px">So the real question isn't just <em>where is risk rising</em> — it's <strong>where does rising risk meet the people who can least absorb it.</strong> That reframing shapes everything that follows.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>03</span></div>
+  </section>
+
+  <!-- 4 — CHAPTER 2: THE IDEA / JOURNEY MAP -->
+  <section class="slide dark">
+    <div class="pad">
+      <div class="chapter">Chapter 2 · The Idea</div>
+      <h2 style="color:#fff">Connect the signals into one honest flow</h2>
+      <div class="accentbar"></div>
+      <p class="lede" style="max-width:860px">VulneraSafe AI is a single thread that runs from raw public data to a safe, human-reviewed action. Every chapter of this story is one step on that thread — nothing is bolted on.</p>
+      <div class="journey">
+        <div class="step on"><div class="dot">1</div><div class="st">Observe</div><div class="sd">Integrate 5 data pathways</div></div>
+        <div class="step on"><div class="dot">2</div><div class="st">Predict</div><div class="sd">Forecast next-period risk</div></div>
+        <div class="step on"><div class="dot">3</div><div class="st">Contextualize</div><div class="sd">Vulnerability + access</div></div>
+        <div class="step on"><div class="dot">4</div><div class="st">Decide</div><div class="sd">Safety-constrained action</div></div>
+        <div class="step on"><div class="dot">5</div><div class="st">Defend</div><div class="sd">Evidence + human review</div></div>
+      </div>
+      <p class="note" style="color:#9fe0e0">Hold these five verbs in mind — the website is literally organized around them.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>04</span></div>
+  </section>
+
+  <!-- 5 — CHAPTER 3: OBSERVE / ONE HEALTH -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 3 · Observe</div>
+      <h2>Five One Health pathways, joined with their real limits</h2>
+      <div class="accentbar"></div>
+      <div class="grid3" style="gap:14px">
+        <div class="card"><h3>🧪 Food / animal</h3><p><strong>Primary.</strong> USDA FSIS establishment lab sampling — the surveillance backbone.</p></div>
+        <div class="card"><h3>🌦️ Environment</h3><p>NOAA state-month climate. A small, honestly-reported lift — not a headline driver.</p></div>
+        <div class="card"><h3>🧑‍⚕️ Human health</h3><p>CDC NORS outbreaks, lagged 365 days — historical corroboration, not a live feature.</p></div>
+        <div class="card"><h3>🥫 Food security</h3><p>US Census ACS + USDA Food Access Atlas — community vulnerability &amp; access context.</p></div>
+        <div class="card"><h3>🚚 Supply chain</h3><p>A clearly-labeled <span class="pill sim">SIMULATED</span> retailer network — no real retail data exists.</p></div>
+        <div class="card"><h3>📋 Regulatory recalls</h3><p>Real openFDA food-enforcement recalls as independent regulatory evidence.</p></div>
+      </div>
+      <p class="note">The honesty is the point: where a pathway is thin or blocked, we label it a gap rather than dress it up. Every value carries source, date, license and checksum.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>05</span></div>
+  </section>
+
+  <!-- 6 — CHAPTER 4: PREDICT -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 4 · Predict</div>
+      <h2>A forward-looking risk estimate — tested the honest way</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div class="col-list">
+          <ul class="clean">
+            <li>Target fixed <strong>before</strong> tuning: "elevated positivity next period"</li>
+            <li>Validated on a <strong>strict chronological</strong> hold-out — the future never leaks into the past</li>
+            <li>A pathogen only predicts if its data earns it — otherwise it shows history with uncertainty</li>
+          </ul>
+        </div>
+        <div class="grid3" style="gap:12px">
+          <div class="kpi"><div class="num">0.56</div><div class="lbl">Salmonella PR-AUC</div></div>
+          <div class="kpi"><div class="num">0.71</div><div class="lbl">Listeria PR-AUC</div></div>
+          <div class="kpi"><div class="num">0.82</div><div class="lbl">Listeria ROC-AUC</div></div>
+        </div>
+      </div>
+      <p class="lede" style="margin-top:22px">The integrated models beat a transparent seasonal baseline for every pathogen — and we show exactly how much each data domain adds, with its real sign, even when it's small.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>06</span></div>
+  </section>
+
+  <!-- 7 — CHAPTER 5: THE WEBSITE OPENS -->
+  <section class="slide dark">
+    <div class="pad">
+      <div class="chapter">Chapter 5 · The Tour Begins</div>
+      <h2 style="color:#fff">Now the Director opens the app</h2>
+      <div class="accentbar"></div>
+      <div class="tour">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span class="url">username.github.io/VulneraSafe_AI</span></div>
+          <div class="screen" style="background:linear-gradient(135deg,#0f2742,#1a8f8f);min-height:200px;display:flex;flex-direction:column;justify-content:center;padding:26px">
+            <div style="color:#9fe0e0;font-size:11px;font-weight:700;letter-spacing:.1em">ONE HEALTH FOOD-SAFETY DECISION SUPPORT</div>
+            <div style="color:#fff;font-size:22px;font-weight:800;margin-top:8px;line-height:1.2">Foodborne pathogens strike<br/>the most vulnerable first.</div>
+            <div style="margin-top:14px"><span style="background:#1a8f8f;color:#fff;font-size:11px;font-weight:700;padding:7px 12px;border-radius:7px">Open the live dashboard →</span></div>
+          </div>
+        </div>
+        <div class="tour-copy">
+          <h3>The landing page is the pitch</h3>
+          <p style="color:#cfe0f0;margin-top:10px">Before a single chart, the site states the problem, names who's at risk, shows the scale from real FSIS data, and lays out the decision being supported. The story the app tells a visitor is the same one this deck tells you.</p>
+          <p class="note" style="color:#9fe0e0">Static on GitHub Pages — no backend, no paid services, loads precomputed artifacts only.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>07</span></div>
+  </section>
+
+  <!-- 8 — CHAPTER 5: DASHBOARD + PATHOGENS -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 5 · The Tour · Seeing Risk</div>
+      <h2>Risk Dashboard &amp; Pathogens</h2>
+      <div class="accentbar"></div>
+      <div class="browser" style="margin-bottom:16px">
+        <div class="bar"><i></i><i></i><i></i><span class="url">.../dashboard</span></div>
+        <div class="screen">
+          <div class="navy-band">VulneraSafe AI
+            <span>Overview</span><span class="cur">Risk Dashboard</span><span>Pathogens</span><span>Communities</span><span>Facilities</span><span>Decision Actions</span><span>One Health &amp; Data</span>
+          </div>
+          <div class="mini-row">
+            <div class="mini"><b>🗺️ Geography view</b> Interactive US-state risk map for the selected pathogen &amp; period.</div>
+            <div class="mini"><b>📈 Time-series</b> Updates to the region you click — surveillance + validated predictions.</div>
+            <div class="mini"><b>📋 Attention queue</b> Items ranked highest-to-lowest priority.</div>
+          </div>
+        </div>
+      </div>
+      <p class="lede">The Director lands on the <strong>Risk Dashboard</strong>, picks a pathogen, clicks a state — the trend redraws for that region. The <strong>Pathogens</strong> section goes deeper: product &amp; program breakdowns, emerging signals, seasonal patterns. The worry from Chapter 1 now has a shape on screen.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>08</span></div>
+  </section>
+
+  <!-- 9 — CHAPTER 5: COMMUNITIES (the emotional payoff) -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 5 · The Tour · The Vulnerability Lens</div>
+      <h2>Communities — where the stakes from Chapter 1 reappear</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span class="url">.../communities</span></div>
+          <div class="screen">
+            <div style="font-size:12px;font-weight:700;color:var(--navy)">Vulnerable Communities · State ⇄ County</div>
+            <div class="mini-row" style="margin-top:10px">
+              <div class="mini"><b>Lens</b> Adults 65+, low-income, low food-access</div>
+              <div class="mini"><b>Reprioritizes</b> attention, never the hazard</div>
+            </div>
+            <div class="mini" style="margin-top:10px"><b>Honest gaps</b> Under-5 &amp; pregnancy lenses shown as unavailable, never faked.</div>
+          </div>
+        </div>
+        <div>
+          <p class="lede">Switching the population lens re-ranks <em>where attention should go</em> — but it <strong>never changes the underlying hazard</strong>. This is the chapter where the people from the opening become a map the Director can act on.</p>
+          <p class="note">State-level overlays only. The app never claims who was exposed or who fell ill from regional demographics.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>09</span></div>
+  </section>
+
+  <!-- 10 — CHAPTER 6: DECIDE -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 6 · Decide</div>
+      <h2>Risk becomes an action — bounded by hard safety rules</h2>
+      <div class="accentbar"></div>
+      <div class="browser" style="margin-bottom:16px">
+        <div class="bar"><i></i><i></i><i></i><span class="url">.../actions</span></div>
+        <div class="screen">
+          <div style="font-size:12px;font-weight:700;color:var(--navy)">Decision Actions · Act → Decide → Plan</div>
+          <div class="mini-row" style="margin-top:10px">
+            <div class="mini"><b>Scenario builder</b> Tune inspection budget, supply, delays, access</div>
+            <div class="mini"><b>Recommended action</b> With rationale, constraints &amp; human-review flag</div>
+            <div class="mini"><b>Evidence panel</b> Source data, uncertainty, limitations</div>
+          </div>
+        </div>
+      </div>
+      <p class="lede">Six safe actions — from prioritizing testing to isolating a confirmed-recall lot to allocating compliant replacement stock for high-need areas. The Director tests three policies: <strong>A</strong> business-as-usual, <strong>B</strong> model-guided safety, <strong>C</strong> safety + food-access-aware. Secondary goals are optimized <em>only</em> inside the safety constraints — never over them.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>10</span></div>
+  </section>
+
+  <!-- 11 — CHAPTER 7: DEFEND / EVIDENCE CHAIN -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Chapter 7 · Defend</div>
+      <h2>Every decision traces back to where it came from</h2>
+      <div class="accentbar"></div>
+      <div class="flow" style="margin:26px 0">
+        <div class="node">Data</div><span class="arrow">→</span>
+        <div class="node">Model</div><span class="arrow">→</span>
+        <div class="node alt">Alert</div><span class="arrow">→</span>
+        <div class="node">Evidence</div><span class="arrow">→</span>
+        <div class="node">Human review</div><span class="arrow">→</span>
+        <div class="node alt">Decision</div><span class="arrow">→</span>
+        <div class="node">Impact</div>
+      </div>
+      <div class="grid3" style="margin-top:10px">
+        <div class="card"><span class="pill obs">OBSERVED</span><p style="margin-top:8px">Real surveillance &amp; testing data.</p></div>
+        <div class="card"><span class="pill pred">PREDICTED</span><p style="margin-top:8px">Validated model output, with uncertainty.</p></div>
+        <div class="card"><span class="pill sim">SIMULATED</span><p style="margin-top:8px">The documented synthetic network.</p></div>
+      </div>
+      <p class="note">High-consequence actions are blocked until a person signs off. The app is decision support — it never declares a product safe or unsafe on its own.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>11</span></div>
+  </section>
+
+  <!-- 12 — RESOLUTION: FULL CIRCLE -->
+  <section class="slide dark">
+    <div class="pad">
+      <div class="chapter">Resolution</div>
+      <h2 style="color:#fff">Back to the opening question</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div>
+          <p class="big-quote" style="color:#eaf4ff">"Where should my team look first — and what do I do when I find it?"</p>
+        </div>
+        <div>
+          <p class="lede">Now the Director has an answer with receipts: a ranked place to look, a safe action to take, the evidence behind it, the uncertainty around it, and a human in the loop before anything happens.</p>
+          <p class="note" style="color:#9fe0e0">The worry became a map. The map became a decision. The decision can be defended.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>12</span></div>
+  </section>
+
+  <!-- 13 — WHY IT HOLDS UP -->
+  <section class="slide">
+    <div class="pad">
+      <div class="chapter">Why the Story Holds Up</div>
+      <h2>Reproducible, honest, runnable</h2>
+      <div class="accentbar"></div>
+      <div class="grid4" style="margin-bottom:22px">
+        <div class="kpi"><div class="num">5</div><div class="lbl">One Health pathways</div></div>
+        <div class="kpi"><div class="num">3</div><div class="lbl">pathogens, feasibility-gated</div></div>
+        <div class="kpi"><div class="num">29</div><div class="lbl">precomputed artifacts</div></div>
+        <div class="kpi"><div class="num">0</div><div class="lbl">fabricated values</div></div>
+      </div>
+      <ul class="clean">
+        <li>Rebuilt from scratch with free public US-gov data — fixed seeds, deterministic exporter, identical inputs yield identical outputs.</li>
+        <li>Property-based tests on the pipeline; component tests on the web app; static deploy on GitHub Pages.</li>
+        <li>Full package: notebooks/scripts, Kiro specs &amp; hooks, runnable app, data dictionary + provenance, PDF report, README.</li>
+      </ul>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI · The Story</span><span>13</span></div>
+  </section>
+
+  <!-- 14 — CLOSE -->
+  <section class="slide hero dark">
+    <div class="pad">
+      <div class="logo"><span class="mark">V</span><span class="name">VulneraSafe AI</span></div>
+      <div class="chapter">Predict the Hazard · Protect the Vulnerable</div>
+      <h1 style="font-size:50px;margin-top:8px">One thread, start to finish.</h1>
+      <div class="accentbar" style="background:var(--teal)"></div>
+      <p class="lede" style="max-width:800px">Observe the whole food system. Predict honestly. Weigh who's most at risk. Decide within hard safety limits. Defend every step. That's the story — and it's a working, reproducible tool a judge can open and trace today.</p>
+      <p style="color:#9fe0e0;font-size:22px;font-weight:700;margin-top:26px">Thank you.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="controls">
+  <button id="prev">‹ Prev</button>
+  <span class="counter" id="counter">1 / 14</span>
+  <button id="next">Next ›</button>
+  <button id="full">Fullscreen</button>
+</div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+    document.getElementById('counter').textContent = (i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick = function(){ show(i+1); };
+  document.getElementById('prev').onclick = function(){ show(i-1); };
+  document.getElementById('full').onclick = function(){
+    if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen(); }
+  };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ show(i+1); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ show(i-1); e.preventDefault(); }
+    else if(e.key==='Home'){ show(0); }
+    else if(e.key==='End'){ show(slides.length-1); }
+    else if(e.key==='f'||e.key==='F'){ document.getElementById('full').click(); }
+    else if(e.key==='p'||e.key==='P'){ window.print(); }
+  });
+  show(0);
+</script>
+</body>
+</html>

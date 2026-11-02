@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 08: Actions and Review Queue IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 08_recommended_actions.docx and 08_recommended_actions.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Translate supported surveillance evidence and official safety controls into human-review workflow.
+Required analysis: Ranked supplier documentation requests, additional product tests, historical evidence reviews, simulated lot isolation and replacement allocation.
+Data: Predictions+CI, provenance, optimizer actions, regulatory artifacts (unavailable if no real recall feed).
+Interactions: Filter by pathogen, evidence, consequence, action type; select action → evidence drawer; mark review acknowledgment as local UI state only.
+Science tasks: S08/S09/S10; enforce evidence+uncertainty on all MODEL recommendations.
+Safety: Never show illustrative recalls as verified or provide unsafe automatic distribution approval.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

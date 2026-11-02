@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VulneraSafe AI — Project Presentation</title>
+<style>
+  :root{
+    --navy:#0f2742; --navy-2:#16375f; --teal:#1a8f8f; --teal-soft:#1aa7a7;
+    --ink:#132235; --muted:#5b6b7d; --line:#e4e9f0; --bg:#f7f9fc; --white:#ffffff;
+    --amber:#c77b17; --red:#b2342b; --green:#1f8a54;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--navy); color:var(--ink);
+    display:flex; align-items:center; justify-content:center; min-height:100vh;
+  }
+  .deck{width:100%; max-width:1180px; padding:24px}
+  .slide{
+    position:relative; display:none; background:var(--white);
+    border-radius:16px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.4);
+    aspect-ratio:16/9; width:100%;
+  }
+  .slide.active{display:block}
+  .pad{padding:56px 64px}
+  .eyebrow{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); font-weight:700}
+  h1{font-size:46px; line-height:1.08; color:var(--navy); font-weight:800; letter-spacing:-.01em}
+  h2{font-size:34px; color:var(--navy); font-weight:800; letter-spacing:-.01em; margin-bottom:6px}
+  h3{font-size:18px; color:var(--navy); font-weight:700}
+  p,li{font-size:17px; line-height:1.5; color:var(--ink)}
+  .sub{color:var(--muted); font-size:18px}
+  .accentbar{height:6px; width:88px; background:var(--teal); border-radius:3px; margin:18px 0 26px}
+  .title-slide{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 55%,#1d4e6b 100%); color:#fff; height:100%}
+  .title-slide .pad{height:100%; display:flex; flex-direction:column; justify-content:center}
+  .title-slide h1{color:#fff; font-size:58px}
+  .title-slide .eyebrow{color:#7fe3e3}
+  .title-slide .sub{color:#c7d6e6}
+  .tagline{font-size:22px; color:#9fe0e0; font-weight:600; margin-top:10px}
+  .logo{display:inline-flex; align-items:center; gap:12px; margin-bottom:22px}
+  .logo .mark{width:46px;height:46px;border-radius:10px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:#fff}
+  .logo .name{font-size:20px;font-weight:800;color:#fff;letter-spacing:.01em}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{margin-bottom:6px}
+  .card p{font-size:15px;color:var(--muted)}
+  .kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .kpi .num{font-size:40px;font-weight:800;color:var(--teal);line-height:1}
+  .kpi .lbl{font-size:13px;color:var(--muted);margin-top:8px;font-weight:600}
+  ul.clean{list-style:none}
+  ul.clean li{position:relative;padding-left:26px;margin-bottom:12px}
+  ul.clean li:before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:3px;background:var(--teal)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;font-weight:700;font-size:13px;letter-spacing:.03em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:nth-child(even) td{background:#fafcff}
+  .good{color:var(--green);font-weight:700}
+  .warn{color:var(--amber);font-weight:700}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .pill.obs{background:#e7f0ff;color:#1c4e8a}
+  .pill.pred{background:#e5f5f0;color:#1f8a54}
+  .pill.sim{background:#fff1e0;color:#a9671a}
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .node{background:var(--navy);color:#fff;border-radius:10px;padding:12px 14px;font-size:13px;font-weight:700;text-align:center;min-width:92px}
+  .node.alt{background:var(--teal)}
+  .arrow{color:var(--teal);font-weight:900;font-size:20px}
+  .pagefoot{position:absolute;bottom:18px;left:64px;right:64px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .note{font-size:13px;color:var(--muted);font-style:italic;margin-top:10px}
+  .controls{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;z-index:50}
+  .controls button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer;font-weight:600}
+  .controls button:hover{background:rgba(255,255,255,.24)}
+  .counter{color:#cfe0f0;font-size:13px;min-width:62px;text-align:center}
+  .hint{position:fixed;top:16px;right:20px;color:#9fb6cd;font-size:12px;z-index:50}
+  .col-list h3{margin-bottom:12px}
+  .lede{font-size:20px;color:var(--ink);line-height:1.5}
+  .two-col-text{columns:2;column-gap:40px}
+  @media print{
+    @page{size:1180px 664px;margin:0}
+    body{background:#fff;display:block}
+    .deck{max-width:none;padding:0}
+    .slide{display:block!important;page-break-after:always;border-radius:0;box-shadow:none;aspect-ratio:auto;height:664px}
+    .controls,.hint{display:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="hint">← / → to navigate · F fullscreen · P to print/PDF</div>
+<div class="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide active title-slide">
+    <div class="pad">
+      <div class="logo"><span class="mark">V</span><span class="name">VulneraSafe AI</span></div>
+      <div class="eyebrow">2026 NAFSI Hub · SENS-D Data Challenge</div>
+      <h1>Predict the Hazard.<br/>Protect the Vulnerable.</h1>
+      <div class="tagline">A multi-pathogen, One Health food-safety early-warning &amp; decision-support platform</div>
+      <p class="sub" style="margin-top:26px">Vulnerability-aware surveillance risk forecasting for a national grocery retailer's Food Safety Operations Director — reproducible analysis + a static React decision-support web app on GitHub Pages.</p>
+    </div>
+  </section>
+
+  <!-- 2 THE PROBLEM -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">The Problem</div>
+      <h2>Foodborne hazard signals are scattered — and attention is finite</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div>
+          <ul class="clean">
+            <li>Human illness, food/animal testing, weather, supply chain and community-vulnerability signals live in <strong>separate silos</strong> and are rarely read together.</li>
+            <li>A retail food-safety team has a <strong>fixed inspection, lot-testing and supplier-documentation budget</strong> each period and must decide where to point it.</li>
+            <li>Acting too late risks distributing contaminated product; acting everywhere is impossible.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>The decision we support</h3>
+          <p style="color:var(--ink);margin-top:8px">Where to direct <strong>next period's</strong> finite inspection, lot-testing and supplier-scrutiny effort to reduce the chance of distributing contaminated product — given predicted surveillance risk.</p>
+          <p class="note">Decision support only. Not a regulatory determination; it never declares a product safe or unsafe.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>02</span></div>
+  </section>
+
+  <!-- 3 DECISION CONTEXT -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">One Decision-Maker, Held Consistent</div>
+      <h2>Built around a single operational actor</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div class="col-list">
+          <h3>Retail Food Safety Operations Director</h3>
+          <ul class="clean">
+            <li><strong>Decision:</strong> where to focus the next period's inspection &amp; supplier effort</li>
+            <li><strong>Geography:</strong> United States, US-state level</li>
+            <li><strong>Commodities:</strong> raw poultry, ready-to-eat, raw beef</li>
+            <li><strong>Horizon:</strong> next month (Salmonella) / next quarter (Listeria, STEC)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Hard constraints</h3>
+          <ul class="clean" style="margin-top:8px">
+            <li>Confirmed regulatory recalls are never distributed</li>
+            <li>High-consequence actions require human review</li>
+            <li>Food-access goals never weaken a safety constraint</li>
+          </ul>
+          <p class="note">The same actor, horizon and authority thread through the pipeline, models, decision engine and web app.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>03</span></div>
+  </section>
+
+  <!-- 4 ONE HEALTH ARCHITECTURE -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">One Health Integration</div>
+      <h2>Five signal pathways, one reproducible pipeline</h2>
+      <div class="accentbar"></div>
+      <div class="grid3" style="margin-bottom:22px">
+        <div class="card"><h3>Human health</h3><p>CDC NORS foodborne outbreaks &amp; illnesses (PulseNet-substitute human-illness stream).</p></div>
+        <div class="card"><h3>Food / animal</h3><p>USDA FSIS laboratory sampling — Salmonella, Listeria, STEC — plus the Recall / Public Health Alert feed.</p></div>
+        <div class="card"><h3>Environment</h3><p>NOAA climate — statewide monthly temperature &amp; precipitation anomalies.</p></div>
+        <div class="card"><h3>Supply chain</h3><p>Synthetic operational network for scenario &amp; policy demonstration (clearly labeled SIMULATED).</p></div>
+        <div class="card"><h3>Food security</h3><p>US Census ACS demographics + USDA Food Access Research Atlas vulnerability indicators.</p></div>
+        <div class="card" style="background:var(--navy);color:#fff"><h3 style="color:#fff">Harmonized tables</h3><p style="color:#cfe0f0">Aligned to a common time granularity &amp; geographic unit, with a data dictionary, provenance &amp; missingness reports.</p></div>
+      </div>
+      <p class="note">Every ingested value carries source, retrieval date, license and checksum. Synthetic data is stored separately from real observations and never mixed.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>04</span></div>
+  </section>
+
+  <!-- 5 MODELING APPROACH -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Predictive Modeling · Task 2</div>
+      <h2>Forecast elevated surveillance risk — only where data supports it</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div class="col-list">
+          <h3>Method</h3>
+          <ul class="clean">
+            <li><strong>Target:</strong> binary "elevated next-period positivity" at pathogen × commodity × region × time, fixed before tuning</li>
+            <li><strong>Baselines:</strong> seasonal-naive + regularized logistic regression</li>
+            <li><strong>Integrated:</strong> LightGBM gradient boosting + Random Forest on 42 leakage-safe features</li>
+            <li><strong>Feasibility gating:</strong> a pathogen predicts only if positives, coverage &amp; calibration support it — otherwise it shows historical surveillance with uncertainty</li>
+          </ul>
+        </div>
+        <div class="col-list">
+          <h3>Honest validation</h3>
+          <ul class="clean">
+            <li>Strict <strong>chronological</strong> split — all train periods precede all test periods</li>
+            <li>Rolling-origin validation; most-recent ~20% held untouched</li>
+            <li>Rare-event metrics: <strong>PR-AUC</strong>, ROC-AUC, Brier, calibration</li>
+            <li>No feature uses information after the horizon cutoff — leakage checks enforced</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>05</span></div>
+  </section>
+
+  <!-- 6 RESULTS TABLE -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Results · Held-out Chronological Test</div>
+      <h2>Integrated models beat transparent baselines</h2>
+      <div class="accentbar"></div>
+      <table>
+        <thead>
+          <tr><th>Pathogen</th><th>Resolution</th><th class="num">Test rows</th><th class="num">Seasonal PR-AUC</th><th class="num">Logistic PR-AUC</th><th class="num">Logistic ROC-AUC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Salmonella</strong> (raw poultry)</td><td>Monthly</td><td class="num">962</td><td class="num">0.465</td><td class="num good">0.563</td><td class="num">0.774</td></tr>
+          <tr><td><strong>Listeria</strong> (RTE)</td><td>Quarterly</td><td class="num">435</td><td class="num">0.660</td><td class="num good">0.708</td><td class="num">0.822</td></tr>
+          <tr><td><strong>STEC</strong> (raw beef)</td><td>Quarterly</td><td class="num">452</td><td class="num">0.355</td><td class="num good">0.389</td><td class="num">0.628</td></tr>
+        </tbody>
+      </table>
+      <p class="note">All three modules clear their feasibility gate and are predictive-capable. The regularized logistic model improves PR-AUC over the seasonal-naive baseline for every pathogen, with the strongest discrimination on Listeria. Metrics are computed from exported held-out predictions — nothing is hand-entered.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>06</span></div>
+  </section>
+
+  <!-- 7 ABLATION -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">One Health Ablation · Salmonella · LightGBM</div>
+      <h2>What each data domain actually adds — reported with its real sign</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <table>
+          <thead><tr><th>Configuration</th><th class="num">PR-AUC</th><th class="num">Δ vs FSIS-only</th></tr></thead>
+          <tbody>
+            <tr><td>FSIS only</td><td class="num">0.510</td><td class="num">baseline</td></tr>
+            <tr><td>FSIS + CDC</td><td class="num">0.516</td><td class="num good">+0.006</td></tr>
+            <tr><td>FSIS + NOAA</td><td class="num">0.531</td><td class="num good">+0.021</td></tr>
+            <tr><td>Full (FSIS+CDC+NOAA+context)</td><td class="num">0.517</td><td class="num good">+0.007</td></tr>
+          </tbody>
+        </table>
+        <div class="card">
+          <h3>Scientific honesty, not a sales pitch</h3>
+          <p style="color:var(--ink);margin-top:8px">NOAA weather adds the largest measured lift for Salmonella. CDC's contribution is small and recorded as a partial gap where human-health features are thin. Marginals are reported with their <strong>real sign</strong> — never clamped to zero or suppressed.</p>
+        </div>
+      </div>
+      <p class="note">Four controlled configurations, same held-out set, same metric. Contributions are small and pathogen-dependent — and we say so.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>07</span></div>
+  </section>
+
+  <!-- 8 DECISION ENGINE -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Operational Decision Support · Task 3</div>
+      <h2>Risk becomes safety-constrained action</h2>
+      <div class="accentbar"></div>
+      <div class="grid2">
+        <div class="col-list">
+          <h3>Six recommended actions</h3>
+          <ul class="clean">
+            <li>Prioritize additional testing / inspection</li>
+            <li>Request supplier documentation &amp; review</li>
+            <li>Escalate concerning shipments for human assessment</li>
+            <li>Match lots against confirmed recalls</li>
+            <li>Isolate inventory under confirmed recall</li>
+            <li>Allocate compliant replacement inventory for access</li>
+          </ul>
+        </div>
+        <div class="col-list">
+          <h3>Three policies compared</h3>
+          <ul class="clean">
+            <li><strong>A</strong> — business as usual</li>
+            <li><strong>B</strong> — model-guided safety prioritization</li>
+            <li><strong>C</strong> — model-guided safety + food-access-aware optimization</li>
+          </ul>
+          <p class="note">Optimization under hard safety constraints. No secondary gain (cost, availability, access) can ever override a food-safety rule.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>08</span></div>
+  </section>
+
+  <!-- 9 WEB APP -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">The Kiro Web Application · Task 4</div>
+      <h2>A decision command center, static on GitHub Pages</h2>
+      <div class="accentbar"></div>
+      <div class="grid4" style="margin-bottom:20px">
+        <div class="card"><h3>Risk Dashboard</h3><p>Geography + time-series with prioritized attention queue</p></div>
+        <div class="card"><h3>Pathogens</h3><p>Product &amp; program, emerging signals, seasonal patterns</p></div>
+        <div class="card"><h3>Communities</h3><p>Vulnerability lens, state ⇄ county</p></div>
+        <div class="card"><h3>Facilities</h3><p>Establishment list ⇄ map</p></div>
+        <div class="card"><h3>Decision Actions</h3><p>Scenario builder, recommendations, evidence</p></div>
+        <div class="card"><h3>One Health &amp; Data</h3><p>FSIS vs CDC comparison &amp; provenance</p></div>
+        <div class="card"><h3>Evidence graph</h3><p>Data → Model → Alert → Decision → Impact</p></div>
+        <div class="card"><h3>Replay &amp; what-if</h3><p>Historical forecast replay, policy A/B/C</p></div>
+      </div>
+      <p class="note">React · TypeScript · Vite · Tailwind · MapLibre · ECharts · React Flow. Loads precomputed CSV/JSON/Parquet artifacts only — no live backend, no paid services.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>09</span></div>
+  </section>
+
+  <!-- 10 PROVENANCE / LABELING -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Labeling &amp; Provenance</div>
+      <h2>Every value knows what it is</h2>
+      <div class="accentbar"></div>
+      <div class="grid3" style="margin-bottom:22px">
+        <div class="card"><span class="pill obs">OBSERVED</span><p style="margin-top:10px">Recorded from a real empirical source — surveillance, testing, weather, demographics.</p></div>
+        <div class="card"><span class="pill pred">PREDICTED</span><p style="margin-top:10px">Produced by a validated model for a future period, shown with uncertainty.</p></div>
+        <div class="card"><span class="pill sim">SIMULATED</span><p style="margin-top:10px">From the documented synthetic operational network — never a real transaction.</p></div>
+      </div>
+      <ul class="clean">
+        <li>Maps labeled with pathogen, geography, period, model/surveillance status, uncertainty and data freshness — no blank fields.</li>
+        <li>Orange &amp; red reserved strictly for active alert conditions. Scientific light theme, navy &amp; teal accents.</li>
+        <li>No decorative metrics — if it isn't observed, predicted or simulated, it isn't shown.</li>
+      </ul>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>10</span></div>
+  </section>
+
+  <!-- 11 RESPONSIBLE USE -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Responsible Interpretation</div>
+      <h2>Decision support that refuses to overclaim</h2>
+      <div class="accentbar"></div>
+      <div class="two-col-text">
+        <ul class="clean">
+          <li>Never infers contamination from a model alone, and never declares a product safe or unsafe from predicted risk.</li>
+          <li>Never infers causal outbreak linkage from genomic or temporal similarity alone.</li>
+          <li>Verified official recalls are shown as regulatory evidence, visually distinct from model alerts — and never suppressed for missing model uncertainty.</li>
+          <li>Model recommendations are withheld if required evidence or quantified uncertainty is unavailable.</li>
+          <li>Recommendations are tested for whether they systematically disadvantage high-need communities, with the measured disparity shown as pass/fail.</li>
+          <li>High-consequence actions are blocked pending human review.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>11</span></div>
+  </section>
+
+  <!-- 12 EVIDENCE FLOW -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Evidence to Action</div>
+      <h2>Traceable from raw signal to operational impact</h2>
+      <div class="accentbar"></div>
+      <div class="flow" style="margin:28px 0">
+        <div class="node">Data</div><span class="arrow">→</span>
+        <div class="node">Model</div><span class="arrow">→</span>
+        <div class="node alt">Alert</div><span class="arrow">→</span>
+        <div class="node">Evidence</div><span class="arrow">→</span>
+        <div class="node">Human review</div><span class="arrow">→</span>
+        <div class="node alt">Decision</div><span class="arrow">→</span>
+        <div class="node">Expected impact</div>
+      </div>
+      <p class="lede">Each recommendation carries the source data that triggered it, the governing constraints, the quantified uncertainty, and an explicit human-review requirement — so a reviewer can follow the whole chain.</p>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>12</span></div>
+  </section>
+
+  <!-- 13 REPRODUCIBILITY -->
+  <section class="slide">
+    <div class="pad">
+      <div class="eyebrow">Team Science &amp; Reproducibility · Task 5</div>
+      <h2>Rebuilt from scratch with public data</h2>
+      <div class="accentbar"></div>
+      <div class="grid4" style="margin-bottom:22px">
+        <div class="kpi"><div class="num">~230MB</div><div class="lbl">public US-gov raw data, freely re-fetchable</div></div>
+        <div class="kpi"><div class="num">29</div><div class="lbl">precomputed artifacts the site renders</div></div>
+        <div class="kpi"><div class="num">42</div><div class="lbl">leakage-safe model features</div></div>
+        <div class="kpi"><div class="num">3</div><div class="lbl">pathogens, each feasibility-gated</div></div>
+      </div>
+      <ul class="clean">
+        <li>Fixed random seed, strict chronological splits, deterministic exporter — identical inputs produce identical artifacts.</li>
+        <li>Property-based tests (Hypothesis) on the Python pipeline; component tests on the web app.</li>
+        <li>Full submission package: notebooks/scripts, Kiro specs &amp; hooks, runnable web app, data dictionary + provenance, PDF report, README.</li>
+      </ul>
+    </div>
+    <div class="pagefoot"><span>VulneraSafe AI</span><span>13</span></div>
+  </section>
+
+  <!-- 14 CLOSE -->
+  <section class="slide title-slide">
+    <div class="pad">
+      <div class="logo"><span class="mark">V</span><span class="name">VulneraSafe AI</span></div>
+      <div class="eyebrow">Predict the Hazard · Protect the Vulnerable</div>
+      <h1 style="font-size:50px">Risk you can act on —<br/>and defend.</h1>
+      <div class="accentbar" style="background:var(--teal)"></div>
+      <p class="sub" style="max-width:760px">One Health integration, honest time-aware validation, safety-constrained decisions, and a fully reproducible static web app — built so a judge can run it, trace it, and trust it.</p>
+      <p class="tagline" style="margin-top:28px">Thank you.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="controls">
+  <button id="prev">‹ Prev</button>
+  <span class="counter" id="counter">1 / 14</span>
+  <button id="next">Next ›</button>
+  <button id="full">Fullscreen</button>
+</div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+    document.getElementById('counter').textContent = (i+1)+' / '+slides.length;
+  }
+  document.getElementById('next').onclick = function(){ show(i+1); };
+  document.getElementById('prev').onclick = function(){ show(i-1); };
+  document.getElementById('full').onclick = function(){
+    if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+    else { document.exitFullscreen(); }
+  };
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ show(i+1); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ show(i-1); e.preventDefault(); }
+    else if(e.key==='Home'){ show(0); }
+    else if(e.key==='End'){ show(slides.length-1); }
+    else if(e.key==='f'||e.key==='F'){ document.getElementById('full').click(); }
+    else if(e.key==='p'||e.key==='P'){ window.print(); }
+  });
+  show(0);
+</script>
+</body>
+</html>

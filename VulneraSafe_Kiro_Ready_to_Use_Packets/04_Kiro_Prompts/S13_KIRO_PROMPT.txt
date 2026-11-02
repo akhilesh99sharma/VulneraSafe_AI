@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S13: NOAA environmental context and truthful ablations
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Explain how climate co-varies with pathogen surveillance and transparently report that weather currently does not improve ML metrics.
+Pathogens: All three
+Data to audit: NOAA nClimDiv monthly state-level temperature/precipitation anomalies 46–49 states; FSIS aligned state periods; source vintage.
+Analysis algorithm: Build climate signal view with weather lag, state coverage and seasonality; use same training/test feature cohorts to compare FSIS-only, FSIS+NOAA, FSIS+CDC if defensible, full; CDC lagged corroboration only should NOT be silently injected as active model feature.
+Evaluation: Report signed marginal effect and uncertainty. No climatological causal claim without stronger design; document missing states/periods.
+Artifact: `environmental_context.json`: anomaly, coverage flags, ablation delta and separate descriptive vs modeled role.
+Frontend: One Health Insights: weather map optional state overlay plus small paired timeline; badges for no demonstrated predictive gain.
+Tests: Tests: no future meteorology leakage, proper state joins, negative ablations displayed unmodified.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

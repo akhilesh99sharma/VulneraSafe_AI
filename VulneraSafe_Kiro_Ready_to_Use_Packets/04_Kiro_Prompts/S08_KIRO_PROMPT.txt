@@ -1,0 +1,16 @@
+SCIENTIFIC MODULE S08: Inspection-budget value and top-K policy
+
+I want NEW VALIDATED SCIENTIFIC ANALYSIS + CONNECTED LIVE-IN-BROWSER FUNCTIONALITY, not a UI-only redesign. Read the matching Word science specification first.
+
+Research question: Determine whether model-assisted ordering captures more later positive tests per equal review/testing effort.
+Pathogens: All three with valid evaluation; primarily Salmonella
+Data to audit: Chronological forecast ranking, future observed routine test/positive outcomes for retrospective evaluation, cost and inspection slots SIMULATED.
+Analysis algorithm: At each forecast cutoff choose top K based on prior info, benchmark random/seasonal/EB persistence/logistic versus ML; evaluate subsequent rate/capture in eligible sample universe and normalize by comparable test opportunities; distinguish retailer verification from FSIS official inspections.
+Evaluation: Curve across K and periods, bootstrap CIs, false alarms, work burden, calibration; no assertion of infections averted or causal gain without intervention trial.
+Artifact: `inspection_value.json`: K, policy, future positive capture, lift vs baseline, uncertainty, test burden.
+Frontend: Risk Dashboard attention queue and Scenario Builder inspection slider; plot lift vs K and show baselines.
+Tests: Tests: no future count as feature, no ranking outside eligibility, same K/eligible pool, repeatable fixed seeds.
+
+Proceed one step at a time: (1) inspect actual project files and availability; (2) create leakage-safe analysis; (3) compare with historical baseline/validate; (4) export typed manifested artifacts; (5) wire interactive React page/map; (6) verify browser and tests; (7) STOP and report actual results.
+
+Do not invent county infection forecasts, facility→retailer links, pregnant counts, verified recalls, performance improvements, or simulated lives saved. If no predictive signal, show descriptive evidence with stated uncertainty. All three pathogen modules must remain first-class in the app. Use external CMD if Kiro's integrated PowerShell hangs. Preserve E:\VulneraSafe_AI and prior tests.

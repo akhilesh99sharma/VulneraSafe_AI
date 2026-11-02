@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 11: Full-Screen County / Tract Vulnerability Map IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 11_map_vulnerable_communities.docx and 11_map_vulnerable_communities.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Geographic distribution of community context and food-access constraints.
+Required analysis: Population 65+, under-5 once verified, low-income and low-access, tract/county boundaries, state hazard displayed as separate indicator not downscaled.
+Data: ACS county profiles; Atlas tract indicators; state-level model as separate legend/summary.
+Interactions: Filter lens, county, tract, access indicator, map hover; compare counts versus proportions and vintage.
+Science tasks: S06/S07; FIPS crosswalk with missing-join audit.
+Safety: Never label tract vulnerability as observed infection or forecast; no ungrounded pregnancy estimates.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.

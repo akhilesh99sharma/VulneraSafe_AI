@@ -1,0 +1,20 @@
+IMPLEMENT PAGE 14: Full-Screen Recall Response Scenario Map IN THE EXISTING VULNERASAFE AI PROJECT.
+
+Attach 14_map_regulatory_recall_scenario.docx and 14_map_regulatory_recall_scenario.png; read both fully. Do not treat this task as only a visual redesign.
+
+Scientific objective: Visualize confirmed regulatory evidence separately from a safe simulated response exercise.
+Required analysis: If live verified recall feed unavailable, use expressly SIMULATED recall scenario. Lot isolation, affected simulated sites, compliant alternate sources, traced movements.
+Data: Official recall only with verifiable source identifier/date and match; synthetic lots/shipments for demo.
+Interactions: Select simulated lot, trace upstream/downstream, show locked recalled inventory, optimize compliant replacement and status.
+Science tasks: S09/S07; verify no recalled lot distributed under any policy.
+Safety: Unverified recall placeholder must NEVER say “verified official recall” or appear as a live regulator alert.
+
+Implementation sequence:
+1. Inspect existing React routes/components, offline Python pipeline, artifact contract and existing tested results.
+2. Identify missing scientific analysis vs usable current artifacts. Compute new features and validate only where necessary; do not fabricate values or claim increased accuracy without repeated chronological evaluation.
+3. Export versioned schema-validated JSON/CSV artifacts and update checksum manifest. Distinguish OBSERVED, PREDICTED, SIMULATED.
+4. Build this ONE professional navy/teal-on-white interactive page using the supplied image only as aesthetic reference.
+5. Test all filters, geographic selections, missing-data states, provenance, Python test suite as relevant and npm.cmd run build.
+6. Give local URL, changed files, artifact filenames, actual test outcomes and remaining gaps. STOP before next page.
+
+All three pathogens must be genuinely supported where the data allow it. Never downgrade previous functionality or change unrelated pages.
