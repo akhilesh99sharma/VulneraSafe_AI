@@ -82,6 +82,14 @@ All metrics are computed only from exported predictions on an untouched chronolo
 
 **Honest reading.** The lift over a strong transparent baseline is at most a small margin. For Salmonella the integrated model is roughly on par with the regularized-logistic baseline rather than clearly ahead; for Listeria it is a small margin ahead; STEC stays weak and is treated as surveillance-only. These scores mostly reflect PERSISTENT high-risk ranking, which the baselines already capture - not a demonstration of strong emerging-spike prediction. The target was redesigned after seeing v1 results, so this is an informed re-evaluation on a held-out window, not a fully independent confirmatory test - stated plainly.
 
+### Figures
+
+![PR-AUC: integrated model vs seasonal-naive and logistic baselines, per pathogen.](fig_pr_auc.png)
+
+![Calibration reliability: predicted risk vs observed frequency per pathogen on the chronological test split; the dashed line is perfect calibration.](fig_calibration.png)
+
+![Inspection-budget capture curve: fraction of true-positive-risk cells captured as a function of the fraction of units inspected when ranked by predicted risk, built from the real saved test-set predictions. All three pathogens sit well above the random diagonal; the dotted line marks a 10% inspection budget.](fig_capture.png)
+
 ### Per-pathogen validation detail (point estimate [95% bootstrap interval])
 
 **Salmonella (lightgbm)** - test units 962 (268 positive, base rate 0.279)
@@ -142,9 +150,21 @@ The direct tension: isolating or holding product protects health but reduces foo
 - **Incoming signals.** FSIS surveillance positivity (real, PREDICTED risk) plus a verified recall flag on a synthetic operational lot (SIMULATED).
 - **Model output.** The hazard layer ranks states by predicted Listeria risk, unchanged by any vulnerable-population lens. The optimizer receives the recall as a hard constraint.
 - **Recommended action.** Isolate the recalled lot (never distribute), match it against the confirmed-recall record, and allocate compliant replacement supply - with a human-review gate on the high-consequence steps.
-- **What the user sees.** The Recommended Action Panel shows each action with its rationale, governing constraints, and the human-review flag; the co-located Explanation / Evidence Panel shows the source dataset, coverage, access date, quantified uncertainty, and limitations; the Policy Comparison shows A/B/C outcomes on identical inputs. The Listeria scenario is dominated by mandatory isolation, so A/B/C tie there (shown and explained); the Salmonella limited-inspection scenario shows B/C diverging from A (inspection workload +16, priority-review coverage +1.0 under the equity-aware policy).
+- **What the user sees.** The Recommended Action Panel shows each action with its rationale, governing constraints, and the human-review flag; the co-located Explanation / Evidence Panel shows the source dataset, coverage, access date, quantified uncertainty, and limitations; the Policy Comparison shows A/B/C outcomes on identical inputs. The Listeria recall and Salmonella limited-inspection scenarios are dominated by their binding constraints, so A/B/C tie there (shown and explained); the STEC high-need scenario is where the model-guided policies diverge from business-as-usual A - policies B and C add +16 inspection-workload units and +1.0 priority-review coverage, concentrating scrutiny where predicted risk and community need are highest.
 
 No observed illness reduction is claimed; operational outcomes are SIMULATED because no real retailer data exists.
+
+### Quantified decision change (SIMULATED outcomes)
+
+The measurable difference the tool makes, policy A (business-as-usual) vs the model-guided policies, on identical inputs. Where binding constraints dominate, the policies correctly tie (no change is manufactured); where predicted risk and community need vary, the model-guided policies reallocate scrutiny.
+
+| Scenario | Inspection workload (A to B/C) | Priority-review coverage (A to B/C) | Reading |
+|---|---|---|---|
+| Listeria recall | 0 to 0 (tie) | 0 to 0 (tie) | Mandatory isolation dominates; no safe room to differ. |
+| Salmonella limited-inspection | 0 to 0 (tie) | 0 to 0 (tie) | Constraints bind identically across policies. |
+| STEC high-need | 0 to +16 | 0 to +1.0 | Model-guided B/C add targeted scrutiny where risk and need are highest. |
+
+The equity test passes (service-rate ratio 1.00, within the four-fifths band [0.8, 1.25]): the access-aware policy C does not disadvantage high-need communities relative to A. All operational outcomes are SIMULATED; no observed illness effect is claimed.
 
 
 ## 9. How team science changed the analysis
