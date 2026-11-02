@@ -138,10 +138,10 @@ integrated models, validation, interpret/ablation, responsible-use, React panels
 + regulatory strip + theming, full data inventory + dictionaries + provenance +
 One Health report.
 
-Outstanding (challenge-mandatory, prioritize over marginal modeling gains):
-1. NOAA nationwide nClimDiv state-monthly (replace single-station thin feed).
-2. Genuine CDC human-health layer (replace the 3 placeholder columns).
-3. Decision optimizer (OR-Tools CP-SAT) + synthetic network.
-4. Three operational scenarios (policies A/B/C).
-5. Exported dashboard artifacts + GitHub Pages deploy prep.
-6. PDF report.
+Status of the challenge-mandatory items (all but the PDF are DONE):
+1. DONE - NOAA nationwide nClimDiv statewide-monthly climate integrated.
+2. DONE - CDC NORS integrated as S05 human-health corroboration (lagged, non-causal); not forced into the hazard model as a predictive feature.
+3. DONE - decision optimizer (OR-Tools CP-SAT) + SIMULATED synthetic network.
+4. DONE - three operational scenarios (policies A/B/C) on identical inputs.
+5. DONE - exported dashboard artifacts + GitHub Pages deploy (live).
+6. PENDING - PDF export of this final report.

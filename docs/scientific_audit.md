@@ -131,16 +131,19 @@ Honest reading:
 
 ## (d) Availability assumptions and data-stream limitations
 
-- NOAA weather in the current feature matrix is a thin single-station slice;
-  the nationwide nClimDiv state-month integration is a mandatory next step. Until
-  then, weather features are flagged "safe but sparse".
+- NOAA weather is the nationwide nClimDiv statewide-monthly integration (~87% of
+  state-periods non-missing). Measured marginal value is modest and pathogen-dependent
+  (Salmonella +0.0211, STEC +0.0050, Listeria -0.0076 PR-AUC), reported honestly;
+  weather is a minor contributor, not a headline driver.
 - CDC NORS columns (cdc_outbreaks_lag1, cdc_illnesses_lag1,
   cdc_pathogen_outbreaks_lag1) are placeholders, not a real join, and are
   excluded from predictors. NORS also carries real publication delay; if it
   cannot supply a timely predictive signal it will be integrated for historical
   corroboration rather than forced into the ML model.
-- FSIS Recalls/PHAs are firewalled (HTTP 403) in this environment and are not
-  ingested; the regulatory-evidence channel is documented as pending.
+- The regulatory-evidence channel is real: openFDA food-enforcement recalls (FDA
+  jurisdiction) are integrated as independent regulatory evidence, surfaced apart
+  from model uncertainty. The USDA FSIS meat/poultry recall feed is WAF-blocked
+  (HTTP 403) here and is recorded as an honest gap, not fabricated.
 - No serotype/serovar/WGS/PFGE field exists in any FSIS program; no strain-level
   attribution is claimed.
 

@@ -1,4 +1,4 @@
-﻿# VulneraSafe AI - Complete Data Inventory
+# VulneraSafe AI - Complete Data Inventory
 
 Generated from direct inspection of the ingested raw files and processed feature tables.
 All figures are measured from the actual files on disk. Nothing here is fabricated or inferred.
@@ -19,9 +19,10 @@ Companion machine-readable files in this folder:
 | FSIS Raw Beef (STEC) | USDA FSIS | Manually supplied zipped JSON, FY2014-2026 | Fully ingested |
 | Census ACS 5-year 2022 | US Census Bureau | Live API (CENSUS_API_KEY) | Fully ingested |
 | USDA Food Access Research Atlas 2019 | USDA ERS | Downloaded xlsx | Fully ingested |
-| NOAA weather | NOAA NCEI Access | Live API | PARTIAL - single NY station, needs nClimDiv state monthly |
-| CDC NORS | data.cdc.gov | Not truly joined | PLACEHOLDER columns only |
-| FSIS Recalls / PHAs | FSIS Recall API | Blocked (HTTP 403) | Not ingested |
+| NOAA nClimDiv (statewide monthly) | NOAA NCEI | Live API | Fully ingested - national coverage (~87% state-periods) |
+| CDC NORS | data.cdc.gov | Downloaded (data.cdc.gov 5xkq-dg7x) | Integrated as S05 corroboration (lagged, non-causal) |
+| openFDA food enforcement recalls | api.fda.gov/food/enforcement | Committed cache (50 of 382 ongoing) | Integrated as regulatory evidence (FDA jurisdiction) |
+| USDA FSIS Recalls / PHAs | FSIS Recall API | Blocked (HTTP 403) | Not ingested - honest gap (meat/poultry jurisdiction) |
 
 Fiscal years present in every FSIS program: FY2014, FY2019, FY2023, FY2026 (the years supplied).
 
@@ -75,12 +76,14 @@ possible from this data. The platform must not claim serotype-level attribution.
 - Beef (STEC): `stec_analysis` (primary), `stec_o157_h7_mpn`, PCR virulence genes
   (`pcr_stx_1_2_analysis`, `pcr_eae_analysis`), plus a Salmonella screen.
 
-### 3.4 CRITICAL FINDING - CDC NORS columns are placeholders
-The feature tables carry `cdc_outbreaks_lag1`, `cdc_illnesses_lag1`, and
-`cdc_pathogen_outbreaks_lag1`. These are PLACEHOLDER columns - NORS was not truly
-joined, so they are currently constant and carry no signal. They are documented here
-so no reader mistakes them for a working human-illness linkage. Completing the honest
-NORS join (with reporting-lag handling) is a named next step.
+### 3.4 NOTE - CDC NORS is corroboration, not an ML feature
+NORS is really integrated as human-health CORROBORATION in S05 (One Health Insights):
+real NORS foodborne-outbreak data compared against FSIS per pathogen x state x year with
+a ~365-day availability lag, non-causal. It is deliberately NOT a real-time predictive
+feature in the hazard model. The legacy ML feature columns `cdc_outbreaks_lag1`,
+`cdc_illnesses_lag1`, and `cdc_pathogen_outbreaks_lag1` therefore remain constant and
+carry no model signal (by design, so the lagged human-illness series never leaks into a
+forecast); they are documented here so no reader mistakes them for a predictive linkage.
 
 ### 3.5 Quality / leakage notes
 - `*_canceled` fields describe lab cancellations and can reflect information not known at
@@ -151,7 +154,14 @@ Columns that MUST stay out of the predictor matrix (future leakage):
 - same-sample result/subresult/MPN/CFU/PCR fields for the observation being predicted
 - all next-period count and smoothed-target fields
 
-Named data-completion next steps:
-1. Replace the thin single-station NOAA feed with NOAA nClimDiv state-level monthly climate.
-2. Perform an honest CDC NORS join with explicit reporting-lag handling (replace the placeholders).
-3. Revisit the firewalled FSIS Recall feed for an independent regulatory-alert channel.
+Data-completion status:
+1. DONE - NOAA upgraded from the single-station demo to NOAA nClimDiv statewide monthly
+   climate (national coverage).
+2. DONE - CDC NORS integrated as S05 corroboration (lagged, non-causal); not forced into
+   the hazard model as a predictive feature.
+3. PARTIAL - real openFDA food-enforcement recalls (FDA jurisdiction) are integrated as an
+   independent regulatory-evidence channel; the USDA FSIS meat/poultry recall feed remains
+   WAF-blocked (HTTP 403) here and is a remaining gap.
+
+Remaining next steps: a timely human-health feed (PulseNet / near-real-time CDC) to
+replace lagged NORS, and reaching the USDA FSIS recall feed for meat/poultry recalls.

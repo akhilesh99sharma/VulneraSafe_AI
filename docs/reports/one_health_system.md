@@ -1,4 +1,4 @@
-﻿# VulneraSafe AI - One Health System
+# VulneraSafe AI - One Health System
 
 VulneraSafe AI frames food-safety early warning as a One Health problem: pathogen risk at
 the retail level emerges from the interaction of microbial surveillance, human illness,
@@ -14,9 +14,11 @@ recall response, replacement allocation) - never government inspection orders.
 ### 1. Human health pathway
 - Signal: reported foodborne outbreaks and illnesses.
 - Dataset: CDC NORS (National Outbreak Reporting System).
-- Status: PLACEHOLDER. The `cdc_*_lag1` feature columns exist but are not truly joined and
-  are currently constant. Honest integration with explicit reporting-lag handling is a
-  named next step so the human-illness signal is never overstated.
+- Status: INTEGRATED as corroboration (S05 One Health Insights). Real CDC NORS
+  foodborne-outbreak data is compared against FSIS surveillance per pathogen x state x
+  year with a modeled ~365-day availability lag. It is corroboration only, never a
+  real-time predictive feature and never a causal link, so the human-illness signal is
+  not overstated.
 
 ### 2. Food / animal pathway (core signal)
 - Signal: pathogen positivity in food-production establishments.
@@ -27,17 +29,21 @@ recall response, replacement allocation) - never government inspection orders.
 
 ### 3. Environmental pathway
 - Signal: climate conditions associated with pathogen growth/survival.
-- Dataset: NOAA weather (temperature, precipitation, anomalies).
-- Status: THIN. Currently a single NY station; replacement with NOAA nClimDiv state-level
-  monthly climate is pending. Weather features are flagged "safe but sparse".
+- Dataset: NOAA nClimDiv statewide monthly climate (temperature, precipitation, anomalies).
+- Status: INTEGRATED with national coverage (~87% of state-periods non-missing), upgraded
+  from the earlier single-station demo. Measured marginal value in the ablation: a small
+  real lift for Salmonella (+0.0211 PR-AUC) and STEC (+0.0050), slightly negative for
+  Listeria (-0.0076) - modest and honestly reported, not a headline driver.
 
 ### 4. Supply-chain pathway
 - Signal: product movement, lot isolation, and replacement allocation.
 - Dataset: seeded Synthetic_Operational_Network (isolated under `data/synthetic/`, every
-  record labeled SIMULATED) plus the firewalled FSIS Recall feed as an independent
-  regulatory-evidence channel.
-- Status: synthetic network drives the decision optimizer; recalls are a pending
-  independent channel (HTTP 403 at ingest).
+  record labeled SIMULATED) plus REAL openFDA food-enforcement recalls (FDA jurisdiction)
+  as an independent regulatory-evidence channel.
+- Status: synthetic network drives the decision optimizer (SIMULATED); recalls are
+  integrated from a committed openFDA cache (50 of 382 ongoing listeria/salmonella/E.coli
+  recalls). The USDA FSIS meat/poultry recall feed remains WAF-blocked (HTTP 403) here and
+  is recorded as an honest gap, not fabricated.
 
 ### 5. Food-security pathway
 - Signal: community vulnerability and access, so safety actions do not disproportionately
