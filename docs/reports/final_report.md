@@ -13,6 +13,16 @@ A proactive One Health food-safety decision-support tool for the Food Safety Ope
 **Live application:** https://akhilesh99sharma.github.io/VulneraSafe_AI/
 **Repository:** https://github.com/akhilesh99sharma/VulneraSafe_AI
 
+## Decision statement
+
+> **Who.** The Food Safety Operations Director of a regional grocery retail chain - the single primary actor across the analytics, decision logic, and interface.
+> 
+> **What decision.** Each period, where to focus limited food-safety attention and which safe operational action to take: prioritize supplier verification or targeted testing, hold a lot for human review, isolate a confirmed-recall lot, or allocate compliant replacement supply - while protecting access for high-need communities. These are retailer actions, never government inspection orders.
+> 
+> **When.** One period ahead - monthly for Salmonella, quarterly for Listeria and STEC - matching how a retailer schedules supplier verification and testing.
+> 
+> **Where / scope.** US state x period surveillance for three FSIS-regulated pathogens (Salmonella in raw poultry, Listeria in RTE, STEC in raw beef), with community vulnerability and food-access context at the state level.
+
 
 ## Executive summary
 

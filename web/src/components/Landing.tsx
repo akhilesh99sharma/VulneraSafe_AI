@@ -248,19 +248,29 @@ export default function Landing({ onEnter }: { onEnter: () => void }) {
             </p>
           </div>
         </Reveal>
+        <Reveal>
+          <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-navy/10 bg-white p-6 shadow-sm">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-teal-700">The decision we support</h3>
+            <dl className="mt-3 space-y-2 text-sm text-navy/80">
+              <div><dt className="inline font-semibold text-navy">Who: </dt><dd className="inline">a regional grocery chain’s Food Safety Operations Director.</dd></div>
+              <div><dt className="inline font-semibold text-navy">What: </dt><dd className="inline">where to focus limited food-safety attention, and which safe action to take — prioritize testing, hold for review, isolate a confirmed-recall lot, or allocate compliant replacement — while protecting access for high-need communities.</dd></div>
+              <div><dt className="inline font-semibold text-navy">When: </dt><dd className="inline">one period ahead — monthly for Salmonella, quarterly for Listeria and STEC.</dd></div>
+            </dl>
+          </div>
+        </Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Pathway tone="ok" title="Food / animal" status="Primary · complete" icon={<span>🧪</span>}
             body="USDA FSIS establishment lab sampling — the surveillance backbone for Salmonella, Listeria, and STEC." />
-          <Pathway tone="partial" title="Environmental" status="Integrated · not a driver" icon={<span>🌦️</span>}
-            body="NOAA nClimDiv state-month climate across 46–49 states. Honestly reported: it did not improve prediction." />
+          <Pathway tone="partial" title="Environmental" status="Integrated · minor lift" icon={<span>🌦️</span>}
+            body="NOAA nClimDiv state-month climate, national coverage. Honestly reported: a small, pathogen-dependent lift (Salmonella +0.021, STEC +0.005 PR-AUC; Listeria slightly negative) — not a headline driver." />
           <Pathway tone="partial" title="Human health" status="Corroboration only" icon={<span>🧑‍⚕️</span>}
             body="CDC NORS outbreaks/illnesses joined with a 365-day availability lag — historical context, not a real-time feature." />
           <Pathway tone="ok" title="Food security" status="Complete" icon={<span>🥫</span>}
             body="US Census ACS and USDA Food Access Atlas provide community vulnerability and access context." />
           <Pathway tone="gap" title="Supply chain" status="Simulated" icon={<span>🚚</span>}
             body="A clearly-labeled SIMULATED retailer network drives the decision optimizer — no real retailer data exists." />
-          <Pathway tone="gap" title="Regulatory recalls" status="Feed unavailable" icon={<span>📋</span>}
-            body="The official FSIS recall feed is firewalled here; the recall track shows an honest 'unavailable' state rather than fabricated alerts." />
+          <Pathway tone="ok" title="Regulatory recalls" status="Real (openFDA)" icon={<span>📋</span>}
+            body="Real openFDA food-enforcement recalls (FDA jurisdiction) as independent regulatory evidence. The USDA FSIS meat/poultry feed is blocked here — an honest gap, not fabricated." />
         </div>
       </section>
 
