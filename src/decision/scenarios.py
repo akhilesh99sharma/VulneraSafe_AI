@@ -11,10 +11,10 @@ The three scenarios (Req 11.2)
 1. ``listeria_rte_recall`` — a Listeria RTE **verified-evidence recall**
    response. One lot is promoted to a confirmed recall and must be isolated
    (hard safety), and compliant replacement supply is available to restore
-   access. Because this environment has **no live official FSIS recall record**
-   (the Recalls/PHA feed is firewalled per the scientific audit), the recall is
-   labeled a **SIMULATED verified-evidence scenario** — never presented as a
-   live regulatory alert.
+   access. This scenario is a demonstration and is not driven by a live recall
+   record, so it is labeled a **SIMULATED verified-evidence scenario** — never
+   presented as a live regulatory alert. (Real regulatory recalls are integrated
+   separately via openFDA; the USDA FSIS recall feed is blocked here.)
 2. ``salmonella_poultry_limited_inspection`` — an elevated Salmonella
    raw-poultry surveillance concern under a **limited testing/inspection
    budget** (inspection capacity tightened). No confirmed recall or block; the
@@ -138,10 +138,12 @@ SCENARIOS: tuple[ScenarioSpec, ...] = (
         description=(
             "A ready-to-eat product lot is under a verified-evidence recall and "
             "must be isolated (hard safety constraint); compliant replacement "
-            "supply is allocated to restore access. SIMULATED verified-evidence "
-            "scenario: no live official FSIS recall record exists in this "
-            "environment (Recalls/PHA feed firewalled), so this is NOT presented "
-            "as a live regulatory alert."
+            "supply is allocated to restore access. This is a SIMULATED "
+            "verified-evidence scenario used to demonstrate the recall-response "
+            "path; it is NOT driven by a live official recall record and is NOT "
+            "presented as a live regulatory alert. Real regulatory recalls are "
+            "integrated separately (openFDA food enforcement); the USDA FSIS "
+            "meat/poultry recall feed is blocked (HTTP 403) in this environment."
         ),
         seed=4601,
         focal_lots=8,

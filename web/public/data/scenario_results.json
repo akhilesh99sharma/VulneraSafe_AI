@@ -23,7 +23,7 @@
     {
       "scenario_id": "listeria_rte_recall",
       "title": "Listeria RTE verified-evidence recall + replacement allocation",
-      "description": "A ready-to-eat product lot is under a verified-evidence recall and must be isolated (hard safety constraint); compliant replacement supply is allocated to restore access. SIMULATED verified-evidence scenario: no live official FSIS recall record exists in this environment (Recalls/PHA feed firewalled), so this is NOT presented as a live regulatory alert.",
+      "description": "A ready-to-eat product lot is under a verified-evidence recall and must be isolated (hard safety constraint); compliant replacement supply is allocated to restore access. This is a SIMULATED verified-evidence scenario used to demonstrate the recall-response path; it is NOT driven by a live official recall record and is NOT presented as a live regulatory alert. Real regulatory recalls are integrated separately (openFDA food enforcement); the USDA FSIS meat/poultry recall feed is blocked (HTTP 403) in this environment.",
       "pathogen": "Listeria",
       "commodity": "rte",
       "verified_recall": true,
