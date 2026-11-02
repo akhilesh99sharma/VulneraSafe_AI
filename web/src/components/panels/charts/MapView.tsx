@@ -21,7 +21,16 @@ export { colorForRisk, riskBandLabel } from "./riskBands";
  */
 
 export interface MapViewProps {
-  features: RiskMapFeature[];
+  /** Choropleth source A: full risk-map features (dashboard). Optional when
+   * valueByRegion is provided instead. */
+  features?: RiskMapFeature[];
+  /** Choropleth source B: a plain region-code -> value map (e.g. a live
+   * priority score). When present it drives the fill, hover and fallback grid
+   * instead of features; no RiskMapFeature fields are invented. */
+  valueByRegion?: Map<string, number>;
+  /** Overrides the hover value label (defaults to Predicted/Observed). Use to
+   * name a non-risk quantity honestly, e.g. Priority. */
+  valueLabel?: string;
   selectedRegion: string | null;
   onSelectRegion: (region: string) => void;
   /**
@@ -145,6 +154,8 @@ interface LabelPoint { postal: string; lng: number; lat: number; }
 
 export function MapView({
   features,
+  valueByRegion,
+  valueLabel: valueLabelProp,
   selectedRegion,
   onSelectRegion,
   viewMode = "predicted",
@@ -165,12 +176,14 @@ export function MapView({
   onSelectRef.current = onSelectRegion;
 
   const observed = viewMode === "observed";
+  const pathogenHint = features && features[0] ? features[0].pathogen : "";
 
   const byPostal = useMemo(() => {
+    if (valueByRegion) return valueByRegion;
     const m = new Map<string, number>();
-    for (const f of features) m.set(f.region, f.risk);
+    for (const f of features ?? []) m.set(f.region, f.risk);
     return m;
-  }, [features]);
+  }, [features, valueByRegion]);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -297,13 +310,13 @@ export function MapView({
   }, [selectedRegion]);
 
   if (useGrid) {
-    return <FallbackGrid features={features} selectedRegion={selectedRegion} onSelectRegion={onSelectRegion} />;
+    return <FallbackGrid features={features} valueByRegion={valueByRegion} pathogenHint={pathogenHint} valueLabel={valueLabelProp} selectedRegion={selectedRegion} onSelectRegion={onSelectRegion} />;
   }
 
   const hoverRisk = hover ? byPostal.get(hover.postal) : undefined;
   const hoverSample =
     observed && hover && sampleByRegion ? sampleByRegion.get(hover.postal) : undefined;
-  const valueLabel = observed ? "Observed positivity" : "Predicted risk";
+  const valueLabel = valueLabelProp ?? (observed ? "Observed positivity" : "Predicted risk");
 
   const resetView = () => {
     const map = mapRef.current;
@@ -383,7 +396,7 @@ export function MapView({
         ) : null}
         {!glReady ? (
           <div className="absolute inset-0 overflow-auto rounded border border-navy/10 bg-white p-2">
-            <FallbackGrid features={features} selectedRegion={selectedRegion} onSelectRegion={onSelectRegion} compact />
+            <FallbackGrid features={features} valueByRegion={valueByRegion} pathogenHint={pathogenHint} valueLabel={valueLabelProp} selectedRegion={selectedRegion} onSelectRegion={onSelectRegion} compact />
           </div>
         ) : null}
       </div>
@@ -505,9 +518,11 @@ function MapLegend({
 }
 
 function FallbackGrid({
-  features, selectedRegion, onSelectRegion, compact = false,
-}: MapViewProps & { compact?: boolean }) {
-  const ordered = [...features].sort((a, b) => b.risk - a.risk);
+  features, valueByRegion, pathogenHint = "", valueLabel, selectedRegion, onSelectRegion, compact = false,
+}: MapViewProps & { pathogenHint?: string; compact?: boolean }) {
+  const ordered = valueByRegion
+    ? [...valueByRegion.entries()].map(([region, risk]) => ({ region, risk, pathogen: pathogenHint })).sort((a, b) => b.risk - a.risk)
+    : [...(features ?? [])].sort((a, b) => b.risk - a.risk);
   const cell = (r: number, sel: boolean): CSSProperties => ({
     backgroundColor: colorForRisk(r),
     outline: sel ? "2px solid #0f2742" : "1px solid rgba(15,39,66,0.12)",
@@ -521,7 +536,7 @@ function FallbackGrid({
           style={cell(f.risk, f.region === selectedRegion)}
           className="flex flex-col items-start rounded px-2 py-1.5 text-left transition focus:outline-none focus:ring-2 focus:ring-teal">
           <span className="text-[11px] font-semibold text-navy">{f.region}</span>
-          <span className="text-[10px] text-navy/80">risk {formatRisk(f.risk)}</span>
+          <span className="text-[10px] text-navy/80">{(valueLabel ?? "risk").toLowerCase()} {formatRisk(f.risk)}</span>
         </button>
       ))}
     </div>

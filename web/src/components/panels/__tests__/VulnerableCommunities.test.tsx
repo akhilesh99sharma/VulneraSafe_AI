@@ -126,7 +126,22 @@ describe("VulnerableCommunities", () => {
     await waitFor(() => expect(screen.getByText(/how sensitive is this to the weights/i)).toBeInTheDocument());
   });
 
-  it("degrades to an honest empty state when the artifact is missing", async () => {
+  it("switches to a choropleth map coloring states by live priority", async () => {
+    installArtifactFetch({ community_impact: ROWS });
+    render(<VulnerableCommunities />);
+    await waitFor(() => expect(screen.getByText(/priority ranking/i)).toBeInTheDocument());
+    // flip to Map view
+    fireEvent.click(screen.getByTestId("communities-view-map"));
+    // the map (WebGL unavailable in jsdom -> accessible fallback grid) renders the states
+    await waitFor(() => expect(screen.getByTestId("map-view")).toBeInTheDocument());
+    const regions = screen.getAllByTestId("map-region").map((n) => n.getAttribute("data-region"));
+    expect(regions).toContain("ME");
+    expect(regions).toContain("TX");
+    // honest caption: priority, not contamination
+    expect(screen.getByText(/contamination rate or illness count/i)).toBeInTheDocument();
+  });
+
+    it("degrades to an honest empty state when the artifact is missing", async () => {
     installArtifactFetch({});
     render(<VulnerableCommunities />);
     await waitFor(() =>

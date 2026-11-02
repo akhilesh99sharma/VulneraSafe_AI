@@ -5,6 +5,7 @@ import { formatRisk } from "../../types/viewModels";
 import StatusTag from "../StatusTag";
 import EmptyState from "../EmptyState";
 import PanelShell, { ArtifactBody } from "./PanelShell";
+import MapView from "./charts/MapView";
 
 /**
  * Vulnerable Communities (S06). Overlays READ-ONLY state food-safety hazard with
@@ -35,6 +36,8 @@ export function VulnerableCommunities() {
   // artifact\u2019s own priority_score weighting; the slider only re-weights
   // values already in the data (hazard_component + vulnerability_component).
   const [weightHazard, setWeightHazard] = useState(0.6);
+  // List <-> Map view toggle (presentational only; no value changes).
+  const [view, setView] = useState<"list" | "map">("list");
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-6">
@@ -125,6 +128,8 @@ export function VulnerableCommunities() {
               lens={lens}
               weightHazard={weightHazard}
               onWeight={setWeightHazard}
+              view={view}
+              onView={setView}
             />
           )}
         />
@@ -139,12 +144,16 @@ function CommunitiesBody({
   lens,
   weightHazard,
   onWeight,
+  view,
+  onView,
 }: {
   rows: CommunityImpactRecord[];
   pathogen: Pathogen;
   lens: string;
   weightHazard: number;
   onWeight: (w: number) => void;
+  view: "list" | "map";
+  onView: (v: "list" | "map") => void;
 }) {
   const forPathogen = useMemo(() => rows.filter((r) => r.pathogen === pathogen), [rows, pathogen]);
   const unavailable = forPathogen.find((r) => r.availability_status === "unavailable" && r.region === "(all)");
@@ -152,6 +161,9 @@ function CommunitiesBody({
     () => forPathogen.filter((r) => r.availability_status === "available"),
     [forPathogen],
   );
+  // Map click-selection (presentational highlight only). Declared before any
+  // early return so hook order is stable (rules of hooks).
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
   if (unavailable && available.length === 0) {
     return <EmptyState title={`${pathogen} — not available`} detail={unavailable.unavailable_reason ?? "Ranking unavailable."} />;
@@ -183,6 +195,9 @@ function CommunitiesBody({
     .sort((a, b) => b.P - a.P);
 
   const top = ranked[0];
+  // Region -> live priority, the SAME number the bars/callout use; drives the
+  // choropleth fill in map view. No new data, no fabrication.
+  const valueByRegion = new Map<string, number>(ranked.map(({ r, P }) => [r.region, P]));
   return (
     <div className="flex flex-col gap-5">
       {top ? (
@@ -195,6 +210,29 @@ function CommunitiesBody({
           </p>
         </div>
       ) : null}
+      {/* List <-> Map view toggle (presentational; no value changes) */}
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="text-xs font-semibold uppercase tracking-wide text-navy/60">View</span>
+        <div data-testid="communities-view-toggle" role="group" aria-label="Communities view" className="flex gap-2">
+          {(["list", "map"] as const).map((v) => {
+            const on = v === view;
+            return (
+              <button
+                key={v}
+                type="button"
+                data-testid={`communities-view-${v}`}
+                aria-pressed={on}
+                onClick={() => onView(v)}
+                className={`rounded-lg border px-4 py-1.5 text-sm font-semibold transition ${
+                  on ? "border-teal bg-teal text-white" : "border-navy/15 bg-white text-navy/70 hover:border-navy/30"
+                }`}
+              >
+                {v === "list" ? "Ranked list" : "Map"}
+              </button>
+            );
+          })}
+        </div>
+      </div>
       <div className="flex flex-col gap-2 rounded-lg border border-navy/10 bg-surface-muted px-4 py-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <span className="text-xs font-semibold text-navy">Balance hazard vs vulnerability</span>
@@ -251,10 +289,33 @@ function CommunitiesBody({
             <span className="text-[10px] text-navy/40">{ranked.length} states</span>
           </div>
           <p className="mb-3 text-[11px] text-navy/50">
-            Ranked by a live priority score blending {Math.round(weightHazard * 100)}% hazard with{" "}
+            A live priority score blending {Math.round(weightHazard * 100)}% hazard with{" "}
             {100 - Math.round(weightHazard * 100)}% vulnerability. Hazard is identical no matter which
-            lens is selected; the slider and lens only re-order the list.
+            lens is selected; the slider and lens only {view === "map" ? "recolor the map" : "re-order the list"}.
           </p>
+          {view === "map" ? (
+            <div>
+              <MapView
+                valueByRegion={valueByRegion}
+                valueLabel={"Priority"}
+                selectedRegion={selectedRegion}
+                onSelectRegion={(rg) => setSelectedRegion((cur) => (cur === rg ? null : rg))}
+              />
+              {selectedRegion && valueByRegion.has(selectedRegion) ? (
+                <p className="mt-2 text-[11px] text-navy/70">
+                  <span className="font-bold text-navy">{selectedRegion}</span> priority{" "}
+                  <span className="font-semibold">{formatRisk(valueByRegion.get(selectedRegion)!)}</span>{" "}
+                  at the current {Math.round(weightHazard * 100)}/{100 - Math.round(weightHazard * 100)} hazard/vulnerability weighting.
+                </p>
+              ) : null}
+              <p className="mt-2 text-[11px] italic leading-relaxed text-navy/55">
+                Each state is shaded by its live <span className="font-semibold">priority</span> score
+                (teal = higher) at the current weighting — a prioritization signal, state-level, NOT a
+                contamination rate or illness count. Moving the slider recolors the map; the hazard itself
+                never changes. Click a state to read its priority; click again to clear.
+              </p>
+            </div>
+          ) : (
           <ul className="flex flex-col gap-2.5">
             {ranked.slice(0, 15).map(({ r, L, P }, i) => {
               const haz = r.hazard_component ?? 0;
@@ -281,6 +342,7 @@ function CommunitiesBody({
               );
             })}
           </ul>
+          )}
         </div>
       )}
 
