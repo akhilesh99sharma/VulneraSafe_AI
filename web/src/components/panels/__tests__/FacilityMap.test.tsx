@@ -193,15 +193,17 @@ const ROWS: FacilityMapItem[] = [
 ];
 
 describe("FacilityMap", () => {
-  it("renders via useArtifact(facility_map) with coverage strip and the sourcing-scrutiny framing", async () => {
+  it("renders via useArtifact(facility_map) with the coverage note and the sourcing-scrutiny framing", async () => {
     installArtifactFetch({ facility_map: ROWS });
     renderWithSelection(<FacilityMap />);
 
-    // Await the async artifact load through the coverage strip.
-    const strip = await screen.findByTestId("coverage-strip");
-    // placed/total across both pathogens: 2/5 and a measured percentage.
-    expect(within(strip).getByText(/2\/5/)).toBeInTheDocument();
-    expect(within(strip).getByText(/40\.0%/)).toBeInTheDocument();
+    // Await the async artifact load through the coverage note (below the map).
+    const note = await screen.findByTestId("coverage-note");
+    // 2 of 5 selected are FSIS-verified; the note states both plotted and verified counts.
+    expect(within(note).getByText(/of 5/)).toBeInTheDocument();
+    expect(within(note).getByText(/2 FSIS-verified/)).toBeInTheDocument();
+    // Honesty: only verified count toward verified coverage.
+    expect(within(note).getByText(/count toward verified coverage/i)).toBeInTheDocument();
 
     // Framing note: sourcing-scrutiny reference layer, NOT the retailer's
     // suppliers. Both phrases appear in the hero banner and the "how to read"

@@ -57,7 +57,42 @@ const LOCATION_META: Record<
   },
 };
 
-const MAP_HEIGHT = 420;
+const MAP_HEIGHT = 560;
+
+interface StateLabel { postal: string; lng: number; lat: number; }
+
+function ringCentroidFM(ring: number[][]): { c: [number, number]; area: number } | null {
+  if (!ring || ring.length < 3) return null;
+  let a = 0, cx = 0, cy = 0;
+  for (let i = 0; i < ring.length; i++) {
+    const [x0, y0] = ring[i];
+    const [x1, y1] = ring[(i + 1) % ring.length];
+    const cross = x0 * y1 - x1 * y0;
+    a += cross; cx += (x0 + x1) * cross; cy += (y0 + y1) * cross;
+  }
+  a *= 0.5;
+  if (Math.abs(a) < 1e-12) return null;
+  return { c: [cx / (6 * a), cy / (6 * a)], area: Math.abs(a) };
+}
+
+function centroidOfFM(geom: any): [number, number] | null {
+  if (!geom) return null;
+  if (geom.type === "Polygon") { const r = ringCentroidFM(geom.coordinates?.[0]); return r ? r.c : null; }
+  if (geom.type === "MultiPolygon") {
+    let best: { c: [number, number]; area: number } | null = null;
+    for (const poly of geom.coordinates ?? []) { const r = ringCentroidFM(poly?.[0]); if (r && (!best || r.area > best.area)) best = r; }
+    return best ? best.c : null;
+  }
+  return null;
+}
+
+/** Same-origin US-states GeoJSON (keyed by postal), reused from the risk-map
+ * choropleth so the facility pins sit on a recognizable US base map rather than
+ * a blank grey canvas. */
+function statesGeojsonUrl(): string {
+  const base = import.meta.env.BASE_URL ?? "/";
+  return `${base}geo/us-states.json`;
+}
 const VERIFIED_FILL = "#0f8578"; // solid teal
 const CANDIDATE_OUTLINE = "#ea7a1d"; // orange outline
 
@@ -74,10 +109,6 @@ function hasRealCoords(r: FacilityMapItem): r is FacilityMapItem & { lat: number
 
 function pct(v: number | null | undefined): string {
   return v === null || v === undefined ? "N/A" : `${(v * 100).toFixed(1)}%`;
-}
-
-function coveragePct(v: number | null | undefined): string {
-  return v === null || v === undefined ? "N/A" : `${v.toFixed(1)}%`;
 }
 
 function identityName(r: FacilityMapItem): string {
@@ -322,25 +353,18 @@ function FacilityMapBody({
 
   return (
     <div className="flex flex-col gap-5">
-      <CoverageStrip blocks={coverageByPathogen} pinCount={pins.length} />
-
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        <div className="flex flex-col gap-2">
-          <FacilityMapView pins={pins} selectedId={selectedId} onSelect={onSelect} />
-          <MarkerLegend />
-        </div>
-        <div className="min-w-0">
-          {selected ? (
-            <DetailPanel row={selected} onClose={() => onSelect(null)} />
-          ) : (
-            <RankedList rows={ranked} selectedId={selectedId} onSelect={onSelect} />
-          )}
-        </div>
+      {/* Full-width map on top */}
+      <div className="flex flex-col gap-2">
+        <FacilityMapView pins={pins} selectedId={selectedId} onSelect={onSelect} />
+        <MarkerLegend />
+        <CoverageNote blocks={coverageByPathogen} />
       </div>
 
-      {!selected ? null : (
-        <RankedList rows={ranked} selectedId={selectedId} onSelect={onSelect} />
-      )}
+      {/* Selected-establishment detail (if any), then the ranked list below the map */}
+      {selected ? (
+        <DetailPanel row={selected} onClose={() => onSelect(null)} />
+      ) : null}
+      <RankedList rows={ranked} selectedId={selectedId} onSelect={onSelect} />
 
       <UnresolvedSection rows={unplaced} onSelect={onSelect} />
 
@@ -362,82 +386,21 @@ function FacilityMapBody({
 /* Coverage strip                                                              */
 /* --------------------------------------------------------------------------- */
 
-function CoverageStrip({
-  blocks,
-  pinCount,
-}: {
-  blocks: Array<{ pathogen: string; cov: FacilityMapItem["coverage"] }>;
-  pinCount: number;
-}) {
-  // Headline verified coverage = sum of per-pathogen placed / total_selected,
-  // read from the carried coverage blocks (never recomputed from rows).
+function CoverageNote({ blocks }: { blocks: Array<{ pathogen: string; cov: FacilityMapItem["coverage"] }> }) {
   const totalSelected = blocks.reduce((n, b) => n + b.cov.total_selected, 0);
   const placed = blocks.reduce((n, b) => n + b.cov.placed, 0);
   const historical = blocks.reduce((n, b) => n + b.cov.historical_candidate, 0);
   const unresolved = blocks.reduce((n, b) => n + b.cov.unresolved, 0);
-  const headlinePct = totalSelected > 0 ? (100 * placed) / totalSelected : null;
-
+  const plotted = placed + historical;
   return (
-    <div data-testid="coverage-strip" className="rounded-xl border border-navy/10 bg-white p-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-navy/50">
-            Verified coverage (FSIS MPI)
-          </p>
-          <p className="mt-0.5 text-2xl font-extrabold text-navy">
-            {placed}/{totalSelected}{" "}
-            <span className="text-base font-bold text-teal-700">({coveragePct(headlinePct)})</span>
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2 text-[11px]">
-          <CoverageChip label="Total selected" value={totalSelected} tone="navy" />
-          <CoverageChip label="Verified & plotted" value={pinCount} tone="teal" />
-          <CoverageChip label="Historical candidates" value={historical} tone="orange" />
-          <CoverageChip label="Unresolved" value={unresolved} tone="slate" />
-        </div>
-      </div>
-      <p className="mt-2 text-[10px] italic text-navy/50">
-        Verified coverage counts only establishments matched to the FSIS MPI Directory by
-        establishment id. Historical candidates are <span className="font-semibold">not</span> counted
-        toward verified coverage.
-      </p>
-      {blocks.length > 1 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {blocks.map((b) => (
-            <span
-              key={b.pathogen}
-              className="rounded-full border border-navy/15 px-2 py-0.5 text-[10px] font-semibold text-navy/60"
-            >
-              {b.pathogen}: {b.cov.placed}/{b.cov.total_selected} ({coveragePct(b.cov.coverage_pct)})
-            </span>
-          ))}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function CoverageChip({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: number;
-  tone: "navy" | "teal" | "orange" | "slate";
-}) {
-  const toneClass =
-    tone === "teal"
-      ? "bg-teal/10 text-teal-700"
-      : tone === "orange"
-        ? "bg-orange-500/10 text-orange-700"
-        : tone === "slate"
-          ? "bg-slate-100 text-slate-600"
-          : "bg-navy/10 text-navy/70";
-  return (
-    <span className={`rounded-lg px-2.5 py-1 font-semibold ${toneClass}`}>
-      {label}: <span className="font-extrabold">{value}</span>
-    </span>
+    <p data-testid="coverage-note" className="text-[11px] leading-relaxed text-navy/60">
+      <span className="font-semibold text-navy">{plotted} of {totalSelected}</span> establishments plotted:{" "}
+      <span className="font-semibold text-teal-700">{placed} FSIS-verified</span>{" "}
+      (matched to the FSIS MPI Directory by establishment id)
+      {historical > 0 ? (<> + <span className="font-semibold text-orange-700">{historical} historical candidate{historical === 1 ? "" : "s"}</span> (external research, identity unconfirmed against FSIS)</>) : null}
+      {unresolved > 0 ? <>; <span className="font-semibold text-navy/70">{unresolved} unresolved</span></> : null}.
+      {" "}<span className="italic text-navy/45">Only FSIS-verified establishments count toward verified coverage; historical candidates never do.</span>
+    </p>
   );
 }
 
@@ -487,6 +450,8 @@ function FacilityMapView({
   const [useGrid, setUseGrid] = useState(false);
   const [glReady, setGlReady] = useState(false);
   const [hover, setHover] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [stateLabels, setStateLabels] = useState<StateLabel[]>([]);
+  const [labelScreen, setLabelScreen] = useState<Record<string, { x: number; y: number }>>({});
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
   const pinsRef = useRef(pins);
@@ -532,13 +497,59 @@ function FacilityMapView({
       return;
     }
     mapRef.current = map;
+    try {
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false, showZoom: true }), "top-left");
+    } catch { /* controls are an enhancement, not required */ }
     const fail = () => {
       if (!cancelled) setUseGrid(true);
     };
 
-    map.on("load", () => {
+    map.on("load", async () => {
       try {
         map.resize();
+        // Base map: US state polygons (same-origin GeoJSON). Drawn first so the
+        // facility pins render on top of a recognizable map, not a blank canvas.
+        try {
+          const resp = await fetch(statesGeojsonUrl());
+          if (resp.ok) {
+            const gj = await resp.json();
+            if (!cancelled) {
+              map.addSource("us-states", { type: "geojson", data: gj });
+              map.addLayer({ id: "states-fill", type: "fill", source: "us-states",
+                paint: { "fill-color": "#dbe4ec", "fill-opacity": 0.9 } });
+              map.addLayer({ id: "states-outline", type: "line", source: "us-states",
+                paint: { "line-color": "#ffffff", "line-width": 0.8 } });
+              const pts: StateLabel[] = [];
+              for (const f of gj.features ?? []) {
+                const postal = f?.properties?.postal;
+                const c = centroidOfFM(f?.geometry);
+                if (postal && c) pts.push({ postal, lng: c[0], lat: c[1] });
+              }
+              setStateLabels(pts);
+              const project = () => {
+                const next: Record<string, { x: number; y: number }> = {};
+                const cw = map.getContainer().clientWidth;
+                const ch = map.getContainer().clientHeight;
+                for (const pt of pts) {
+                  const sp = map.project([pt.lng, pt.lat]);
+                  if (sp.x < -4 || sp.y < -4 || sp.x > cw + 4 || sp.y > ch + 4) continue;
+                  next[pt.postal] = { x: sp.x, y: sp.y };
+                }
+                setLabelScreen(next);
+              };
+              project();
+              let raf = 0;
+              const schedule = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; project(); }); };
+              map.on("move", schedule);
+              map.on("zoom", schedule);
+              map.on("moveend", project);
+              map.on("resize", project);
+            }
+          }
+        } catch {
+          /* basemap is an enhancement; pins still render without it */
+        }
+        if (cancelled) return;
         map.addSource("facilities", {
           type: "geojson",
           data: geojson,
@@ -672,14 +683,41 @@ function FacilityMapView({
         style={{ position: "absolute", inset: 0, borderRadius: 8, overflow: "hidden" }}
         className="border border-navy/10"
       />
+      {glReady ? (
+        <button
+          type="button"
+          data-testid="facility-map-reset"
+          aria-label="Reset map view"
+          onClick={() => { const m = mapRef.current; if (m) m.flyTo({ center: [-96, 38], zoom: 3.3, duration: 500 }); }}
+          className="absolute left-2 top-24 z-20 rounded border border-navy/15 bg-white px-2 py-1 text-[11px] font-semibold text-navy shadow hover:border-teal hover:text-teal focus:outline-none focus:ring-2 focus:ring-teal"
+        >
+          Reset
+        </button>
+      ) : null}
+      {glReady
+        ? stateLabels.map((l) => {
+            const sp = labelScreen[l.postal];
+            if (!sp) return null;
+            return (
+              <span
+                key={l.postal}
+                aria-hidden
+                style={{ position: "absolute", left: sp.x, top: sp.y, transform: "translate(-50%,-50%)" }}
+                className="pointer-events-none select-none text-[11px] font-bold leading-none text-slate-500"
+              >
+                {l.postal}
+              </span>
+            );
+          })
+        : null}
       {glReady && hover && hoverPin ? (
         <div
           style={{ position: "absolute", left: hover.x + 10, top: hover.y + 10 }}
-          className="pointer-events-none max-w-[220px] rounded bg-navy px-2 py-1 text-[11px] font-semibold text-white shadow-lg"
+          className="pointer-events-none max-w-[240px] rounded bg-navy px-2.5 py-1.5 text-xs font-semibold text-white shadow-lg"
         >
           {identityName(hoverPin.row)} · {hoverPin.row.state}
           <span
-            className={`ml-1 rounded px-1 py-0.5 text-[9px] font-bold ${
+            className={`ml-1 rounded px-1.5 py-0.5 text-[10px] font-bold ${
               hoverPin.row.location_status === "mpi_verified"
                 ? "bg-teal-500 text-white"
                 : "bg-orange-500 text-white"
@@ -793,16 +831,19 @@ function RankedList({
   selectedId: string | null;
   onSelect: (id: string) => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
   if (rows.length === 0) {
     return <EmptyState title="No facilities for this filter" detail="Try a different pathogen or source." />;
   }
+  const COLLAPSED = 5;
+  const shown = expanded ? rows : rows.slice(0, COLLAPSED);
   return (
     <div className="flex flex-col gap-3">
       <p className="text-[11px] text-navy/50">
-        {rows.length} establishment(s), highest surveillance signal first.
+        Showing {shown.length} of {rows.length} establishment(s), highest surveillance signal first.
       </p>
       <ul className="flex flex-col gap-2">
-        {rows.map((r) => {
+        {shown.map((r) => {
           const meta = LOCATION_META[r.location_status] ?? LOCATION_META.unresolved;
           const lowSupport = r.sample_n < 30;
           const sel = r.establishment_id === selectedId;
@@ -864,6 +905,16 @@ function RankedList({
           );
         })}
       </ul>
+      {rows.length > COLLAPSED ? (
+        <button
+          type="button"
+          data-testid="ranked-facility-toggle"
+          onClick={() => setExpanded((v) => !v)}
+          className="mx-auto rounded-lg border border-navy/20 px-4 py-1.5 text-xs font-semibold text-navy/70 transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-teal"
+        >
+          {expanded ? "Show top 5 only" : `Show all ${rows.length} establishments`}
+        </button>
+      ) : null}
     </div>
   );
 }

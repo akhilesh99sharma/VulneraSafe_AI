@@ -143,7 +143,10 @@ describe("Facilities (unified S03 + Facility Map)", () => {
 
     // FacilityMap renders its accessible fallback grid under jsdom; its
     // container keeps data-testid="facility-map-view" and the placed row is a facility-pin.
-    expect(await screen.findByTestId("facility-map-view")).toBeInTheDocument();
+    // FacilityMapView renders both the real map container and (while GL is not
+    // ready under jsdom) an inline fallback grid, both carrying this testid, so
+    // assert at least one is present.
+    expect((await screen.findAllByTestId("facility-map-view")).length).toBeGreaterThanOrEqual(1);
     expect(await screen.findAllByTestId("facility-pin")).toHaveLength(1);
 
     // The S03 list title is absent while map is shown.
